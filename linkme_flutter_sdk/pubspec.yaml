@@ -1,0 +1,75 @@
+name: linkme_flutter_sdk
+description: lianmi app sdk
+version: 1.0.1
+author: lishijia
+#homepage:
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=1.20.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+    
+  logger: ^1.0.0
+  async: ^2.6.1
+  fixnum: ^1.0.0
+  protobuf: ^2.0.0
+  dio: ^4.0.0
+  image_picker: ^0.7.3
+  connectivity: ^3.0.4
+  sp_util: ^2.0.3
+  # Dart 常用工具类库 https://github.com/Sky24n/common_utils
+  common_utils: ^2.0.2
+  # 格式化String https://github.com/Naddiseo/dart-sprintf
+  sprintf: ^6.0.0
+  uuid: ^3.0.4
+  moor: ^4.3.2 #数据库工具
+  path_provider: ^2.0.1 #文件路径
+  crypto: ^3.0.1 #计算文件的哈希
+  encrypt: ^5.0.0
+  # moor_ffi: ^0.8.0
+  # signal加解密库
+  # libsignal_protocol_dart: ^0.5.0-nullsafety.0
+  # websocket
+  web_socket_channel: ^2.1.0
+  #状态路由及网络通信  
+  # get:  
+  event_bus: ^2.0.0
+  provider: ^5.0.0
+  # city_pickers: ^1.0.1
+
+  
+  aly_oss:
+    path:  ../aly_oss
+    # git:
+    #   url: http://git.geejoan.cn/lishijia/aly_oss
+    #   ref: aly_oss_2.0
+
+  sqflite_common_ffi: ^2.0.0
+  sqlite3_flutter_libs: ^0.4.3 # Also use the latest version.
+  path: ^1.8.0
+  # flutter_image_compress: ^1.0.0 #压缩算法,对图片进行压缩，减少空间占用
+
+dev_dependencies:
+  moor_generator: ^4.3.0 #生成moor代码工具
+  build_runner: ^2.0.3 #构建build.yaml
+  flutter_test:
+    sdk: flutter
+
+  pedantic: ^1.11.0
+  # test: ^1.14.4
+  
+flutter:
+
+  plugin:
+    platforms:
+      android:
+        package: cn.linkmeiot.linkme_flutter_sdk
+        pluginClass: LinkmeFlutterSdkPlugin
+      ios:
+        pluginClass: LinkmeFlutterSdkPlugin
+
+      some_platform:
+        pluginClass: somePluginClass  

@@ -1,0 +1,42 @@
+name: lianmisdk
+description: Demonstrates how to use the linkme_flutter_sdk plugin.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  path_provider: ^2.0.1 #文件路径
+  event_bus: ^2.0.0
+  logger: ^1.0.0
+  linkme_flutter_sdk:
+    path: ../
+
+  cupertino_icons: ^1.0.0
+  # permission_handler: ^5.0.1+1 #权限
+  permission_handler: ^8.1.1
+  image_picker: ^0.7.3
+  provider: ^5.0.0
+  city_pickers: ^1.0.1
+
+dev_dependencies:
+  flutter_test:
+    
+    sdk: flutter
+
+flutter:
+
+
+  uses-material-design: true
+
+
+  assets:
+    - assets/public.pem #订单附件RSA加密证书文件
+    - assets/ca/ca.crt
+    - assets/ca/mqtt.lianmi.cloud.crt
+    - assets/ca/mqtt.lianmi.cloud.key

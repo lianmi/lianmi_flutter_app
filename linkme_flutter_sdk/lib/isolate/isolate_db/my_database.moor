@@ -1,0 +1,54 @@
+CREATE TABLE test (
+  id INT PRIMARY KEY AUTOINCREMENT,
+  keyname TEXT,
+  keyids TEXT,
+  circle TEXT
+) AS Test;
+
+-- 申请成为商户的草稿信息会存储在此表
+CREATE TABLE stores
+(
+    businessUsername          TEXT    not null primary key,
+    storeType                 INT,
+    imageUrl                  TEXT,
+    introductory              TEXT,
+    keys                      TEXT,
+    contactMobile             TEXT,
+    wechat                    TEXT,
+    branchesname              TEXT,
+    openingHours              TEXT,
+    province                  TEXT,
+    city                      TEXT,
+    area                      TEXT,
+    street                    TEXT,
+    address                   TEXT,
+    legalPerson               TEXT,
+    legalIdentityCard         TEXT,
+    licenseUrl                TEXT,
+    longitude                 TEXT,
+    latitude                  TEXT,
+    businessCode              TEXT,
+	notaryServiceUsername     TEXT,
+    createdAt                  INT     not null,
+    modifyAt                  INT
+) AS Store;
+
+
+-- 彩票表
+-- productId 彩种id
+-- type 彩种里面的类型，例如双色球的：单式/复式/胆拖
+-- content 彩票具体内容
+-- createdAt 创建时间
+-- act 动作 0:选号 1:守号
+CREATE TABLE lottery
+(
+    id                  INT PRIMARY KEY AUTOINCREMENT,
+    productId           INT     not null,
+    type                INT     not null,
+    content             TEXT    not null,
+    createdAt            INT     not null,
+    act                 INT     not null
+)  AS Lottery;
+
+
+

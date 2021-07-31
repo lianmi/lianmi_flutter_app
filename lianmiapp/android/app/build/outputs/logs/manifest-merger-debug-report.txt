@@ -1,0 +1,1313 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:1:1-41:12
+INJECTED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:1:1-41:12
+INJECTED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:1:1-41:12
+INJECTED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:1:1-41:12
+MERGED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:1:1-41:12
+MERGED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-60:12
+MERGED from [:flutter_qr_reader] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_qr_reader/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-14:12
+MERGED from [:linkme_flutter_sdk] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/linkme_flutter_sdk/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:image_picker] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-22:12
+MERGED from [:webview_flutter] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/webview_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:tobias] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/tobias/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-21:12
+MERGED from [:amap_flutter_location] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/amap_flutter_location/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:wakelock] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/wakelock/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:photo_manager] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/photo_manager/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:connectivity] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:video_player] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/video_player/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-69:12
+MERGED from [:fluttertoast] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluttertoast/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:permission_handler] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/permission_handler/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:flutter_sound] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_sound/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:camera] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/camera/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-10:12
+MERGED from [:package_info] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/package_info/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:aly_oss] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/aly_oss/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-36:12
+MERGED from [:flutter_plugin_android_lifecycle] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:image_gallery_saver] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/image_gallery_saver/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:shared_preferences] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:sqflite] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:sqlite3_flutter_libs] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/sqlite3_flutter_libs/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:path_provider] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:video_thumbnail] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/video_thumbnail/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:device_info] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/device_info/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:huawei_push] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/huawei_push/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-23:12
+MERGED from [:url_launcher] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-14:12
+MERGED from [:flutter_aliplayer] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_aliplayer/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:geolocator] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/geolocator/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.7.4] /Users/mac/.gradle/caches/transforms-2/files-2.1/7749cea4f3273d1a28d50d9fbd291e33/jetified-wechat-sdk-android-without-mta-6.7.4/AndroidManifest.xml:2:1-9:12
+MERGED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:2:1-32:12
+MERGED from [androidx.appcompat:appcompat:1.3.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/deb78727792fa6d8d7b2bc5d7e053da7/appcompat-1.3.0/AndroidManifest.xml:17:1-24:12
+MERGED from [top.zibin:Luban:1.1.8] /Users/mac/.gradle/caches/transforms-2/files-2.1/5ce13c369647c14ed6966ddba07b25ca/jetified-Luban-1.1.8/AndroidManifest.xml:2:1-11:12
+MERGED from [com.aliyun.dpa:oss-android-sdk:2.9.8] /Users/mac/.gradle/caches/transforms-2/files-2.1/054eecdfd8e5a9fc9a30d3e4740b1e42/jetified-oss-android-sdk-2.9.8/AndroidManifest.xml:2:1-14:12
+MERGED from [androidx.webkit:webkit:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/cbbb6921b2521959953b0c781fe5c304/webkit-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core-ktx:1.6.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/4ed80d77e3ef400db447c1fca0847a99/jetified-core-ktx-1.6.0/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.media:media:1.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/b282f40886b7a619d66f9a84428500bc/media-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.github.bumptech.glide:glide:4.11.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/79f8042ebd63447be6ff90d2fc150f51/jetified-glide-4.11.0/AndroidManifest.xml:2:1-12:12
+MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/340206bb4856bf61e48bd10632b21882/jetified-play-services-location-17.0.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/7c879cb157fab2c9a5d74c3d70fd64e3/jetified-play-services-base-17.0.0/AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/792892a7083917130fbc18623188f241/jetified-play-services-places-placereport-17.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/953f01bd1c1ba965762327dfde85b8cc/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/3c8e7eb3d21ac94d08f658f6d8a1c9f3/jetified-play-services-basement-17.0.0/AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.fragment:fragment:1.3.4] /Users/mac/.gradle/caches/transforms-2/files-2.1/f15ff2f3139cd425ac252625ec2339d7/fragment-1.3.4/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.2.3] /Users/mac/.gradle/caches/transforms-2/files-2.1/5f33ab19266bc92e8701824034bfd354/jetified-activity-1.2.3/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.3.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/d68d67d1fe36d069ca661e840ce73d15/jetified-appcompat-resources-1.3.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/a71638e40cbd9c9c6e5d2d7449ca53dd/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/eb26273f8f7192460456ce62b9bdf9ef/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/d9536c14ffde0b7289f12ba6def6bfa4/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/a59d1de1f299e68c5b049a432ccfd655/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/42415d22b488b741b7e8fbc712464c00/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/bc28a09d8d2212ffd5788fe6c1853326/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.6.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/5f663b08eec19eef9a9d1af662d9025e/core-1.6.0/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.2] /Users/mac/.gradle/caches/transforms-2/files-2.1/271472d6c0a829dd67d7d2da39490b1d/exifinterface-1.3.2/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.14.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/b2ea5e05fb4fb851184e9b0af980bf49/jetified-exoplayer-hls-2.14.1/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.14.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/f09b8ddd78b021f724ecbb270644c7ef/jetified-exoplayer-dash-2.14.1/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.14.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/d9c8ace75a2893fac3be87cf34cd39b5/jetified-exoplayer-smoothstreaming-2.14.1/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.14.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/60b85d32c76f6174d43e445a6aa2cefb/jetified-exoplayer-core-2.14.1/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/d6c2e54771524a931cd2bdacc9b51b98/lifecycle-runtime-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/c39070be4a8b092ae5970162a829e305/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/7bc9dee95bdd13d8392abaa54d3ac4c0/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/eac4820eab11ef9b13679619b341596e/jetified-savedstate-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/3a89b53f4c0e1215dbfe28e33e508887/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/d7dcc752a39847821bb8cfc484f4514d/jetified-gifdecoder-4.11.0/AndroidManifest.xml:2:1-11:12
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.14.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/b712161584c0f03d21bcedf0af2bd366/jetified-exoplayer-extractor-2.14.1/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.14.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/9c869d6c39afd30e0ee6a960de621a9b/jetified-exoplayer-common-2.14.1/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/87cae496edf0d81af80ab48e3e89ecce/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/fb333fb43575d8a3b51161295454427f/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/33789d9b6acde6ce9172eed59546467e/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/28c8bed6fae67e41db98432923c9a958/core-runtime-2.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/1fdddb698f5b73fbeb212822ee0a08f1/jetified-tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/b962778313a0e23f9ca3dbafc012c1af/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:2:1-63:12
+MERGED from [com.arthenica:mobile-ffmpeg-full:4.4.LTS] /Users/mac/.gradle/caches/transforms-2/files-2.1/b52f372c74b6c0b5346716cb8808d3ac/jetified-mobile-ffmpeg-full-4.4.LTS/AndroidManifest.xml:2:1-11:12
+MERGED from [eu.simonbinder:sqlite3-native-library:3.35.4] /Users/mac/.gradle/caches/transforms-2/files-2.1/dcc795030934c4ebabb37902c913b216/jetified-sqlite3-native-library-3.35.4/AndroidManifest.xml:2:1-9:12
+MERGED from [com.huawei.hms:push-fcm:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7e1f004a3c3a2a30b791a807b581b445/jetified-push-fcm-5.1.1.301/AndroidManifest.xml:2:1-33:12
+MERGED from [com.huawei.hms:push-base:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/af0e6dcd9a02064d4946cd0134da2168/jetified-push-base-5.1.1.301/AndroidManifest.xml:2:1-9:12
+MERGED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:2:1-80:12
+MERGED from [com.facebook.fresco:fresco:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/622754998967cbdd38ccbbf911aaefd4/jetified-fresco-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.aliyun.sdk.android:AliyunPlayer:5.4.0-full] /Users/mac/.gradle/caches/transforms-2/files-2.1/2bddda5cb0f540fe9cf41364ecf2c395/jetified-AliyunPlayer-5.4.0-full/AndroidManifest.xml:2:1-11:12
+MERGED from [com.huawei.hms:opendevice:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7702743289ec91f05977c100ca10ae32/jetified-opendevice-5.1.1.301/AndroidManifest.xml:2:1-24:12
+MERGED from [com.facebook.fresco:drawee:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/0135b92a95dd9a0297ef1c256c773f1f/jetified-drawee-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:nativeimagefilters:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/766450d8f9d3f0406d07fb17424ee717/jetified-nativeimagefilters-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:memory-type-native:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/9b0b8b1c6dcdda96212404f3eefce693/jetified-memory-type-native-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:memory-type-java:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/7ab1f6bcd30866889633be052e66b4e1/jetified-memory-type-java-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline-native:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/3fdf2d532301474fb1b913eda8c91e10/jetified-imagepipeline-native-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:memory-type-ashmem:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/14222438bcde1e705295befef731c065/jetified-memory-type-ashmem-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/fddaca2d4bdf34951a856bd31d61e9d2/jetified-imagepipeline-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:nativeimagetranscoder:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/e9ae5165f5d9e20ca07dcefa3bab083d/jetified-nativeimagetranscoder-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:soloader:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/f43383e483f01213e27799d3f607010f/jetified-soloader-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline-base:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/55d5d1291a7e383d68487b85eb4c1992/jetified-imagepipeline-base-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:fbcore:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/2259d07f9042ce7bbf2c03211629a27a/jetified-fbcore-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.soloader:soloader:0.8.2] /Users/mac/.gradle/caches/transforms-2/files-2.1/133ce2c3fd8cd78f6ee55d92bb02b2fb/jetified-soloader-0.8.2/AndroidManifest.xml:2:1-13:12
+MERGED from [com.facebook.fresco:ui-common:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/b620ac54a5a843d085adc3fa1163779d/jetified-ui-common-2.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/a861f0b05a17132e2f96ff286e3c4f23/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.huawei.hms:base:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/711cd0bfd39b5cc032c161101a77de5f/jetified-base-5.2.0.300/AndroidManifest.xml:2:1-25:12
+MERGED from [com.huawei.android.hms:security-base:1.1.5.302] /Users/mac/.gradle/caches/transforms-2/files-2.1/49567fe01201d94557acbd8061e930bd/jetified-security-base-1.1.5.302/AndroidManifest.xml:2:1-9:12
+MERGED from [com.huawei.hms:availableupdate:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/628a44f7f3e87a4ffd81696d47f60465/jetified-availableupdate-5.2.0.300/AndroidManifest.xml:2:1-33:12
+MERGED from [com.huawei.hms:device:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bf500335a8993e3fe9c08838edfcf7f4/jetified-device-5.2.0.300/AndroidManifest.xml:2:1-14:12
+MERGED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:2:1-48:12
+MERGED from [com.huawei.hms:stats:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/6ac4d5cedfd3a8a055b9350ee0960922/jetified-stats-5.2.0.300/AndroidManifest.xml:2:1-16:12
+MERGED from [com.huawei.hms:network-grs:4.0.20.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/9c4f82a97cd4c9d551950e2cc2b9c815/jetified-network-grs-4.0.20.301/AndroidManifest.xml:2:1-11:12
+MERGED from [com.huawei.hms:hatool:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/2616f9bf505e29baace656b373eecc1f/jetified-hatool-5.2.0.300/AndroidManifest.xml:2:1-9:12
+MERGED from [com.huawei.android.hms:security-ssl:1.1.5.306] /Users/mac/.gradle/caches/transforms-2/files-2.1/4308a3fa208f47ca521124e94df70705/jetified-security-ssl-1.1.5.306/AndroidManifest.xml:2:1-15:12
+MERGED from [com.huawei.android.hms:security-encrypt:1.1.5.302] /Users/mac/.gradle/caches/transforms-2/files-2.1/b5d577e998468820047b1c62d6417751/jetified-security-encrypt-1.1.5.302/AndroidManifest.xml:2:1-11:12
+MERGED from [com.facebook.soloader:annotation:0.8.2] /Users/mac/.gradle/caches/transforms-2/files-2.1/a6a186fdaa330b44ccfc6f73ab439552/jetified-annotation-0.8.2/AndroidManifest.xml:2:1-13:12
+MERGED from [com.huawei.hms:ui:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bdf1acdf74458c6b6154b35ae7f93c80/jetified-ui-5.2.0.300/AndroidManifest.xml:2:1-29:12
+MERGED from [com.huawei.hms:log:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/2b3c5d5d894371b9e4bb6f2b7e44643b/jetified-log-5.2.0.300/AndroidManifest.xml:2:1-11:12
+MERGED from [com.huawei.agconnect:agconnect-core:1.4.2.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/01120934966e7ea0c507c991757559b1/jetified-agconnect-core-1.4.2.300/AndroidManifest.xml:2:1-21:12
+MERGED from [com.huawei.hmf:tasks:1.4.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/b3098773742c39352cac842874f451a8/jetified-tasks-1.4.1.300/AndroidManifest.xml:2:1-10:12
+MERGED from [com.huawei.hms:componentverifysdk:11.1.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/e437bd7a555bf27f8bf52ba5095668e7/jetified-componentverifysdk-11.1.0.300/AndroidManifest.xml:2:1-12:12
+MERGED from [com.huawei.hms:network-framework-compat:4.0.20.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/64a873c5de0d9f222d2cce92ed2f07e0/jetified-network-framework-compat-4.0.20.301/AndroidManifest.xml:2:1-11:12
+MERGED from [com.huawei.hms:network-common:4.0.20.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/75198c1481e6bf7ac1c1fdf229619247/jetified-network-common-4.0.20.301/AndroidManifest.xml:2:1-11:12
+INJECTED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+	package
+		ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:2:5-36
+		INJECTED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/debug/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:1:1-41:12
+		INJECTED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/debug/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:1:1-41:12
+		INJECTED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/debug/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:1:11-69
+application
+ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:3:4-40:19
+MERGED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-58:19
+MERGED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-58:19
+MERGED from [:image_picker] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:10:5-20:19
+MERGED from [:image_picker] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:10:5-20:19
+MERGED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:16:5-67:19
+MERGED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:16:5-67:19
+MERGED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:30:5-34:19
+MERGED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:30:5-34:19
+MERGED from [:huawei_push] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/huawei_push/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-21:19
+MERGED from [:huawei_push] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/huawei_push/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-21:19
+MERGED from [:url_launcher] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-12:19
+MERGED from [:url_launcher] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-12:19
+MERGED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:15:5-30:19
+MERGED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:15:5-30:19
+MERGED from [com.github.bumptech.glide:glide:4.11.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/79f8042ebd63447be6ff90d2fc150f51/jetified-glide-4.11.0/AndroidManifest.xml:10:5-20
+MERGED from [com.github.bumptech.glide:glide:4.11.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/79f8042ebd63447be6ff90d2fc150f51/jetified-glide-4.11.0/AndroidManifest.xml:10:5-20
+MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/340206bb4856bf61e48bd10632b21882/jetified-play-services-location-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/340206bb4856bf61e48bd10632b21882/jetified-play-services-location-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/7c879cb157fab2c9a5d74c3d70fd64e3/jetified-play-services-base-17.0.0/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/7c879cb157fab2c9a5d74c3d70fd64e3/jetified-play-services-base-17.0.0/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/792892a7083917130fbc18623188f241/jetified-play-services-places-placereport-17.0.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/792892a7083917130fbc18623188f241/jetified-play-services-places-placereport-17.0.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/953f01bd1c1ba965762327dfde85b8cc/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/953f01bd1c1ba965762327dfde85b8cc/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/3c8e7eb3d21ac94d08f658f6d8a1c9f3/jetified-play-services-basement-17.0.0/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/3c8e7eb3d21ac94d08f658f6d8a1c9f3/jetified-play-services-basement-17.0.0/AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.core:core:1.6.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/5f663b08eec19eef9a9d1af662d9025e/core-1.6.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.6.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/5f663b08eec19eef9a9d1af662d9025e/core-1.6.0/AndroidManifest.xml:24:5-89
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/d7dcc752a39847821bb8cfc484f4514d/jetified-gifdecoder-4.11.0/AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/d7dcc752a39847821bb8cfc484f4514d/jetified-gifdecoder-4.11.0/AndroidManifest.xml:9:5-20
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/87cae496edf0d81af80ab48e3e89ecce/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/87cae496edf0d81af80ab48e3e89ecce/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:18:5-61:19
+MERGED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:18:5-61:19
+MERGED from [com.huawei.hms:push-fcm:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7e1f004a3c3a2a30b791a807b581b445/jetified-push-fcm-5.1.1.301/AndroidManifest.xml:9:5-31:19
+MERGED from [com.huawei.hms:push-fcm:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7e1f004a3c3a2a30b791a807b581b445/jetified-push-fcm-5.1.1.301/AndroidManifest.xml:9:5-31:19
+MERGED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:25:5-78:19
+MERGED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:25:5-78:19
+MERGED from [com.huawei.hms:opendevice:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7702743289ec91f05977c100ca10ae32/jetified-opendevice-5.1.1.301/AndroidManifest.xml:9:5-22:19
+MERGED from [com.huawei.hms:opendevice:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7702743289ec91f05977c100ca10ae32/jetified-opendevice-5.1.1.301/AndroidManifest.xml:9:5-22:19
+MERGED from [com.facebook.soloader:soloader:0.8.2] /Users/mac/.gradle/caches/transforms-2/files-2.1/133ce2c3fd8cd78f6ee55d92bb02b2fb/jetified-soloader-0.8.2/AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.soloader:soloader:0.8.2] /Users/mac/.gradle/caches/transforms-2/files-2.1/133ce2c3fd8cd78f6ee55d92bb02b2fb/jetified-soloader-0.8.2/AndroidManifest.xml:11:5-20
+MERGED from [com.huawei.hms:base:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/711cd0bfd39b5cc032c161101a77de5f/jetified-base-5.2.0.300/AndroidManifest.xml:12:5-23:19
+MERGED from [com.huawei.hms:base:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/711cd0bfd39b5cc032c161101a77de5f/jetified-base-5.2.0.300/AndroidManifest.xml:12:5-23:19
+MERGED from [com.huawei.hms:availableupdate:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/628a44f7f3e87a4ffd81696d47f60465/jetified-availableupdate-5.2.0.300/AndroidManifest.xml:18:5-31:19
+MERGED from [com.huawei.hms:availableupdate:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/628a44f7f3e87a4ffd81696d47f60465/jetified-availableupdate-5.2.0.300/AndroidManifest.xml:18:5-31:19
+MERGED from [com.huawei.hms:device:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bf500335a8993e3fe9c08838edfcf7f4/jetified-device-5.2.0.300/AndroidManifest.xml:12:5-20
+MERGED from [com.huawei.hms:device:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bf500335a8993e3fe9c08838edfcf7f4/jetified-device-5.2.0.300/AndroidManifest.xml:12:5-20
+MERGED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:20:5-46:19
+MERGED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:20:5-46:19
+MERGED from [com.huawei.hms:stats:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/6ac4d5cedfd3a8a055b9350ee0960922/jetified-stats-5.2.0.300/AndroidManifest.xml:14:5-20
+MERGED from [com.huawei.hms:stats:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/6ac4d5cedfd3a8a055b9350ee0960922/jetified-stats-5.2.0.300/AndroidManifest.xml:14:5-20
+MERGED from [com.huawei.android.hms:security-ssl:1.1.5.306] /Users/mac/.gradle/caches/transforms-2/files-2.1/4308a3fa208f47ca521124e94df70705/jetified-security-ssl-1.1.5.306/AndroidManifest.xml:9:5-13:19
+MERGED from [com.huawei.android.hms:security-ssl:1.1.5.306] /Users/mac/.gradle/caches/transforms-2/files-2.1/4308a3fa208f47ca521124e94df70705/jetified-security-ssl-1.1.5.306/AndroidManifest.xml:9:5-13:19
+MERGED from [com.facebook.soloader:annotation:0.8.2] /Users/mac/.gradle/caches/transforms-2/files-2.1/a6a186fdaa330b44ccfc6f73ab439552/jetified-annotation-0.8.2/AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.soloader:annotation:0.8.2] /Users/mac/.gradle/caches/transforms-2/files-2.1/a6a186fdaa330b44ccfc6f73ab439552/jetified-annotation-0.8.2/AndroidManifest.xml:11:5-20
+MERGED from [com.huawei.hms:ui:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bdf1acdf74458c6b6154b35ae7f93c80/jetified-ui-5.2.0.300/AndroidManifest.xml:9:5-27:19
+MERGED from [com.huawei.hms:ui:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bdf1acdf74458c6b6154b35ae7f93c80/jetified-ui-5.2.0.300/AndroidManifest.xml:9:5-27:19
+MERGED from [com.huawei.hms:log:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/2b3c5d5d894371b9e4bb6f2b7e44643b/jetified-log-5.2.0.300/AndroidManifest.xml:9:5-20
+MERGED from [com.huawei.hms:log:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/2b3c5d5d894371b9e4bb6f2b7e44643b/jetified-log-5.2.0.300/AndroidManifest.xml:9:5-20
+MERGED from [com.huawei.agconnect:agconnect-core:1.4.2.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/01120934966e7ea0c507c991757559b1/jetified-agconnect-core-1.4.2.300/AndroidManifest.xml:10:5-19:19
+MERGED from [com.huawei.agconnect:agconnect-core:1.4.2.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/01120934966e7ea0c507c991757559b1/jetified-agconnect-core-1.4.2.300/AndroidManifest.xml:10:5-19:19
+MERGED from [com.huawei.hms:componentverifysdk:11.1.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/e437bd7a555bf27f8bf52ba5095668e7/jetified-componentverifysdk-11.1.0.300/AndroidManifest.xml:9:5-10:19
+MERGED from [com.huawei.hms:componentverifysdk:11.1.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/e437bd7a555bf27f8bf52ba5095668e7/jetified-componentverifysdk-11.1.0.300/AndroidManifest.xml:9:5-10:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.6.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/5f663b08eec19eef9a9d1af662d9025e/core-1.6.0/AndroidManifest.xml:24:18-86
+	android:label
+		ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:4:9-34
+	android:icon
+		ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:5:9-43
+activity#com.example.lianmiapp.MainActivity
+ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:6:9-34:20
+	android:launchMode
+		ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:8:13-43
+	android:hardwareAccelerated
+		ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:11:13-47
+	android:windowSoftInputMode
+		ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:12:13-55
+	android:configChanges
+		ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:10:13-163
+	android:theme
+		ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:9:13-47
+	android:name
+		ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:7:13-41
+meta-data#io.flutter.embedding.android.NormalTheme
+ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:17:13-20:17
+	android:resource
+		ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:19:15-52
+	android:name
+		ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:18:15-70
+meta-data#io.flutter.embedding.android.SplashScreenDrawable
+ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:26:13-29:17
+	android:resource
+		ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:28:15-61
+	android:name
+		ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:27:15-79
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:30:13-33:29
+action#android.intent.action.MAIN
+ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:31:17-68
+	android:name
+		ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:31:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:32:17-76
+	android:name
+		ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:32:27-74
+meta-data#flutterEmbedding
+ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:37:9-39:33
+	android:value
+		ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:39:13-30
+	android:name
+		ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml:38:13-44
+uses-sdk
+INJECTED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml
+INJECTED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml
+MERGED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_qr_reader] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_qr_reader/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_qr_reader] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_qr_reader/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:linkme_flutter_sdk] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/linkme_flutter_sdk/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:linkme_flutter_sdk] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/linkme_flutter_sdk/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:image_picker] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:image_picker] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:webview_flutter] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/webview_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:webview_flutter] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/webview_flutter/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:tobias] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/tobias/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:tobias] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/tobias/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:amap_flutter_location] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/amap_flutter_location/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:amap_flutter_location] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/amap_flutter_location/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:wakelock] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/wakelock/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:wakelock] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/wakelock/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:photo_manager] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/photo_manager/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:photo_manager] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/photo_manager/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:connectivity] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:connectivity] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:video_player] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/video_player/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:video_player] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/video_player/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:fluttertoast] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluttertoast/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:fluttertoast] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluttertoast/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:permission_handler] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/permission_handler/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:permission_handler] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/permission_handler/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_sound] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_sound/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_sound] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_sound/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:camera] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/camera/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:camera] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/camera/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:package_info] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/package_info/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:package_info] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/package_info/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:aly_oss] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/aly_oss/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:aly_oss] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/aly_oss/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:image_gallery_saver] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/image_gallery_saver/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:image_gallery_saver] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/image_gallery_saver/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:sqlite3_flutter_libs] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/sqlite3_flutter_libs/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:sqlite3_flutter_libs] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/sqlite3_flutter_libs/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:path_provider] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:path_provider] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:video_thumbnail] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/video_thumbnail/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:video_thumbnail] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/video_thumbnail/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:device_info] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/device_info/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:device_info] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/device_info/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:huawei_push] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/huawei_push/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:huawei_push] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/huawei_push/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:url_launcher] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_aliplayer] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_aliplayer/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_aliplayer] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_aliplayer/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:geolocator] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/geolocator/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:geolocator] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/geolocator/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.7.4] /Users/mac/.gradle/caches/transforms-2/files-2.1/7749cea4f3273d1a28d50d9fbd291e33/jetified-wechat-sdk-android-without-mta-6.7.4/AndroidManifest.xml:5:5-7:41
+MERGED from [com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.7.4] /Users/mac/.gradle/caches/transforms-2/files-2.1/7749cea4f3273d1a28d50d9fbd291e33/jetified-wechat-sdk-android-without-mta-6.7.4/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.appcompat:appcompat:1.3.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/deb78727792fa6d8d7b2bc5d7e053da7/appcompat-1.3.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.3.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/deb78727792fa6d8d7b2bc5d7e053da7/appcompat-1.3.0/AndroidManifest.xml:20:5-22:41
+MERGED from [top.zibin:Luban:1.1.8] /Users/mac/.gradle/caches/transforms-2/files-2.1/5ce13c369647c14ed6966ddba07b25ca/jetified-Luban-1.1.8/AndroidManifest.xml:7:5-9:41
+MERGED from [top.zibin:Luban:1.1.8] /Users/mac/.gradle/caches/transforms-2/files-2.1/5ce13c369647c14ed6966ddba07b25ca/jetified-Luban-1.1.8/AndroidManifest.xml:7:5-9:41
+MERGED from [com.aliyun.dpa:oss-android-sdk:2.9.8] /Users/mac/.gradle/caches/transforms-2/files-2.1/054eecdfd8e5a9fc9a30d3e4740b1e42/jetified-oss-android-sdk-2.9.8/AndroidManifest.xml:7:5-9:41
+MERGED from [com.aliyun.dpa:oss-android-sdk:2.9.8] /Users/mac/.gradle/caches/transforms-2/files-2.1/054eecdfd8e5a9fc9a30d3e4740b1e42/jetified-oss-android-sdk-2.9.8/AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.webkit:webkit:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/cbbb6921b2521959953b0c781fe5c304/webkit-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.webkit:webkit:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/cbbb6921b2521959953b0c781fe5c304/webkit-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-ktx:1.6.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/4ed80d77e3ef400db447c1fca0847a99/jetified-core-ktx-1.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.core:core-ktx:1.6.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/4ed80d77e3ef400db447c1fca0847a99/jetified-core-ktx-1.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.media:media:1.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/b282f40886b7a619d66f9a84428500bc/media-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/b282f40886b7a619d66f9a84428500bc/media-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.github.bumptech.glide:glide:4.11.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/79f8042ebd63447be6ff90d2fc150f51/jetified-glide-4.11.0/AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:glide:4.11.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/79f8042ebd63447be6ff90d2fc150f51/jetified-glide-4.11.0/AndroidManifest.xml:6:5-8:41
+MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/340206bb4856bf61e48bd10632b21882/jetified-play-services-location-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/340206bb4856bf61e48bd10632b21882/jetified-play-services-location-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/7c879cb157fab2c9a5d74c3d70fd64e3/jetified-play-services-base-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/7c879cb157fab2c9a5d74c3d70fd64e3/jetified-play-services-base-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/792892a7083917130fbc18623188f241/jetified-play-services-places-placereport-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/792892a7083917130fbc18623188f241/jetified-play-services-places-placereport-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/953f01bd1c1ba965762327dfde85b8cc/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/953f01bd1c1ba965762327dfde85b8cc/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/3c8e7eb3d21ac94d08f658f6d8a1c9f3/jetified-play-services-basement-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/3c8e7eb3d21ac94d08f658f6d8a1c9f3/jetified-play-services-basement-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.3.4] /Users/mac/.gradle/caches/transforms-2/files-2.1/f15ff2f3139cd425ac252625ec2339d7/fragment-1.3.4/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.4] /Users/mac/.gradle/caches/transforms-2/files-2.1/f15ff2f3139cd425ac252625ec2339d7/fragment-1.3.4/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.2.3] /Users/mac/.gradle/caches/transforms-2/files-2.1/5f33ab19266bc92e8701824034bfd354/jetified-activity-1.2.3/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.2.3] /Users/mac/.gradle/caches/transforms-2/files-2.1/5f33ab19266bc92e8701824034bfd354/jetified-activity-1.2.3/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.3.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/d68d67d1fe36d069ca661e840ce73d15/jetified-appcompat-resources-1.3.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.3.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/d68d67d1fe36d069ca661e840ce73d15/jetified-appcompat-resources-1.3.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/a71638e40cbd9c9c6e5d2d7449ca53dd/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/a71638e40cbd9c9c6e5d2d7449ca53dd/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/eb26273f8f7192460456ce62b9bdf9ef/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/eb26273f8f7192460456ce62b9bdf9ef/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/d9536c14ffde0b7289f12ba6def6bfa4/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/d9536c14ffde0b7289f12ba6def6bfa4/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/a59d1de1f299e68c5b049a432ccfd655/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/a59d1de1f299e68c5b049a432ccfd655/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/42415d22b488b741b7e8fbc712464c00/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/42415d22b488b741b7e8fbc712464c00/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/bc28a09d8d2212ffd5788fe6c1853326/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/bc28a09d8d2212ffd5788fe6c1853326/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.6.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/5f663b08eec19eef9a9d1af662d9025e/core-1.6.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.6.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/5f663b08eec19eef9a9d1af662d9025e/core-1.6.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.2] /Users/mac/.gradle/caches/transforms-2/files-2.1/271472d6c0a829dd67d7d2da39490b1d/exifinterface-1.3.2/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.2] /Users/mac/.gradle/caches/transforms-2/files-2.1/271472d6c0a829dd67d7d2da39490b1d/exifinterface-1.3.2/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.14.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/b2ea5e05fb4fb851184e9b0af980bf49/jetified-exoplayer-hls-2.14.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.14.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/b2ea5e05fb4fb851184e9b0af980bf49/jetified-exoplayer-hls-2.14.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.14.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/f09b8ddd78b021f724ecbb270644c7ef/jetified-exoplayer-dash-2.14.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.14.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/f09b8ddd78b021f724ecbb270644c7ef/jetified-exoplayer-dash-2.14.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.14.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/d9c8ace75a2893fac3be87cf34cd39b5/jetified-exoplayer-smoothstreaming-2.14.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.14.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/d9c8ace75a2893fac3be87cf34cd39b5/jetified-exoplayer-smoothstreaming-2.14.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.14.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/60b85d32c76f6174d43e445a6aa2cefb/jetified-exoplayer-core-2.14.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.14.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/60b85d32c76f6174d43e445a6aa2cefb/jetified-exoplayer-core-2.14.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/d6c2e54771524a931cd2bdacc9b51b98/lifecycle-runtime-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/d6c2e54771524a931cd2bdacc9b51b98/lifecycle-runtime-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/c39070be4a8b092ae5970162a829e305/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/c39070be4a8b092ae5970162a829e305/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/7bc9dee95bdd13d8392abaa54d3ac4c0/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/7bc9dee95bdd13d8392abaa54d3ac4c0/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/eac4820eab11ef9b13679619b341596e/jetified-savedstate-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/eac4820eab11ef9b13679619b341596e/jetified-savedstate-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/3a89b53f4c0e1215dbfe28e33e508887/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/3a89b53f4c0e1215dbfe28e33e508887/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/d7dcc752a39847821bb8cfc484f4514d/jetified-gifdecoder-4.11.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/d7dcc752a39847821bb8cfc484f4514d/jetified-gifdecoder-4.11.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.14.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/b712161584c0f03d21bcedf0af2bd366/jetified-exoplayer-extractor-2.14.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.14.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/b712161584c0f03d21bcedf0af2bd366/jetified-exoplayer-extractor-2.14.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.14.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/9c869d6c39afd30e0ee6a960de621a9b/jetified-exoplayer-common-2.14.1/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.14.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/9c869d6c39afd30e0ee6a960de621a9b/jetified-exoplayer-common-2.14.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/87cae496edf0d81af80ab48e3e89ecce/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/87cae496edf0d81af80ab48e3e89ecce/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/fb333fb43575d8a3b51161295454427f/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/fb333fb43575d8a3b51161295454427f/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/33789d9b6acde6ce9172eed59546467e/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/33789d9b6acde6ce9172eed59546467e/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/28c8bed6fae67e41db98432923c9a958/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/28c8bed6fae67e41db98432923c9a958/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/1fdddb698f5b73fbeb212822ee0a08f1/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/1fdddb698f5b73fbeb212822ee0a08f1/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/b962778313a0e23f9ca3dbafc012c1af/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/b962778313a0e23f9ca3dbafc012c1af/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.arthenica:mobile-ffmpeg-full:4.4.LTS] /Users/mac/.gradle/caches/transforms-2/files-2.1/b52f372c74b6c0b5346716cb8808d3ac/jetified-mobile-ffmpeg-full-4.4.LTS/AndroidManifest.xml:7:5-9:41
+MERGED from [com.arthenica:mobile-ffmpeg-full:4.4.LTS] /Users/mac/.gradle/caches/transforms-2/files-2.1/b52f372c74b6c0b5346716cb8808d3ac/jetified-mobile-ffmpeg-full-4.4.LTS/AndroidManifest.xml:7:5-9:41
+MERGED from [eu.simonbinder:sqlite3-native-library:3.35.4] /Users/mac/.gradle/caches/transforms-2/files-2.1/dcc795030934c4ebabb37902c913b216/jetified-sqlite3-native-library-3.35.4/AndroidManifest.xml:7:5-44
+MERGED from [eu.simonbinder:sqlite3-native-library:3.35.4] /Users/mac/.gradle/caches/transforms-2/files-2.1/dcc795030934c4ebabb37902c913b216/jetified-sqlite3-native-library-3.35.4/AndroidManifest.xml:7:5-44
+MERGED from [com.huawei.hms:push-fcm:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7e1f004a3c3a2a30b791a807b581b445/jetified-push-fcm-5.1.1.301/AndroidManifest.xml:5:5-7:41
+MERGED from [com.huawei.hms:push-fcm:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7e1f004a3c3a2a30b791a807b581b445/jetified-push-fcm-5.1.1.301/AndroidManifest.xml:5:5-7:41
+MERGED from [com.huawei.hms:push-base:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/af0e6dcd9a02064d4946cd0134da2168/jetified-push-base-5.1.1.301/AndroidManifest.xml:5:5-7:41
+MERGED from [com.huawei.hms:push-base:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/af0e6dcd9a02064d4946cd0134da2168/jetified-push-base-5.1.1.301/AndroidManifest.xml:5:5-7:41
+MERGED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:5:5-7:41
+MERGED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fresco:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/622754998967cbdd38ccbbf911aaefd4/jetified-fresco-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fresco:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/622754998967cbdd38ccbbf911aaefd4/jetified-fresco-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.aliyun.sdk.android:AliyunPlayer:5.4.0-full] /Users/mac/.gradle/caches/transforms-2/files-2.1/2bddda5cb0f540fe9cf41364ecf2c395/jetified-AliyunPlayer-5.4.0-full/AndroidManifest.xml:7:5-9:41
+MERGED from [com.aliyun.sdk.android:AliyunPlayer:5.4.0-full] /Users/mac/.gradle/caches/transforms-2/files-2.1/2bddda5cb0f540fe9cf41364ecf2c395/jetified-AliyunPlayer-5.4.0-full/AndroidManifest.xml:7:5-9:41
+MERGED from [com.huawei.hms:opendevice:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7702743289ec91f05977c100ca10ae32/jetified-opendevice-5.1.1.301/AndroidManifest.xml:5:5-7:41
+MERGED from [com.huawei.hms:opendevice:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7702743289ec91f05977c100ca10ae32/jetified-opendevice-5.1.1.301/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:drawee:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/0135b92a95dd9a0297ef1c256c773f1f/jetified-drawee-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:drawee:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/0135b92a95dd9a0297ef1c256c773f1f/jetified-drawee-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagefilters:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/766450d8f9d3f0406d07fb17424ee717/jetified-nativeimagefilters-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagefilters:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/766450d8f9d3f0406d07fb17424ee717/jetified-nativeimagefilters-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:memory-type-native:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/9b0b8b1c6dcdda96212404f3eefce693/jetified-memory-type-native-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:memory-type-native:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/9b0b8b1c6dcdda96212404f3eefce693/jetified-memory-type-native-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:memory-type-java:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/7ab1f6bcd30866889633be052e66b4e1/jetified-memory-type-java-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:memory-type-java:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/7ab1f6bcd30866889633be052e66b4e1/jetified-memory-type-java-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-native:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/3fdf2d532301474fb1b913eda8c91e10/jetified-imagepipeline-native-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-native:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/3fdf2d532301474fb1b913eda8c91e10/jetified-imagepipeline-native-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:memory-type-ashmem:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/14222438bcde1e705295befef731c065/jetified-memory-type-ashmem-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:memory-type-ashmem:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/14222438bcde1e705295befef731c065/jetified-memory-type-ashmem-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/fddaca2d4bdf34951a856bd31d61e9d2/jetified-imagepipeline-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/fddaca2d4bdf34951a856bd31d61e9d2/jetified-imagepipeline-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagetranscoder:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/e9ae5165f5d9e20ca07dcefa3bab083d/jetified-nativeimagetranscoder-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagetranscoder:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/e9ae5165f5d9e20ca07dcefa3bab083d/jetified-nativeimagetranscoder-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:soloader:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/f43383e483f01213e27799d3f607010f/jetified-soloader-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:soloader:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/f43383e483f01213e27799d3f607010f/jetified-soloader-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-base:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/55d5d1291a7e383d68487b85eb4c1992/jetified-imagepipeline-base-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-base:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/55d5d1291a7e383d68487b85eb4c1992/jetified-imagepipeline-base-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fbcore:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/2259d07f9042ce7bbf2c03211629a27a/jetified-fbcore-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fbcore:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/2259d07f9042ce7bbf2c03211629a27a/jetified-fbcore-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.soloader:soloader:0.8.2] /Users/mac/.gradle/caches/transforms-2/files-2.1/133ce2c3fd8cd78f6ee55d92bb02b2fb/jetified-soloader-0.8.2/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.soloader:soloader:0.8.2] /Users/mac/.gradle/caches/transforms-2/files-2.1/133ce2c3fd8cd78f6ee55d92bb02b2fb/jetified-soloader-0.8.2/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.fresco:ui-common:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/b620ac54a5a843d085adc3fa1163779d/jetified-ui-common-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:ui-common:2.2.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/b620ac54a5a843d085adc3fa1163779d/jetified-ui-common-2.2.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/a861f0b05a17132e2f96ff286e3c4f23/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/a861f0b05a17132e2f96ff286e3c4f23/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.huawei.hms:base:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/711cd0bfd39b5cc032c161101a77de5f/jetified-base-5.2.0.300/AndroidManifest.xml:5:5-7:41
+MERGED from [com.huawei.hms:base:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/711cd0bfd39b5cc032c161101a77de5f/jetified-base-5.2.0.300/AndroidManifest.xml:5:5-7:41
+MERGED from [com.huawei.android.hms:security-base:1.1.5.302] /Users/mac/.gradle/caches/transforms-2/files-2.1/49567fe01201d94557acbd8061e930bd/jetified-security-base-1.1.5.302/AndroidManifest.xml:7:5-43
+MERGED from [com.huawei.android.hms:security-base:1.1.5.302] /Users/mac/.gradle/caches/transforms-2/files-2.1/49567fe01201d94557acbd8061e930bd/jetified-security-base-1.1.5.302/AndroidManifest.xml:7:5-43
+MERGED from [com.huawei.hms:availableupdate:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/628a44f7f3e87a4ffd81696d47f60465/jetified-availableupdate-5.2.0.300/AndroidManifest.xml:5:5-7:41
+MERGED from [com.huawei.hms:availableupdate:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/628a44f7f3e87a4ffd81696d47f60465/jetified-availableupdate-5.2.0.300/AndroidManifest.xml:5:5-7:41
+MERGED from [com.huawei.hms:device:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bf500335a8993e3fe9c08838edfcf7f4/jetified-device-5.2.0.300/AndroidManifest.xml:5:5-7:41
+MERGED from [com.huawei.hms:device:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bf500335a8993e3fe9c08838edfcf7f4/jetified-device-5.2.0.300/AndroidManifest.xml:5:5-7:41
+MERGED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:7:5-9:41
+MERGED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:7:5-9:41
+MERGED from [com.huawei.hms:stats:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/6ac4d5cedfd3a8a055b9350ee0960922/jetified-stats-5.2.0.300/AndroidManifest.xml:5:5-7:41
+MERGED from [com.huawei.hms:stats:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/6ac4d5cedfd3a8a055b9350ee0960922/jetified-stats-5.2.0.300/AndroidManifest.xml:5:5-7:41
+MERGED from [com.huawei.hms:network-grs:4.0.20.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/9c4f82a97cd4c9d551950e2cc2b9c815/jetified-network-grs-4.0.20.301/AndroidManifest.xml:7:5-9:41
+MERGED from [com.huawei.hms:network-grs:4.0.20.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/9c4f82a97cd4c9d551950e2cc2b9c815/jetified-network-grs-4.0.20.301/AndroidManifest.xml:7:5-9:41
+MERGED from [com.huawei.hms:hatool:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/2616f9bf505e29baace656b373eecc1f/jetified-hatool-5.2.0.300/AndroidManifest.xml:5:5-7:41
+MERGED from [com.huawei.hms:hatool:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/2616f9bf505e29baace656b373eecc1f/jetified-hatool-5.2.0.300/AndroidManifest.xml:5:5-7:41
+MERGED from [com.huawei.android.hms:security-ssl:1.1.5.306] /Users/mac/.gradle/caches/transforms-2/files-2.1/4308a3fa208f47ca521124e94df70705/jetified-security-ssl-1.1.5.306/AndroidManifest.xml:7:5-43
+MERGED from [com.huawei.android.hms:security-ssl:1.1.5.306] /Users/mac/.gradle/caches/transforms-2/files-2.1/4308a3fa208f47ca521124e94df70705/jetified-security-ssl-1.1.5.306/AndroidManifest.xml:7:5-43
+MERGED from [com.huawei.android.hms:security-encrypt:1.1.5.302] /Users/mac/.gradle/caches/transforms-2/files-2.1/b5d577e998468820047b1c62d6417751/jetified-security-encrypt-1.1.5.302/AndroidManifest.xml:7:5-9:41
+MERGED from [com.huawei.android.hms:security-encrypt:1.1.5.302] /Users/mac/.gradle/caches/transforms-2/files-2.1/b5d577e998468820047b1c62d6417751/jetified-security-encrypt-1.1.5.302/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.soloader:annotation:0.8.2] /Users/mac/.gradle/caches/transforms-2/files-2.1/a6a186fdaa330b44ccfc6f73ab439552/jetified-annotation-0.8.2/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.soloader:annotation:0.8.2] /Users/mac/.gradle/caches/transforms-2/files-2.1/a6a186fdaa330b44ccfc6f73ab439552/jetified-annotation-0.8.2/AndroidManifest.xml:7:5-9:41
+MERGED from [com.huawei.hms:ui:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bdf1acdf74458c6b6154b35ae7f93c80/jetified-ui-5.2.0.300/AndroidManifest.xml:5:5-7:41
+MERGED from [com.huawei.hms:ui:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bdf1acdf74458c6b6154b35ae7f93c80/jetified-ui-5.2.0.300/AndroidManifest.xml:5:5-7:41
+MERGED from [com.huawei.hms:log:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/2b3c5d5d894371b9e4bb6f2b7e44643b/jetified-log-5.2.0.300/AndroidManifest.xml:5:5-7:41
+MERGED from [com.huawei.hms:log:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/2b3c5d5d894371b9e4bb6f2b7e44643b/jetified-log-5.2.0.300/AndroidManifest.xml:5:5-7:41
+MERGED from [com.huawei.agconnect:agconnect-core:1.4.2.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/01120934966e7ea0c507c991757559b1/jetified-agconnect-core-1.4.2.300/AndroidManifest.xml:6:5-8:41
+MERGED from [com.huawei.agconnect:agconnect-core:1.4.2.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/01120934966e7ea0c507c991757559b1/jetified-agconnect-core-1.4.2.300/AndroidManifest.xml:6:5-8:41
+MERGED from [com.huawei.hmf:tasks:1.4.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/b3098773742c39352cac842874f451a8/jetified-tasks-1.4.1.300/AndroidManifest.xml:6:5-8:41
+MERGED from [com.huawei.hmf:tasks:1.4.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/b3098773742c39352cac842874f451a8/jetified-tasks-1.4.1.300/AndroidManifest.xml:6:5-8:41
+MERGED from [com.huawei.hms:componentverifysdk:11.1.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/e437bd7a555bf27f8bf52ba5095668e7/jetified-componentverifysdk-11.1.0.300/AndroidManifest.xml:5:5-7:41
+MERGED from [com.huawei.hms:componentverifysdk:11.1.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/e437bd7a555bf27f8bf52ba5095668e7/jetified-componentverifysdk-11.1.0.300/AndroidManifest.xml:5:5-7:41
+MERGED from [com.huawei.hms:network-framework-compat:4.0.20.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/64a873c5de0d9f222d2cce92ed2f07e0/jetified-network-framework-compat-4.0.20.301/AndroidManifest.xml:7:5-9:41
+MERGED from [com.huawei.hms:network-framework-compat:4.0.20.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/64a873c5de0d9f222d2cce92ed2f07e0/jetified-network-framework-compat-4.0.20.301/AndroidManifest.xml:7:5-9:41
+MERGED from [com.huawei.hms:network-common:4.0.20.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/75198c1481e6bf7ac1c1fdf229619247/jetified-network-common-4.0.20.301/AndroidManifest.xml:7:5-9:41
+MERGED from [com.huawei.hms:network-common:4.0.20.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/75198c1481e6bf7ac1c1fdf229619247/jetified-network-common-4.0.20.301/AndroidManifest.xml:7:5-9:41
+INJECTED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/debug/AndroidManifest.xml
+INJECTED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/debug/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/debug/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/debug/AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/debug/AndroidManifest.xml:6:5-66
+MERGED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-67
+MERGED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-67
+MERGED from [:tobias] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/tobias/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-67
+MERGED from [:tobias] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/tobias/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-67
+MERGED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-67
+MERGED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-67
+MERGED from [:aly_oss] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/aly_oss/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-67
+MERGED from [:aly_oss] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/aly_oss/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-67
+MERGED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:18:5-67
+MERGED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:18:5-67
+MERGED from [com.aliyun.dpa:oss-android-sdk:2.9.8] /Users/mac/.gradle/caches/transforms-2/files-2.1/054eecdfd8e5a9fc9a30d3e4740b1e42/jetified-oss-android-sdk-2.9.8/AndroidManifest.xml:11:5-67
+MERGED from [com.aliyun.dpa:oss-android-sdk:2.9.8] /Users/mac/.gradle/caches/transforms-2/files-2.1/054eecdfd8e5a9fc9a30d3e4740b1e42/jetified-oss-android-sdk-2.9.8/AndroidManifest.xml:11:5-67
+MERGED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:14:5-67
+MERGED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:14:5-67
+MERGED from [com.huawei.hms:base:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/711cd0bfd39b5cc032c161101a77de5f/jetified-base-5.2.0.300/AndroidManifest.xml:10:5-67
+MERGED from [com.huawei.hms:base:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/711cd0bfd39b5cc032c161101a77de5f/jetified-base-5.2.0.300/AndroidManifest.xml:10:5-67
+MERGED from [com.huawei.hms:availableupdate:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/628a44f7f3e87a4ffd81696d47f60465/jetified-availableupdate-5.2.0.300/AndroidManifest.xml:10:5-67
+MERGED from [com.huawei.hms:availableupdate:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/628a44f7f3e87a4ffd81696d47f60465/jetified-availableupdate-5.2.0.300/AndroidManifest.xml:10:5-67
+MERGED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:11:5-67
+MERGED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:11:5-67
+MERGED from [com.huawei.hms:stats:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/6ac4d5cedfd3a8a055b9350ee0960922/jetified-stats-5.2.0.300/AndroidManifest.xml:10:5-67
+MERGED from [com.huawei.hms:stats:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/6ac4d5cedfd3a8a055b9350ee0960922/jetified-stats-5.2.0.300/AndroidManifest.xml:10:5-67
+	android:name
+		ADDED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/debug/AndroidManifest.xml:6:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-79
+MERGED from [:tobias] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/tobias/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-79
+MERGED from [:tobias] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/tobias/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-79
+MERGED from [:connectivity] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-79
+MERGED from [:connectivity] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/connectivity/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-79
+MERGED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:10:5-79
+MERGED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:10:5-79
+MERGED from [:aly_oss] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/aly_oss/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-79
+MERGED from [:aly_oss] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/aly_oss/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-79
+MERGED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-79
+MERGED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-79
+MERGED from [:huawei_push] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/huawei_push/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-79
+MERGED from [:huawei_push] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/huawei_push/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.14.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/60b85d32c76f6174d43e445a6aa2cefb/jetified-exoplayer-core-2.14.1/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.14.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/60b85d32c76f6174d43e445a6aa2cefb/jetified-exoplayer-core-2.14.1/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.14.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/9c869d6c39afd30e0ee6a960de621a9b/jetified-exoplayer-common-2.14.1/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.14.1] /Users/mac/.gradle/caches/transforms-2/files-2.1/9c869d6c39afd30e0ee6a960de621a9b/jetified-exoplayer-common-2.14.1/AndroidManifest.xml:24:5-79
+MERGED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:15:5-79
+MERGED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:15:5-79
+MERGED from [com.huawei.hms:availableupdate:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/628a44f7f3e87a4ffd81696d47f60465/jetified-availableupdate-5.2.0.300/AndroidManifest.xml:12:5-79
+MERGED from [com.huawei.hms:availableupdate:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/628a44f7f3e87a4ffd81696d47f60465/jetified-availableupdate-5.2.0.300/AndroidManifest.xml:12:5-79
+MERGED from [com.huawei.hms:device:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bf500335a8993e3fe9c08838edfcf7f4/jetified-device-5.2.0.300/AndroidManifest.xml:10:5-79
+MERGED from [com.huawei.hms:device:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bf500335a8993e3fe9c08838edfcf7f4/jetified-device-5.2.0.300/AndroidManifest.xml:10:5-79
+MERGED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:12:5-79
+MERGED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:12:5-79
+MERGED from [com.huawei.hms:stats:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/6ac4d5cedfd3a8a055b9350ee0960922/jetified-stats-5.2.0.300/AndroidManifest.xml:12:5-79
+MERGED from [com.huawei.hms:stats:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/6ac4d5cedfd3a8a055b9350ee0960922/jetified-stats-5.2.0.300/AndroidManifest.xml:12:5-79
+	android:name
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:8:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-76
+MERGED from [:tobias] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/tobias/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-76
+MERGED from [:tobias] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/tobias/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-76
+MERGED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-76
+MERGED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-76
+MERGED from [:aly_oss] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/aly_oss/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-76
+MERGED from [:aly_oss] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/aly_oss/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-76
+MERGED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:14:5-76
+MERGED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:14:5-76
+MERGED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:16:5-76
+MERGED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:16:5-76
+	android:name
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:9:22-73
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:10:5-81
+MERGED from [:image_picker] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-81
+MERGED from [:image_picker] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-81
+MERGED from [:photo_manager] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/photo_manager/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-81
+MERGED from [:photo_manager] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/photo_manager/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-81
+MERGED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-81
+MERGED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-81
+MERGED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:22:5-81
+MERGED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:22:5-81
+MERGED from [com.aliyun.dpa:oss-android-sdk:2.9.8] /Users/mac/.gradle/caches/transforms-2/files-2.1/054eecdfd8e5a9fc9a30d3e4740b1e42/jetified-oss-android-sdk-2.9.8/AndroidManifest.xml:12:5-81
+MERGED from [com.aliyun.dpa:oss-android-sdk:2.9.8] /Users/mac/.gradle/caches/transforms-2/files-2.1/054eecdfd8e5a9fc9a30d3e4740b1e42/jetified-oss-android-sdk-2.9.8/AndroidManifest.xml:12:5-81
+	android:name
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:10:22-78
+activity#com.jarvan.fluwx.wxapi.FluwxWXEntryActivity
+ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:13:9-17:58
+	android:launchMode
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-44
+	android:theme
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:17:13-55
+	android:taskAffinity
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-52
+	android:name
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-71
+activity-alias#${applicationId}.wxapi.WXPayEntryActivity
+ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:19:9-32:26
+	android:launchMode
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:22:13-48
+	android:exported
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:21:13-36
+	android:targetActivity
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:23:13-81
+	android:theme
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:24:13-55
+	android:name
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:20:13-69
+activity-alias#com.example.lianmiapp.wxapi.WXPayEntryActivity
+ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:19:9-32:26
+	android:launchMode
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:22:13-48
+	android:exported
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:21:13-36
+	android:targetActivity
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:23:13-81
+	android:theme
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:24:13-55
+	android:name
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:20:13-69
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.DEFAULT+data:scheme:sdksample
+ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:25:13-31:29
+action#android.intent.action.VIEW
+ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:26:17-69
+	android:name
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:26:25-66
+category#android.intent.category.DEFAULT
+ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:28:17-76
+	android:name
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:28:27-73
+data
+ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:30:17-52
+	android:scheme
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:30:23-49
+activity-alias#${applicationId}.wxapi.WXEntryActivity
+ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:33:9-47:26
+	android:launchMode
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:36:13-43
+	android:exported
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:35:13-36
+	android:targetActivity
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:37:13-81
+	android:theme
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:39:13-55
+	android:taskAffinity
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:38:13-52
+	android:name
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:34:13-66
+activity-alias#com.example.lianmiapp.wxapi.WXEntryActivity
+ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:33:9-47:26
+	android:launchMode
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:36:13-43
+	android:exported
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:35:13-36
+	android:targetActivity
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:37:13-81
+	android:theme
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:39:13-55
+	android:taskAffinity
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:38:13-52
+	android:name
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:34:13-66
+provider#com.jarvan.fluwx.FluwxFileProvider
+ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:49:9-57:20
+	android:grantUriPermissions
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:53:13-47
+	android:authorities
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:51:13-65
+	android:exported
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:52:13-37
+	android:name
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:50:13-62
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:54:13-56:69
+	android:resource
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:56:17-66
+	android:name
+		ADDED from [:fluwx] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/fluwx/intermediates/library_manifest/debug/AndroidManifest.xml:55:17-67
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+IMPLIED from /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/android/app/src/debug/AndroidManifest.xml:1:1-7:12 reason: com.jarvan.fluwx requested WRITE_EXTERNAL_STORAGE
+MERGED from [:image_picker] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-80
+MERGED from [:image_picker] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-80
+MERGED from [:photo_manager] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/photo_manager/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-80
+MERGED from [:photo_manager] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/photo_manager/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-80
+MERGED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:23:5-80
+MERGED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:23:5-80
+uses-permission#android.permission.FLASHLIGHT
+ADDED from [:flutter_qr_reader] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_qr_reader/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-69
+	android:name
+		ADDED from [:flutter_qr_reader] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_qr_reader/intermediates/library_manifest/debug/AndroidManifest.xml:7:22-66
+uses-permission#android.permission.CAMERA
+ADDED from [:flutter_qr_reader] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_qr_reader/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-65
+MERGED from [:camera] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/camera/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-65
+MERGED from [:camera] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/camera/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-65
+	android:name
+		ADDED from [:flutter_qr_reader] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_qr_reader/intermediates/library_manifest/debug/AndroidManifest.xml:8:22-62
+uses-feature#android.hardware.camera
+ADDED from [:flutter_qr_reader] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_qr_reader/intermediates/library_manifest/debug/AndroidManifest.xml:10:5-60
+	android:name
+		ADDED from [:flutter_qr_reader] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_qr_reader/intermediates/library_manifest/debug/AndroidManifest.xml:10:19-57
+uses-feature#android.hardware.camera.autofocus
+ADDED from [:flutter_qr_reader] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_qr_reader/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-70
+	android:name
+		ADDED from [:flutter_qr_reader] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_qr_reader/intermediates/library_manifest/debug/AndroidManifest.xml:11:19-67
+uses-feature#android.hardware.camera.flash
+ADDED from [:flutter_qr_reader] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_qr_reader/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-66
+	android:name
+		ADDED from [:flutter_qr_reader] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_qr_reader/intermediates/library_manifest/debug/AndroidManifest.xml:12:19-63
+provider#io.flutter.plugins.imagepicker.ImagePickerFileProvider
+ADDED from [:image_picker] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:11:9-19:20
+	android:grantUriPermissions
+		ADDED from [:image_picker] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-47
+	android:authorities
+		ADDED from [:image_picker] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-74
+	android:exported
+		ADDED from [:image_picker] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-37
+	android:name
+		ADDED from [:image_picker] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:12:13-82
+queries
+ADDED from [:tobias] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/tobias/intermediates/library_manifest/debug/AndroidManifest.xml:16:5-19:15
+package#com.eg.android.AlipayGphone
+ADDED from [:tobias] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/tobias/intermediates/library_manifest/debug/AndroidManifest.xml:17:9-63
+	android:name
+		ADDED from [:tobias] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/tobias/intermediates/library_manifest/debug/AndroidManifest.xml:17:18-60
+package#hk.alipay.wallet
+ADDED from [:tobias] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/tobias/intermediates/library_manifest/debug/AndroidManifest.xml:18:9-52
+	android:name
+		ADDED from [:tobias] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/tobias/intermediates/library_manifest/debug/AndroidManifest.xml:18:18-49
+uses-permission#android.permission.ACCESS_MEDIA_LOCATION
+ADDED from [:photo_manager] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/photo_manager/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-80
+	android:name
+		ADDED from [:photo_manager] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/photo_manager/intermediates/library_manifest/debug/AndroidManifest.xml:9:22-77
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-75
+MERGED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:20:5-75
+MERGED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:20:5-75
+	android:name
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:12:22-72
+uses-permission#android.permission.GET_TASKS
+ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:13:5-68
+	android:name
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:13:22-65
+uses-permission#android.permission.VIBRATE
+ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:14:5-66
+	android:name
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:14:22-63
+service#com.xiaomi.push.service.XMPushService
+ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:17:9-20:46
+	android:process
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:20:13-43
+	android:enabled
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:19:13-35
+	android:name
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:18:13-65
+service#com.xiaomi.push.service.XMJobService
+ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:22:9-27:46
+	android:process
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:27:13-43
+	android:enabled
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:24:13-35
+	android:exported
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:25:13-37
+	android:permission
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:26:13-69
+	android:name
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:23:13-64
+service#com.xiaomi.mipush.sdk.PushMessageHandler
+ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:28:9-31:39
+	android:enabled
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:30:13-35
+	android:exported
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:31:13-36
+	android:name
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:29:13-68
+service#com.xiaomi.mipush.sdk.MessageHandleService
+ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:33:9-35:38
+	android:enabled
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:35:13-35
+	android:name
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:34:13-70
+receiver#com.xiaomi.push.service.receivers.NetworkStatusReceiver
+ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:37:9-45:20
+	android:exported
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:39:13-36
+	android:name
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:38:13-83
+intent-filter#action:name:android.net.conn.CONNECTIVITY_CHANGE+category:name:android.intent.category.DEFAULT
+ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:40:13-44:29
+action#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:41:17-79
+	android:name
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:41:25-76
+receiver#com.xiaomi.push.service.receivers.PingReceiver
+ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:46:9-53:20
+	android:process
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:49:13-43
+	android:exported
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:48:13-37
+	android:name
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:47:13-74
+intent-filter#action:name:com.xiaomi.push.PING_TIMER
+ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:50:13-52:29
+action#com.xiaomi.push.PING_TIMER
+ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:51:17-69
+	android:name
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:51:25-66
+receiver#top.huic.xiao_mi_push_plugin.XiaoMiMessageReceiver
+ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:54:9-66:20
+	android:exported
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:56:13-36
+	android:name
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:55:13-78
+intent-filter#action:name:com.xiaomi.mipush.RECEIVE_MESSAGE
+ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:57:13-59:29
+action#com.xiaomi.mipush.RECEIVE_MESSAGE
+ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:58:17-76
+	android:name
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:58:25-73
+intent-filter#action:name:com.xiaomi.mipush.MESSAGE_ARRIVED
+ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:60:13-62:29
+action#com.xiaomi.mipush.MESSAGE_ARRIVED
+ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:61:17-76
+	android:name
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:61:25-73
+intent-filter#action:name:com.xiaomi.mipush.ERROR
+ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:63:13-65:29
+action#com.xiaomi.mipush.ERROR
+ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:64:17-66
+	android:name
+		ADDED from [:xiao_mi_push_plugin] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/xiao_mi_push_plugin/intermediates/library_manifest/debug/AndroidManifest.xml:64:25-63
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from [:camera] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/camera/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-71
+	android:name
+		ADDED from [:camera] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/camera/intermediates/library_manifest/debug/AndroidManifest.xml:8:22-68
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-81
+	android:name
+		ADDED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:8:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:10:5-79
+	android:name
+		ADDED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:10:22-76
+uses-permission#android.permission.CHANGE_WIFI_STATE
+ADDED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:16:5-76
+	android:name
+		ADDED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:16:22-73
+uses-permission#android.permission.ACCESS_LOCATION_EXTRA_COMMANDS
+ADDED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:25:5-89
+	android:name
+		ADDED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:25:22-86
+uses-permission#android.permission.BLUETOOTH
+ADDED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:27:5-68
+MERGED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:11:5-68
+MERGED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:11:5-68
+	android:name
+		ADDED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:27:22-65
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:28:5-74
+	android:name
+		ADDED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:28:22-71
+service#com.amap.api.location.APSService
+ADDED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:33:9-68
+	android:name
+		ADDED from [:flutter_2d_amap] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/flutter_2d_amap/intermediates/library_manifest/debug/AndroidManifest.xml:33:18-65
+service#com.huawei.hms.flutter.push.hms.FlutterHmsMessageService
+ADDED from [:huawei_push] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/huawei_push/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-18:19
+	android:exported
+		ADDED from [:huawei_push] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/huawei_push/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-36
+	android:name
+		ADDED from [:huawei_push] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/huawei_push/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-84
+intent-filter#action:name:com.huawei.push.action.MESSAGING_EVENT
+ADDED from [:huawei_push] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/huawei_push/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-17:29
+action#com.huawei.push.action.MESSAGING_EVENT
+ADDED from [:huawei_push] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/huawei_push/intermediates/library_manifest/debug/AndroidManifest.xml:16:17-81
+	android:name
+		ADDED from [:huawei_push] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/huawei_push/intermediates/library_manifest/debug/AndroidManifest.xml:16:25-78
+receiver#com.huawei.hms.flutter.push.receiver.local.HmsLocalNotificationActionsReceiver
+ADDED from [:huawei_push] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/huawei_push/intermediates/library_manifest/debug/AndroidManifest.xml:20:9-115
+	android:name
+		ADDED from [:huawei_push] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/huawei_push/intermediates/library_manifest/debug/AndroidManifest.xml:20:19-112
+activity#io.flutter.plugins.urllauncher.WebViewActivity
+ADDED from [:url_launcher] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-11:74
+	android:exported
+		ADDED from [:url_launcher] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:10:13-37
+	android:theme
+		ADDED from [:url_launcher] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-71
+	android:name
+		ADDED from [:url_launcher] /Users/mac/developments/lianmi/lm-cloud/lianmiui/wujehy/lianmi_flutter_app/lianmiapp/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-74
+uses-permission#android.permission.WAKE_LOCK
+ADDED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:12:5-68
+	android:name
+		ADDED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:12:22-65
+uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
+ADDED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:13:5-80
+	android:name
+		ADDED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:13:22-77
+receiver#androidx.media.session.MediaButtonReceiver
+ADDED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:16:9-21:20
+	android:name
+		ADDED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:16:19-76
+intent-filter#action:name:android.intent.action.MEDIA_BUTTON+action:name:android.media.AUDIO_BECOMING_NOISY
+ADDED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:17:13-20:29
+action#android.intent.action.MEDIA_BUTTON
+ADDED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:18:17-77
+	android:name
+		ADDED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:18:25-74
+action#android.media.AUDIO_BECOMING_NOISY
+ADDED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:19:17-77
+	android:name
+		ADDED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:19:25-74
+service#com.dooboolab.TauEngine.FlautoBackgroundAudioService
+ADDED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:23:9-29:19
+	android:name
+		ADDED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:23:18-85
+intent-filter#action:name:android.intent.action.MEDIA_BUTTON+action:name:android.media.AUDIO_BECOMING_NOISY+action:name:android.media.browse.FlautoMediaBrowserService
+ADDED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:24:13-28:29
+action#android.media.browse.FlautoMediaBrowserService
+ADDED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:27:17-89
+	android:name
+		ADDED from [com.github.Canardoux:tau_core:8.2.5] /Users/mac/.gradle/caches/transforms-2/files-2.1/a485141d6f109ca8d2d59eb3ed3e2de7/jetified-tau_core-8.2.5/AndroidManifest.xml:27:25-86
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/7c879cb157fab2c9a5d74c3d70fd64e3/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/7c879cb157fab2c9a5d74c3d70fd64e3/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/7c879cb157fab2c9a5d74c3d70fd64e3/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/7c879cb157fab2c9a5d74c3d70fd64e3/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/3c8e7eb3d21ac94d08f658f6d8a1c9f3/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/3c8e7eb3d21ac94d08f658f6d8a1c9f3/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/mac/.gradle/caches/transforms-2/files-2.1/3c8e7eb3d21ac94d08f658f6d8a1c9f3/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+supports-screens
+ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:7:5-12:39
+	android:largeScreens
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:9:9-36
+	android:smallScreens
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:12:9-36
+	android:normalScreens
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:10:9-37
+	android:resizeable
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:11:9-34
+	android:anyDensity
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:8:9-34
+uses-library#org.apache.http.legacy
+ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:19:9-21:40
+MERGED from [com.huawei.android.hms:security-ssl:1.1.5.306] /Users/mac/.gradle/caches/transforms-2/files-2.1/4308a3fa208f47ca521124e94df70705/jetified-security-ssl-1.1.5.306/AndroidManifest.xml:10:9-12:40
+MERGED from [com.huawei.android.hms:security-ssl:1.1.5.306] /Users/mac/.gradle/caches/transforms-2/files-2.1/4308a3fa208f47ca521124e94df70705/jetified-security-ssl-1.1.5.306/AndroidManifest.xml:10:9-12:40
+	android:required
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:21:13-37
+	android:name
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:20:13-50
+activity#com.alipay.sdk.app.H5PayActivity
+ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:23:9-28:20
+	android:exported
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:26:13-37
+	android:configChanges
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:25:13-85
+	android:theme
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:27:13-60
+	android:name
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:24:13-60
+activity#com.alipay.sdk.app.H5AuthActivity
+ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:29:9-34:20
+	android:exported
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:32:13-37
+	android:configChanges
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:31:13-85
+	android:theme
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:33:13-60
+	android:name
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:30:13-61
+activity#com.alipay.sdk.app.PayResultActivity
+ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:35:9-41:20
+	android:launchMode
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:39:13-48
+	android:exported
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:38:13-36
+	android:configChanges
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:37:13-85
+	android:theme
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:40:13-72
+	android:name
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:36:13-64
+activity#com.alipay.sdk.app.AlipayResultActivity
+ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:42:9-47:20
+	android:launchMode
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:45:13-44
+	android:exported
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:44:13-36
+	android:theme
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:46:13-72
+	android:name
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:43:13-67
+activity#com.alipay.sdk.app.H5OpenAuthActivity
+ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:48:9-54:20
+	android:screenOrientation
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:52:13-47
+	android:windowSoftInputMode
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:53:13-67
+	android:exported
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:51:13-37
+	android:configChanges
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:50:13-85
+	android:name
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:49:13-65
+activity#com.alipay.sdk.app.APayEntranceActivity
+ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:55:9-60:20
+	android:exported
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:58:13-37
+	android:configChanges
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:57:13-85
+	android:theme
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:59:13-72
+	android:name
+		ADDED from [:alipaysdk-noutdid-15.8.03.210428205839:] /Users/mac/.gradle/caches/transforms-2/files-2.1/67031fff14980aba113112c4721fa530/jetified-alipaysdk-noutdid-15.8.03.210428205839/AndroidManifest.xml:56:13-67
+service#com.huawei.hms.push.plugin.fcm.FcmService
+ADDED from [com.huawei.hms:push-fcm:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7e1f004a3c3a2a30b791a807b581b445/jetified-push-fcm-5.1.1.301/AndroidManifest.xml:12:9-18:19
+	android:exported
+		ADDED from [com.huawei.hms:push-fcm:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7e1f004a3c3a2a30b791a807b581b445/jetified-push-fcm-5.1.1.301/AndroidManifest.xml:14:13-37
+	android:name
+		ADDED from [com.huawei.hms:push-fcm:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7e1f004a3c3a2a30b791a807b581b445/jetified-push-fcm-5.1.1.301/AndroidManifest.xml:13:13-69
+intent-filter#action:name:com.google.firebase.MESSAGING_EVENT
+ADDED from [com.huawei.hms:push-fcm:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7e1f004a3c3a2a30b791a807b581b445/jetified-push-fcm-5.1.1.301/AndroidManifest.xml:15:13-17:29
+action#com.google.firebase.MESSAGING_EVENT
+ADDED from [com.huawei.hms:push-fcm:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7e1f004a3c3a2a30b791a807b581b445/jetified-push-fcm-5.1.1.301/AndroidManifest.xml:16:17-78
+	android:name
+		ADDED from [com.huawei.hms:push-fcm:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7e1f004a3c3a2a30b791a807b581b445/jetified-push-fcm-5.1.1.301/AndroidManifest.xml:16:25-75
+meta-data#firebase_messaging_auto_init_enabled
+ADDED from [com.huawei.hms:push-fcm:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7e1f004a3c3a2a30b791a807b581b445/jetified-push-fcm-5.1.1.301/AndroidManifest.xml:21:9-23:37
+	android:value
+		ADDED from [com.huawei.hms:push-fcm:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7e1f004a3c3a2a30b791a807b581b445/jetified-push-fcm-5.1.1.301/AndroidManifest.xml:23:13-34
+	android:name
+		ADDED from [com.huawei.hms:push-fcm:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7e1f004a3c3a2a30b791a807b581b445/jetified-push-fcm-5.1.1.301/AndroidManifest.xml:22:13-64
+provider#com.huawei.hms.push.plugin.fcm.FcmInitProvider
+ADDED from [com.huawei.hms:push-fcm:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7e1f004a3c3a2a30b791a807b581b445/jetified-push-fcm-5.1.1.301/AndroidManifest.xml:26:9-30:39
+	android:authorities
+		ADDED from [com.huawei.hms:push-fcm:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7e1f004a3c3a2a30b791a807b581b445/jetified-push-fcm-5.1.1.301/AndroidManifest.xml:28:13-67
+	android:exported
+		ADDED from [com.huawei.hms:push-fcm:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7e1f004a3c3a2a30b791a807b581b445/jetified-push-fcm-5.1.1.301/AndroidManifest.xml:29:13-37
+	android:initOrder
+		ADDED from [com.huawei.hms:push-fcm:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7e1f004a3c3a2a30b791a807b581b445/jetified-push-fcm-5.1.1.301/AndroidManifest.xml:30:13-36
+	android:name
+		ADDED from [com.huawei.hms:push-fcm:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7e1f004a3c3a2a30b791a807b581b445/jetified-push-fcm-5.1.1.301/AndroidManifest.xml:27:13-74
+permission#${applicationId}.permission.PROCESS_PUSH_MSG
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:9:5-11:55
+	android:protectionLevel
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:11:9-52
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:10:9-68
+permission#com.example.lianmiapp.permission.PROCESS_PUSH_MSG
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:9:5-11:55
+	android:protectionLevel
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:11:9-52
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:10:9-68
+permission#${applicationId}.permission.PUSH_PROVIDER
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:14:5-16:55
+	android:protectionLevel
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:16:9-52
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:15:9-65
+permission#com.example.lianmiapp.permission.PUSH_PROVIDER
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:14:5-16:55
+	android:protectionLevel
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:16:9-52
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:15:9-65
+permission#${applicationId}.permission.PUSH_WRITE_PROVIDER
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:17:5-19:55
+	android:protectionLevel
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:19:9-52
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:18:9-71
+permission#com.example.lianmiapp.permission.PUSH_WRITE_PROVIDER
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:17:5-19:55
+	android:protectionLevel
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:19:9-52
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:18:9-71
+uses-permission#${applicationId}.permission.PROCESS_PUSH_MSG
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:21:5-84
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:21:22-81
+uses-permission#com.example.lianmiapp.permission.PROCESS_PUSH_MSG
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:21:5-84
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:21:22-81
+uses-permission#${applicationId}.permission.PUSH_PROVIDER
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:22:5-81
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:22:22-78
+uses-permission#com.example.lianmiapp.permission.PUSH_PROVIDER
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:22:5-81
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:22:22-78
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:23:5-77
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:23:22-74
+receiver#com.huawei.hms.support.api.push.PushMsgReceiver
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:26:9-37:20
+	android:permission
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:29:13-78
+	android:directBootAware
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:28:13-43
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:27:13-75
+intent-filter#action:name:com.huawei.intent.action.PUSH+action:name:com.huawei.intent.action.PUSH_DELAY_NOTIFY
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:30:13-36:29
+action#com.huawei.intent.action.PUSH_DELAY_NOTIFY
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:33:17-85
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:33:25-82
+action#com.huawei.intent.action.PUSH
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:35:17-72
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:35:25-69
+receiver#com.huawei.hms.support.api.push.PushReceiver
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:38:9-49:20
+	android:permission
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:41:13-78
+	android:directBootAware
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:40:13-43
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:39:13-72
+intent-filter#action:name:com.huawei.android.push.intent.RECEIVE+action:name:com.huawei.android.push.intent.REGISTRATION
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:42:13-48:29
+action#com.huawei.android.push.intent.REGISTRATION
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:45:17-86
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:45:25-83
+action#com.huawei.android.push.intent.RECEIVE
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:47:17-81
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:47:25-78
+service#com.huawei.hms.support.api.push.service.HmsMsgService
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:52:9-62:19
+	android:process
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:57:13-43
+	android:enabled
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:55:13-35
+	android:exported
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:56:13-36
+	android:directBootAware
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:54:13-43
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:53:13-81
+intent-filter#action:name:com.huawei.push.msg.NOTIFY_MSG+action:name:com.huawei.push.msg.PASSBY_MSG
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:58:13-61:29
+action#com.huawei.push.msg.NOTIFY_MSG
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:59:17-73
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:59:25-70
+action#com.huawei.push.msg.PASSBY_MSG
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:60:17-73
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:60:25-70
+provider#com.huawei.hms.support.api.push.PushProvider
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:64:9-70:89
+	android:readPermission
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:69:13-79
+	android:authorities
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:66:13-72
+	android:exported
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:67:13-36
+	android:permission
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:68:13-75
+	android:writePermission
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:70:13-86
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:65:13-72
+meta-data#com.huawei.hms.client.service.name:push
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:72:9-74:46
+	android:value
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:74:13-43
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:73:13-67
+meta-data#com.huawei.hms.min_api_level:push:push
+ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:75:9-77:33
+	android:value
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:77:13-30
+	android:name
+		ADDED from [com.huawei.hms:push:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/fa325fd835bc36affa714579bc0dd8ac/jetified-push-5.1.1.301/AndroidManifest.xml:76:13-66
+provider#com.huawei.hms.aaid.InitProvider
+ADDED from [com.huawei.hms:opendevice:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7702743289ec91f05977c100ca10ae32/jetified-opendevice-5.1.1.301/AndroidManifest.xml:10:9-14:39
+	android:authorities
+		ADDED from [com.huawei.hms:opendevice:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7702743289ec91f05977c100ca10ae32/jetified-opendevice-5.1.1.301/AndroidManifest.xml:12:13-68
+	android:exported
+		ADDED from [com.huawei.hms:opendevice:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7702743289ec91f05977c100ca10ae32/jetified-opendevice-5.1.1.301/AndroidManifest.xml:13:13-37
+	android:initOrder
+		ADDED from [com.huawei.hms:opendevice:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7702743289ec91f05977c100ca10ae32/jetified-opendevice-5.1.1.301/AndroidManifest.xml:14:13-36
+	android:name
+		ADDED from [com.huawei.hms:opendevice:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7702743289ec91f05977c100ca10ae32/jetified-opendevice-5.1.1.301/AndroidManifest.xml:11:13-60
+meta-data#com.huawei.hms.client.service.name:opendevice
+ADDED from [com.huawei.hms:opendevice:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7702743289ec91f05977c100ca10ae32/jetified-opendevice-5.1.1.301/AndroidManifest.xml:16:9-18:52
+	android:value
+		ADDED from [com.huawei.hms:opendevice:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7702743289ec91f05977c100ca10ae32/jetified-opendevice-5.1.1.301/AndroidManifest.xml:18:13-49
+	android:name
+		ADDED from [com.huawei.hms:opendevice:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7702743289ec91f05977c100ca10ae32/jetified-opendevice-5.1.1.301/AndroidManifest.xml:17:13-73
+meta-data#com.huawei.hms.min_api_level:opendevice:push
+ADDED from [com.huawei.hms:opendevice:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7702743289ec91f05977c100ca10ae32/jetified-opendevice-5.1.1.301/AndroidManifest.xml:19:9-21:33
+	android:value
+		ADDED from [com.huawei.hms:opendevice:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7702743289ec91f05977c100ca10ae32/jetified-opendevice-5.1.1.301/AndroidManifest.xml:21:13-30
+	android:name
+		ADDED from [com.huawei.hms:opendevice:5.1.1.301] /Users/mac/.gradle/caches/transforms-2/files-2.1/7702743289ec91f05977c100ca10ae32/jetified-opendevice-5.1.1.301/AndroidManifest.xml:20:13-72
+meta-data#com.huawei.hms.client.service.name:base
+ADDED from [com.huawei.hms:base:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/711cd0bfd39b5cc032c161101a77de5f/jetified-base-5.2.0.300/AndroidManifest.xml:15:9-17:46
+	android:value
+		ADDED from [com.huawei.hms:base:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/711cd0bfd39b5cc032c161101a77de5f/jetified-base-5.2.0.300/AndroidManifest.xml:17:13-43
+	android:name
+		ADDED from [com.huawei.hms:base:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/711cd0bfd39b5cc032c161101a77de5f/jetified-base-5.2.0.300/AndroidManifest.xml:16:13-67
+meta-data#com.huawei.hms.min_api_level:base:hmscore
+ADDED from [com.huawei.hms:base:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/711cd0bfd39b5cc032c161101a77de5f/jetified-base-5.2.0.300/AndroidManifest.xml:20:9-22:33
+	android:value
+		ADDED from [com.huawei.hms:base:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/711cd0bfd39b5cc032c161101a77de5f/jetified-base-5.2.0.300/AndroidManifest.xml:22:13-30
+	android:name
+		ADDED from [com.huawei.hms:base:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/711cd0bfd39b5cc032c161101a77de5f/jetified-base-5.2.0.300/AndroidManifest.xml:21:13-69
+uses-permission#android.permission.REQUEST_INSTALL_PACKAGES
+ADDED from [com.huawei.hms:availableupdate:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/628a44f7f3e87a4ffd81696d47f60465/jetified-availableupdate-5.2.0.300/AndroidManifest.xml:14:5-83
+MERGED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:15:5-83
+MERGED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:15:5-83
+	android:name
+		ADDED from [com.huawei.hms:availableupdate:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/628a44f7f3e87a4ffd81696d47f60465/jetified-availableupdate-5.2.0.300/AndroidManifest.xml:14:22-80
+uses-permission#com.huawei.appmarket.service.commondata.permission.GET_COMMON_DATA
+ADDED from [com.huawei.hms:availableupdate:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/628a44f7f3e87a4ffd81696d47f60465/jetified-availableupdate-5.2.0.300/AndroidManifest.xml:16:5-106
+MERGED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:18:5-106
+MERGED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:18:5-106
+	android:name
+		ADDED from [com.huawei.hms:availableupdate:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/628a44f7f3e87a4ffd81696d47f60465/jetified-availableupdate-5.2.0.300/AndroidManifest.xml:16:22-103
+meta-data#availableLoaded
+ADDED from [com.huawei.hms:availableupdate:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/628a44f7f3e87a4ffd81696d47f60465/jetified-availableupdate-5.2.0.300/AndroidManifest.xml:21:9-23:35
+	android:value
+		ADDED from [com.huawei.hms:availableupdate:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/628a44f7f3e87a4ffd81696d47f60465/jetified-availableupdate-5.2.0.300/AndroidManifest.xml:23:13-32
+	android:name
+		ADDED from [com.huawei.hms:availableupdate:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/628a44f7f3e87a4ffd81696d47f60465/jetified-availableupdate-5.2.0.300/AndroidManifest.xml:22:13-43
+provider#com.huawei.hms.update.provider.UpdateProvider
+ADDED from [com.huawei.hms:availableupdate:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/628a44f7f3e87a4ffd81696d47f60465/jetified-availableupdate-5.2.0.300/AndroidManifest.xml:25:9-30:20
+	android:grantUriPermissions
+		ADDED from [com.huawei.hms:availableupdate:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/628a44f7f3e87a4ffd81696d47f60465/jetified-availableupdate-5.2.0.300/AndroidManifest.xml:29:13-47
+	android:authorities
+		ADDED from [com.huawei.hms:availableupdate:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/628a44f7f3e87a4ffd81696d47f60465/jetified-availableupdate-5.2.0.300/AndroidManifest.xml:27:13-71
+	android:exported
+		ADDED from [com.huawei.hms:availableupdate:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/628a44f7f3e87a4ffd81696d47f60465/jetified-availableupdate-5.2.0.300/AndroidManifest.xml:28:13-37
+	android:name
+		ADDED from [com.huawei.hms:availableupdate:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/628a44f7f3e87a4ffd81696d47f60465/jetified-availableupdate-5.2.0.300/AndroidManifest.xml:26:13-73
+activity#com.huawei.updatesdk.service.otaupdate.AppUpdateActivity
+ADDED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:21:9-29:20
+	android:exported
+		ADDED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:24:13-37
+	android:configChanges
+		ADDED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:23:13-59
+	android:theme
+		ADDED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:25:13-72
+	android:name
+		ADDED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:22:13-84
+meta-data#hwc-theme
+ADDED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:26:13-28:88
+	android:value
+		ADDED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:28:17-85
+	android:name
+		ADDED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:27:17-41
+activity#com.huawei.updatesdk.support.pm.PackageInstallerActivity
+ADDED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:30:9-38:20
+	android:exported
+		ADDED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:33:13-37
+	android:configChanges
+		ADDED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:32:13-74
+	android:theme
+		ADDED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:34:13-72
+	android:name
+		ADDED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:31:13-84
+provider#com.huawei.updatesdk.fileprovider.UpdateSdkFileProvider
+ADDED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:40:9-45:20
+	android:grantUriPermissions
+		ADDED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:44:13-47
+	android:authorities
+		ADDED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:42:13-74
+	android:exported
+		ADDED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:43:13-37
+	android:name
+		ADDED from [com.huawei.hms:update:3.0.1.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/a782ccaa9af9d6258c2bb5841c6d5480/jetified-update-3.0.1.300/AndroidManifest.xml:41:13-83
+activity#com.huawei.hms.activity.BridgeActivity
+ADDED from [com.huawei.hms:ui:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bdf1acdf74458c6b6154b35ae7f93c80/jetified-ui-5.2.0.300/AndroidManifest.xml:10:9-21:20
+	android:screenOrientation
+		ADDED from [com.huawei.hms:ui:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bdf1acdf74458c6b6154b35ae7f93c80/jetified-ui-5.2.0.300/AndroidManifest.xml:16:13-47
+	android:excludeFromRecents
+		ADDED from [com.huawei.hms:ui:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bdf1acdf74458c6b6154b35ae7f93c80/jetified-ui-5.2.0.300/AndroidManifest.xml:13:13-46
+	android:hardwareAccelerated
+		ADDED from [com.huawei.hms:ui:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bdf1acdf74458c6b6154b35ae7f93c80/jetified-ui-5.2.0.300/AndroidManifest.xml:15:13-47
+	android:exported
+		ADDED from [com.huawei.hms:ui:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bdf1acdf74458c6b6154b35ae7f93c80/jetified-ui-5.2.0.300/AndroidManifest.xml:14:13-37
+	android:configChanges
+		ADDED from [com.huawei.hms:ui:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bdf1acdf74458c6b6154b35ae7f93c80/jetified-ui-5.2.0.300/AndroidManifest.xml:12:13-131
+	android:theme
+		ADDED from [com.huawei.hms:ui:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bdf1acdf74458c6b6154b35ae7f93c80/jetified-ui-5.2.0.300/AndroidManifest.xml:17:13-61
+	android:name
+		ADDED from [com.huawei.hms:ui:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bdf1acdf74458c6b6154b35ae7f93c80/jetified-ui-5.2.0.300/AndroidManifest.xml:11:13-66
+activity#com.huawei.hms.activity.EnableServiceActivity
+ADDED from [com.huawei.hms:ui:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bdf1acdf74458c6b6154b35ae7f93c80/jetified-ui-5.2.0.300/AndroidManifest.xml:22:9-26:20
+	android:exported
+		ADDED from [com.huawei.hms:ui:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bdf1acdf74458c6b6154b35ae7f93c80/jetified-ui-5.2.0.300/AndroidManifest.xml:25:13-37
+	android:configChanges
+		ADDED from [com.huawei.hms:ui:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bdf1acdf74458c6b6154b35ae7f93c80/jetified-ui-5.2.0.300/AndroidManifest.xml:24:13-106
+	android:name
+		ADDED from [com.huawei.hms:ui:5.2.0.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/bdf1acdf74458c6b6154b35ae7f93c80/jetified-ui-5.2.0.300/AndroidManifest.xml:23:13-73
+provider#com.huawei.agconnect.core.provider.AGConnectInitializeProvider
+ADDED from [com.huawei.agconnect:agconnect-core:1.4.2.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/01120934966e7ea0c507c991757559b1/jetified-agconnect-core-1.4.2.300/AndroidManifest.xml:11:9-14:40
+	android:authorities
+		ADDED from [com.huawei.agconnect:agconnect-core:1.4.2.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/01120934966e7ea0c507c991757559b1/jetified-agconnect-core-1.4.2.300/AndroidManifest.xml:13:13-73
+	android:exported
+		ADDED from [com.huawei.agconnect:agconnect-core:1.4.2.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/01120934966e7ea0c507c991757559b1/jetified-agconnect-core-1.4.2.300/AndroidManifest.xml:14:13-37
+	android:name
+		ADDED from [com.huawei.agconnect:agconnect-core:1.4.2.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/01120934966e7ea0c507c991757559b1/jetified-agconnect-core-1.4.2.300/AndroidManifest.xml:12:13-90
+service#com.huawei.agconnect.core.ServiceDiscovery
+ADDED from [com.huawei.agconnect:agconnect-core:1.4.2.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/01120934966e7ea0c507c991757559b1/jetified-agconnect-core-1.4.2.300/AndroidManifest.xml:16:9-18:40
+	android:exported
+		ADDED from [com.huawei.agconnect:agconnect-core:1.4.2.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/01120934966e7ea0c507c991757559b1/jetified-agconnect-core-1.4.2.300/AndroidManifest.xml:18:13-37
+	android:name
+		ADDED from [com.huawei.agconnect:agconnect-core:1.4.2.300] /Users/mac/.gradle/caches/transforms-2/files-2.1/01120934966e7ea0c507c991757559b1/jetified-agconnect-core-1.4.2.300/AndroidManifest.xml:17:13-70

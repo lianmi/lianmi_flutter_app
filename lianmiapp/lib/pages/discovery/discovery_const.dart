@@ -1,0 +1,1 @@
+const int kDiscoverStoreLoadCount = 20; //商店每一次加载多少条
