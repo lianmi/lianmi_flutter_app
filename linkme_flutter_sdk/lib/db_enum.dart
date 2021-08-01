@@ -1,12 +1,3 @@
-///
-/// @ProjectName:    linkme_flutter_sdk
-/// @Package:
-/// @ClassName:     db_enum
-/// @Description:   数据库相关s枚举
-/// @Author:         lishijia
-/// @Time:     21-1-30 下午10:13
-///
-
 /// @nodoc 数据dao操作， 由于isolate需要用枚举类型进行传递，因此所有数据操作都必须对应一个枚举
 enum DbDaoEnum {
   /// @nodoc 关闭连接 0

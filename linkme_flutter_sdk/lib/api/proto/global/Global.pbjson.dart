@@ -18,57 +18,11 @@ const BusinessType$json = const {
     const {'1': 'Friends', '2': 3},
     const {'1': 'Team', '2': 4},
     const {'1': 'Msg', '2': 5},
-    const {'1': 'Sync', '2': 6},
-    const {'1': 'Product', '2': 7},
-    const {'1': 'Broadcast', '2': 8},
-    const {'1': 'Order', '2': 9},
-    const {'1': 'Wallet', '2': 10},
-    const {'1': 'Log', '2': 11},
-    const {'1': 'Witness', '2': 12},
-    const {'1': 'Custom', '2': 99},
   ],
 };
 
 /// Descriptor for `BusinessType`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List businessTypeDescriptor = $convert.base64Decode('CgxCdXNpbmVzc1R5cGUSEAoMQnRfdW5kZWZpbmVkEAASCAoEVXNlchABEggKBEF1dGgQAhILCgdGcmllbmRzEAMSCAoEVGVhbRAEEgcKA01zZxAFEggKBFN5bmMQBhILCgdQcm9kdWN0EAcSDQoJQnJvYWRjYXN0EAgSCQoFT3JkZXIQCRIKCgZXYWxsZXQQChIHCgNMb2cQCxILCgdXaXRuZXNzEAwSCgoGQ3VzdG9tEGM=');
-@$core.Deprecated('Use authSubTypeDescriptor instead')
-const AuthSubType$json = const {
-  '1': 'AuthSubType',
-  '2': const [
-    const {'1': 'Ast_undefined', '2': 0},
-    const {'1': 'SignIn', '2': 1},
-    const {'1': 'SignOut', '2': 2},
-    const {'1': 'MultiLoginEvent', '2': 3},
-    const {'1': 'Kick', '2': 4},
-    const {'1': 'KickedEvent', '2': 5},
-    const {'1': 'AddSlaveDevice', '2': 6},
-    const {'1': 'AuthorizeCode', '2': 7},
-    const {'1': 'RemoveSlaveDevice', '2': 8},
-    const {'1': 'SlaveDeviceAuthEvent', '2': 9},
-    const {'1': 'GetAllDevices', '2': 10},
-  ],
-};
-
-/// Descriptor for `AuthSubType`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List authSubTypeDescriptor = $convert.base64Decode('CgtBdXRoU3ViVHlwZRIRCg1Bc3RfdW5kZWZpbmVkEAASCgoGU2lnbkluEAESCwoHU2lnbk91dBACEhMKD011bHRpTG9naW5FdmVudBADEggKBEtpY2sQBBIPCgtLaWNrZWRFdmVudBAFEhIKDkFkZFNsYXZlRGV2aWNlEAYSEQoNQXV0aG9yaXplQ29kZRAHEhUKEVJlbW92ZVNsYXZlRGV2aWNlEAgSGAoUU2xhdmVEZXZpY2VBdXRoRXZlbnQQCRIRCg1HZXRBbGxEZXZpY2VzEAo=');
-@$core.Deprecated('Use userSubTypeDescriptor instead')
-const UserSubType$json = const {
-  '1': 'UserSubType',
-  '2': const [
-    const {'1': 'Ust_undefined', '2': 0},
-    const {'1': 'GetUsers', '2': 1},
-    const {'1': 'UpdateUserProfile', '2': 2},
-    const {'1': 'SyncUserProfileEvent', '2': 3},
-    const {'1': 'SyncUpdateProfileEvent', '2': 4},
-    const {'1': 'MarkTag', '2': 5},
-    const {'1': 'SyncMarkTagEvent', '2': 6},
-    const {'1': 'SyncTagsEvent', '2': 7},
-    const {'1': 'NotaryServiceUploadPublickey', '2': 8},
-  ],
-};
-
-/// Descriptor for `UserSubType`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List userSubTypeDescriptor = $convert.base64Decode('CgtVc2VyU3ViVHlwZRIRCg1Vc3RfdW5kZWZpbmVkEAASDAoIR2V0VXNlcnMQARIVChFVcGRhdGVVc2VyUHJvZmlsZRACEhgKFFN5bmNVc2VyUHJvZmlsZUV2ZW50EAMSGgoWU3luY1VwZGF0ZVByb2ZpbGVFdmVudBAEEgsKB01hcmtUYWcQBRIUChBTeW5jTWFya1RhZ0V2ZW50EAYSEQoNU3luY1RhZ3NFdmVudBAHEiAKHE5vdGFyeVNlcnZpY2VVcGxvYWRQdWJsaWNrZXkQCA==');
+final $typed_data.Uint8List businessTypeDescriptor = $convert.base64Decode('CgxCdXNpbmVzc1R5cGUSEAoMQnRfdW5kZWZpbmVkEAASCAoEVXNlchABEggKBEF1dGgQAhILCgdGcmllbmRzEAMSCAoEVGVhbRAEEgcKA01zZxAF');
 @$core.Deprecated('Use msgSubTypeDescriptor instead')
 const MsgSubType$json = const {
   '1': 'MsgSubType',
@@ -89,95 +43,6 @@ const MsgSubType$json = const {
 
 /// Descriptor for `MsgSubType`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List msgSubTypeDescriptor = $convert.base64Decode('CgpNc2dTdWJUeXBlEhEKDUNzdF91bmRlZmluZWQQABILCgdTZW5kTXNnEAESEAoMUmVjdk1zZ0V2ZW50EAISGwoXU3luY09mZmxpbmVTeXNNc2dzRXZlbnQQAxIUChBTeW5jU2VuZE1zZ0V2ZW50EAUSEQoNU2VuZENhbmNlbE1zZxAGEhYKElJlY3ZDYW5jZWxNc2dFdmVudBAHEhoKFlN5bmNTZW5kQ2FuY2VsTXNnRXZlbnQQCBIWChJTeW5jU3lzdGVtTXNnRXZlbnQQCRIKCgZNc2dBY2sQChIWChJVcGRhdGVDb252ZXJzYXRpb24QCw==');
-@$core.Deprecated('Use syncSubTypeDescriptor instead')
-const SyncSubType$json = const {
-  '1': 'SyncSubType',
-  '2': const [
-    const {'1': 'Syn_undefined', '2': 0},
-    const {'1': 'SyncEvent', '2': 1},
-    const {'1': 'SyncDoneEvent', '2': 2},
-  ],
-};
-
-/// Descriptor for `SyncSubType`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List syncSubTypeDescriptor = $convert.base64Decode('CgtTeW5jU3ViVHlwZRIRCg1TeW5fdW5kZWZpbmVkEAASDQoJU3luY0V2ZW50EAESEQoNU3luY0RvbmVFdmVudBAC');
-@$core.Deprecated('Use productSubTypeDescriptor instead')
-const ProductSubType$json = const {
-  '1': 'ProductSubType',
-  '2': const [
-    const {'1': 'PST_undefined', '2': 0},
-    const {'1': 'QueryProducts', '2': 1},
-    const {'1': 'AddProduct', '2': 2},
-    const {'1': 'UpdateProduct', '2': 3},
-    const {'1': 'SoldoutProduct', '2': 4},
-    const {'1': 'AddProductEvent', '2': 5},
-    const {'1': 'UpdateProductEvent', '2': 6},
-    const {'1': 'SoldoutProductEvent', '2': 7},
-    const {'1': 'SyncProductEvent', '2': 8},
-    const {'1': 'SyncGeneralProductsEvent', '2': 9},
-  ],
-};
-
-/// Descriptor for `ProductSubType`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List productSubTypeDescriptor = $convert.base64Decode('Cg5Qcm9kdWN0U3ViVHlwZRIRCg1QU1RfdW5kZWZpbmVkEAASEQoNUXVlcnlQcm9kdWN0cxABEg4KCkFkZFByb2R1Y3QQAhIRCg1VcGRhdGVQcm9kdWN0EAMSEgoOU29sZG91dFByb2R1Y3QQBBITCg9BZGRQcm9kdWN0RXZlbnQQBRIWChJVcGRhdGVQcm9kdWN0RXZlbnQQBhIXChNTb2xkb3V0UHJvZHVjdEV2ZW50EAcSFAoQU3luY1Byb2R1Y3RFdmVudBAIEhwKGFN5bmNHZW5lcmFsUHJvZHVjdHNFdmVudBAJ');
-@$core.Deprecated('Use orderSubTypeDescriptor instead')
-const OrderSubType$json = const {
-  '1': 'OrderSubType',
-  '2': const [
-    const {'1': 'OST_undefined', '2': 0},
-    const {'1': 'RegisterPreKeys', '2': 1},
-    const {'1': 'GetPreKeyOrderID', '2': 2},
-    const {'1': 'OrderStateEvent', '2': 4},
-    const {'1': 'ChangeOrderState', '2': 5},
-    const {'1': 'GetPreKeysCount', '2': 6},
-    const {'1': 'OPKLimitAlert', '2': 10},
-    const {'1': 'PayOrder', '2': 11},
-    const {'1': 'UploadOrderBodyEvent', '2': 13},
-    const {'1': 'GetNotaryServicePublickey', '2': 14},
-  ],
-};
-
-/// Descriptor for `OrderSubType`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List orderSubTypeDescriptor = $convert.base64Decode('CgxPcmRlclN1YlR5cGUSEQoNT1NUX3VuZGVmaW5lZBAAEhMKD1JlZ2lzdGVyUHJlS2V5cxABEhQKEEdldFByZUtleU9yZGVySUQQAhITCg9PcmRlclN0YXRlRXZlbnQQBBIUChBDaGFuZ2VPcmRlclN0YXRlEAUSEwoPR2V0UHJlS2V5c0NvdW50EAYSEQoNT1BLTGltaXRBbGVydBAKEgwKCFBheU9yZGVyEAsSGAoUVXBsb2FkT3JkZXJCb2R5RXZlbnQQDRIdChlHZXROb3RhcnlTZXJ2aWNlUHVibGlja2V5EA4=');
-@$core.Deprecated('Use walletSubTypeDescriptor instead')
-const WalletSubType$json = const {
-  '1': 'WalletSubType',
-  '2': const [
-    const {'1': 'WST_undefined', '2': 0},
-    const {'1': 'RegisterWallet', '2': 1},
-    const {'1': 'PreTransfer', '2': 3},
-    const {'1': 'ConfirmTransfer', '2': 4},
-    const {'1': 'Balance', '2': 5},
-    const {'1': 'PreWithDraw', '2': 6},
-    const {'1': 'WithDraw', '2': 7},
-    const {'1': 'WithDrawBankCompleteEvent', '2': 8},
-    const {'1': 'SyncCollectionHistory', '2': 9},
-    const {'1': 'SyncDepositHistory', '2': 10},
-    const {'1': 'SyncWithdrawHistory', '2': 11},
-    const {'1': 'SyncTransferHistory', '2': 12},
-    const {'1': 'UserSignIn', '2': 13},
-    const {'1': 'TxHashInfo', '2': 14},
-    const {'1': 'EthReceivedEvent', '2': 15},
-    const {'1': 'LNMCReceivedEvent', '2': 16},
-  ],
-};
-
-/// Descriptor for `WalletSubType`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List walletSubTypeDescriptor = $convert.base64Decode('Cg1XYWxsZXRTdWJUeXBlEhEKDVdTVF91bmRlZmluZWQQABISCg5SZWdpc3RlcldhbGxldBABEg8KC1ByZVRyYW5zZmVyEAMSEwoPQ29uZmlybVRyYW5zZmVyEAQSCwoHQmFsYW5jZRAFEg8KC1ByZVdpdGhEcmF3EAYSDAoIV2l0aERyYXcQBxIdChlXaXRoRHJhd0JhbmtDb21wbGV0ZUV2ZW50EAgSGQoVU3luY0NvbGxlY3Rpb25IaXN0b3J5EAkSFgoSU3luY0RlcG9zaXRIaXN0b3J5EAoSFwoTU3luY1dpdGhkcmF3SGlzdG9yeRALEhcKE1N5bmNUcmFuc2Zlckhpc3RvcnkQDBIOCgpVc2VyU2lnbkluEA0SDgoKVHhIYXNoSW5mbxAOEhQKEEV0aFJlY2VpdmVkRXZlbnQQDxIVChFMTk1DUmVjZWl2ZWRFdmVudBAQ');
-@$core.Deprecated('Use witnessSubTypeDescriptor instead')
-const WitnessSubType$json = const {
-  '1': 'WitnessSubType',
-  '2': const [
-    const {'1': 'WIT_undefined', '2': 0},
-    const {'1': 'UpChain', '2': 1},
-    const {'1': 'UpChainDone', '2': 2},
-    const {'1': 'ClaimPrize', '2': 3},
-    const {'1': 'ClaimPrizeDone', '2': 4},
-  ],
-};
-
-/// Descriptor for `WitnessSubType`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List witnessSubTypeDescriptor = $convert.base64Decode('Cg5XaXRuZXNzU3ViVHlwZRIRCg1XSVRfdW5kZWZpbmVkEAASCwoHVXBDaGFpbhABEg8KC1VwQ2hhaW5Eb25lEAISDgoKQ2xhaW1Qcml6ZRADEhIKDkNsYWltUHJpemVEb25lEAQ=');
 @$core.Deprecated('Use orderStateDescriptor instead')
 const OrderState$json = const {
   '1': 'OrderState',
@@ -231,43 +96,6 @@ const ProductType$json = const {
 
 /// Descriptor for `ProductType`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List productTypeDescriptor = $convert.base64Decode('CgtQcm9kdWN0VHlwZRIQCgxPVF9VbmRlZmluZWQQABISCg5PVF9GdWxpTG90dGVyeRABEhIKDk9UX1RpeXVMb3R0ZXJ5EAI=');
-@$core.Deprecated('Use lotteryTypeDescriptor instead')
-const LotteryType$json = const {
-  '1': 'LotteryType',
-  '2': const [
-    const {'1': 'LT_Undefined', '2': 0},
-    const {'1': 'LT_Shuangseqiu', '2': 1},
-    const {'1': 'LT_Daletou', '2': 2},
-    const {'1': 'LT_Fucai3d', '2': 3},
-  ],
-};
-
-/// Descriptor for `LotteryType`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List lotteryTypeDescriptor = $convert.base64Decode('CgtMb3R0ZXJ5VHlwZRIQCgxMVF9VbmRlZmluZWQQABISCg5MVF9TaHVhbmdzZXFpdRABEg4KCkxUX0RhbGV0b3UQAhIOCgpMVF9GdWNhaTNkEAM=');
-@$core.Deprecated('Use thirdPartyPaymentTypeDescriptor instead')
-const ThirdPartyPaymentType$json = const {
-  '1': 'ThirdPartyPaymentType',
-  '2': const [
-    const {'1': 'TPPT_Undefined', '2': 0},
-    const {'1': 'TPPT_AliPay', '2': 1},
-    const {'1': 'TPPT_WeChatPay', '2': 2},
-  ],
-};
-
-/// Descriptor for `ThirdPartyPaymentType`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List thirdPartyPaymentTypeDescriptor = $convert.base64Decode('ChVUaGlyZFBhcnR5UGF5bWVudFR5cGUSEgoOVFBQVF9VbmRlZmluZWQQABIPCgtUUFBUX0FsaVBheRABEhIKDlRQUFRfV2VDaGF0UGF5EAI=');
-@$core.Deprecated('Use depositRechargeDescriptor instead')
-const DepositRecharge$json = const {
-  '1': 'DepositRecharge',
-  '2': const [
-    const {'1': 'DR_Undefined', '2': 0},
-    const {'1': 'DR_10', '2': 1},
-    const {'1': 'DR_100', '2': 2},
-  ],
-};
-
-/// Descriptor for `DepositRecharge`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List depositRechargeDescriptor = $convert.base64Decode('Cg9EZXBvc2l0UmVjaGFyZ2USEAoMRFJfVW5kZWZpbmVkEAASCQoFRFJfMTAQARIKCgZEUl8xMDAQAg==');
 @$core.Deprecated('Use genderDescriptor instead')
 const Gender$json = const {
   '1': 'Gender',
@@ -305,19 +133,6 @@ const UserState$json = const {
 
 /// Descriptor for `UserState`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List userStateDescriptor = $convert.base64Decode('CglVc2VyU3RhdGUSDQoJU3NfTm9ybWFsEAASCgoGU3NfVmlwEAESDgoKU3NfQmxvY2tlZBAC');
-@$core.Deprecated('Use allowTypeDescriptor instead')
-const AllowType$json = const {
-  '1': 'AllowType',
-  '2': const [
-    const {'1': 'UAT_Unknow', '2': 0},
-    const {'1': 'UAT_AllowAny', '2': 1},
-    const {'1': 'UAT_DenyAny', '2': 2},
-    const {'1': 'UAT_NeedConfirm', '2': 3},
-  ],
-};
-
-/// Descriptor for `AllowType`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List allowTypeDescriptor = $convert.base64Decode('CglBbGxvd1R5cGUSDgoKVUFUX1Vua25vdxAAEhAKDFVBVF9BbGxvd0FueRABEg8KC1VBVF9EZW55QW55EAISEwoPVUFUX05lZWRDb25maXJtEAM=');
 @$core.Deprecated('Use userFeildDescriptor instead')
 const UserFeild$json = const {
   '1': 'UserFeild',

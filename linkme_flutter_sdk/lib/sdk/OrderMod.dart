@@ -1,8 +1,11 @@
 /*
  订单模块
  */
-
+import 'dart:convert';
 import 'dart:async';
+import 'dart:typed_data';
+// import 'dart:typed_data';
+import 'package:linkme_flutter_sdk/common/common.dart';
 import 'package:linkme_flutter_sdk/common/http_utils.dart';
 import 'package:linkme_flutter_sdk/common/urls.dart';
 import 'package:linkme_flutter_sdk/models/HetongtData.dart';
@@ -13,6 +16,10 @@ import 'package:linkme_flutter_sdk/manager/LogManager.dart';
 import 'package:linkme_flutter_sdk/sdk/SdkEnum.dart';
 import 'package:linkme_flutter_sdk/models/UpdateStatusReq.dart';
 import 'package:linkme_flutter_sdk/util/md5.dart';
+import 'package:encrypt/encrypt.dart' as SDKCrypt;
+import 'package:linkme_flutter_sdk/util/hex.dart';
+import 'package:libsignal_protocol_dart/src/ecc/curve.dart' as DH;
+import 'package:libsignal_protocol_dart/libsignal_protocol_dart.dart';
 
 class OrderMod {
   /// @nodoc POST方法, 根据彩票总金额，获取对应的服务费
@@ -608,5 +615,80 @@ class OrderMod {
     } finally {
       logD('orderMod.submitHetongData end.');
     }
+  }
+
+  /// @nodoc 计算出 加密密钥
+  /// [otherPubkey] 对方的公钥
+  /// [myPrivate] 本地的私钥
+  static String calculateAgreement(String otherPubkey, String myPrivate) {
+    Uint8List pubKey = Hex.decode(otherPubkey);
+    final publicKeyable = DH.Curve.decodePoint(pubKey, 0);
+
+    Uint8List privKey = Hex.decode(myPrivate);
+
+    final sharedSecret = DH.Curve.calculateAgreement(
+        publicKeyable, DH.Curve.decodePrivatePoint(privKey));
+
+    return Hex.encode(sharedSecret); //64个字符的hex
+  }
+
+  ///@nodoc 加密
+  ///publicKeyHex 是对方的公钥
+  static Future enCipher(String publicKeyHex, String indata) async {
+    Completer _completer = new Completer.sync();
+    Future f = _completer.future;
+
+    try {
+      ECPublicKey publicKey = DH.Curve.decodePoint(Hex.decode(publicKeyHex), 0);
+      logI('publicKey: ${Hex.encode(publicKey.serialize())}');
+
+      //系统私钥
+      ECPrivateKey privateKey =
+          DjbECPrivateKey(Hex.decode(Constant.systemPrivateKey));
+
+      var sharedSecret = DH.Curve.calculateAgreement(publicKey, privateKey);
+
+      String strkey = base64Encode(sharedSecret);
+      var key = SDKCrypt.Key.fromBase64(strkey);
+
+      var encrypter =
+          SDKCrypt.Encrypter(SDKCrypt.AES(key, mode: SDKCrypt.AESMode.ecb));
+      final iv = SDKCrypt.IV.fromLength(16); //add  by lishijia
+      var encrypted = encrypter.encrypt(indata, iv: iv);
+      // logI('encrypted: ${encrypted.base16}');
+      _completer.complete(encrypted.base16);
+    } catch (err) {
+      _completer.completeError("加密失败");
+    }
+    return f;
+  }
+
+  ///解密
+  ///privateKeyHex 是本地私钥
+  static Future deCipher(String privateKeyHex, String inCipther) {
+    Completer _completer = new Completer.sync();
+    Future f = _completer.future;
+    try {
+      ECPublicKey publicKey =
+          DH.Curve.decodePoint(Hex.decode(Constant.systemPublickey), 0);
+
+      ECPrivateKey privateKey = DjbECPrivateKey(Hex.decode(privateKeyHex));
+
+      var sharedSecret = DH.Curve.calculateAgreement(publicKey, privateKey);
+
+      String strkey = base64Encode(sharedSecret);
+      var key = SDKCrypt.Key.fromBase64(strkey);
+
+      var encrypter =
+          SDKCrypt.Encrypter(SDKCrypt.AES(key, mode: SDKCrypt.AESMode.ecb));
+      final iv = SDKCrypt.IV.fromLength(16); //add  by lishijia
+      var decrypted = encrypter.decrypt16(inCipther, iv: iv);
+      // print('encrypted: ${decrypted}');
+      _completer.complete(decrypted);
+    } catch (err) {
+      _completer.completeError("解密失败");
+    }
+
+    return f;
   }
 }

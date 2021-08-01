@@ -9,6 +9,7 @@ import 'package:linkme_flutter_sdk/manager/EventsManagers.dart';
 import "package:linkme_flutter_sdk/base_enum.dart";
 import 'package:linkme_flutter_sdk/models/OssConfig.dart';
 import 'package:linkme_flutter_sdk/net/wsHandler.dart';
+import 'package:linkme_flutter_sdk/sdk/OrderMod.dart';
 import 'package:linkme_flutter_sdk/sdk/SdkEnum.dart';
 import 'package:linkme_flutter_sdk/sdk/UserMod.dart';
 import 'package:uuid/uuid.dart';
@@ -59,8 +60,9 @@ class AppManager {
   static String get curVersion {
     return _curVersion;
   }
+
   static void setVersion(String version) {
-     _curVersion = version;
+    _curVersion = version;
   }
 
   static String? get os {
@@ -222,6 +224,75 @@ class AppManager {
     }
   }
 
+  static String _provinceId = '440000'; //初始省
+  static String _cityId = '440100'; //初始城市
+
+  /// 外部获取最后一次省份id
+  static String? get provinceId {
+    if (prefs != null) {
+      if (prefs!.getString(Constant.provinceId) != null)
+        _provinceId = prefs!.getString(Constant.provinceId)!;
+    }
+    return _provinceId;
+  }
+
+  ///设置最后一次省份id
+  static void setProvinceId(String provinceId) async {
+    _provinceId = provinceId;
+    if (prefs != null) {
+      await prefs!.setString(Constant.provinceId, provinceId); //持久化
+
+    }
+  }
+
+  /// 外部获取最后一次城市id
+  static String? get cityId {
+    if (prefs != null) {
+      if (prefs!.getString(Constant.cityId) != null)
+        _cityId = prefs!.getString(Constant.cityId)!;
+    }
+    return _cityId;
+  }
+
+  ///设置最后一次省份id
+  static void setCityId(String cityId) async {
+    _cityId = cityId;
+    if (prefs != null) {
+      await prefs!.setString(Constant.cityId, cityId); //持久化
+
+    }
+  }
+
+  // 商户本地公私钥对
+  static String _localPubkey = '';
+  static String _localPrikey = '';
+
+  static String get localPubkey {
+    return _localPubkey;
+  }
+
+  /// 外部设置当前商户的协商公钥
+  static void setLocalPubkey(String pubKey) async {
+    _localPubkey = pubKey;
+    if (prefs != null) {
+      await prefs!.setString(Constant.localPubkey, pubKey); //持久化
+
+    }
+  }
+
+  static String get localPrikey {
+    return _localPrikey;
+  }
+
+  /// 外部设置当前商户的协商私钥
+  static void setLocalPrikey(String priKey) async {
+    _localPrikey = priKey;
+    if (prefs != null) {
+      await prefs!.setString(Constant.localPrikey, priKey); //持久化
+
+    }
+  }
+
   /// 全局的数据仓库管理器
   static Map<String, Repository> _repositories = new Map();
 
@@ -261,11 +332,16 @@ class AppManager {
 
     if (prefs != null) {
       _currentUsername = prefs!.getString(Constant.lastLoginName);
+      if (prefs!.getString(Constant.localPrikey) != null) {
+        _localPrikey = prefs!.getString(Constant.localPrikey)!;
+        _localPubkey = prefs!.getString(Constant.localPubkey)!;
+      }
     }
 
     //当SP里的用户账号非空的时候, 需要初始化数据库
     if (_currentUsername != null && _currentUsername != '') {
-      logD('SP里的用户账号非空: $_currentUsername');
+      logD(
+          'SP里的用户账号非空: $_currentUsername, rsa私钥: $_localPrikey, rsa公钥: $_localPubkey');
 
       /// 初始化数据仓库
       bool isCreated = await initUserIsolate();
@@ -275,7 +351,7 @@ class AppManager {
           _currentMobile = prefs!.getString(Constant.lastMobile);
           _currentToken = prefs!.getString(Constant.lastLoginToken);
 
-          int userType = 1;
+          int userType = 1; //默认是普通用户
           if (prefs!.getInt(Constant.lastLoginUserType) != null) {
             userType = prefs!.getInt(Constant.lastLoginUserType)!;
           } else {
@@ -287,6 +363,23 @@ class AppManager {
 
           _isVip = _currentUserState == 1;
           _isStore = _currentUserType == UserTypeEnum.UserTypeEnum_Business;
+
+          if (_isStore && _localPubkey == '') {
+            String _tempPublicKey =
+                await UserMod.getRsaPublickey(_currentUsername!);
+
+            if (_tempPublicKey == '') {
+              logW('商户在服务端没有rsa公钥');
+              var pair = UserMod.generateRsaKeyPair();
+              setLocalPrikey(pair.privateKey!);
+              setLocalPubkey(pair.publicKey!);
+              UserMod.uploadRsaPublickey(pair.publicKey!).then((value) {
+                logD('商户上传rsa公钥成功');
+              }).catchError((e) {
+                logE(e);
+              });
+            }
+          }
 
           /// 初始化各种业务事件
           eventsManagers.init();
@@ -456,6 +549,8 @@ class AppManager {
     setJwtToken('');
     setUserState(0);
     setUserType(0);
+    setLocalPubkey('');
+    setLocalPrikey('');
 
     if (prefs != null) {
       await prefs!.setBool(Constant.isLogined, false);
@@ -466,6 +561,8 @@ class AppManager {
       await prefs!.setString(Constant.notaryServicePublickey, '');
       await prefs!.setString(Constant.curVersion, '');
       await prefs!.setString(Constant.lastMobile, '');
+      await prefs!.setString(Constant.localPrikey, '');
+      await prefs!.setString(Constant.localPubkey, '');
     }
 
     //aliyunoss
@@ -474,45 +571,6 @@ class AppManager {
     }
     if (onProgressSubscription != null) {
       onProgressSubscription!.cancel();
-    }
-  }
-
-  static String _provinceId = '440000'; //初始省
-  static String _cityId = '440100'; //初始城市
-
-  /// 外部获取最后一次省份id
-  static String? get provinceId {
-    if (prefs != null) {
-      if (prefs!.getString(Constant.provinceId) != null)
-        _provinceId = prefs!.getString(Constant.provinceId)!;
-    }
-    return _provinceId;
-  }
-
-  ///设置最后一次省份id
-  static void setProvinceId(String provinceId) async {
-    _provinceId = provinceId;
-    if (prefs != null) {
-      await prefs!.setString(Constant.provinceId, provinceId); //持久化
-
-    }
-  }
-
-  /// 外部获取最后一次城市id
-  static String? get cityId {
-    if (prefs != null) {
-      if (prefs!.getString(Constant.cityId) != null)
-        _cityId = prefs!.getString(Constant.cityId)!;
-    }
-    return _cityId;
-  }
-
-  ///设置最后一次省份id
-  static void setCityId(String cityId) async {
-    _cityId = cityId;
-    if (prefs != null) {
-      await prefs!.setString(Constant.cityId, cityId); //持久化
-
     }
   }
 }

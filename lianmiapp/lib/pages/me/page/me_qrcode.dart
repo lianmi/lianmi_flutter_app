@@ -1,11 +1,8 @@
 import 'dart:typed_data';
-import 'dart:ui' as ui;
 
 import 'package:flutter/rendering.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:lianmiapp/header/common_header.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart' as sdk;
-import 'package:oktoast/oktoast.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class meQrcodePage extends StatelessWidget {

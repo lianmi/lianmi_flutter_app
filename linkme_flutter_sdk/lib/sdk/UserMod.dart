@@ -7,10 +7,14 @@ import 'package:linkme_flutter_sdk/common/urls.dart';
 import 'package:linkme_flutter_sdk/manager/AppManager.dart';
 import 'package:linkme_flutter_sdk/models/OssConfig.dart';
 import 'package:linkme_flutter_sdk/models/ProposeFeedback.dart';
+import 'package:linkme_flutter_sdk/models/RsaKeyPairModel.dart';
 import 'package:linkme_flutter_sdk/models/StoreInfo.dart';
 import 'package:linkme_flutter_sdk/models/UserInfo.dart';
 import 'package:linkme_flutter_sdk/models/UserReport.dart';
 // import 'package:linkme_flutter_sdk/sdk/Listeners.dart';
+import 'package:libsignal_protocol_dart/src/ecc/curve.dart' as DH;
+import 'package:linkme_flutter_sdk/util/hex.dart';
+
 import 'dart:async';
 import 'SdkEnum.dart';
 import 'package:linkme_flutter_sdk/manager/LogManager.dart';
@@ -471,7 +475,7 @@ class UserMod {
     return appManager.uploadAly('products', file, onDone, onFail, onProgress);
   }
 
-  /// @nodoc 3-9 关注商户
+  /// @nodoc 关注商户
   static Future watchingStore(String storeUsername) async {
     if (storeUsername == AppManager.currentUsername) {
       return new Future.error('不能关注自己');
@@ -499,7 +503,7 @@ class UserMod {
     return _c;
   }
 
-  //获取当前用户的关注商户
+  /// 获取当前用户的关注商户
   static Future getWatchingStores() async {
     Completer _completer = new Completer.sync();
     Future _c = _completer.future;
@@ -532,7 +536,7 @@ class UserMod {
     return _c;
   }
 
-  /// @nodoc 3-10 取消关注商户
+  /// @nodoc 取消关注商户
   static Future cancelWatchingStore(String storeUsername) async {
     if (storeUsername == AppManager.currentUsername) {
       return new Future.error('不能取消关注自己');
@@ -808,22 +812,36 @@ class UserMod {
     }
   }
 
-  // 商户上传Rsa公钥
-  static Future notaryServiceUploadPublickey(String publickeyContent) async {
+  /// 商户生成Rsa公私钥对，只是当服务端返回的公钥为空时生成
+  static RsaKeyPairModel generateRsaKeyPair() {
+    var pair = DH.Curve.generateKeyPair();
+
+    String privKey = Hex.encode(pair.privateKey.serialize());
+    String pubKey = Hex.encode(pair.publicKey.serialize());
+
+    logD('pubKey: $pubKey');
+    logD('privKey: $privKey');
+
+    return RsaKeyPairModel(
+      privateKey: privKey,
+      publicKey: pubKey,
+    );
+  }
+
+  /// 商户上传Rsa公钥
+  static Future uploadRsaPublickey(String publicKey) async {
     Completer _completer = new Completer.sync();
     Future _c = _completer.future;
 
     try {
-      var _map = {'publickey_content': publickeyContent};
+      var _map = {'public_key': publicKey};
 
       var _body = await HttpUtils.post(HttpApi.uploadPublickey, data: _map);
-      logD('_body: ${_body}');
-
+      // logD('_body: ${_body}');
       var errmsg = _body['msg'];
-
       if (_body['code'] == 200) {
-        var _data = _body['data'];
-        logD('商户上传Rsa公钥成功');
+        // var _data = _body['data'];
+        // logD('商户上传Rsa公钥成功');
         _completer.complete('商户上传Rsa公钥成功');
       } else {
         logE('商户上传Rsa公钥 error, msg: $errmsg');
@@ -837,8 +855,8 @@ class UserMod {
     return _c;
   }
 
-  // 买家获取商户的公钥
-  static Future getNotaryServicePublickey(String businessUsername) async {
+  /// 买家获取商户的公钥,用于图片附件的加密
+  static Future getRsaPublickey(String businessUsername) async {
     Completer _completer = new Completer.sync();
     Future f = _completer.future;
 
@@ -858,4 +876,26 @@ class UserMod {
 
     return f;
   }
+
+/*
+  /// 商户专用方法，上报默认opk
+  static Future postDefaultOpk(DefaultOpkData defaultOpkData) async {
+    try {
+      var _body =
+          await HttpUtils.post(HttpApi.defaultopk, data: defaultOpkData);
+      logD('_body: $_body');
+
+      var code = _body['code'];
+      if (code == 200) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      logE(e);
+    } finally {
+      logD('AuthMod.postDefaultOpk end.');
+    }
+  }
+  */
 }

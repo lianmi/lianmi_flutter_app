@@ -1,10 +1,21 @@
+import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:linkme_flutter_sdk/common/common.dart';
+import 'package:linkme_flutter_sdk/util/file_cryptor.dart';
 import '../widget/appbar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
 import 'package:linkme_flutter_sdk/sdk/OrderMod.dart';
 import 'package:linkme_flutter_sdk/sdk/SdkEnum.dart';
 import '../../application.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:libsignal_protocol_dart/src/ecc/curve.dart' as DH;
+import 'package:linkme_flutter_sdk/util/hex.dart';
+
+import 'package:permission_handler/permission_handler.dart';
+
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 class OrderPage extends StatefulWidget {
   OrderPage({Key? key}) : super(key: key);
@@ -15,6 +26,13 @@ class OrderPage extends StatefulWidget {
 
 class _OrderPageState extends State<OrderPage> {
   final _picker = ImagePicker();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _requestPermission();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +60,77 @@ class _OrderPageState extends State<OrderPage> {
         height: double.infinity,
         child: ListView(
           children: [
+            _customButton('合同类图片加解密', onTap: () async {
+              //TODO
+              var test2 = DH.Curve.generateKeyPair();
+              String test2PubKey = Hex.encode(test2.publicKey.serialize());
+              String test2PrivKey = Hex.encode(test2.privateKey.serialize());
+
+              logI('test2PubKey: $test2PubKey');
+              logI('test2PrivKey: $test2PrivKey');
+
+              String secret = OrderMod.calculateAgreement(
+                  test2PubKey, Constant.systemPrivateKey);
+
+              var saveDir = await getExternalStorageDirectory();
+
+              FileCryptor fileCryptor = FileCryptor(
+                key: secret, //64个字符
+                iv: 16,
+                dir: saveDir!.path,
+                // useCompress: true,
+              );
+
+              //从相册里选择文件
+              final _imageFile =
+                  await _picker.getImage(source: ImageSource.gallery);
+              if (_imageFile == null) {
+                return null;
+              }
+              var filename = _imageFile.path;
+              logI('从相册里选择文件filename : $filename');
+
+              //计算出图片的hash字符串，用来做文件名
+              String _outputFile = await OrderMod.getHash256(filename);
+
+              File encryptedFile = await fileCryptor.encrypt(
+                  inputFileFullPath: filename, outputFile: _outputFile);
+
+              logI('完整路径 : ${encryptedFile.absolute.path}');
+
+              UserMod.uploadOssOrderFile(encryptedFile.absolute.path,
+                  (String url) async {
+                logD('上传加密后的图片成功: $url');
+
+                //将加密后的文件下载到本地
+                var appDocDir = await getTemporaryDirectory();
+                String savePath = appDocDir.path + "/" + _outputFile;
+                String fileUrl =
+                    "https://lianmi-ipfs.oss-cn-hangzhou.aliyuncs.com/" + url;
+                await Dio().download(fileUrl, savePath,
+                    onReceiveProgress: (count, total) {
+                  // print((count / total * 100).toStringAsFixed(0) + "%");
+                });
+
+                File decryptedFile = await fileCryptor.decrypt(
+                    inputFile: encryptedFile.absolute.path,
+                    outputFile: _outputFile);
+
+                logI('解密后文件完整路径 : ${decryptedFile.absolute.path}');
+
+/*
+TODO 不要删，以后完善example的权限
+                final result = await ImageGallerySaver.saveFile(
+                    decryptedFile.path + '.jpg');
+
+                logI('解密后相册完整路径 : $result');
+                */
+              }, (String errMsg) {
+                logD('上传加密后的图片错误:$errMsg');
+              }, (int progress) {
+                // logD('上传加密后的图片进度:$progress');
+              });
+            }),
             _customButton('预下单', onTap: () async {
               try {
                 var f = OrderMod.preOrder(
@@ -80,7 +169,7 @@ class _OrderPageState extends State<OrderPage> {
                 return null;
               }
               var filename = _imageFile.path;
-              
+
               //2419b9c8a937f5527d3124cf8618748ecc957b7535c505c818ed752d7a77597a
               // logD(hash);
 
@@ -164,5 +253,15 @@ class _OrderPageState extends State<OrderPage> {
         ),
       ),
     );
+  }
+
+  _requestPermission() async {
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.storage,
+    ].request();
+
+    final info = statuses[Permission.storage].toString();
+    print(info);
+    // _toastInfo(info);
   }
 }

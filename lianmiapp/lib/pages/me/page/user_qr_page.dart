@@ -100,9 +100,9 @@ class _UserQrPageState extends State<UserQrPage> with QrEvents {
     ByteData? byteData = await (image.toByteData(format: ui.ImageByteFormat.png)
         as FutureOr<ByteData?>);
     if (byteData != null) {
-      final result =
+      final filePath =
           await ImageGallerySaver.saveImage(byteData.buffer.asUint8List());
-      logI('文件: ${result.toString()}');
+      logI('二维码文件: ${filePath.toString()}');
       HubView.showToast('二维码保存成功');
     } else {
       HubView.showToastAfterLoadingHubDismiss('二维码保存失败');

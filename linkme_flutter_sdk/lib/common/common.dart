@@ -55,12 +55,18 @@ class Constant {
   /// @nodoc 最后一次登陆的 用户类型
   static const String lastLoginUserType = 'LastLoginUserType';
 
-  /// @nodoc 获取最后一次登陆的用户协商公钥
+  /// @nodoc 获取最后一次登陆的商户协商公钥
   static const String localPubkey = 'LocalPubkey';
 
-  /// @nodoc 获取最后一次登陆的用户协商私钥
+  /// @nodoc 获取最后一次登陆的商户协商私钥
   static const String localPrikey = 'LocalPrikey';
 
   /// @nodoc 获取最后一次登陆的商户的RSA公钥
   static const String notaryServicePublickey = 'NotaryServicePublickey';
+
+  ///系统公私钥对
+  static const String systemPrivateKey =
+      '98468670e7862cf80712a2e241937840958f7ed780b9b14417daf1670550837d';
+  static const String systemPublickey =
+      '05c0e5a3798cf87c9459ffc9940d060c2d80bbf08b19b9ef49c1774fd9431fda5a';
 }

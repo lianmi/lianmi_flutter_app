@@ -23,7 +23,6 @@ class OrderProductBody extends $pb.GeneratedMessage {
     ..aOS(9, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'body')
     ..a<$core.int>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'fee', $pb.PbFieldType.OU3)
     ..e<$0.OrderState>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'state', $pb.PbFieldType.OE, defaultOrMaker: $0.OrderState.OS_Undefined, valueOf: $0.OrderState.valueOf, enumValues: $0.OrderState.values)
-    ..e<$0.LotteryType>(12, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'subType', $pb.PbFieldType.OE, protoName: 'subType', defaultOrMaker: $0.LotteryType.LT_Undefined, valueOf: $0.LotteryType.valueOf, enumValues: $0.LotteryType.values)
     ..a<$fixnum.Int64>(13, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'ticketCode', $pb.PbFieldType.OF6, protoName: 'ticketCode', defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOS(14, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'orderImageFile', protoName: 'orderImageFile')
     ..aOS(15, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'imageHash', protoName: 'imageHash')
@@ -47,7 +46,6 @@ class OrderProductBody extends $pb.GeneratedMessage {
     $core.String? body,
     $core.int? fee,
     $0.OrderState? state,
-    $0.LotteryType? subType,
     $fixnum.Int64? ticketCode,
     $core.String? orderImageFile,
     $core.String? imageHash,
@@ -85,9 +83,6 @@ class OrderProductBody extends $pb.GeneratedMessage {
     }
     if (state != null) {
       _result.state = state;
-    }
-    if (subType != null) {
-      _result.subType = subType;
     }
     if (ticketCode != null) {
       _result.ticketCode = ticketCode;
@@ -220,93 +215,84 @@ class OrderProductBody extends $pb.GeneratedMessage {
   @$pb.TagNumber(11)
   void clearState() => clearField(11);
 
-  @$pb.TagNumber(12)
-  $0.LotteryType get subType => $_getN(9);
-  @$pb.TagNumber(12)
-  set subType($0.LotteryType v) { setField(12, v); }
-  @$pb.TagNumber(12)
-  $core.bool hasSubType() => $_has(9);
-  @$pb.TagNumber(12)
-  void clearSubType() => clearField(12);
-
   @$pb.TagNumber(13)
-  $fixnum.Int64 get ticketCode => $_getI64(10);
+  $fixnum.Int64 get ticketCode => $_getI64(9);
   @$pb.TagNumber(13)
-  set ticketCode($fixnum.Int64 v) { $_setInt64(10, v); }
+  set ticketCode($fixnum.Int64 v) { $_setInt64(9, v); }
   @$pb.TagNumber(13)
-  $core.bool hasTicketCode() => $_has(10);
+  $core.bool hasTicketCode() => $_has(9);
   @$pb.TagNumber(13)
   void clearTicketCode() => clearField(13);
 
   @$pb.TagNumber(14)
-  $core.String get orderImageFile => $_getSZ(11);
+  $core.String get orderImageFile => $_getSZ(10);
   @$pb.TagNumber(14)
-  set orderImageFile($core.String v) { $_setString(11, v); }
+  set orderImageFile($core.String v) { $_setString(10, v); }
   @$pb.TagNumber(14)
-  $core.bool hasOrderImageFile() => $_has(11);
+  $core.bool hasOrderImageFile() => $_has(10);
   @$pb.TagNumber(14)
   void clearOrderImageFile() => clearField(14);
 
   @$pb.TagNumber(15)
-  $core.String get imageHash => $_getSZ(12);
+  $core.String get imageHash => $_getSZ(11);
   @$pb.TagNumber(15)
-  set imageHash($core.String v) { $_setString(12, v); }
+  set imageHash($core.String v) { $_setString(11, v); }
   @$pb.TagNumber(15)
-  $core.bool hasImageHash() => $_has(12);
+  $core.bool hasImageHash() => $_has(11);
   @$pb.TagNumber(15)
   void clearImageHash() => clearField(15);
 
   @$pb.TagNumber(16)
-  $core.int get prize => $_getIZ(13);
+  $core.int get prize => $_getIZ(12);
   @$pb.TagNumber(16)
-  set prize($core.int v) { $_setUnsignedInt32(13, v); }
+  set prize($core.int v) { $_setUnsignedInt32(12, v); }
   @$pb.TagNumber(16)
-  $core.bool hasPrize() => $_has(13);
+  $core.bool hasPrize() => $_has(12);
   @$pb.TagNumber(16)
   void clearPrize() => clearField(16);
 
   @$pb.TagNumber(17)
-  $core.String get receiptQrCodeImageUrl => $_getSZ(14);
+  $core.String get receiptQrCodeImageUrl => $_getSZ(13);
   @$pb.TagNumber(17)
-  set receiptQrCodeImageUrl($core.String v) { $_setString(14, v); }
+  set receiptQrCodeImageUrl($core.String v) { $_setString(13, v); }
   @$pb.TagNumber(17)
-  $core.bool hasReceiptQrCodeImageUrl() => $_has(14);
+  $core.bool hasReceiptQrCodeImageUrl() => $_has(13);
   @$pb.TagNumber(17)
   void clearReceiptQrCodeImageUrl() => clearField(17);
 
   @$pb.TagNumber(18)
-  $core.String get prizeQrCodeImageUrl => $_getSZ(15);
+  $core.String get prizeQrCodeImageUrl => $_getSZ(14);
   @$pb.TagNumber(18)
-  set prizeQrCodeImageUrl($core.String v) { $_setString(15, v); }
+  set prizeQrCodeImageUrl($core.String v) { $_setString(14, v); }
   @$pb.TagNumber(18)
-  $core.bool hasPrizeQrCodeImageUrl() => $_has(15);
+  $core.bool hasPrizeQrCodeImageUrl() => $_has(14);
   @$pb.TagNumber(18)
   void clearPrizeQrCodeImageUrl() => clearField(18);
 
   @$pb.TagNumber(19)
-  $fixnum.Int64 get blockNumber => $_getI64(16);
+  $fixnum.Int64 get blockNumber => $_getI64(15);
   @$pb.TagNumber(19)
-  set blockNumber($fixnum.Int64 v) { $_setInt64(16, v); }
+  set blockNumber($fixnum.Int64 v) { $_setInt64(15, v); }
   @$pb.TagNumber(19)
-  $core.bool hasBlockNumber() => $_has(16);
+  $core.bool hasBlockNumber() => $_has(15);
   @$pb.TagNumber(19)
   void clearBlockNumber() => clearField(19);
 
   @$pb.TagNumber(20)
-  $core.String get txHash => $_getSZ(17);
+  $core.String get txHash => $_getSZ(16);
   @$pb.TagNumber(20)
-  set txHash($core.String v) { $_setString(17, v); }
+  set txHash($core.String v) { $_setString(16, v); }
   @$pb.TagNumber(20)
-  $core.bool hasTxHash() => $_has(17);
+  $core.bool hasTxHash() => $_has(16);
   @$pb.TagNumber(20)
   void clearTxHash() => clearField(20);
 
   @$pb.TagNumber(21)
-  $fixnum.Int64 get orderTime => $_getI64(18);
+  $fixnum.Int64 get orderTime => $_getI64(17);
   @$pb.TagNumber(21)
-  set orderTime($fixnum.Int64 v) { $_setInt64(18, v); }
+  set orderTime($fixnum.Int64 v) { $_setInt64(17, v); }
   @$pb.TagNumber(21)
-  $core.bool hasOrderTime() => $_has(18);
+  $core.bool hasOrderTime() => $_has(17);
   @$pb.TagNumber(21)
   void clearOrderTime() => clearField(21);
 }

@@ -76,6 +76,7 @@ class ImageStandard {
   static String imScanPic = 'assets/images/chat/btn_pic.png';
 
   static String shopProfile = 'assets/images/shop/shop_profile.png';
+  static String caFile = 'assets/images/ca.png';
   static String shopBalance = 'assets/images/shop/shop_balance.png';
 
   static String lotteryPhotoUpload =

@@ -23,6 +23,7 @@ dependencies:
   image_picker: ^0.7.3
   provider: ^5.0.0
   city_pickers: ^1.0.1
+  image_gallery_saver: ^1.6.9 #图片保存到相册
 
 dev_dependencies:
   flutter_test:

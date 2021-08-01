@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-// import 'package:barcode_scan/barcode_scan.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

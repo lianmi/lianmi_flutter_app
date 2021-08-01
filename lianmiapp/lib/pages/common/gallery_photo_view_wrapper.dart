@@ -102,7 +102,7 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
               bottom: MediaQuery.of(context).padding.bottom + 16,
               child: FlatButton(
                 child: Text(
-                  '保存图片',
+                  '保存图片到相册',
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
                 onPressed: () {
@@ -182,17 +182,17 @@ class _GalleryPhotoViewWrapperState extends State<GalleryPhotoViewWrapper> {
     if (imgPath.contains('http')) {
       var response = await Dio()
           .get(imgPath, options: Options(responseType: ResponseType.bytes));
-      final result =
+      final filePath =
           await ImageGallerySaver.saveImage(Uint8List.fromList(response.data));
-      logI(result);
+      logI('网络图片文件: ${filePath.toString()}');
       if (Platform.isIOS) {
-        if (result != null) {
+        if (filePath != null) {
           HubView.showToastAfterLoadingHubDismiss('保存成功');
         } else {
           HubView.showToastAfterLoadingHubDismiss('保存失败');
         }
       } else {
-        if (result != null) {
+        if (filePath != null) {
           HubView.showToastAfterLoadingHubDismiss('保存成功');
         } else {
           HubView.showToastAfterLoadingHubDismiss('保存失败');
