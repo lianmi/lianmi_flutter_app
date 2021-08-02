@@ -45,24 +45,6 @@ class UserInfo {
 
   String toJson() => json.encode(toMap());
 
-/*
- {
-  user_name: id1, 
-  gender: 1, 
-  nick: 李示佳, 
-  avatar: https://lianmi-ipfs.oss-cn-hangzhou.aliyuncs.com/avatars/id1/2021/07/05/550e2c202c2933609207c81bee8fc5ff?x-oss-process=image/resize,w_50/quality,q_50?x-oss-process=image/resize,w_50/quality,q_50, 
-  label:  区块链彩票专家, 
-  mobile: 13702290109, 
-  email: lianmicloud@163.com, 
-  user_type: 1, 
-  true_name: 李示佳, 
-  identity_card: 440725197207290017, 
-  province: 广东省, 
-  city: 鹤山市, 
-  area: 沙坪街道, 
-  address: 新鹤路乐民村116号302房
- }  
- */
   factory UserInfo.fromMap(Map<String, dynamic> json) => UserInfo(
         userName: json["user_name"],
         gender: json["gender"],

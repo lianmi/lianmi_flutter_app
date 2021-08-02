@@ -507,9 +507,10 @@ class _HetongWidgetState extends State<HetongWidget> {
       if (isValidString(path)) {
         FileManager.instance.copyFileToAppFolder(path).then((value) {
           HubView.showLoading();
-          UserMod.uploadOssFile(path, 'msgs', (String url) async {
+          //需要加密
+          UserMod.uploadOssOrderFile(path, (String url) async {
             HubView.dismiss();
-            logI('上传图片成功:$url');
+            logI('上传加密图片成功:$url');
             if (type == 0) {
               Provider.of<HetongProvider>(context, listen: false)
                   .hetongData
@@ -522,10 +523,10 @@ class _HetongWidgetState extends State<HetongWidget> {
             setState(() {});
           }, (String errMsg) {
             HubView.dismiss();
-            logE('上传图片错误:$errMsg');
-            HubView.showToastAfterLoadingHubDismiss('上传图片错误:$errMsg');
+            logE('上传加密图片错误:$errMsg');
+            HubView.showToastAfterLoadingHubDismiss('上传加密图片错误:$errMsg');
           }, (int progress) {
-            // print('上传图片进度:$progress');
+            // print('上传加密图片进度:$progress');
           });
         });
       }

@@ -19,7 +19,7 @@ class LotteryOrderModel {
   String? orderImageUrl; //产品图片
   String? productID;
   String? productName;
-  int? loterryType; //1- 福彩，2-体彩，3-公证处
+  int? loterryType; //通用商品类型，1-7是彩票类，8-票据存证
   String? orderID;
   List<String>? straws;
   List<dynamic>? strawObjects;
@@ -34,7 +34,7 @@ class LotteryOrderModel {
   double? fee;
   int? ticketCode;
   double? prize;
-  String? prizedPhoto; //兑奖后彩票拍照图片，上面有中奖金额或未中奖
+  String? prizedPhoto; //兑奖后彩票拍照图片url，上面有中奖金额或未中奖
   dynamic cunzhengModelData; //存证数据， 动态的，必须根据LotteryProductModel id转为对应的model
 
   LotteryOrderModel({
@@ -115,7 +115,7 @@ class LotteryOrderModel {
     productName = order.productName;
 
     loterryType = order.loterryType;
-    if (loterryType! == 1 || loterryType! == 2) {
+    if (loterryType! >= 1 || loterryType! <= 7) {
       //彩票类
       straws = order.straws;
       multiple = order.multiple;
@@ -215,7 +215,7 @@ class LotteryOrderModel {
     data['orderImageUrl'] = this.orderImageUrl;
     data['productID'] = this.productID;
     data['productName'] = this.productName;
-    data['loterryType'] = this.loterryType; //LotteryType
+    data['loterryType'] = this.loterryType; //通用商品类型，1-7是彩票类，8-票据存证
     data['orderID'] = this.orderID;
     if (this.straws != null) {
       data['straws'] = this.straws;
@@ -248,7 +248,7 @@ class LotteryOrderModel {
   //订单概要信息
   String get orderShowName {
     //彩票类
-    if (loterryType == 1 || loterryType == 2) {
+    if (loterryType! >= 1 && loterryType! <= 7) {
       if (strawObjects == null || strawObjects!.length == 0) return '';
       String showName = '';
       String suffix = '';

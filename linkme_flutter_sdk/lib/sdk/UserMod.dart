@@ -465,15 +465,15 @@ class UserMod {
     return appManager.uploadAly('msg', file, onDone, onFail, onProgress);
   }
 
-  /// @nodoc oss 上传 到 商品的位置
-  /// [file] 本地文件
-  /// [onDone] 上传成功回调
-  /// [onFail] 上传失败回调
-  /// [onProgress] 上传进度
-  static Future uploadOssProductFile(String file, void onDone(String key),
-      void onFail(String errmsg), void onProgress(int percent)) async {
-    return appManager.uploadAly('products', file, onDone, onFail, onProgress);
-  }
+  // /// @nodoc oss 上传 到 商品的位置
+  // /// [file] 本地文件
+  // /// [onDone] 上传成功回调
+  // /// [onFail] 上传失败回调
+  // /// [onProgress] 上传进度
+  // static Future uploadOssProductFile(String file, void onDone(String key),
+  //     void onFail(String errmsg), void onProgress(int percent)) async {
+  //   return appManager.uploadAly('products', file, onDone, onFail, onProgress);
+  // }
 
   /// @nodoc 关注商户
   static Future watchingStore(String storeUsername) async {
@@ -855,14 +855,14 @@ class UserMod {
     return _c;
   }
 
-  /// 买家获取商户的公钥,用于图片附件的加密
+  /// 买家获取指定商户的公钥,用于图片附件的加密
   static Future getRsaPublickey(String businessUsername) async {
     Completer _completer = new Completer.sync();
     Future f = _completer.future;
 
     try {
-      var _body = await HttpUtils.get(HttpApi.rsaPublickey);
-      logD('_body: $_body');
+      var _body = await HttpUtils.get(HttpApi.rsaPublickey+ '/' + businessUsername);
+      logD('getRsaPublickey _body: $_body');
       if (_body['code'] == 200) {
         _completer.complete(_body['data']);
       } else {

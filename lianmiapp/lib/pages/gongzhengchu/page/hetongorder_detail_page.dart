@@ -731,7 +731,7 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
         } else {
           _qrcodeUrl = url;
         }
-        logI('_qrcodeUrl: $_qrcodeUrl');
+        // logI('_qrcodeUrl: $_qrcodeUrl');
         setState(() {});
       }).catchError((err) {});
     }

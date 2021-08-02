@@ -1,14 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
-import 'package:linkme_flutter_sdk/manager/LogManager.dart';
 import 'package:moor/moor.dart';
 
 import 'package:crypto/crypto.dart';
 import 'package:flutter/foundation.dart';
 import 'package:linkme_flutter_sdk/isolate/isolate_events/isolate_f_events.dart';
 import 'package:moor/ffi.dart';
-import 'package:moor/moor.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 part 'my_database.g.dart';

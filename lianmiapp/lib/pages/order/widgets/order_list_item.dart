@@ -34,23 +34,13 @@ class _OrderListItemState extends State<OrderListItem> {
       onTap: () {
         logI('order.loterryType: ${order.loterryType}');
         //TODO  判断order的商品类型，然后跳转到相应的下单页面
-        switch (order.loterryType) {
-          case 1:
-          case 2:
-            {
-              AppNavigator.pushResult(
-                  context, OrderDetailPage(order), (result) {});
-
-              break;
-            }
-          default:
-            {
-              //除了彩票类的所有存证
-              logI('除了彩票类的所有存证的订单详情页面');
-              AppNavigator.pushResult(
-                  context, HetongOrderDetailPage(order), (result) {});
-              break;
-            }
+        if (order.loterryType! <= 7) {
+          AppNavigator.pushResult(context, OrderDetailPage(order), (result) {});
+        } else {
+          //除了彩票类的所有存证
+          logI('除了彩票类的所有存证的订单详情页面');
+          AppNavigator.pushResult(
+              context, HetongOrderDetailPage(order), (result) {});
         }
       },
       child: Container(
@@ -158,7 +148,7 @@ class _OrderListItemState extends State<OrderListItem> {
                 ),
                 Gaps.vGap8,
                 CommonText(
-                  (widget.model.loterryType! < 3)
+                  (widget.model.loterryType! <= 7)
                       ? '${(amount).toStringAsFixed(2)}元 ${order.count}注${order.multiple}倍'
                       : '${(amount).toStringAsFixed(2)}元',
                   fontSize: 14.px,

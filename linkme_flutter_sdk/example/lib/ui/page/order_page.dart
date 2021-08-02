@@ -226,7 +226,7 @@ TODO 不要删，以后完善example的权限
 
               var orderID = "406ec164-5ed5-4c57-a46e-0316f7fe9282";
 
-              var ok = await OrderMod.acceptPrize(orderID, filename);
+              var ok = await OrderMod.acceptPrize(orderID, 'id3', filename);
               if (ok) {
                 logD('上传完成');
               } else {

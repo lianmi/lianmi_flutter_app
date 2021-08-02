@@ -64,13 +64,13 @@ dependencies:
   images_picker: ^1.2.4
   # extended_text_field: ^8.0.0 #输入框富文本
   # nine_grid_view: ^2.0.0 #类似钉钉的群头像
-  photo_view: ^0.11.1 #图片页
+  photo_view: ^0.12.0 #图片页
   video_thumbnail: ^0.3.3 #生成视频缩略图
   # chewie: ^1.2.2 #视频播放封装
   fijkplayer: ^0.10.0 
   # flutter_aliplayer: ^5.4.0 #阿里云播放器
   flutter_sound: ^8.0.0+6
-  fluttertoast: ^8.0.7
+  # fluttertoast: ^8.0.8
   wechat_assets_picker: ^5.5.2 #仿微信的图片选择器
   wechat_camera_picker: ^2.1.1 #仿微信的拍照
   photo_manager: ^1.2.6+1
@@ -80,7 +80,7 @@ dependencies:
   camera: ^0.8.1
   geolocator: ^7.0.3 #定位
   amap_flutter_location: ^2.0.0 #高德定位
-  flutter_qr_reader: ^1.0.5 #二维码扫描
+  # flutter_qr_reader: ^1.0.5 #二维码扫描
   bot_toast: ^4.0.1
   tobias: ^2.1.2+1 #支付宝支付
 

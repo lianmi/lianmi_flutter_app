@@ -42,6 +42,8 @@ dependencies:
   provider: ^5.0.0
   # city_pickers: ^1.0.1
   archive: ^3.1.2
+  hive: ^2.0.4 #nosql持久化 
+  hive_generator: ^1.1.0
 
   
   aly_oss:
@@ -63,6 +65,7 @@ dev_dependencies:
 
   pedantic: ^1.11.0
   # test: ^1.14.4
+  hive_generator: ^1.1.0
   
 flutter:
 

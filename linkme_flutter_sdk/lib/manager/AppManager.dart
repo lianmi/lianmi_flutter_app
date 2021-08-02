@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:crypto/crypto.dart';
+import 'package:dio/dio.dart';
 import 'dart:async';
 
 import 'package:linkme_flutter_sdk/common/common.dart';
@@ -12,13 +13,17 @@ import 'package:linkme_flutter_sdk/net/wsHandler.dart';
 import 'package:linkme_flutter_sdk/sdk/OrderMod.dart';
 import 'package:linkme_flutter_sdk/sdk/SdkEnum.dart';
 import 'package:linkme_flutter_sdk/sdk/UserMod.dart';
+import 'package:linkme_flutter_sdk/util/file_cryptor.dart';
+import 'package:linkme_flutter_sdk/util/md5.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 import 'package:linkme_flutter_sdk/models/OrderInfo.dart';
 import 'package:linkme_flutter_sdk/isolate/repositories/Repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../common/common.dart';
 import 'package:aly_oss/aly_oss.dart';
-
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart' as pathProvider;
 import 'LogManager.dart';
 
 const bucketName = 'lianmi-ipfs';
@@ -224,6 +229,14 @@ class AppManager {
     }
   }
 
+  /// 商户的加解密协商秘钥
+  static String _storeSecret = '';
+
+  /// 外部获取商户的加解密协商秘钥
+  static String get storeSecret {
+    return _storeSecret;
+  }
+
   static String _provinceId = '440000'; //初始省
   static String _cityId = '440100'; //初始城市
 
@@ -293,6 +306,9 @@ class AppManager {
     }
   }
 
+  /// 全局的订单加密及未加密图片映射关系管理器
+  late Box<dynamic> _box;
+
   /// 全局的数据仓库管理器
   static Map<String, Repository> _repositories = new Map();
 
@@ -330,6 +346,12 @@ class AppManager {
 
     initDio(); //初始化Dio
 
+    //初始化Hive
+    Directory directory = await pathProvider.getApplicationDocumentsDirectory();
+    Hive.init(directory.path);
+
+    _box = await Hive.openBox('order_images');
+
     if (prefs != null) {
       _currentUsername = prefs!.getString(Constant.lastLoginName);
       if (prefs!.getString(Constant.localPrikey) != null) {
@@ -364,21 +386,27 @@ class AppManager {
           _isVip = _currentUserState == 1;
           _isStore = _currentUserType == UserTypeEnum.UserTypeEnum_Business;
 
-          if (_isStore && _localPubkey == '') {
-            String _tempPublicKey =
-                await UserMod.getRsaPublickey(_currentUsername!);
+          if (_isStore) {
+            if (_localPubkey == '') {
+              String _tempPublicKey =
+                  await UserMod.getRsaPublickey(_currentUsername!);
 
-            if (_tempPublicKey == '') {
-              logW('商户在服务端没有rsa公钥');
-              var pair = UserMod.generateRsaKeyPair();
-              setLocalPrikey(pair.privateKey!);
-              setLocalPubkey(pair.publicKey!);
-              UserMod.uploadRsaPublickey(pair.publicKey!).then((value) {
-                logD('商户上传rsa公钥成功');
-              }).catchError((e) {
-                logE(e);
-              });
+              if (_tempPublicKey == '') {
+                logW('商户在服务端没有rsa公钥');
+                var pair = UserMod.generateRsaKeyPair();
+                setLocalPrikey(pair.privateKey!);
+                setLocalPubkey(pair.publicKey!);
+                UserMod.uploadRsaPublickey(pair.publicKey!).then((value) {
+                  logD('商户上传rsa公钥成功');
+                }).catchError((e) {
+                  logE(e);
+                });
+              }
             }
+
+            // 商户的加解密秘钥
+            _storeSecret = OrderMod.calculateAgreement(
+                Constant.systemPublickey, _localPrikey);
           }
 
           /// 初始化各种业务事件
@@ -572,6 +600,68 @@ class AppManager {
     if (onProgressSubscription != null) {
       onProgressSubscription!.cancel();
     }
+  }
+
+  /// 将阿里云oss的url及对应本地目录的
+  addOrderImages(String fileUrl, String value) {
+    assert(fileUrl != '');
+    assert(value != '');
+    String key = generateMD5(fileUrl);
+    _box.put(key, value);
+  }
+
+  /// 从本地  hive获取 key对应的解密后的图片真实路径 ，如果没有，则从阿里云下载，并 写入hive
+  Future<String?> getOrderImages(String fileUrl,
+      {String? storeUserName}) async {
+    logI('fileUrl : $fileUrl, storeUserName: $storeUserName');
+
+    String key = generateMD5(fileUrl);
+
+    String? value = _box.get(key);
+    if (value == null) {
+      //TODO 本地缓存图片不存在，需要下载
+      //将加密后的文件下载到本地
+      var appDocDir = await getApplicationDocumentsDirectory();
+
+      var _file = fileUrl.split("/").last;
+
+      String targetFileName = appDocDir.path + "/" + _file;
+
+      logI('targetFileName : $targetFileName');
+
+      await Dio().download(fileUrl, targetFileName,
+          onReceiveProgress: (count, total) {
+        // print((count / total * 100).toStringAsFixed(0) + "%");
+      });
+
+      String secret;
+
+      if (storeUserName != null) {
+        String publicKeyHex = await UserMod.getRsaPublickey(storeUserName);
+        logI('publicKeyHex : $publicKeyHex');
+        secret = OrderMod.calculateAgreement(
+            publicKeyHex, Constant.systemPrivateKey);
+      } else {
+        secret = _storeSecret;
+      }
+
+      logI('secret : $secret');
+
+      FileCryptor fileCryptor = FileCryptor(
+        key: secret, //64个字符
+        iv: 16,
+        dir: appDocDir.path + '/order_images',
+        // useCompress: true,
+      );
+
+      File decryptedFile = await fileCryptor.decrypt(
+          inputFile: targetFileName, outputFile: targetFileName);
+
+      logI('解密后文件完整路径 : ${decryptedFile.absolute.path}');
+      value = decryptedFile.absolute.path;
+      _box.put(key, value);
+    }
+    return value;
   }
 }
 

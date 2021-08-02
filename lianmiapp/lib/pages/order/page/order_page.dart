@@ -136,13 +136,17 @@ class _OrderPageState extends State<OrderPage>
       orderStatus = _statusListUser[_currentStatusIndex].index;
     }
     OrderMod.getOrders(orderStatus, page: 0, limit: 20).then((value) async {
-      print('_loadOrders, ${value}');
       _refreshController.finishRefresh();
       _refreshController.finishLoad();
       _refreshController.finishLoad(noMore: true);
       _list.clear();
       _list = await LotteryOrderModel.modelListFromServerDatas(value);
-      // print('_list');
+
+      logI('_loadOrders:');
+      _list.forEach((element) {
+        logI(element.toJson());
+      });
+
       _list.sort((LotteryOrderModel a, LotteryOrderModel b) {
         return b.orderTime!.compareTo(a.orderTime!);
       });

@@ -4,10 +4,13 @@
 import 'dart:convert';
 import 'dart:async';
 import 'dart:typed_data';
+import 'dart:io';
 // import 'dart:typed_data';
+import 'package:dio/dio.dart';
 import 'package:linkme_flutter_sdk/common/common.dart';
 import 'package:linkme_flutter_sdk/common/http_utils.dart';
 import 'package:linkme_flutter_sdk/common/urls.dart';
+import 'package:linkme_flutter_sdk/manager/AppManager.dart';
 import 'package:linkme_flutter_sdk/models/HetongtData.dart';
 import 'package:linkme_flutter_sdk/models/orderRate.dart';
 import 'package:linkme_flutter_sdk/models/terms.dart';
@@ -15,11 +18,13 @@ import 'package:linkme_flutter_sdk/sdk/UserMod.dart';
 import 'package:linkme_flutter_sdk/manager/LogManager.dart';
 import 'package:linkme_flutter_sdk/sdk/SdkEnum.dart';
 import 'package:linkme_flutter_sdk/models/UpdateStatusReq.dart';
+import 'package:linkme_flutter_sdk/util/file_cryptor.dart';
 import 'package:linkme_flutter_sdk/util/md5.dart';
 import 'package:encrypt/encrypt.dart' as SDKCrypt;
 import 'package:linkme_flutter_sdk/util/hex.dart';
 import 'package:libsignal_protocol_dart/src/ecc/curve.dart' as DH;
 import 'package:libsignal_protocol_dart/libsignal_protocol_dart.dart';
+import 'package:path_provider/path_provider.dart';
 
 class OrderMod {
   /// @nodoc POST方法, 根据彩票总金额，获取对应的服务费
@@ -206,8 +211,39 @@ class OrderMod {
     Completer _completer = new Completer.sync();
     Future f = _completer.future;
 
-    UserMod.uploadOssMsgFile(receiptQrcodefile, (receiptUrl) async {
-      logD('$receiptQrcodefile上传完成, receiptUrl: $receiptUrl');
+    //TODO 需要加密
+    // UserMod.uploadOssMsgFile(receiptQrcodefile, (receiptUrl) async {
+    //   logD('$receiptQrcodefile上传完成, receiptUrl: $receiptUrl');
+
+    //   var _map = {
+    //     'order_id': orderID,
+    //     'receipt_qrcode_image_url': receiptUrl,
+    //   };
+    //   try {
+    //     var _body = await HttpUtils.post(HttpApi.takeOrder, data: _map);
+    //     // logD('takeOrder, _body: $_body');
+    //     var code = _body['code'];
+    //     var errmsg = _body['msg'];
+    //     if (code == 200) {
+    //       _completer.complete(true);
+    //     } else {
+    //       // return Future.error(errmsg);
+    //       _completer.completeError('商户接单出错');
+    //     }
+    //   } catch (e) {
+    //     logE(e);
+    //     return Future.error(e);
+    //   } finally {
+    //     logD('OrderMod.takeOrder end.');
+    //   }
+    // }, (errmsg) {
+    //   logD('上传失败, $errmsg');
+    // }, (percent) {
+    //   //上传进度
+    // });
+
+    OrderMod.encryptAndUploadFile(receiptQrcodefile).then((receiptUrl) async {
+      logD('$receiptQrcodefile 上传完成, receiptUrl: $receiptUrl');
 
       var _map = {
         'order_id': orderID,
@@ -215,14 +251,13 @@ class OrderMod {
       };
       try {
         var _body = await HttpUtils.post(HttpApi.takeOrder, data: _map);
-        // logD('takeOrder, _body: $_body');
+        logD('takeOrder, _body: $_body');
         var code = _body['code'];
         var errmsg = _body['msg'];
         if (code == 200) {
           _completer.complete(true);
         } else {
-          // return Future.error(errmsg);
-          _completer.completeError('商户接单出错');
+          _completer.completeError('商户接单，上传收款码出错');
         }
       } catch (e) {
         logE(e);
@@ -230,11 +265,10 @@ class OrderMod {
       } finally {
         logD('OrderMod.takeOrder end.');
       }
-    }, (errmsg) {
-      logD('上传失败, $errmsg');
-    }, (percent) {
-      //上传进度
+    }).catchError((e) {
+      logE(e);
     });
+
     return f;
   }
 
@@ -265,15 +299,54 @@ class OrderMod {
     return f;
   }
 
-  /// 用户领奖，发起收款码
+  // /// 用户领奖，发起收款码 , 需要加密
+  // static Future<dynamic> acceptPrize(
+  //     String orderID, String prizeQrcodefile) async {
+  //   Completer _completer = new Completer.sync();
+  //   Future f = _completer.future;
+
+  //   UserMod.uploadOssOrderFile(prizeQrcodefile, (prizeUrl) async {
+  //     logD('$prizeQrcodefile 上传完成, receiptUrl: $prizeUrl');
+
+  //     var _map = {
+  //       'order_id': orderID,
+  //       'prize_qrcode_image_url': prizeUrl,
+  //     };
+  //     try {
+  //       var _body = await HttpUtils.post(HttpApi.acceptPrize, data: _map);
+  //       // logD('acceptPrize, _body: $_body');
+  //       var code = _body['code'];
+  //       var errmsg = _body['msg'];
+  //       if (code == 200) {
+  //         _completer.complete(true);
+  //       } else {
+  //         // return Future.error(errmsg);
+  //         logE(errmsg);
+  //         _completer.completeError('用户领奖出错');
+  //       }
+  //     } catch (e) {
+  //       logE(e);
+  //       return Future.error(e);
+  //     } finally {
+  //       logD('OrderMod.acceptPrize end.');
+  //     }
+  //   }, (errmsg) {
+  //     logD('上传失败, $errmsg');
+  //   }, (percent) {
+  //     //上传进度
+  //   });
+  //   return f;
+  // }
+
+  /// 用户领奖，发起收款码 , 需要加密
   static Future<dynamic> acceptPrize(
-      String orderID, String prizeQrcodefile) async {
+      String orderID, String storeUserName, String prizeQrcodefile) async {
     Completer _completer = new Completer.sync();
     Future f = _completer.future;
 
-    UserMod.uploadOssFile(prizeQrcodefile, 'msgs', (prizeUrl) async {
-      logD('$prizeQrcodefile 上传完成, receiptUrl: $prizeUrl');
-
+    OrderMod.encryptAndUploadFile(prizeQrcodefile, storeUserName: storeUserName)
+        .then((prizeUrl) async {
+      logD('上传加密拍照图片成功:$prizeUrl');
       var _map = {
         'order_id': orderID,
         'prize_qrcode_image_url': prizeUrl,
@@ -286,7 +359,6 @@ class OrderMod {
         if (code == 200) {
           _completer.complete(true);
         } else {
-          // return Future.error(errmsg);
           logE(errmsg);
           _completer.completeError('用户领奖出错');
         }
@@ -296,10 +368,8 @@ class OrderMod {
       } finally {
         logD('OrderMod.acceptPrize end.');
       }
-    }, (errmsg) {
-      logD('上传失败, $errmsg');
-    }, (percent) {
-      //上传进度
+    }).catchError((e) {
+      logE(e);
     });
     return f;
   }
@@ -454,9 +524,9 @@ class OrderMod {
     return _c;
   }
 
-  /// 商家出票后拍照上链
+  /// 商家出票后拍照上传
   static Future uploadorderimage(
-    String filename,
+    String filename, //源文件
     String orderID,
     String image,
   ) async {
@@ -630,6 +700,84 @@ class OrderMod {
         publicKeyable, DH.Curve.decodePrivatePoint(privKey));
 
     return Hex.encode(sharedSecret); //64个字符的hex
+  }
+
+  ///拷贝文件到APP的目录
+  ///[fileSourcePath]源文件路径
+  // ignore: missing_return
+  static Future<String> copyFileToAppFolder(
+      String fileSourcePath, String targetPath) async {
+    File file = File(fileSourcePath);
+    // String targetFileName = _randomFileName(basename(file.path));
+    // String targetPath = App.userIMPath! + targetFileName;
+    File newFile = await file.copy(targetPath);
+    return newFile.absolute.path;
+  }
+
+  ///@nodoc 加密文件内容并上传到阿里云oss
+  ///源文件需要复制到文档目录 , 并存入map来管理这些图片及对应的阿里云obj
+  ///filename 源文件，未加密
+  ///storeUserName 是商户的注册id
+  static Future encryptAndUploadFile(String filename,
+      {String? storeUserName}) async {
+    Completer _completer = new Completer.sync();
+    Future f = _completer.future;
+
+    String secret = '';
+    if (AppManager.isStore) {
+      secret = AppManager.storeSecret;
+    } else {
+      if (storeUserName != null) {
+        String publicKeyHex = await UserMod.getRsaPublickey(storeUserName);
+        secret = OrderMod.calculateAgreement(
+            publicKeyHex, Constant.systemPrivateKey);
+      } else {
+        return new Future.error('storeUserName is empty');
+      }
+    }
+
+    Directory saveDir = await getApplicationDocumentsDirectory();
+
+    //计算出图片的hash字符串，用来做文件名
+    String _outputFile = await OrderMod.getHash256(filename);
+
+    File file = File(filename);
+
+    Directory orderImgDir = Directory(saveDir.path + '/order_images');
+    if (!orderImgDir.existsSync()) {
+      orderImgDir.createSync();
+      logI('创建订单图片目录成功:' + orderImgDir.path);
+    }
+
+    File newFile = await file.copy(orderImgDir.path + '/' + _outputFile);
+
+    FileCryptor fileCryptor = FileCryptor(
+      key: secret, //64个字符
+      iv: 16,
+      dir: orderImgDir.path,
+      // useCompress: true,
+    );
+
+    File encryptedFile = await fileCryptor.encrypt(
+        inputFileFullPath: filename, outputFile: _outputFile);
+
+    logD('完整路径 : ${encryptedFile.absolute.path}');
+
+    UserMod.uploadOssOrderFile(encryptedFile.absolute.path, (String url) async {
+      logD('上传加密后的图片成功: $url');
+
+      //缓存到Hive，下次需要展示图片时不需要从阿里云拉取, key是url的md5
+      appManager.addOrderImages(url, orderImgDir.path);
+
+      _completer.complete(url);
+    }, (String errMsg) {
+      logD('上传加密后的图片错误:$errMsg');
+      _completer.completeError('上传加密后的图片错误:$errMsg');
+    }, (int progress) {
+      // logD('上传加密后的图片进度:$progress');
+    });
+
+    return f;
   }
 
   ///@nodoc 加密

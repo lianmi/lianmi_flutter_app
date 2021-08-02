@@ -84,14 +84,14 @@ class OrderDetailStatusWidget extends StatelessWidget {
         {
           if (App.isShop) {
             topWidget = _item(title: '此用户已确认存证真实', isSuccess: true);
-            if (loterryType == 1 || loterryType == 2) {
+            if (loterryType >= 1 && loterryType <= 7) {
               bottomWidget = _item(title: '等待开奖结果', isSuccess: true);
             } else {
               bottomWidget = _item(title: '业务结束', isSuccess: true);
             }
           } else {
             topWidget = _item(title: '您已核实存证', isSuccess: true);
-            if (loterryType == 1 || loterryType == 2) {
+            if (loterryType >= 1 && loterryType <= 7) {
               bottomWidget = _item(title: '等待开奖结果', isSuccess: true);
             } else {
               bottomWidget = _item(title: '业务结束', isSuccess: true);
@@ -112,7 +112,7 @@ class OrderDetailStatusWidget extends StatelessWidget {
         break;
       case OrderStateEnum.OS_Prizeed:
         {
-          if (loterryType == 1 || loterryType == 2) {
+          if (loterryType >= 1 && loterryType <= 7) {
             String prizeText = prize == 0
                 ? '已开奖，此票未中奖'
                 : '已开奖，此票中奖金额${prize.toStringAsFixed(0)}元';
@@ -128,7 +128,7 @@ class OrderDetailStatusWidget extends StatelessWidget {
         break;
       case OrderStateEnum.OS_AcceptPrizeed:
         {
-          if (loterryType == 1 || loterryType == 2) {
+          if (loterryType >= 1 && loterryType <= 7) {
             String prizeText = prize == 0
                 ? '已开奖，此票未中奖'
                 : '已开奖，此票中奖金额${prize.toStringAsFixed(0)}元';
