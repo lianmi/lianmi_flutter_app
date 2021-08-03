@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:lianmiapp/header/common_header.dart';
 import 'package:lianmiapp/notification/notification_center.dart';
-import 'package:lianmiapp/pages/lottery/model/lottery_order_model.dart';
+import 'package:lianmiapp/pages/product/model/order_model.dart';
 import 'package:lianmiapp/pages/order/widgets/order_list_item.dart';
 import 'package:lianmiapp/res/view_standard.dart';
 import 'package:lianmiapp/widgets/widget/button/common_button.dart';
@@ -20,7 +20,7 @@ class _OrderSearchPageState extends State<OrderSearchPage> {
   ///0:按出票码搜索  1:按订单ID搜索
   int _searchType = 0;
 
-  List<LotteryOrderModel> _list = [];
+  List<OrderModel> _list = [];
 
   FocusNode _focusNode = FocusNode();
 
@@ -178,7 +178,7 @@ class _OrderSearchPageState extends State<OrderSearchPage> {
             shrinkWrap: true,
             itemCount: _list.length,
             itemBuilder: (BuildContext context, int index) {
-              LotteryOrderModel model = _list[index];
+              OrderModel model = _list[index];
               return OrderListItem(model);
             },
           )),
@@ -312,9 +312,9 @@ class _OrderSearchPageState extends State<OrderSearchPage> {
         .then((value) async {
       HubView.dismiss();
       _list.clear();
-      _list = await LotteryOrderModel.modelListFromServerDatas(value);
+      _list = await OrderModel.modelListFromServerDatas(value);
       logI(_list);
-      _list.sort((LotteryOrderModel a, LotteryOrderModel b) {
+      _list.sort((OrderModel a, OrderModel b) {
         return b.orderTime!.compareTo(a.orderTime!);
       });
       logI(_list);

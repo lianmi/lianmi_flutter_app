@@ -1,6 +1,6 @@
 // import 'package:lianmiapp/header/common_header.dart';
 // import 'package:lianmiapp/pages/discovery/widgets/product_detail/product_store_info.dart';
-// import 'package:lianmiapp/pages/lottery/lottery_router.dart';
+// import 'package:lianmiapp/pages/product/lottery_router.dart';
 // import '../widgets/product_detail/product_detail_info.dart';
 // import '../widgets/product_detail/product_detail_bottom.dart';
 // import '../widgets/product_detail/product_detail_photos.dart';

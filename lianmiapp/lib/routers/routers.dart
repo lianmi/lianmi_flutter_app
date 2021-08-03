@@ -6,8 +6,8 @@ import 'package:lianmiapp/pages/home/home_page_shop.dart';
 import 'package:lianmiapp/pages/home/home_page_user.dart';
 import 'package:lianmiapp/pages/home/webview_page.dart';
 import 'package:lianmiapp/pages/login/login_router.dart';
-import 'package:lianmiapp/pages/lottery/lottery_router.dart';
-import 'package:lianmiapp/pages/gongzhengchu/gongzhengchu_router.dart';
+import 'package:lianmiapp/pages/product/lottery_router.dart';
+import 'package:lianmiapp/pages/legalattest/legalattest_router.dart';
 //TODO 增加其它类型的商品路由
 import 'package:lianmiapp/pages/me/me_router.dart';
 import 'package:lianmiapp/pages/me/page/store/storeRouter.dart';
@@ -66,10 +66,9 @@ class Routes {
     _listRouter.add(AccountRouter());
     _listRouter.add(DiscoveryRouter());
     _listRouter.add(LotteryRouter());
-    _listRouter.add(GongzhengchuRouter());
+    _listRouter.add(LegalAttestRouter());
     //TODO: add by lishijia
 
-    
     _listRouter.add(MeRouter());
     _listRouter.add(StoreRouter());
     _listRouter.add(StoreRegRouter());

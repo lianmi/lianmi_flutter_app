@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:lianmiapp/linkme/linkme_manager.dart';
 import 'package:lianmiapp/header/common_header.dart';
 import 'package:lianmiapp/notification/notification.dart';
-import 'package:lianmiapp/pages/lottery/model/lottery_order_model.dart';
+import 'package:lianmiapp/pages/product/model/order_model.dart';
 import 'package:lianmiapp/pages/order/widgets/order_type_widget.dart';
 import 'package:lianmiapp/widgets/my_refresh_widget.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
@@ -38,7 +38,7 @@ class _OrderPageState extends State<OrderPage>
     implements LinkMeManagerOrderStatusListerner {
   int _currentStatusIndex = 0;
 
-  List<LotteryOrderModel> _list = [];
+  List<OrderModel> _list = [];
 
   ScrollController _scrollController = ScrollController();
   MyRefreshController _refreshController = MyRefreshController();
@@ -140,14 +140,14 @@ class _OrderPageState extends State<OrderPage>
       _refreshController.finishLoad();
       _refreshController.finishLoad(noMore: true);
       _list.clear();
-      _list = await LotteryOrderModel.modelListFromServerDatas(value);
+      _list = await OrderModel.modelListFromServerDatas(value);
 
       logI('_loadOrders:');
       _list.forEach((element) {
         logI(element.toJson());
       });
 
-      _list.sort((LotteryOrderModel a, LotteryOrderModel b) {
+      _list.sort((OrderModel a, OrderModel b) {
         return b.orderTime!.compareTo(a.orderTime!);
       });
       // print(_list);
@@ -171,10 +171,10 @@ class _OrderPageState extends State<OrderPage>
         .then((value) async {
       _refreshController.finishRefresh();
       _refreshController.finishLoad();
-      List<LotteryOrderModel> moreList =
-          await LotteryOrderModel.modelListFromServerDatas(value);
+      List<OrderModel> moreList =
+          await OrderModel.modelListFromServerDatas(value);
       _list.addAll(moreList);
-      _list.sort((LotteryOrderModel a, LotteryOrderModel b) {
+      _list.sort((OrderModel a, OrderModel b) {
         return b.orderTime!.compareTo(a.orderTime!);
       });
       setState(() {});

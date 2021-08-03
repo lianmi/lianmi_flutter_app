@@ -44,18 +44,18 @@ dependencies:
   archive: ^3.1.2
   hive: ^2.0.4 #nosql持久化 
   hive_generator: ^1.1.0
+  photo_view: ^0.12.0 #图片页
 
   
   aly_oss:
     path:  ../aly_oss
-    # git:
-    #   url: http://git.geejoan.cn/lishijia/aly_oss
-    #   ref: aly_oss_2.0
 
   sqflite_common_ffi: ^2.0.0
   sqlite3_flutter_libs: ^0.4.3 # Also use the latest version.
   path: ^1.8.0
   # flutter_image_compress: ^1.0.0 #压缩算法,对图片进行压缩，减少空间占用
+  flutter_gallery_assets: ^0.2.1 #图片资源 
+  nine_grid_view: ^2.0.0 #九宫格，实际9+
 
 dev_dependencies:
   moor_generator: ^4.3.0 #生成moor代码工具

@@ -1,6 +1,10 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lianmisdk/ui/nineGridViewPage/NineGridViewPage.dart';
+import 'package:lianmisdk/ui/gallery/gallery_example.dart';
+import 'package:lianmisdk/ui/pdfview/pdfViewPage.dart';
 import 'package:linkme_flutter_sdk/common/common.dart';
 import 'package:linkme_flutter_sdk/util/file_cryptor.dart';
 import '../widget/appbar_widget.dart';
@@ -12,6 +16,7 @@ import '../../application.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:libsignal_protocol_dart/src/ecc/curve.dart' as DH;
 import 'package:linkme_flutter_sdk/util/hex.dart';
+import 'package:linkme_flutter_sdk/util/FileTool.dart';
 
 import 'package:permission_handler/permission_handler.dart';
 
@@ -231,6 +236,53 @@ TODO 不要删，以后完善example的权限
                 logD('上传完成');
               } else {
                 logE('acceptPrize错误');
+              }
+            }),
+            _customButton('九宫格', onTap: () async {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => NineGridViewPage(),
+                ),
+              );
+            }),
+            _customButton('多图浏览', onTap: () async {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => GalleryExample(),
+                ),
+              );
+            }),
+            _customButton('文件选择并预览', onTap: () async {
+              FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+              if (result != null) {
+                String extName =  
+                    result.files.single.path.toString().split('.').last;
+                logI(
+                    'result.files.single.path: ${result.files.single.path}, extName: $extName ');
+
+                File file = File(result.files.single.path!);
+
+                var dir = await getApplicationDocumentsDirectory();
+
+                String targetFileName =
+                    FileTool.createFilePath(dir.path, extName);
+                File newFile = await file.copy(targetFileName);
+                logI("targetFileName:  $targetFileName");
+                logI("newFile:  ${newFile.absolute.path}");
+                if (extName == 'pdf') {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => PdfViewPage(targetFileName),
+                    ),
+                  );
+                }
+              } else {
+                // User canceled the picker
+                logW('User canceled the picker');
               }
             }),
           ],

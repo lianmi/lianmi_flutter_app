@@ -80,6 +80,12 @@ class AppManager {
     }
   }
 
+  static Directory? _appDocumentDir;
+
+  static Directory? get appDocumentDir {
+    return _appDocumentDir;
+  }
+
   /// 当前的手机
   static String? _currentMobile;
 
@@ -343,6 +349,8 @@ class AppManager {
         .init(SDKLogLevel.debug, output: LogOutputEnum.console);
 
     prefs = await SharedPreferences.getInstance();
+
+    _appDocumentDir = await getApplicationDocumentsDirectory();
 
     initDio(); //初始化Dio
 

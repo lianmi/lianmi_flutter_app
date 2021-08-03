@@ -62,7 +62,7 @@ class FileTool {
       return '';
     }
     String targetFileName = _randomFileName(basename('xxx.$ext'));
-    String targetPath = path + targetFileName;
+    String targetPath = path + '/' + targetFileName;
     return targetPath;
   }
 

@@ -6,15 +6,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:fluwx/fluwx.dart';
 import 'package:lianmiapp/manager/push_manager.dart';
 import 'package:lianmiapp/net/http_api.dart';
-import 'package:lianmiapp/pages/lottery/model/lottery_product_model.dart';
-import 'package:lianmiapp/pages/lottery/provider/dlt_provider.dart';
-import 'package:lianmiapp/pages/lottery/provider/fc3d_provider.dart';
-import 'package:lianmiapp/pages/lottery/provider/pl3_provider.dart';
-import 'package:lianmiapp/pages/lottery/provider/pl5_provider.dart';
-import 'package:lianmiapp/pages/lottery/provider/qlc_provider.dart';
-import 'package:lianmiapp/pages/lottery/provider/qxc_provider.dart';
-import 'package:lianmiapp/pages/lottery/provider/shuang_se_qiu_provider.dart';
-import 'package:lianmiapp/pages/lottery/utils/lottery_data.dart';
+import 'package:lianmiapp/pages/product/model/product_model.dart';
+import 'package:lianmiapp/pages/product/provider/dlt_provider.dart';
+import 'package:lianmiapp/pages/product/provider/fc3d_provider.dart';
+import 'package:lianmiapp/pages/product/provider/pl3_provider.dart';
+import 'package:lianmiapp/pages/product/provider/pl5_provider.dart';
+import 'package:lianmiapp/pages/product/provider/qlc_provider.dart';
+import 'package:lianmiapp/pages/product/provider/qxc_provider.dart';
+import 'package:lianmiapp/pages/product/provider/shuang_se_qiu_provider.dart';
+import 'package:lianmiapp/pages/product/utils/lottery_data.dart';
 import 'package:lianmiapp/provider/location_provider.dart';
 import 'package:lianmiapp/provider/me/storeInfo_view_model.dart';
 import 'package:lianmiapp/provider/me/userInfo_view_model.dart';
@@ -126,11 +126,10 @@ class App {
     HttpUtils.get(HttpApi.generalproducts).then((val) {
       logD('获取所有通用商品:$val');
 
-      List<LotteryProductModel> list =
-          LotteryProductModel.modelListFromJson(val);
-      List<LotteryProductModel> fucaiProducts = [];
-      List<LotteryProductModel> ticaiProducts = [];
-      List<LotteryProductModel> gongzhengchuProducts = [];
+      List<ProductModel> list = ProductModel.modelListFromJson(val);
+      List<ProductModel> fucaiProducts = [];
+      List<ProductModel> ticaiProducts = [];
+      List<ProductModel> legalAttestProducts = [];
 
       //TODO 继续增加各种通用智能合约
 
@@ -140,12 +139,12 @@ class App {
         } else if (element.productType == 2) {
           ticaiProducts.add(element);
         } else if (element.productType == 3) {
-          gongzhengchuProducts.add(element);
+          legalAttestProducts.add(element);
         }
       });
       LotteryData.instance.fucaiProducts = fucaiProducts;
       LotteryData.instance.ticaiProducts = ticaiProducts;
-      LotteryData.instance.gongzhengchuProducts = gongzhengchuProducts;
+      LotteryData.instance.legalAttestProducts = legalAttestProducts;
       _initAllLotteryProvider();
     }).catchError((err) {
       logE(err);

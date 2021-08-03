@@ -79,7 +79,7 @@ dependencies:
   fluwx: ^3.4.2 #微信功能
   camera: ^0.8.1
   geolocator: ^7.0.3 #定位
-  amap_flutter_location: ^2.0.0 #高德定位
+  amap_flutter_location: ^2.0.0 #高德定 位
   # flutter_qr_reader: ^1.0.5 #二维码扫描
   bot_toast: ^4.0.1
   tobias: ^2.1.2+1 #支付宝支付

@@ -4,10 +4,10 @@ import 'package:lianmiapp/header/common_header.dart';
 import 'package:lianmiapp/pages/discovery/widgets/store_home_middle.dart';
 import 'package:lianmiapp/pages/discovery/widgets/store_home_top.dart';
 import 'package:lianmiapp/pages/discovery/widgets/store_product_list.dart';
-import 'package:lianmiapp/pages/lottery/model/lottery_product_model.dart';
-import 'package:lianmiapp/pages/lottery/utils/lottery_data.dart';
-import 'package:lianmiapp/pages/lottery/utils/lottery_utils.dart';
-import 'package:lianmiapp/pages/gongzhengchu/utils/gongzhengchu_utils.dart';
+import 'package:lianmiapp/pages/product/model/product_model.dart';
+import 'package:lianmiapp/pages/product/utils/lottery_data.dart';
+import 'package:lianmiapp/pages/product/utils/lottery_utils.dart';
+import 'package:lianmiapp/pages/legalattest/utils/legalAttest_utils.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
 
 class StorePage extends StatefulWidget {
@@ -49,13 +49,13 @@ class _StorePageState extends State<StorePage> {
       _slivers.add(StoreHomMiddle(_storeInfo!)); //商户支持以下存证智能合约
 
       //根据商户类型查询出对应的商品列表
-      List<LotteryProductModel> products =
+      List<ProductModel> products =
           LotteryData.instance.getProducts(_storeInfo!.storeType!);
 
       if (products.length > 0) {
         _slivers.add(StoreProductList(
           products,
-          onTap: (LotteryProductModel model) {
+          onTap: (ProductModel model) {
             logI(
                 '此商户智能合约信息: productType: ${model.productType},  model.id: ${model.id}, businessUsername: ${widget.businessUsername}');
             switch (model.productType) {
@@ -73,11 +73,8 @@ class _StorePageState extends State<StorePage> {
                 {
                   // logW(
                   //     '此商户智能合约绑定公证处,  model.id: ${model.id}, businessUsername: ${widget.businessUsername}');
-                  GongzhengchuUtils.showGongzhengchu(
-                      model.id!,
-                      model.productId!,
-                      model.productPrice!,
-                      widget.businessUsername);
+                  LegalAttestUtils.showLegalAttest(model.id!, model.productId!,
+                      model.productPrice!, widget.businessUsername);
                   break;
                 }
             }

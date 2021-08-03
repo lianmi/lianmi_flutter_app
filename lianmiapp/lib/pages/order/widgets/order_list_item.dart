@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lianmiapp/header/common_header.dart';
-import 'package:lianmiapp/pages/gongzhengchu/page/hetongorder_detail_page.dart';
-// import 'package:lianmiapp/pages/gongzhengchu/page/order_detail_page.dart';
-import 'package:lianmiapp/pages/lottery/model/lottery_order_model.dart';
-import 'package:lianmiapp/pages/lottery/page/order_detail_page.dart';
+import 'package:lianmiapp/pages/legalattest/page/hetongorder_detail_page.dart';
+// import 'package:lianmiapp/pages/legalattest/page/order_detail_page.dart';
+import 'package:lianmiapp/pages/product/model/order_model.dart';
+import 'package:lianmiapp/pages/product/page/order_detail_page.dart';
 import 'package:lianmiapp/res/view_standard.dart';
 import 'package:lianmiapp/util/date_time_utils.dart';
 import 'package:lianmiapp/widgets/load_image.dart';
@@ -11,7 +11,7 @@ import 'package:lianmiapp/widgets/widget/button/common_button.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
 
 class OrderListItem extends StatefulWidget {
-  final LotteryOrderModel model;
+  final OrderModel model;
 
   OrderListItem(this.model);
 
@@ -20,7 +20,7 @@ class OrderListItem extends StatefulWidget {
 }
 
 class _OrderListItemState extends State<OrderListItem> {
-  late LotteryOrderModel order;
+  late OrderModel order;
 
   @override
   void initState() {

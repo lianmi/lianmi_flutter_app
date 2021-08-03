@@ -24,6 +24,14 @@ dependencies:
   provider: ^5.0.0
   city_pickers: ^1.0.1
   image_gallery_saver: ^1.6.9 #图片保存到相册
+  photo_view: ^0.12.0 #图片页
+  flutter_svg: ^0.21.0-nullsafety.0
+  file_picker:  #多种格式文件选择器,由于 android/build.gradle文件的版本不对，所有暂时classpath 'com.android.tools.build:gradle:4.0.1'
+    path: ../../file_picker
+
+  filesystem_picker: ^1.0.4 #手机文件选择器
+  flutter_pdfview: ^1.1.0 #pdf文件预览
+  flutter_picker: ^2.0.2  #自定义选择器s
 
 dev_dependencies:
   flutter_test:
@@ -37,7 +45,34 @@ flutter:
 
 
   assets:
-    - assets/public.pem #订单附件RSA加密证书文件
-    - assets/ca/ca.crt
-    - assets/ca/mqtt.lianmi.cloud.crt
-    - assets/ca/mqtt.lianmi.cloud.key
+    - assets/neat.gif
+    - assets/large-image.jpg
+    - assets/small-image.jpg
+    - assets/gallery1.jpg
+    - assets/gallery2.jpg
+    - assets/gallery3.jpg
+    - assets/firefox.svg
+    
+    - assets/images/
+    
+    # pdf
+    - assets/pdf/demo.pdf
+    - assets/pdf/corrupted.pdf
+    - assets/pdf/demo-link.pdf
+    - assets/pdf/demo-landscape.pdf
+
+    - packages/flutter_gallery_assets/people/ali_landscape.png
+    - packages/flutter_gallery_assets/people/square/ali.png
+    - packages/flutter_gallery_assets/people/square/peter.png
+    - packages/flutter_gallery_assets/people/square/sandra.png
+    - packages/flutter_gallery_assets/people/square/stella.png
+    - packages/flutter_gallery_assets/people/square/trevor.png
+    - packages/flutter_gallery_assets/places/india_tanjore_bronze_works.png
+    - packages/flutter_gallery_assets/places/india_tanjore_market_merchant.png
+    - packages/flutter_gallery_assets/places/india_tanjore_thanjavur_temple_carvings.png
+  fonts:
+    - family: PTSans
+      fonts:
+        - asset: assets/fonts/ptasans-regular.ttf
+        - asset: assets/fonts/ptasans-bold.ttf
+          weight: 700

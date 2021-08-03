@@ -1,3 +1,4 @@
+import 'package:lianmisdk/router/routes.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
 
 import 'ui/page/home_page.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: HomePage(),
+      routes: routes,
     );
   }
 }
