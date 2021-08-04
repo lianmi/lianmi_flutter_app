@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:lianmiapp/header/common_header.dart';
-import 'package:lianmiapp/pages/product/model/order_model.dart';
 import 'package:lianmiapp/res/view_standard.dart';
 import 'package:lianmiapp/util/keyboard_utils.dart';
 import 'package:lianmiapp/widgets/load_image.dart';
@@ -231,6 +230,8 @@ class _PrizePageState extends State<PrizePage> {
       HubView.showToast('请上传拍照图片');
       return;
     }
+
+    // 带参数的返回
     AppNavigator.goBackWithParams(context,
         {'money': _textController.text, 'imageLocalPath': _imageLocalPath});
   }

@@ -383,7 +383,7 @@ class _SelectNumPageState extends State<SelectNumPage> {
     order.orderImageUrl = product.productPic1Large;
     order.productName = product.productName;
     order.productID = product.productId;
-    order.payMode = 1; //TODO 要增加支持支付宝
+    order.payMode = 1;
     order.loterryType = product.id;
     List<String> straws = [];
     _selectedNums.forEach((element) {

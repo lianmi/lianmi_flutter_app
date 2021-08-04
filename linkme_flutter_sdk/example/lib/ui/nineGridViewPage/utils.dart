@@ -64,7 +64,7 @@ class Utils {
     }
     if (url.endsWith('.png')) {
       return InkWell(
-        child: Container( 
+        child: Container(
           width: double.infinity,
           height: double.infinity,
           alignment: Alignment.center,

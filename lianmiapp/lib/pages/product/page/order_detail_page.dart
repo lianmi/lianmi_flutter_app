@@ -111,7 +111,8 @@ class _OrderDetailPageState extends State<OrderDetailPage>
                   (widget.order.loterryType! <= 7)
                       ? '${product.productName} ${count}注${multiple}倍'
                       : '${product.productName}'),
-              _commonItem('总价', '${price / 100}元'),
+              _commonItem('预估价格', '${price / 100}元'),
+              
               _feeWidget(_fee),
               // _memberItem(),
               // Gaps.vGap20,
@@ -182,6 +183,37 @@ class _OrderDetailPageState extends State<OrderDetailPage>
   }
 
   Widget _commonItem(String title, String desc, {EdgeInsetsGeometry? margin}) {
+    return Container(
+      margin: margin,
+      padding: EdgeInsets.only(left: 30.px, right: 30.px),
+      width: double.infinity,
+      height: 48.px,
+      color: Colors.white,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          CommonText(
+            title,
+            fontSize: 16.px,
+          ),
+          Gaps.hGap16,
+          Expanded(
+              child: Container(
+            alignment: Alignment.centerRight,
+            child: CommonText(
+              desc,
+              fontSize: 16.px,
+              color: Color(0XFF666666),
+              maxLines: 1,
+            ),
+          ))
+        ],
+      ),
+    );
+  }
+
+  Widget _attachsItem(String title, String desc, {EdgeInsetsGeometry? margin}) {
     return Container(
       margin: margin,
       padding: EdgeInsets.only(left: 30.px, right: 30.px),

@@ -30,8 +30,6 @@ import 'http_utils.dart';
 
 const _kWXAppId = 'wx93699cc3c641f8a3';
 
-// const _kWXAppId = 'wx9dff85e1c3a3b342';
-
 class App {
   ///判断是否是商户
   static bool isShop = false;
@@ -42,7 +40,6 @@ class App {
   static BuildContext? appContext;
 
   static String? userImagesPath;
-  // static WalletNotifier walletNotifier;
 
   static String? userIMPath;
 
@@ -56,12 +53,6 @@ class App {
     appContext = ctx;
     Adapt.init(375);
     await setupUserEverything();
-
-    ///初始化IM管理
-    // IMManager.instance.init();
-
-    ///初始化钱包通知
-    // walletNotifier = WalletNotifier(0);
     registerWxApi(appId: _kWXAppId, universalLink: "");
   }
 
@@ -145,13 +136,15 @@ class App {
       LotteryData.instance.fucaiProducts = fucaiProducts;
       LotteryData.instance.ticaiProducts = ticaiProducts;
       LotteryData.instance.legalAttestProducts = legalAttestProducts;
+
       _initAllLotteryProvider();
     }).catchError((err) {
       logE(err);
     });
   }
 
-  ///初始化所有的订单provider数据
+  ///初始化所有的订单 provider 数据
+  ///TODO 存证订单？
   static _initAllLotteryProvider() {
     LotteryData.instance.fucaiProducts.forEach((element) {
       switch (LotteryTypeEnum.values[element.id!]) {

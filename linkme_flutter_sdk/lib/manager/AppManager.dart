@@ -413,8 +413,12 @@ class AppManager {
             }
 
             // 商户的加解密秘钥
-            _storeSecret = OrderMod.calculateAgreement(
-                Constant.systemPublickey, _localPrikey);
+            try {
+              _storeSecret = OrderMod.calculateAgreement(
+                  Constant.systemPublickey, _localPrikey);
+            } catch (e) {
+              logE(e);
+            }
           }
 
           /// 初始化各种业务事件

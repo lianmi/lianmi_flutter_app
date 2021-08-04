@@ -4,10 +4,10 @@ import 'package:lianmiapp/header/common_header.dart';
 import 'package:lianmiapp/pages/discovery/widgets/store_home_middle.dart';
 import 'package:lianmiapp/pages/discovery/widgets/store_home_top.dart';
 import 'package:lianmiapp/pages/discovery/widgets/store_product_list.dart';
+import 'package:lianmiapp/pages/legalattest/utils/legalattest_utils.dart';
 import 'package:lianmiapp/pages/product/model/product_model.dart';
 import 'package:lianmiapp/pages/product/utils/lottery_data.dart';
 import 'package:lianmiapp/pages/product/utils/lottery_utils.dart';
-import 'package:lianmiapp/pages/legalattest/utils/legalAttest_utils.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
 
 class StorePage extends StatefulWidget {

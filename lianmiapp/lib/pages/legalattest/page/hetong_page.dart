@@ -8,8 +8,9 @@ import 'package:lianmiapp/pages/product/model/order_model.dart';
 import 'package:lianmiapp/pages/product/model/product_model.dart';
 import 'package:lianmiapp/pages/product/utils/lottery_data.dart';
 import 'package:lianmiapp/widgets/widget/button/common_button.dart';
-// import 'package:lianmiapp/pages/product/utils/lottery_data.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
+
+// import 'nine_widget.dart';
 
 class HetongPage extends StatefulWidget {
   final String productId;
@@ -30,8 +31,6 @@ class _HetongPageState extends State<HetongPage> {
   @override
   void initState() {
     super.initState();
-
-    // _productInfo = LotteryData.instance.getProduct(widget.id);
   }
 
   @override
@@ -171,42 +170,14 @@ class _HetongPageState extends State<HetongPage> {
       return;
     }
     if (isValidString(_hetongData.jiafangName) == false) {
-      HubView.showToast('请输入甲方名称');
+      HubView.showToast('请输入姓名');
       return;
     }
     if (isValidString(_hetongData.jiafangPhone) == false) {
-      HubView.showToast('请输入甲方联系电话');
-      return;
-    }
-    if (isValidString(_hetongData.jiafangLegalName) == false) {
-      HubView.showToast('请输入甲方法人姓名');
-      return;
-    }
-    if (isValidString(_hetongData.jiafangAddress) == false) {
-      HubView.showToast('请输入甲方地址');
+      HubView.showToast('请输入联系电话');
       return;
     }
 
-    if (isValidString(_hetongData.yifangName) == false) {
-      HubView.showToast('请输入乙方名称');
-      return;
-    }
-    if (isValidString(_hetongData.yifangPhone) == false) {
-      HubView.showToast('请输入乙方联系电话');
-      return;
-    }
-    if (isValidString(_hetongData.yifangHuji) == false) {
-      HubView.showToast('请输入乙方户籍');
-      return;
-    }
-    if (isValidString(_hetongData.yifangAddress) == false) {
-      HubView.showToast('请输入乙方地址');
-      return;
-    }
-    if (isValidString(_hetongData.yifangIdCard) == false) {
-      HubView.showToast('请输入乙方身份证号码');
-      return;
-    }
     HubView.showLoading();
     OrderModel order = OrderModel();
     order.buyUser = AppManager.currentUsername;
@@ -216,34 +187,19 @@ class _HetongPageState extends State<HetongPage> {
         _productInfo == null ? '' : _productInfo!.productPic1Large; //产品图片
     order.productName = _productInfo == null ? '' : _productInfo!.productName;
     order.productID = widget.productId;
-    order.payMode = 1; //TODO 要增加支持支付宝
+    order.payMode = 1;
     order.loterryType = widget.id;
 
     //要转为元为单位
     order.cost = (widget.productPrice / 100).toDouble();
 
-    //TODO 构造订单 存证数据
+    //TODO 构造订单 存证数据, 将附件加密后上传到阿里云
     order.cunzhengModelData = HetongDataModel(
       type: _hetongData.type,
       description: _hetongData.description,
       jiafangName: _hetongData.jiafangName,
       jiafangPhone: _hetongData.jiafangPhone,
-      jiafangLegalName: _hetongData.jiafangLegalName,
-      jiafangAddress: _hetongData.jiafangAddress,
-      yifangName: _hetongData.yifangName,
-      yifangPhone: _hetongData.yifangPhone,
-      yifangHuji: _hetongData.yifangHuji,
-      yifangAddress: _hetongData.yifangAddress,
-      yifangIdCard: _hetongData.yifangIdCard,
-      image1: _hetongData.image1,
-      image2: _hetongData.image2,
-      image3: _hetongData.image3,
-      image4: _hetongData.image4,
-      image5: _hetongData.image5,
-      image6: _hetongData.image6,
-      image7: _hetongData.image7,
-      image8: _hetongData.image8,
-      image9: _hetongData.image9,
+      attachs: _hetongData.attachs,
     );
 
     // 跳转到详情页 -> 选择支付方式 ->确认下单

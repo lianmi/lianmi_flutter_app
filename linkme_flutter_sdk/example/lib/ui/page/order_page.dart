@@ -20,7 +20,6 @@ import 'package:linkme_flutter_sdk/util/FileTool.dart';
 
 import 'package:permission_handler/permission_handler.dart';
 
-import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 class OrderPage extends StatefulWidget {
   OrderPage({Key? key}) : super(key: key);

@@ -25,7 +25,7 @@
 //     // this.allowCancel,
 //   });
 
-//   ProductInfoModel.fromJson(Map<String, dynamic> json) {
+//   ProductInfoModel.fromMap(Map<String, dynamic> json) {
 //     productId = json['productId'];
 //     productName = json['productName'];
 //     productType = json['productType'];
@@ -34,7 +34,7 @@
 //     if (json['productPics'] != null) {
 //       productPics = [];
 //       json['productPics'].forEach((v) {
-//         productPics!.add(new ProductPicModel.fromJson(v));
+//         productPics!.add(new ProductPicModel.fromMap(v));
 //       });
 //     }
 //     price = json['price'];
@@ -44,7 +44,7 @@
 //     // allowCancel = json['allowCancel'];
 //   }
 
-//   Map<String, dynamic> toJson() {
+//   Map<String, dynamic> toMap() {
 //     final Map<String, dynamic> data = new Map<String, dynamic>();
 //     data['productId'] = this.productId;
 //     data['productName'] = this.productName;
@@ -52,7 +52,7 @@
 //     data['subType'] = this.subType;
 //     data['productDesc'] = this.productDesc;
 //     if (this.productPics != null) {
-//       data['productPics'] = this.productPics!.map((v) => v.toJson()).toList();
+//       data['productPics'] = this.productPics!.map((v) => v.toMap()).toList();
 //     }
 //     data['price'] = this.price;
 //     data['descPics'] = this.descPics;
@@ -70,13 +70,13 @@
 
 //   ProductPicModel({this.small, this.middle, this.large});
 
-//   ProductPicModel.fromJson(Map<String, dynamic> json) {
+//   ProductPicModel.fromMap(Map<String, dynamic> json) {
 //     small = json['small'];
 //     middle = json['middle'];
 //     large = json['large'];
 //   }
 
-//   Map<String, dynamic> toJson() {
+//   Map<String, dynamic> toMap() {
 //     final Map<String, dynamic> data = new Map<String, dynamic>();
 //     data['small'] = this.small;
 //     data['middle'] = this.middle;
