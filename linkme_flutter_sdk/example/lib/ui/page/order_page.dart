@@ -1,12 +1,13 @@
 import 'dart:io';
-import 'package:dio/dio.dart';
+import 'dart:typed_data';
+import 'dart:async';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+// import 'package:lianmisdk/ui/gallery/browserPhoto.dart';
 import 'package:lianmisdk/ui/nineGridViewPage/NineGridViewPage.dart';
 import 'package:lianmisdk/ui/gallery/gallery_example.dart';
 import 'package:lianmisdk/ui/pdfview/pdfViewPage.dart';
-import 'package:linkme_flutter_sdk/common/common.dart';
-import 'package:linkme_flutter_sdk/util/file_cryptor.dart';
 import '../widget/appbar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
@@ -14,12 +15,10 @@ import 'package:linkme_flutter_sdk/sdk/OrderMod.dart';
 import 'package:linkme_flutter_sdk/sdk/SdkEnum.dart';
 import '../../application.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:libsignal_protocol_dart/src/ecc/curve.dart' as DH;
-import 'package:linkme_flutter_sdk/util/hex.dart';
 import 'package:linkme_flutter_sdk/util/FileTool.dart';
 
 import 'package:permission_handler/permission_handler.dart';
-
+import 'package:oss_dart/oss_dart.dart';
 
 class OrderPage extends StatefulWidget {
   OrderPage({Key? key}) : super(key: key);
@@ -64,77 +63,6 @@ class _OrderPageState extends State<OrderPage> {
         height: double.infinity,
         child: ListView(
           children: [
-            _customButton('合同类图片加解密', onTap: () async {
-              //TODO
-              var test2 = DH.Curve.generateKeyPair();
-              String test2PubKey = Hex.encode(test2.publicKey.serialize());
-              String test2PrivKey = Hex.encode(test2.privateKey.serialize());
-
-              logI('test2PubKey: $test2PubKey');
-              logI('test2PrivKey: $test2PrivKey');
-
-              String secret = OrderMod.calculateAgreement(
-                  test2PubKey, Constant.systemPrivateKey);
-
-              var saveDir = await getExternalStorageDirectory();
-
-              FileCryptor fileCryptor = FileCryptor(
-                key: secret, //64个字符
-                iv: 16,
-                dir: saveDir!.path,
-                // useCompress: true,
-              );
-
-              //从相册里选择文件
-              final _imageFile =
-                  await _picker.getImage(source: ImageSource.gallery);
-              if (_imageFile == null) {
-                return null;
-              }
-              var filename = _imageFile.path;
-              logI('从相册里选择文件filename : $filename');
-
-              //计算出图片的hash字符串，用来做文件名
-              String _outputFile = await OrderMod.getHash256(filename);
-
-              File encryptedFile = await fileCryptor.encrypt(
-                  inputFileFullPath: filename, outputFile: _outputFile);
-
-              logI('完整路径 : ${encryptedFile.absolute.path}');
-
-              UserMod.uploadOssOrderFile(encryptedFile.absolute.path,
-                  (String url) async {
-                logD('上传加密后的图片成功: $url');
-
-                //将加密后的文件下载到本地
-                var appDocDir = await getTemporaryDirectory();
-                String savePath = appDocDir.path + "/" + _outputFile;
-                String fileUrl =
-                    "https://lianmi-ipfs.oss-cn-hangzhou.aliyuncs.com/" + url;
-                await Dio().download(fileUrl, savePath,
-                    onReceiveProgress: (count, total) {
-                  // print((count / total * 100).toStringAsFixed(0) + "%");
-                });
-
-                File decryptedFile = await fileCryptor.decrypt(
-                    inputFile: encryptedFile.absolute.path,
-                    outputFile: _outputFile);
-
-                logI('解密后文件完整路径 : ${decryptedFile.absolute.path}');
-
-/*
-TODO 不要删，以后完善example的权限
-                final result = await ImageGallerySaver.saveFile(
-                    decryptedFile.path + '.jpg');
-
-                logI('解密后相册完整路径 : $result');
-                */
-              }, (String errMsg) {
-                logD('上传加密后的图片错误:$errMsg');
-              }, (int progress) {
-                // logD('上传加密后的图片进度:$progress');
-              });
-            }),
             _customButton('预下单', onTap: () async {
               try {
                 var f = OrderMod.preOrder(
@@ -174,23 +102,15 @@ TODO 不要删，以后完善example的权限
               }
               var filename = _imageFile.path;
 
-              //2419b9c8a937f5527d3124cf8618748ecc957b7535c505c818ed752d7a77597a
-              // logD(hash);
-
               String orderID = Application.changeStateOrderID;
-              UserMod.uploadOssOrderFile(filename, (imageKey) {
-                logD('$filename 上传完成, imageKey: $imageKey');
 
-                var f = OrderMod.uploadorderimage(filename, orderID, imageKey);
-                f.then((value) {
-                  logD('上传完成, value: $value');
-                }).catchError((err) {
-                  logE('uploadorderimage错误: $err');
-                });
-              }, (errmsg) {
-                logD('拍照上传失败, $errmsg');
-              }, (percent) {
-                //上传进度
+              String url = await UserMod.uploadOssOrderFile(filename);
+              logD('uploadOssOrderFile完成, url: $url');
+              var f = OrderMod.uploadorderimage(filename, orderID, url);
+              f.then((value) {
+                logD('uploadorderimage完成, value: $value');
+              }).catchError((err) {
+                logE('uploadorderimage错误: $err');
               });
             }),
             _customButton('更改订单状态为已完成', onTap: () async {
@@ -230,7 +150,7 @@ TODO 不要删，以后完善example的权限
 
               var orderID = "406ec164-5ed5-4c57-a46e-0316f7fe9282";
 
-              var ok = await OrderMod.acceptPrize(orderID, 'id3', filename);
+              var ok = await OrderMod.acceptPrize(orderID, filename);
               if (ok) {
                 logD('上传完成');
               } else {
@@ -253,11 +173,11 @@ TODO 不要删，以后完善example的权限
                 ),
               );
             }),
-            _customButton('文件选择并预览', onTap: () async {
+            _customButton('pdf文件选择并预览', onTap: () async {
               FilePickerResult? result = await FilePicker.platform.pickFiles();
 
               if (result != null) {
-                String extName =  
+                String extName =
                     result.files.single.path.toString().split('.').last;
                 logI(
                     'result.files.single.path: ${result.files.single.path}, extName: $extName ');
@@ -283,6 +203,63 @@ TODO 不要删，以后完善example的权限
                 // User canceled the picker
                 logW('User canceled the picker');
               }
+            }),
+            _customButton('存证区-上传', onTap: () async {
+              OssClient client = OssClient(
+                  bucketName: AppManager.ossConfig_cunzheng!.bucketName,
+                  endpoint: AppManager.ossConfig_cunzheng!.endPoint,
+                  tokenGetter: appManager.getStsAccountForCunZheng);
+
+              fromAsset('assets/pdf/demo-link.pdf', 'demo.pdf').then((f) async {
+                String uploadFile = f.path;
+                logI('pathPDF: $uploadFile');
+                var response;
+
+                File _inputFile = File(uploadFile);
+                final _fileContents = _inputFile.readAsBytesSync();
+
+                //获取文件
+                response = await client.putObject(
+                    _fileContents, 'orders/id1/demo.pdf');
+                print(response.statusCode);
+
+                if (response.statusCode == 200) {
+                  logI(' $uploadFile 存证区上传成功');
+                } else {
+                  logE(' $uploadFile 存证区上传失败 ');
+                }
+              });
+            }),
+            _customButton('存证区-下载', onTap: () async {
+              OssClient client = OssClient(
+                  bucketName: AppManager.ossConfig_cunzheng!.bucketName,
+                  endpoint: AppManager.ossConfig_cunzheng!.endPoint,
+                  tokenGetter: appManager.getStsAccountForCunZheng);
+
+              String fileKey = 'orders/id1/demo.pdf'; //下载文件名
+              var response;
+
+              //获取文件
+              response = await client.getObject(fileKey);
+              // print(response.body);
+              if (response.statusCode == 200) {
+                String saveFile = AppManager.appDocumentDir!.path + '/demo.pdf';
+                File file = File(saveFile);
+                var raf = file.openSync(mode: FileMode.write);
+
+                var _content = new Uint8List.fromList(response.body.codeUnits);
+
+                raf.writeFromSync(_content);
+                if (file.existsSync()) {
+                  logI(' $saveFile 存证区下载成功');
+                }
+              }
+            }),
+            _customButton('用户资料区 - 上传', onTap: () async {
+              //TODO
+            }),
+            _customButton('用户资料区 - 下载', onTap: () async {
+              //TODO
             }),
           ],
         ),
@@ -314,5 +291,25 @@ TODO 不要删，以后完善example的权限
     final info = statuses[Permission.storage].toString();
     print(info);
     // _toastInfo(info);
+  }
+
+  Future<File> fromAsset(String asset, String filename) async {
+    // To open from assets, you can copy them to the app storage folder, and the access them "locally"
+    Completer<File> completer = Completer();
+
+    try {
+      var dir = await getApplicationDocumentsDirectory();
+      logI("file dir:  ${dir.path}/$filename");
+
+      File file = File("${dir.path}/$filename");
+      var data = await rootBundle.load(asset);
+      var bytes = data.buffer.asUint8List();
+      await file.writeAsBytes(bytes, flush: true);
+      completer.complete(file);
+    } catch (e) {
+      throw Exception('Error parsing asset file!');
+    }
+
+    return completer.future;
   }
 }

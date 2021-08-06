@@ -1,14 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'dart:io';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
 import 'package:lianmiapp/util/app_navigator.dart';
 import 'package:lianmiapp/widgets/my_app_bar.dart';
 import 'package:linkme_flutter_sdk/manager/LogManager.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 
+/// 用户端的pdf预览
 class PdfViewPage extends StatefulWidget {
   final String locallyPdfPath;
 
@@ -44,7 +43,7 @@ class _PdfViewPageState extends State<PdfViewPage> {
                 _erasePdf();
               },
               child: Text("删除"),
-            )
+            ),
           ],
         ),
         backgroundColor: Color(0XFFF4F5F6),

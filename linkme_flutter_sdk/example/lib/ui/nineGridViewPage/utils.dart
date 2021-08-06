@@ -107,14 +107,6 @@ class Utils {
               file.copy(targetFileName).then((newFile) {
                 logI("targetFileName:  $targetFileName");
                 logI("newFile:  ${newFile.absolute.path}");
-                // if (extName == 'pdf') {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: (_) => PdfViewPage(targetFileName),
-                //     ),
-                //   );
-                // }
 
                 addTestData(targetFileName);
               });
@@ -128,19 +120,6 @@ class Utils {
     }
     return Image.file(File(url), fit: BoxFit.cover);
   }
-
-  // static Widget getWidget(String url) {
-  //   if (url.startsWith('http')) {
-  //     //return CachedNetworkImage(imageUrl: url, fit: BoxFit.cover);
-  //     return Image.network(url, fit: BoxFit.cover);
-  //   }
-  //   if (url.endsWith('.png')) {
-  //     return Image.asset(url,
-  //         fit: BoxFit.cover, package: 'flutter_gallery_assets');
-  //   }
-  //   //return Image.file(File(url), fit: BoxFit.cover);
-  //   return Image.asset(getImgPath(url), fit: BoxFit.cover);
-  // }
 
   static Image? getBigImage(String? url) {
     if (url == null || url.isEmpty) return null;

@@ -581,7 +581,7 @@ enum MessageTypeEnum {
   /// @nodoc 系统通知
   MsgType_Notification,
 
-  /// @nodoc 加密
+  /// @nodoc
   MsgType_Secret,
 
   /// @nodoc 二进制

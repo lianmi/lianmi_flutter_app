@@ -10,7 +10,9 @@ import 'package:lianmiapp/linkme/linkme_manager.dart';
 import 'package:lianmiapp/header/common_header.dart';
 import 'package:lianmiapp/notification/notification_center.dart';
 import 'package:lianmiapp/pages/legalattest/page/BrowserNineGridViewPage.dart';
+import 'package:lianmiapp/pages/legalattest/page/change_cost_page.dart';
 import 'package:lianmiapp/pages/legalattest/page/hetongorder_pay_page.dart';
+import 'package:lianmiapp/pages/legalattest/provider/hetong_provider.dart';
 import 'package:lianmiapp/pages/product/model/order_model.dart';
 import 'package:lianmiapp/pages/product/model/product_model.dart';
 import 'package:lianmiapp/pages/product/page/antchain_qr_page.dart';
@@ -46,11 +48,11 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
 
   int _fee = 0; //以分为单位
 
-  String? _cunzhengUrl; //表示接单后的司法链的存证证明图片
+  String? _payUrl; //交互图片
   String? _qrcodeUrl;
 
   ///图片类型
-  int _imageType = 0;
+  // int _imageType = 0;
 
   int _balance = 0;
 
@@ -62,7 +64,7 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
     order = widget.order; //接外部的order
 
     // _loadAttachs(); //加载附件
-    order.cunzhengModelData.attachs.forEach((url) {
+    order.cunzhengModelData!.attachs.forEach((url) {
       logI('initState, url: ' + url);
     });
 
@@ -72,22 +74,22 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
   @override
   Widget build(BuildContext context) {
     ProductModel? product = LotteryData.instance.getProduct(order.loterryType!);
-    // int count = order.count!;
-    // int multiple = order.multiple!;
+
     int price = product!.productPrice!; //以分为单位
-    int _urlCount = order.cunzhengModelData.attachs.length;
+
+    int _urlCount = order.cunzhengModelData!.attachs.length;
     logI('initState, _urlCount: $_urlCount');
 
     //首次必须计算上链服务费
     if (_fee == 0) {
-      _calculateOrderPrice(price);
+      _calculateOrderPrice(order.cost!);
     }
     String totalPrice = '';
 
     if (App.isShop) {
-      totalPrice = (price / 100).toStringAsFixed(2); //商户不需要合计上链服务费
+      totalPrice = order.cost!.toStringAsFixed(1); //商户不需要合计上链服务费
     } else {
-      totalPrice = (_fee / 100 + price / 100).toStringAsFixed(2); //合计
+      totalPrice = (_fee / 100 + order.cost!).toStringAsFixed(1); //合计
     }
 
     String payModeStr = '';
@@ -109,14 +111,14 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
           child: ListView(
             children: [
               _ticketCodeItem(),
-              _descWidget(),
+              // _descWidget(),
               // OrderDetailListWidget(_selectedNums),
               Gaps.vGap20,
               _commonItem('商户名称', '${widget.order.shopName}'),
-              _commonItem('说明', '${order.cunzhengModelData.description}'),
-              _commonItem('姓名', '${order.cunzhengModelData.jiafangName}'),
-              _commonItem('手机', '${order.cunzhengModelData.jiafangPhone}'),
-              _changePriceItem('预估价格', '${price / 100}元'), //已元为单位
+              _commonItem('说明', '${order.cunzhengModelData!.description}'),
+              _commonItem('姓名', '${order.cunzhengModelData!.jiafangName}'),
+              _commonItem('手机', '${order.cunzhengModelData!.jiafangPhone}'),
+              _changePriceItem('总价', '${order.cost!}元'), //元为单位
               _attachsItem('附件', '总数${_urlCount}个  >'),
               _feeWidget(_fee),
               _commonItem('合计', '${totalPrice}元'),
@@ -165,6 +167,7 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
     }
   }
 
+//商户简介
   Widget _descWidget() {
     ProductModel? product =
         LotteryData.instance.getProduct(widget.order.loterryType!);
@@ -234,17 +237,19 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
           Gaps.hGap16,
           InkWell(
             onTap: () {
-              AppNavigator.push(context,
-                      BrowserNineGridViewPage(order.cunzhengModelData.attachs))
-                  .then((value) {
-                if (value != null) {
-                  logI("Back Params value: ${value['attachList']}");
-                }
-              });
+              if (widget.order.status != null) {
+                AppNavigator.push(
+                        context, new BrowserNineGridViewPage(this.order))
+                    .then((value) {
+                  if (value != null) {
+                    logI("Back Params value: ${value['attachList']}");
+                  }
+                });
+              }
             },
             child: Container(
               height: 48.px,
-              margin: margin, //EdgeInsets.fromLTRB(16, 0, 16, 0),
+              margin: margin,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -290,13 +295,20 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
             onTap: () {
               if (App.isShop) {
                 logI('商户修改价格');
-                // AppNavigator.push(context,
-                //         NineGridViewPage(order.cunzhengModelData.attachs))
-                //     .then((value) {
-                //   if (value != null) {
-                //     logI("Back Params value: ${value['attachList']}");
-                //   }
-                // });
+                AppNavigator.push(context, ChangeCostPage(this.order))
+                    .then((value) {
+                  if (value != null) {
+                    logI("Back Params value: ${value}");
+                    //TODO: 向服务端提交商户更改价格，并推送给用户，刷新订单
+                    OrderMod.changeOrderCost(
+                            this.order.orderID!, double.parse(value['cost']))
+                        .then((value) {
+                      setState(() {});
+                    }).catchError((e) {
+                      logE(e);
+                    });
+                  }
+                });
               }
             },
             child: Container(
@@ -336,6 +348,7 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
   }
 
   Widget _orderIDWidget() {
+    if (order.orderID == null) return SizedBox();
     if (isValidString(widget.order.orderID)) {
       String orderID = widget.order.orderID!.replaceAll('-', '');
       return _commonItem('商户单号', '$orderID');
@@ -356,7 +369,9 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
   Widget _imageTabArea() {
     if (order.status == OrderStateEnum.OS_Done ||
         order.status == OrderStateEnum.OS_Confirm ||
-        order.status == OrderStateEnum.OS_UpChained) {
+        order.status == OrderStateEnum.OS_UpChained ||
+        order.status == OrderStateEnum.OS_Prizeed ||
+        order.status == OrderStateEnum.OS_AcceptPrizeed) {
       return Container(
         width: double.infinity,
         height: 50.px,
@@ -366,30 +381,17 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
           children: [
             Expanded(
               child: CommonButton(
-                text: '图片1',
+                text: '交互图片区',
                 fontSize: 16.px,
                 color: Colors.white,
-                textColor: _imageType == 0 ? Colours.app_main : Colors.black,
+                textColor: Colours.app_main,
                 onTap: () {
                   setState(() {
-                    _imageType = 0;
+                    // _imageType = 0;
                   });
                 },
               ),
             ),
-            Expanded(
-              child: CommonButton(
-                text: '图片2',
-                fontSize: 16.px,
-                color: Colors.white,
-                textColor: _imageType == 1 ? Colours.app_main : Colors.black,
-                onTap: () {
-                  setState(() {
-                    _imageType = 1;
-                  });
-                },
-              ),
-            )
           ],
         ),
       );
@@ -438,21 +440,6 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
         ),
       );
 
-    String? _imgUrl;
-
-    if (_imageType == 0) {
-      _imgUrl = _cunzhengUrl;
-    }
-    if (_imgUrl != null) {
-      if (_imgUrl.contains('https') == false) {
-        String prefix = 'https://lianmi-ipfs.oss-cn-hangzhou.aliyuncs.com/';
-        _imgUrl = prefix + _imgUrl;
-      }
-    } else {
-      _imgUrl = ImageStandard.logo;
-    }
-    logD('_imgUrl: ${_imgUrl}');
-
     return Container(
       margin: EdgeInsets.only(top: 20.px),
       padding: EdgeInsets.fromLTRB(23.px, 0, 23.px, 16.px),
@@ -463,15 +450,17 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
           _imageTabArea(),
           InkWell(
             onTap: () {
-              GalleryPhotoViewWrapperUtils.navigateToPhotoAblums(
-                  context, [_imgUrl!], 0);
+              if (_payUrl != null) {
+                GalleryPhotoViewWrapperUtils.navigateToPhotoAblums(
+                    context, [_payUrl!], 0);
+              }
             },
             child: ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(8.px)),
               child: Container(
                 width: double.infinity,
                 child: LoadImageWithHolder(
-                  _imgUrl,
+                  _payUrl == null ? 'assets/images/none.png' : _payUrl,
                   holderImg: ImageStandard.logo,
                   width: double.infinity,
                 ),
@@ -576,7 +565,22 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
   }
 
   //TODO 上传附件
-  _uploadAttachs() {}
+  _uploadAttachs() async {
+    if (order.cunzhengModelData!.attachsAliyun == null) {
+      order.cunzhengModelData!.attachsAliyun = [];
+    }
+    order.cunzhengModelData!.attachs.forEach((filename) async {
+      logI('准备上传附件: $filename');
+      String url = await UserMod.uploadOssOrderFile(filename);
+      if (url != '') {
+        logI('上传附件成功, url: $url');
+
+        order.cunzhengModelData!.attachsAliyun!.add(url);
+      } else {
+        logI('上传附件出错: $filename');
+      }
+    });
+  }
 
   Widget _detailBottomButton(String title,
       {double topMargin = 0, Function? onTap}) {
@@ -624,22 +628,6 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: [
-          // Expanded(
-          //   child: CommonButton(
-          //     width: double.infinity,
-          //     height: double.infinity,
-          //     borderRadius: 4.px,
-          //     borderColor: Colours.app_main,
-          //     color: Colors.white,
-          //     text: '拒绝接单',
-          //     fontSize: 16.px,
-          //     textColor: Colors.black,
-          //     onTap: () {
-          //       _changeOrderRefuse();
-          //     },
-          //   ),
-          // ),
-          // SizedBox(width: 14.px),
           Expanded(
             child: CommonButton(
               width: double.infinity,
@@ -810,7 +798,10 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
                   blurRadius: 4.px,
                   spreadRadius: 0),
               onTap: () {
-                // _changeOrderConfirm();
+                // 将provider重新初始化
+                Provider.of<HetongProvider>(App.context!, listen: false)
+                    .reset();
+                //将九宫格初始化
               },
             ),
           ),
@@ -835,47 +826,68 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
         order.status == OrderStateEnum.OS_Taked ||
         order.status == OrderStateEnum.OS_IsPayed) {
       // HubView.showLoading();
-      setState(() {});
-    }
-    if (order.status == OrderStateEnum.OS_Done ||
-        order.status == OrderStateEnum.OS_Confirm ||
-        order.status == OrderStateEnum.OS_UpChained) {
-      HubView.showLoading();
-      HttpUtils.get(HttpApi.orderimage + order.orderID!).then((val) {
+      //获取商家的收款码
+      OrderMod.getPayUrl(order.orderID!).then((url) async {
         HubView.dismiss();
-        _cunzhengUrl = val;
+        if (url == '') {
+          // logW('无法获取商家的收款码');
+          _payUrl = ImageStandard.logo;
+        } else {
+          _payUrl = await appManager.getOrderImages(
+            url,
+            storeUserName: order.businessUsername,
+          );
+
+          logI('获取商家的收款码 _payUrl: ${_payUrl}');
+          if (_payUrl == null) {
+            _payUrl = ImageStandard.logo;
+          }
+        }
         setState(() {});
       }).catchError((err) {
         HubView.dismiss();
       });
     }
-
-    if (order.status == OrderStateEnum.OS_UpChained) {
+    if (order.status == OrderStateEnum.OS_Done ||
+        order.status == OrderStateEnum.OS_Confirm ||
+        order.status == OrderStateEnum.OS_UpChained) {
+      HubView.showLoading();
+      HttpUtils.get(HttpApi.orderimage + order.orderID!).then((val) async {
+        HubView.dismiss();
+        logI('orderimage: $val');
+        String? _tempUrl = await appManager.getOrderImages(val,
+            storeUserName: order.businessUsername);
+        if (_tempUrl != null && _tempUrl != '') {
+          _payUrl = _tempUrl;
+          logI('_payUrl: $_payUrl');
+        }
+        setState(() {});
+      }).catchError((err) {
+        HubView.dismiss();
+      });
       OrderMod.getAntChainQrcode(order.orderID!).then((url) {
         if (url == '') {
+          logW(' OrderMod.getAntChainQrcode 返回的是空url');
         } else {
           _qrcodeUrl = url;
         }
-        // logI('_qrcodeUrl: $_qrcodeUrl');
+        logI('_qrcodeUrl: $_qrcodeUrl');
         setState(() {});
       }).catchError((err) {});
+      HubView.dismiss();
     }
   }
 
-//根据总金额计算上链服务费
-  void _calculateOrderPrice(int totalAmount) {
-    HubView.showLoading();
-    //传参total_amount是以分为单位
-    HttpUtils.post(HttpApi.calculateOrderFee,
-        data: {'total_amount': totalAmount}).then((val) {
-      HubView.dismiss();
+  ///根据总金额计算上链服务费
+  ///传参total_amount是以分为单位
+  void _calculateOrderPrice(double totalAmount) {
+    logI('_calculateOrderPrice, totalAmount: $totalAmount');
+
+    OrderMod.getOrderFee(totalAmount).then((value) {
       setState(() {
-        _fee = val['fee'] as int;
-        // _fee_rate = val['fee_rate'];
-        // _rate_free_amount = val['rate_free_amount'].toDouble();
+        _fee = value['fee'] as int;
       });
     }).catchError((err) {
-      HubView.dismiss();
       logE(err);
     });
   }
@@ -941,18 +953,18 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
         case 2:
           {
             String hash = await OrderMod.getHash256(value);
-            UserMod.uploadOssOrderFile(value, (String url) {
+
+            String url = await UserMod.uploadOssOrderFile(value);
+            if (url != '') {
               HubView.dismiss();
               logD('上传拍照图片成功:$url');
-              _cunzhengUrl = url;
-              _uploadorderimage(hash);
-            }, (String errMsg) {
+              _payUrl = url;
+              _uploadorderimage(hash); //上报
+            } else {
               HubView.dismiss();
-              logD('上传附件错误:$errMsg');
-              HubView.showToastAfterLoadingHubDismiss(errMsg);
-            }, (int progress) {
-              logD('上传附件进度:$progress');
-            });
+              logD('上传附件错误');
+              HubView.showToastAfterLoadingHubDismiss('上传附件错误');
+            }
           }
           break;
 
@@ -966,7 +978,7 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
     HubView.showLoading();
     var _map = {
       'order_id': order.orderID,
-      'image': _cunzhengUrl,
+      'image': _payUrl,
       'image_hash': hash,
     };
     HttpUtils.post(HttpApi.uploadorderimage, data: _map).then((val) {
@@ -977,18 +989,30 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
     });
   }
 
-  void _uploadCollectMoneyImage(String sourceImageFile) {
+  void _uploadCollectMoneyImage(String sourceImageFile) async {
+    if (order.orderID == null) return;
     HubView.showLoading();
-    OrderMod.takeOrder(order.orderID!, sourceImageFile).then((val) {
+
+    String url = await UserMod.uploadOssOrderFile(sourceImageFile);
+    if (url != '') {
+      logI('上传收款码成功, url: $url');
+      HubView.showToastAfterLoadingHubDismiss('上传收款码成功');
+      OrderMod.takeOrder(order.orderID!, url).then((val) {
+        HubView.dismiss();
+        _changeTakeOrder();
+        if (val) {}
+      }).catchError((err) {
+        HubView.dismiss();
+      });
+    } else {
       HubView.dismiss();
-      _changeTakeOrder();
-      if (val) {}
-    }).catchError((err) {
-      HubView.dismiss();
-    });
+      logI('上传附件出错: $sourceImageFile');
+      HubView.showToastAfterLoadingHubDismiss('上传收款码出错');
+    }
   }
 
   void _changeTakeOrder() {
+    if (order.orderID == null) return;
     HubView.showLoading();
     OrderMod.changeOrderStatus(order.orderID!, OrderStateEnum.OS_Taked,
             ProductOrderType.POT_Normal)
@@ -1006,6 +1030,7 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
   }
 
   void _changeOrderDone() {
+    if (order.orderID == null) return;
     HubView.showLoading();
     OrderMod.changeOrderStatus(
             order.orderID!, OrderStateEnum.OS_Done, ProductOrderType.POT_Normal)
@@ -1017,8 +1042,6 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
       });
       NotificationCenter.instance
           .postNotification(NotificationDefine.orderUpdate);
-
-      // await OrderMod.encryptOrderBodyToAliyunOSS(widget.order.orderID!, widget.order.toAttach());
     }).catchError((err) {
       HubView.showToastAfterLoadingHubDismiss(err);
     });
@@ -1042,6 +1065,7 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
   }
 
   void _changeOrderConfirm() {
+    if (order.orderID == null) return;
     HubView.showLoading();
     OrderMod.changeOrderStatus(order.orderID!, OrderStateEnum.OS_Confirm,
             ProductOrderType.POT_Normal)
@@ -1064,6 +1088,7 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
 
   void _changeOrderPayed() {
     HubView.showLoading();
+    if (order.orderID == null) return;
     OrderMod.changeOrderStatus(order.orderID!, OrderStateEnum.OS_IsPayed,
             ProductOrderType.POT_Normal)
         .then((value) {
@@ -1084,6 +1109,7 @@ class _HetongOrderDetailPageState extends State<HetongOrderDetailPage>
   }
 
   void _reloadOrder() {
+    if (order.orderID == null) return;
     OrderMod.getOrder(widget.order.orderID!).then((value) async {
       List<OrderModel> list =
           await OrderModel.modelListFromServerDatas([value]);

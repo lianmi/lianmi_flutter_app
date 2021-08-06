@@ -124,8 +124,7 @@ class _HetongWidgetState extends State<HetongWidget> {
                         context,
                         NineGridViewPage(
                             Provider.of<HetongProvider>(context, listen: false)
-                                .hetongData
-                                .attachs))
+                                .hetongData))
                     .then((value) {
                   if (value != null) {
                     logI("Back Params value: ${value['attachList']}");
@@ -177,40 +176,4 @@ class _HetongWidgetState extends State<HetongWidget> {
           setState(() {});
         });
   }
-
-/*
-  ///0:图片1  1:图片2
-  void _idenAction(int type) {
-    ImageChoose.instance.pickImage().then((path) {
-      if (isValidString(path)) {
-        FileManager.instance.copyFileToAppFolder(path).then((value) {
-          HubView.showLoading();
-          //需要加密
-          UserMod.uploadOssOrderFile(path, (String url) async {
-            HubView.dismiss();
-            logI('上传加密图片成功:$url');
-            if (type == 0) {
-              Provider.of<HetongProvider>(context, listen: false)
-                  .hetongData
-                  .image1 = url;
-            } else {
-              Provider.of<HetongProvider>(context, listen: false)
-                  .hetongData
-                  .image2 = url;
-            }
-            setState(() {});
-          }, (String errMsg) {
-            HubView.dismiss();
-            logE('上传加密图片错误:$errMsg');
-            HubView.showToastAfterLoadingHubDismiss('上传加密图片错误:$errMsg');
-          }, (int progress) {
-            // print('上传加密图片进度:$progress');
-          });
-        });
-      }
-    });
-  }
-
-
-  */
 }

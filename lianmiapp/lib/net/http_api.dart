@@ -42,8 +42,8 @@ class HttpApi {
   static const String orderimage = 'v1/order/orderimage/'; //买家在商户完成订单后获取拍照图片
   static const String generalproducts = 'v1/product/generalproductslist';
 
-  ///计算金额接口
-  static const String calculateOrderFee = 'v1/order/get_order_fee';
+  // ///计算金额接口
+  // static const String calculateOrderFee = 'v1/order/get_order_fee';
 
   ///发起支付接口
   static const String pay = 'v1/order/pay';

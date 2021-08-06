@@ -12,7 +12,7 @@ class Application {
   // static String buyUser = 'id1';
   static String businessUser = 'id3';
   static String orderBody =
-      '{"body_type":5,"body":"eyJidXlVc2VyIjoiaWQxIiwiYnVzaW5lc3NVc2VybmFtZSI6ImlkNTgiLCJwcm9kdWN0SUQiOiJjM2M2YjU4MS01MDVmLTQwMDktODg1OS1kNGZkMWFhNGUxMWYiLCJvcmRlcklEIjpudWxsLCJvcmRpZCI6bnVsbCwidGlja2V0VHlwZSI6MSwic3RyYXdzIjpbeyJibHVlQmFsbHMiOls0XSwiZGFudHVvQmFsbHMiOm51bGwsInJlZEJhbGxzIjpbMTcsMjMsMjQsMjgsMjksMzBdfV0sIm11bHRpcGxlIjoxLCJjb3VudCI6MSwiY29zdCI6Mi4wLCJsb3R0ZXJ5UGljT2JqSUQiOm51bGwsImxvdHRlcnlQaWNIYXNoIjpudWxsfQ=="}'; //  订单真实未加密的内容
+      '{"body_type":5,"body":"eyJidXlVc2VyIjoiaWQxIiwiYnVzaW5lc3NVc2VybmFtZSI6ImlkNTgiLCJwcm9kdWN0SUQiOiJjM2M2YjU4MS01MDVmLTQwMDktODg1OS1kNGZkMWFhNGUxMWYiLCJvcmRlcklEIjpudWxsLCJvcmRpZCI6bnVsbCwidGlja2V0VHlwZSI6MSwic3RyYXdzIjpbeyJibHVlQmFsbHMiOls0XSwiZGFudHVvQmFsbHMiOm51bGwsInJlZEJhbGxzIjpbMTcsMjMsMjQsMjgsMjksMzBdfV0sIm11bHRpcGxlIjoxLCJjb3VudCI6MSwiY29zdCI6Mi4wLCJsb3R0ZXJ5UGljT2JqSUQiOm51bGwsImxvdHRlcnlQaWNIYXNoIjpudWxsfQ=="}'; //  订单真实未的内容
   // static Uint8List? userdata;
 
   static OrderStateEnum? state;

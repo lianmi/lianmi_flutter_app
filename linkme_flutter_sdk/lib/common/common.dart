@@ -55,11 +55,11 @@ class Constant {
   /// @nodoc 最后一次登陆的 用户类型
   static const String lastLoginUserType = 'LastLoginUserType';
 
-  /// @nodoc 获取最后一次登陆的商户协商公钥
-  static const String localPubkey = 'LocalPubkey';
+  // /// @nodoc 获取最后一次登陆的商户协商公钥
+  // static const String localPubkey = 'LocalPubkey';
 
-  /// @nodoc 获取最后一次登陆的商户协商私钥
-  static const String localPrikey = 'LocalPrikey';
+  // /// @nodoc 获取最后一次登陆的商户协商私钥
+  // static const String localPrikey = 'LocalPrikey';
 
   /// @nodoc 获取最后一次登陆的商户的RSA公钥
   static const String notaryServicePublickey = 'NotaryServicePublickey';

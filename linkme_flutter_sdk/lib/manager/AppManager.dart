@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'package:crypto/crypto.dart';
-import 'package:dio/dio.dart';
+import 'dart:typed_data';
+import 'package:oss_dart/oss_dart.dart';
 import 'dart:async';
 
 import 'package:linkme_flutter_sdk/common/common.dart';
@@ -13,7 +13,6 @@ import 'package:linkme_flutter_sdk/net/wsHandler.dart';
 import 'package:linkme_flutter_sdk/sdk/OrderMod.dart';
 import 'package:linkme_flutter_sdk/sdk/SdkEnum.dart';
 import 'package:linkme_flutter_sdk/sdk/UserMod.dart';
-import 'package:linkme_flutter_sdk/util/file_cryptor.dart';
 import 'package:linkme_flutter_sdk/util/md5.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
@@ -22,11 +21,12 @@ import 'package:linkme_flutter_sdk/isolate/repositories/Repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../common/common.dart';
 import 'package:aly_oss/aly_oss.dart';
-import 'package:hive/hive.dart';
+// import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as pathProvider;
 import 'LogManager.dart';
 
 const bucketName = 'lianmi-ipfs';
+const bucketName_cunzheng = 'cunzheng';
 
 class AppManager {
   //是否生产环境
@@ -79,6 +79,12 @@ class AppManager {
       return 'android';
     }
   }
+
+  // static String get aliyunBucketName => bucketName;
+  // static String get aliyunBucketName_CunZheng => bucketName_cunzheng;
+  // static String get aliyunEndPoint => 'oss-cn-hangzhou.aliyuncs.com';
+  static String get prefix =>
+      'https://lianmi-ipfs.oss-cn-hangzhou.aliyuncs.com/';
 
   static Directory? _appDocumentDir;
 
@@ -235,14 +241,6 @@ class AppManager {
     }
   }
 
-  /// 商户的加解密协商秘钥
-  static String _storeSecret = '';
-
-  /// 外部获取商户的加解密协商秘钥
-  static String get storeSecret {
-    return _storeSecret;
-  }
-
   static String _provinceId = '440000'; //初始省
   static String _cityId = '440100'; //初始城市
 
@@ -282,47 +280,17 @@ class AppManager {
     }
   }
 
-  // 商户本地公私钥对
-  static String _localPubkey = '';
-  static String _localPrikey = '';
-
-  static String get localPubkey {
-    return _localPubkey;
-  }
-
-  /// 外部设置当前商户的协商公钥
-  static void setLocalPubkey(String pubKey) async {
-    _localPubkey = pubKey;
-    if (prefs != null) {
-      await prefs!.setString(Constant.localPubkey, pubKey); //持久化
-
-    }
-  }
-
-  static String get localPrikey {
-    return _localPrikey;
-  }
-
-  /// 外部设置当前商户的协商私钥
-  static void setLocalPrikey(String priKey) async {
-    _localPrikey = priKey;
-    if (prefs != null) {
-      await prefs!.setString(Constant.localPrikey, priKey); //持久化
-
-    }
-  }
-
-  /// 全局的订单加密及未加密图片映射关系管理器
-  late Box<dynamic> _box;
-
   /// 全局的数据仓库管理器
   static Map<String, Repository> _repositories = new Map();
 
   /// 全局的Repository
   static Repository? gRepository;
 
-  /// 存储阿里云oss
+  /// 存储阿里云oss - 用户区
   static OssConfig? ossConfig;
+
+  /// 存储阿里云oss -  存证区
+  static OssConfig? ossConfig_cunzheng;
 
   void addEvent() {}
 
@@ -354,24 +322,17 @@ class AppManager {
 
     initDio(); //初始化Dio
 
-    //初始化Hive
-    Directory directory = await pathProvider.getApplicationDocumentsDirectory();
-    Hive.init(directory.path);
-
-    _box = await Hive.openBox('order_images');
-
     if (prefs != null) {
       _currentUsername = prefs!.getString(Constant.lastLoginName);
-      if (prefs!.getString(Constant.localPrikey) != null) {
-        _localPrikey = prefs!.getString(Constant.localPrikey)!;
-        _localPubkey = prefs!.getString(Constant.localPubkey)!;
-      }
+      // if (prefs!.getString(Constant.localPrikey) != null) {
+      //   _localPrikey = prefs!.getString(Constant.localPrikey)!;
+      //   _localPubkey = prefs!.getString(Constant.localPubkey)!;
+      // }
     }
 
     //当SP里的用户账号非空的时候, 需要初始化数据库
     if (_currentUsername != null && _currentUsername != '') {
-      logD(
-          'SP里的用户账号非空: $_currentUsername, rsa私钥: $_localPrikey, rsa公钥: $_localPubkey');
+      logD('SP里的用户账号非空: $_currentUsername');
 
       /// 初始化数据仓库
       bool isCreated = await initUserIsolate();
@@ -394,35 +355,14 @@ class AppManager {
           _isVip = _currentUserState == 1;
           _isStore = _currentUserType == UserTypeEnum.UserTypeEnum_Business;
 
-          if (_isStore) {
-            if (_localPubkey == '') {
-              String _tempPublicKey =
-                  await UserMod.getRsaPublickey(_currentUsername!);
-
-              if (_tempPublicKey == '') {
-                logW('商户在服务端没有rsa公钥');
-                var pair = UserMod.generateRsaKeyPair();
-                setLocalPrikey(pair.privateKey!);
-                setLocalPubkey(pair.publicKey!);
-                UserMod.uploadRsaPublickey(pair.publicKey!).then((value) {
-                  logD('商户上传rsa公钥成功');
-                }).catchError((e) {
-                  logE(e);
-                });
-              }
-            }
-
-            // 商户的加解密秘钥
-            try {
-              _storeSecret = OrderMod.calculateAgreement(
-                  Constant.systemPublickey, _localPrikey);
-            } catch (e) {
-              logE(e);
-            }
-          }
-
-          /// 初始化各种业务事件
+          // 初始化各种业务事件
           eventsManagers.init();
+
+          //刷新阿里云oss令牌 -用户资料区
+          await UserMod.getOssToken();
+
+          //存证区
+          await UserMod.getOssTokenForCunZheng();
 
           //连接ws server
           websocketfactory.create(_currentToken!);
@@ -466,9 +406,6 @@ class AppManager {
       ossConfig!.securityToken!,
       ossConfig!.expiration!,
     ));
-    // if (result['instanceId'] != null) {
-    //   logD('aliyunoss init ok, instanceId: ${result!['instanceId']}');
-    // }
 
     _subscription = _alyOss.onUpload.listen((data) {
       logD('.......阿里云oss上传文件监听器.........');
@@ -510,25 +447,28 @@ class AppManager {
   static Function? _onProgress;
 
   ///阿里云 上传 moduleName = orders, msg , products ...
-  // ignore: missing_return
+  // filefullpath 本地完整路径
   Future? uploadAly(
       String moduleName,
       String filefullpath,
       void onDone(String key),
       void onFail(String errmsg),
-      void onProgress(int percent)) {
+      void onProgress(int percent)) async {
     _onDone = onDone;
     _onFail = onFail;
     _onProgress = onProgress;
-    var file = File(filefullpath);
-    String filemd5;
-    filemd5 = md5.convert(file.readAsBytesSync()).toString(); // 同步
-    logD('md5filename: $filemd5');
+
+    //计算出文件的hash字符串，用来做文件名, 后缀名保持不变
+    String _uploadFile = await OrderMod.getHash256(filefullpath) +
+        '.' +
+        filefullpath.split('.').last;
+
+    logI('filefullpath: $filefullpath, _uploadFile: $_uploadFile');
 
     //如果阿里云临时令牌过期，则重新获取
     if (DateTime.now().millisecondsSinceEpoch - _aliyunTokenAt >
         _aliyunTokenExpire) {
-      var f = UserMod.getOssToken(false);
+      var f = UserMod.getOssToken();
       f.then((value) {
         logD('阿里云临时令牌过期，重新获取 : ${ossConfig.toString()}');
 
@@ -546,7 +486,7 @@ class AppManager {
             currentUsername! +
             '/' +
             ossConfig!.directory! +
-            filemd5;
+            _uploadFile;
 
         logD('objFile: $objFile');
 
@@ -559,12 +499,107 @@ class AppManager {
           currentUsername! +
           '/' +
           ossConfig!.directory! +
-          filemd5;
+          _uploadFile;
 
       logD('objFile: $objFile');
 
       return alyOss.upload(UploadRequest(_requestId, bucketName, objFile,
           filefullpath)); //file image.absolute.path
+    }
+  }
+
+  ///存证区文件上传，只限orders
+  // filefullpath 本地完整路径
+  Future uploadCunzheng(String filefullpath) async {
+    assert(filefullpath != '');
+    logI('filefullpath: $filefullpath');
+    if (!isExist(filefullpath)) {
+      logW('文件不存在， filefullpath: $filefullpath');
+      return '';
+    }
+    String moduleName = 'orders';
+
+    //计算出文件的hash字符串，用来做文件名, 后缀名保持不变
+    String _hash = await OrderMod.getHash256(filefullpath);
+    String extentName = filefullpath.split('.').last;
+
+    String _uploadFile = '$_hash.$extentName';
+
+    logI('_uploadFile: $_uploadFile');
+
+    //如果阿里云临时令牌过期，则重新获取
+    if (DateTime.now().millisecondsSinceEpoch - _aliyunTokenAt >
+        _aliyunTokenExpire) {
+      await UserMod.getOssTokenForCunZheng();
+      // f.then((value) async {
+      logD('存证区阿里云临时令牌过期，重新获取 : ${ossConfig_cunzheng.toString()}');
+
+      _aliyunTokenExpire = ossConfig_cunzheng!.expire!; //毫秒
+      _aliyunTokenAt = DateTime.now().millisecondsSinceEpoch;
+
+      String objFile = moduleName +
+          '/' +
+          currentUsername! +
+          '/' +
+          ossConfig_cunzheng!.directory! +
+          _uploadFile;
+
+      logD('objFile: $objFile');
+
+      OssClient client = OssClient(
+          bucketName: AppManager.ossConfig_cunzheng!.bucketName,
+          endpoint: AppManager.ossConfig_cunzheng!.endPoint,
+          tokenGetter: appManager.getStsAccountForCunZheng);
+
+      var response;
+
+      File _inputFile = File(filefullpath);
+      final _fileContents = _inputFile.readAsBytesSync();
+
+      //获取文件
+      response = await client.putObject(_fileContents, objFile);
+      // print(response.statusCode);
+
+      if (response.statusCode == 200) {
+        logI(' $filefullpath 存证区上传成功 ===>1');
+
+        return objFile;
+      } else {
+        logE(' $filefullpath 存证区上传失败 ');
+        // _completer.completeError('存证区上传失败');
+        return '';
+      }
+      // });
+    } else {
+      String objFile = moduleName +
+          '/' +
+          currentUsername! +
+          '/' +
+          ossConfig_cunzheng!.directory! +
+          _uploadFile;
+
+      logD('objFile: $objFile');
+      OssClient client = OssClient(
+          bucketName: AppManager.ossConfig_cunzheng!.bucketName,
+          endpoint: AppManager.ossConfig_cunzheng!.endPoint,
+          tokenGetter: appManager.getStsAccountForCunZheng);
+
+      var response;
+
+      File _inputFile = File(filefullpath);
+      final _fileContents = _inputFile.readAsBytesSync();
+
+      //获取文件
+      response = await client.putObject(_fileContents, objFile);
+      // print(response.statusCode);
+
+      if (response.statusCode == 200) {
+        logI(' $filefullpath 存证区上传成功 ===>2');
+        return objFile;
+      } else {
+        logE(' $filefullpath 存证区上传失败 ');
+        return '';
+      }
     }
   }
 
@@ -589,8 +624,6 @@ class AppManager {
     setJwtToken('');
     setUserState(0);
     setUserType(0);
-    setLocalPubkey('');
-    setLocalPrikey('');
 
     if (prefs != null) {
       await prefs!.setBool(Constant.isLogined, false);
@@ -601,8 +634,6 @@ class AppManager {
       await prefs!.setString(Constant.notaryServicePublickey, '');
       await prefs!.setString(Constant.curVersion, '');
       await prefs!.setString(Constant.lastMobile, '');
-      await prefs!.setString(Constant.localPrikey, '');
-      await prefs!.setString(Constant.localPubkey, '');
     }
 
     //aliyunoss
@@ -614,66 +645,88 @@ class AppManager {
     }
   }
 
-  /// 将阿里云oss的url及对应本地目录的
-  addOrderImages(String fileUrl, String value) {
-    assert(fileUrl != '');
-    assert(value != '');
-    String key = generateMD5(fileUrl);
-    _box.put(key, value);
+  //获取阿里云临时账号 - 资料区
+  Future<Map> getStsAccount() async {
+    return {
+      "AccessKeyId": AppManager.ossConfig!.accessKeyId,
+      "AccessKeySecret": AppManager.ossConfig!.accessKeySecret,
+      "Expiration": AppManager.ossConfig!.expiration,
+      "SecurityToken": AppManager.ossConfig!.securityToken
+    };
   }
 
-  /// 从本地  hive获取 key对应的解密后的图片真实路径 ，如果没有，则从阿里云下载，并 写入hive
+  //获取阿里云临时账号 - 存证区
+  Future<Map> getStsAccountForCunZheng() async {
+    return {
+      "AccessKeyId": AppManager.ossConfig_cunzheng!.accessKeyId,
+      "AccessKeySecret": AppManager.ossConfig_cunzheng!.accessKeySecret,
+      "SecurityToken": AppManager.ossConfig_cunzheng!.securityToken,
+      "Expiration": AppManager.ossConfig_cunzheng!.expiration
+    };
+  }
+
+  ///是否存在某个文件
+  bool isExist(String path) {
+    if (path.length == 0) {
+      return false;
+    }
+    File file = File(path);
+    return file.existsSync();
+  }
+
+  /// 从本地  hive 获取 key对应的图片真实路径 ，如果没有，则从阿里云下载，并写入hive
   Future<String?> getOrderImages(String fileUrl,
       {String? storeUserName}) async {
-    logI('fileUrl : $fileUrl, storeUserName: $storeUserName');
+    logI('getOrderImages fileUrl : $fileUrl, storeUserName: $storeUserName');
 
     String key = generateMD5(fileUrl);
 
-    String? value = _box.get(key);
-    if (value == null) {
-      //TODO 本地缓存图片不存在，需要下载
-      //将加密后的文件下载到本地
-      var appDocDir = await getApplicationDocumentsDirectory();
+    var appDocDir = await getApplicationDocumentsDirectory();
 
-      var _file = fileUrl.split("/").last;
+    var _file = fileUrl.split("/").last; //文件名，不带路径
 
-      String targetFileName = appDocDir.path + "/" + _file;
+    String targetFileName = appDocDir.path + "/" + _file;
 
-      logI('targetFileName : $targetFileName');
+    logI('getOrderImages targetFileName : $targetFileName');
 
-      await Dio().download(fileUrl, targetFileName,
-          onReceiveProgress: (count, total) {
-        // print((count / total * 100).toStringAsFixed(0) + "%");
-      });
-
-      String secret;
-
-      if (storeUserName != null) {
-        String publicKeyHex = await UserMod.getRsaPublickey(storeUserName);
-        logI('publicKeyHex : $publicKeyHex');
-        secret = OrderMod.calculateAgreement(
-            publicKeyHex, Constant.systemPrivateKey);
-      } else {
-        secret = _storeSecret;
-      }
-
-      logI('secret : $secret');
-
-      FileCryptor fileCryptor = FileCryptor(
-        key: secret, //64个字符
-        iv: 16,
-        dir: appDocDir.path + '/order_images',
-        // useCompress: true,
-      );
-
-      File decryptedFile = await fileCryptor.decrypt(
-          inputFile: targetFileName, outputFile: targetFileName);
-
-      logI('解密后文件完整路径 : ${decryptedFile.absolute.path}');
-      value = decryptedFile.absolute.path;
-      _box.put(key, value);
+    //TODO 本地缓存图片不存在，需要下载
+    if (isExist(targetFileName)) {
+      logW('本地文件存在, 无须下载， targetFileName: $targetFileName');
+      return targetFileName;
     }
-    return value;
+
+    //改为oss下载
+    OssClient client = OssClient(
+        bucketName: AppManager.ossConfig_cunzheng!.bucketName,
+        endpoint: AppManager.ossConfig_cunzheng!.endPoint,
+        tokenGetter: appManager.getStsAccountForCunZheng);
+
+    var response;
+
+    //获取文件
+    response = await client.getObject(fileUrl);
+    // print(response.body);
+    logI('getOrderImages response.statusCode: ${response.statusCode}');
+
+    String saveFile = AppManager.appDocumentDir!.path + '/' + _file;
+    logI('getOrderImages saveFile: ${saveFile}');
+
+    if (response.statusCode == 200) {
+      File file = File(saveFile);
+      var raf = file.openSync(mode: FileMode.write);
+
+      var _content = new Uint8List.fromList(response.body.codeUnits);
+
+      raf.writeFromSync(_content);
+      if (file.existsSync()) {
+        logI('getOrderImages $saveFile 下载成功');
+      }
+    } else {
+      logE('$saveFile 下载失败');
+      return '';
+    }
+
+    return saveFile;
   }
 }
 

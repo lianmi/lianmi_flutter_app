@@ -46,9 +46,6 @@ class _OrderDetailPageState extends State<OrderDetailPage>
 
   String _qrcodeUrl = '';
 
-  ///图片类型 0未开奖图片  1开奖图片
-  int _imageType = 0;
-
   int _payMode = 0;
 
   int _balance = 0;
@@ -73,14 +70,14 @@ class _OrderDetailPageState extends State<OrderDetailPage>
 
     //首次必须计算上链服务费
     if (_fee == 0) {
-      _calculateOrderPrice(price);
+      _calculateOrderPrice(order.cost!);
     }
     String totalPrice = '';
 
     if (App.isShop) {
-      totalPrice = (price / 100).toStringAsFixed(2); //商户不需要合计上链服务费
+      totalPrice = (price / 100).toStringAsFixed(1); //商户不需要合计上链服务费
     } else {
-      totalPrice = (_fee / 100 + price / 100).toStringAsFixed(2); //合计
+      totalPrice = (_fee / 100 + price / 100).toStringAsFixed(1); //合计
     }
 
     String payModeStr = '';
@@ -111,8 +108,8 @@ class _OrderDetailPageState extends State<OrderDetailPage>
                   (widget.order.loterryType! <= 7)
                       ? '${product.productName} ${count}注${multiple}倍'
                       : '${product.productName}'),
-              _commonItem('预估价格', '${price / 100}元'),
-              
+              _commonItem('总价', '${widget.order.cost!}元'),
+
               _feeWidget(_fee),
               // _memberItem(),
               // Gaps.vGap20,
@@ -262,42 +259,6 @@ class _OrderDetailPageState extends State<OrderDetailPage>
     }
   }
 
-  // Widget _memberItem() {
-  //   return SizedBox();
-  //   if (AppManager.isVip) return SizedBox();
-  //   return Container(
-  //     padding: EdgeInsets.only(left: 30.px, right: 30.px),
-  //     width: double.infinity,
-  //     height: 48.px,
-  //     color: Color(0XFFFECD78),
-  //     child: Row(
-  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //       crossAxisAlignment: CrossAxisAlignment.center,
-  //       children: [
-  //         Row(
-  //           crossAxisAlignment: CrossAxisAlignment.center,
-  //           children: [
-  //             Image.asset(
-  //               ImageStandard.logo,
-  //               width: 20.px,
-  //               height: 20.px,
-  //             ),
-  //             Gaps.hGap10,
-  //             CommonText(
-  //               '会员服务费立减',
-  //               fontSize: 16.px,
-  //             )
-  //           ],
-  //         ),
-  //         CommonText(
-  //           '开通会员',
-  //           fontSize: 16.px,
-  //         )
-  //       ],
-  //     ),
-  //   );
-  // }
-
   Widget _orderTimeArea() {
     if (isValidString(widget.order.orderID)) {
       return _commonItem('下单时间',
@@ -322,30 +283,15 @@ class _OrderDetailPageState extends State<OrderDetailPage>
           children: [
             Expanded(
               child: CommonButton(
-                text: '信息',
+                text: '交互图片区',
                 fontSize: 16.px,
                 color: Colors.white,
-                textColor: _imageType == 0 ? Colours.app_main : Colors.black,
+                textColor: Colours.app_main,
                 onTap: () {
-                  setState(() {
-                    _imageType = 0;
-                  });
+                  setState(() {});
                 },
               ),
             ),
-            Expanded(
-              child: CommonButton(
-                text: '兑奖信息',
-                fontSize: 16.px,
-                color: Colors.white,
-                textColor: _imageType == 1 ? Colours.app_main : Colors.black,
-                onTap: () {
-                  setState(() {
-                    _imageType = 1;
-                  });
-                },
-              ),
-            )
           ],
         ),
       );
@@ -888,7 +834,7 @@ class _OrderDetailPageState extends State<OrderDetailPage>
     );
   }
 
-//上传我的收款码
+//用户中奖之后上传收款码
   Widget _changeAcceptPrizeedImage() {
     return Container(
       padding: EdgeInsets.fromLTRB(16.px, 12.px, 16.px, 12.px),
@@ -955,7 +901,7 @@ class _OrderDetailPageState extends State<OrderDetailPage>
                   // print(value);
                   logI('push PrizePage value: $value');
                   _uploadPrizeImageAndChange(
-                      value['money'], value['imageLocalPath']);
+                      value['money']); //, value['imageLocalPath']
                 });
               },
             ),
@@ -995,21 +941,15 @@ class _OrderDetailPageState extends State<OrderDetailPage>
           // logW('无法获取商家的收款码');
           _lotteryUrl = ImageStandard.logo;
         } else {
-          if (_imageType == 0) {
-            _lotteryUrl = await appManager.getOrderImages(
-              url,
-              storeUserName: order.businessUsername,
-            );
-          } else {
-            _lotteryUrl = await appManager.getOrderImages(order.prizedPhoto!,
-                storeUserName: order.businessUsername);
-          }
-          logD('_lotteryUrl: ${_lotteryUrl}');
+          _lotteryUrl = await appManager.getOrderImages(
+            url,
+            storeUserName: order.businessUsername,
+          );
+
+          logI('获取商家的收款码 _lotteryUrl: ${_lotteryUrl}');
           if (_lotteryUrl == null) {
             _lotteryUrl = ImageStandard.logo;
           }
-
-          if (_lotteryUrl != '') logI('获取商家的收款码 _lotteryUrl: $_lotteryUrl');
         }
         setState(() {});
       }).catchError((err) {
@@ -1024,34 +964,43 @@ class _OrderDetailPageState extends State<OrderDetailPage>
       HttpUtils.get(HttpApi.orderimage + order.orderID!).then((val) async {
         HubView.dismiss();
         logI('orderimage: $val');
-        _lotteryUrl = await appManager.getOrderImages(val,
+        String? _tempUrl = await appManager.getOrderImages(val,
             storeUserName: order.businessUsername);
+        if (_tempUrl != null && _tempUrl != '') {
+          _lotteryUrl = _tempUrl;
+          logI('_lotteryUrl: $_lotteryUrl');
+        }
         setState(() {});
       }).catchError((err) {
         HubView.dismiss();
       });
     }
 
-    if (order.status == OrderStateEnum.OS_UpChained ||
-        order.status == OrderStateEnum.OS_Confirm ||
-        order.status == OrderStateEnum.OS_Prizeed ||
+    OrderMod.getAntChainQrcode(order.orderID!).then((url) {
+      if (url == '') {
+        logW(' OrderMod.getAntChainQrcode 返回的是空url');
+      } else {
+        _qrcodeUrl = url;
+      }
+      logI('_qrcodeUrl: $_qrcodeUrl');
+      setState(() {});
+    }).catchError((err) {});
+
+    if (order.status == OrderStateEnum.OS_Prizeed ||
         order.status == OrderStateEnum.OS_AcceptPrizeed) {
-      OrderMod.getAntChainQrcode(order.orderID!).then((url) {
-        if (url == '') {
-        } else {
-          _qrcodeUrl = url;
-        }
-        // logI('_qrcodeUrl: $_qrcodeUrl');
-        setState(() {});
-      }).catchError((err) {});
       OrderMod.getPrizeUrl(order.orderID!).then((url) async {
         // HubView.dismiss();
         if (url == '') {
+          logW('OrderMod.getPrizeUrl 返回的是空url');
         } else {
-          _lotteryUrl = await appManager.getOrderImages(url,
+          String? _tempUrl = await appManager.getOrderImages(url,
               storeUserName: order.businessUsername);
+          if (_tempUrl != null && _tempUrl != '') {
+            _lotteryUrl = _tempUrl;
+            logI('_lotteryUrl: $_lotteryUrl');
+          }
         }
-        logI('_lotteryUrl: $_lotteryUrl');
+
         setState(() {});
       }).catchError((err) {
         // HubView.dismiss();
@@ -1059,20 +1008,14 @@ class _OrderDetailPageState extends State<OrderDetailPage>
     }
   }
 
-//根据总金额计算上链服务费
-  void _calculateOrderPrice(int totalAmount) {
-    HubView.showLoading();
-    //传参total_amount是以分为单位
-    HttpUtils.post(HttpApi.calculateOrderFee,
-        data: {'total_amount': totalAmount}).then((val) {
-      HubView.dismiss();
+  ///根据总金额计算上链服务费
+  ///传参total_amount是以分为单位
+  void _calculateOrderPrice(double totalAmount) {
+    OrderMod.getOrderFee(totalAmount).then((value) {
       setState(() {
-        _fee = val['fee'] as int;
-        // _fee_rate = val['fee_rate'];
-        // _rate_free_amount = val['rate_free_amount'].toDouble();
+        _fee = value['fee'] as int;
       });
     }).catchError((err) {
-      HubView.dismiss();
       logE(err);
     });
   }
@@ -1131,76 +1074,69 @@ class _OrderDetailPageState extends State<OrderDetailPage>
       case 1:
         {
           //上传收款码
-          //TODO需要加密
           HubView.showLoading();
-          OrderMod.takeOrder(order.orderID!, sourceFile).then((val) {
-            HubView.dismiss();
-            _changeTakeOrder();
-            if (val) {}
-          }).catchError((err) {
-            HubView.dismiss();
-          });
+          String url = await UserMod.uploadOssOrderFile(sourceFile);
+          if (url != '') {
+            OrderMod.takeOrder(order.orderID!, url).then((val) {
+              _changeTakeOrder();
+              HubView.showToastAfterLoadingHubDismiss('已上传收款码');
+            }).catchError((err) {});
+          } else {
+            HubView.showToastAfterLoadingHubDismiss('上传收款码出错');
+          }
+          HubView.dismiss();
         }
         break;
 
       case 2:
         {
+          HubView.showLoading();
           String hash = await OrderMod.getHash256(sourceFile);
-          //TODO需要加密
-          if (App.isShop) {
-            OrderMod.encryptAndUploadFile(sourceFile).then((url) async {
-              HubView.dismiss();
-              logD('上传加密拍照图片成功:$url');
-              _lotteryUrl = await appManager.getOrderImages(url,
-                  storeUserName: order.businessUsername);
-              _uploadorderimage(hash, url);
-            }).catchError((e) {
-              HubView.dismiss();
-              HubView.showToastAfterLoadingHubDismiss('上传加密拍照图片错误');
-              logE(e);
-            });
+          String url = await UserMod.uploadOssOrderFile(sourceFile);
+          if (url != '') {
+            HubView.dismiss();
+            logD('上传拍照图片成功:$url');
+            _lotteryUrl = await appManager.getOrderImages(url,
+                storeUserName: order.businessUsername);
+            _uploadorderimage(hash, url);
           } else {
-            OrderMod.encryptAndUploadFile(sourceFile,
-                    storeUserName: order.businessUsername)
-                .then((url) async {
-              HubView.dismiss();
-              logD('上传加密拍照图片成功:$url');
-              _lotteryUrl = await appManager.getOrderImages(url,
-                  storeUserName: order.businessUsername);
-              _uploadorderimage(hash, url);
-            }).catchError((e) {
-              HubView.dismiss();
-              HubView.showToastAfterLoadingHubDismiss('上传加密拍照图片错误');
-              logE(e);
-            });
+            HubView.dismiss();
+            HubView.showToastAfterLoadingHubDismiss('上传拍照图片错误');
           }
         }
         break;
       case 3:
         {
           //上传兑奖收款码
-          //TODO需要加密
-          OrderMod.acceptPrize(
-                  order.orderID!, order.businessUsername!, sourceFile)
-              .then((value) {
-            if (value) {
-              OrderMod.changeOrderStatus(
-                      order.orderID!,
-                      OrderStateEnum.OS_AcceptPrizeed,
-                      ProductOrderType.POT_Normal)
-                  .then((value) async {
-                HubView.dismiss();
-                HubView.showToastAfterLoadingHubDismiss('已上传兑奖收款码');
-                setState(() {
-                  order.status = OrderStateEnum.OS_AcceptPrizeed;
+          //TODO需要
+          logI('上传兑奖收款码 ...');
+
+          String url = await UserMod.uploadOssOrderFile(sourceFile);
+          if (url != '') {
+            logD('uploadOssOrderFile 上传兑奖收款码 完成, url: $url');
+
+            OrderMod.acceptPrize(order.orderID!, url).then((value) {
+              if (value) {
+                OrderMod.changeOrderStatus(
+                        order.orderID!,
+                        OrderStateEnum.OS_AcceptPrizeed,
+                        ProductOrderType.POT_Normal)
+                    .then((value) async {
+                  HubView.dismiss();
+                  HubView.showToastAfterLoadingHubDismiss('已上传兑奖收款码');
+                  setState(() {
+                    order.status = OrderStateEnum.OS_AcceptPrizeed;
+                  });
+                  NotificationCenter.instance
+                      .postNotification(NotificationDefine.orderUpdate);
+                }).catchError((err) {
+                  HubView.showToastAfterLoadingHubDismiss(err);
                 });
-                NotificationCenter.instance
-                    .postNotification(NotificationDefine.orderUpdate);
-              }).catchError((err) {
-                HubView.showToastAfterLoadingHubDismiss(err);
-              });
-            }
-          });
+              }
+            });
+          } else {
+            HubView.showToastAfterLoadingHubDismiss('上传兑奖收款码出错');
+          }
         }
         break;
       default:
@@ -1252,8 +1188,6 @@ class _OrderDetailPageState extends State<OrderDetailPage>
       });
       NotificationCenter.instance
           .postNotification(NotificationDefine.orderUpdate);
-
-      // await OrderMod.encryptOrderBodyToAliyunOSS(widget.order.orderID!, widget.order.toAttach());
     }).catchError((err) {
       HubView.showToastAfterLoadingHubDismiss(err);
     });
@@ -1339,24 +1273,16 @@ class _OrderDetailPageState extends State<OrderDetailPage>
     });
   }
 
-  void _uploadPrizeImageAndChange(String money, String imageLocalPath) {
+  void _uploadPrizeImageAndChange(String money) {
     HubView.showLoading();
-    UserMod.uploadOssOrderFile(imageLocalPath, (String url) {
-      HubView.dismiss();
-      logI('上传兑奖二维码图片成功:money: $money, url;$url');
-      OrderMod.inputPrize(widget.order.orderID!, url, double.parse(money))
-          .then((value) {
-        HubView.showToastAfterLoadingHubDismiss('成功上传兑奖二维码图片成功');
-        _reloadOrder();
-        NotificationCenter.instance
-            .postNotification(NotificationDefine.orderUpdate);
-      });
-    }, (String errMsg) {
-      HubView.dismiss();
-      logD('上传兑奖二维码图片成功错误:$errMsg');
-      HubView.showToastAfterLoadingHubDismiss(errMsg);
-    }, (int progress) {
-      logD('上传兑奖二维码图片成功进度:$progress');
+    HubView.dismiss();
+    logI('_uploadPrizeImageAndChange, money: $money');
+    OrderMod.inputPrize(widget.order.orderID!, double.parse(money))
+        .then((value) {
+      HubView.showToastAfterLoadingHubDismiss('设置兑奖金额成功');
+      _reloadOrder();
+      NotificationCenter.instance
+          .postNotification(NotificationDefine.orderUpdate);
     });
   }
 

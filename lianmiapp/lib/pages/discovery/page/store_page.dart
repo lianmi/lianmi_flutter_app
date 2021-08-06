@@ -60,10 +60,6 @@ class _StorePageState extends State<StorePage> {
                 '此商户智能合约信息: productType: ${model.productType},  model.id: ${model.id}, businessUsername: ${widget.businessUsername}');
             switch (model.productType) {
               case 1:
-                {
-                  LotteryUtils.showLottery(model.id!, widget.businessUsername);
-                  break;
-                }
               case 2:
                 {
                   LotteryUtils.showLottery(model.id!, widget.businessUsername);

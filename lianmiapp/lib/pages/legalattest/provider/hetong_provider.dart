@@ -9,6 +9,7 @@ class HetongProvider extends ChangeNotifier {
     jiafangName: '',
     jiafangPhone: '',
     attachs: [],
+    attachsAliyun: [],
   );
 
   HetongDataModel get hetongData => _hetongData;
@@ -20,6 +21,7 @@ class HetongProvider extends ChangeNotifier {
       jiafangName: '',
       jiafangPhone: '',
       attachs: [],
+      attachsAliyun: [],
     );
   }
 }

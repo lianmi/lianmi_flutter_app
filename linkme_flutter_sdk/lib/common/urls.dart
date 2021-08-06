@@ -28,8 +28,11 @@ class HttpApi {
 
   //****** 用户相关的接口 ******/
 
-  /// @nodoc 获取阿里云oss的临时令牌
+  /// @nodoc 获取阿里云oss的临时令牌 - 用户资料区
   static const String osstoken = '/v1/user/osstoken';
+
+  /// @nodoc 获取阿里云oss的临时令牌 - 存证区
+  static const String cunzheng_osstoken = '/v1/user/cunzheng_osstoken';
 
   /// Post方法, 微信登录之后绑定手机
   static const String bindmobile = '/v1/user/bindmobile';
@@ -105,10 +108,13 @@ class HttpApi {
   static const String generalproducts = '/v1/product/generalproductslist';
 
   /// Post方法, 商户上传Rsa公钥
-  static const String uploadPublickey = '/v1/store/upload_publickey';
+  // static const String uploadPublickey = '/v1/store/upload_publickey';
 
-  /// Get方法, 买家获取商户的公钥
+  /// Get方法, 买家获取全局的公钥
   static const String rsaPublickey = '/v1/store/rsa_publickey';
+
+  /// Get方法, 商户获取全局的私钥
+  static const String rsaPrivatekey = '/v1/store/rsa_privatekey';
 
   //****** 订单相关的接口 ******/
 
@@ -130,10 +136,13 @@ class HttpApi {
   /// POST方法,  修改订单状态
   static const String updateStatus = '/v1/order/update_status';
 
+  /// POST方法,  修改订单总价
+  static const String changeOrderCost = '/v1/order/change_order_cost';
+
   // /// POST方法, 创建一个订单， 并返回订单id
   static const String preOrder = '/v1/order/pre_order';
 
-  /// POST方法, 根据彩票总金额， 以分为单位, 返回手续费
+  /// POST方法, 根据彩票总金额(元为单位)，返回手续费(以分为单位)
   static const String getOrderFee = '/v1/order/get_order_fee';
 
   /// POST方法, 商户接单，上传收款码
@@ -144,6 +153,9 @@ class HttpApi {
 
   ///根据订单id获取蚂蚁链存证二维码
   static const String transactionQrcode = '/v1/order/transaction_qrcode';
+
+  /// POST方法, 根据阿里云url返回签名url
+  static const String cunzheng_file = '/v1/order/cunzheng_file';
 
   /// POST方法, 商户兑奖，输入中奖金额
   static const String inputPrize = '/v1/order/push_prize';

@@ -116,7 +116,7 @@ class _OrderPayPageState extends State<OrderPayPage> {
       widget.order.businessUsername!,
       widget.order.productID!,
       widget.order.cost!,
-      widget.order.toAttach(),
+      widget.order.toAttach(1), //0表示彩票类，1-存证类
       payMode: this.payMode, //1-微信支付，2-支付宝
     ).then((value) {
       // logD(value);

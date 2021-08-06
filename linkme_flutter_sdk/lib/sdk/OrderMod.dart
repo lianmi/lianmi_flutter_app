@@ -18,24 +18,27 @@ import 'package:linkme_flutter_sdk/sdk/UserMod.dart';
 import 'package:linkme_flutter_sdk/manager/LogManager.dart';
 import 'package:linkme_flutter_sdk/sdk/SdkEnum.dart';
 import 'package:linkme_flutter_sdk/models/UpdateStatusReq.dart';
-import 'package:linkme_flutter_sdk/util/file_cryptor.dart';
+// import 'package:linkme_flutter_sdk/util/file_cryptor.dart';
 import 'package:linkme_flutter_sdk/util/md5.dart';
 import 'package:encrypt/encrypt.dart' as SDKCrypt;
 import 'package:linkme_flutter_sdk/util/hex.dart';
-import 'package:libsignal_protocol_dart/src/ecc/curve.dart' as DH;
-import 'package:libsignal_protocol_dart/libsignal_protocol_dart.dart';
+// import 'package:libsignal_protocol_dart/src/ecc/curve.dart' as DH;
+// import 'package:libsignal_protocol_dart/libsignal_protocol_dart.dart';
 import 'package:path_provider/path_provider.dart';
 
 class OrderMod {
   /// @nodoc POST方法, 根据彩票总金额，获取对应的服务费
-  ///totalAmount 客户端支付的总金额(彩票总价)
+  ///totalAmount 客户端支付的总金额(彩票总价,以元为单位)
   /// 返回服务费
   static Future getOrderFee(double totalAmount) async {
     assert(totalAmount > 0);
     Completer _completer = new Completer.sync();
     Future f = _completer.future;
+
+    //舍弃当前变量的小数部分。返回值为 int 类型。
+    int _totalAmount = (totalAmount * 100).truncate();
     var _map = {
-      'total_amount': totalAmount,
+      'total_amount': _totalAmount,
     };
 
     ///提交数据
@@ -80,7 +83,7 @@ class OrderMod {
     var _map = {
       'business_id': businessUsername,
       'product_id': productID,
-      'total_amount': _totalAmount,
+      'total_amount': _totalAmount * 100, //服务端以分为单位接收
       'pay_mode': payMode,
       'body': body,
     };
@@ -115,15 +118,13 @@ class OrderMod {
   }
 
   ///输入中奖金额，以元为单位
-  static Future inputPrize(
-      String orderID, String prizedPhoto, double prize) async {
+  static Future inputPrize(String orderID, double prize) async {
     //舍弃当前变量的小数部分。返回值为 int 类型。
     int _prize = (prize * 100).truncate();
 
     var _data = {
       'order_id': orderID,
       'prize': _prize,
-      'prized_photo': prizedPhoto
     };
 
     try {
@@ -206,68 +207,30 @@ class OrderMod {
   }
 
   /// 商户接单，上传收款码
-  static Future<dynamic> takeOrder(
-      String orderID, String receiptQrcodefile) async {
+  static Future<dynamic> takeOrder(String orderID, String receiptUrl) async {
     Completer _completer = new Completer.sync();
     Future f = _completer.future;
 
-    //TODO 需要加密
-    // UserMod.uploadOssMsgFile(receiptQrcodefile, (receiptUrl) async {
-    //   logD('$receiptQrcodefile上传完成, receiptUrl: $receiptUrl');
-
-    //   var _map = {
-    //     'order_id': orderID,
-    //     'receipt_qrcode_image_url': receiptUrl,
-    //   };
-    //   try {
-    //     var _body = await HttpUtils.post(HttpApi.takeOrder, data: _map);
-    //     // logD('takeOrder, _body: $_body');
-    //     var code = _body['code'];
-    //     var errmsg = _body['msg'];
-    //     if (code == 200) {
-    //       _completer.complete(true);
-    //     } else {
-    //       // return Future.error(errmsg);
-    //       _completer.completeError('商户接单出错');
-    //     }
-    //   } catch (e) {
-    //     logE(e);
-    //     return Future.error(e);
-    //   } finally {
-    //     logD('OrderMod.takeOrder end.');
-    //   }
-    // }, (errmsg) {
-    //   logD('上传失败, $errmsg');
-    // }, (percent) {
-    //   //上传进度
-    // });
-
-    OrderMod.encryptAndUploadFile(receiptQrcodefile).then((receiptUrl) async {
-      logD('$receiptQrcodefile 上传完成, receiptUrl: $receiptUrl');
-
-      var _map = {
-        'order_id': orderID,
-        'receipt_qrcode_image_url': receiptUrl,
-      };
-      try {
-        var _body = await HttpUtils.post(HttpApi.takeOrder, data: _map);
-        logD('takeOrder, _body: $_body');
-        var code = _body['code'];
-        var errmsg = _body['msg'];
-        if (code == 200) {
-          _completer.complete(true);
-        } else {
-          _completer.completeError('商户接单，上传收款码出错');
-        }
-      } catch (e) {
-        logE(e);
-        return Future.error(e);
-      } finally {
-        logD('OrderMod.takeOrder end.');
+    var _map = {
+      'order_id': orderID,
+      'receipt_qrcode_image_url': receiptUrl,
+    };
+    try {
+      var _body = await HttpUtils.post(HttpApi.takeOrder, data: _map);
+      logD('takeOrder, _body: $_body');
+      var code = _body['code'];
+      var errmsg = _body['msg'];
+      if (code == 200) {
+        _completer.complete(true);
+      } else {
+        _completer.completeError('商户接单，上传收款码出错');
       }
-    }).catchError((e) {
+    } catch (e) {
       logE(e);
-    });
+      return Future.error(e);
+    } finally {
+      logD('OrderMod.takeOrder end.');
+    }
 
     return f;
   }
@@ -299,78 +262,33 @@ class OrderMod {
     return f;
   }
 
-  // /// 用户领奖，发起收款码 , 需要加密
-  // static Future<dynamic> acceptPrize(
-  //     String orderID, String prizeQrcodefile) async {
-  //   Completer _completer = new Completer.sync();
-  //   Future f = _completer.future;
-
-  //   UserMod.uploadOssOrderFile(prizeQrcodefile, (prizeUrl) async {
-  //     logD('$prizeQrcodefile 上传完成, receiptUrl: $prizeUrl');
-
-  //     var _map = {
-  //       'order_id': orderID,
-  //       'prize_qrcode_image_url': prizeUrl,
-  //     };
-  //     try {
-  //       var _body = await HttpUtils.post(HttpApi.acceptPrize, data: _map);
-  //       // logD('acceptPrize, _body: $_body');
-  //       var code = _body['code'];
-  //       var errmsg = _body['msg'];
-  //       if (code == 200) {
-  //         _completer.complete(true);
-  //       } else {
-  //         // return Future.error(errmsg);
-  //         logE(errmsg);
-  //         _completer.completeError('用户领奖出错');
-  //       }
-  //     } catch (e) {
-  //       logE(e);
-  //       return Future.error(e);
-  //     } finally {
-  //       logD('OrderMod.acceptPrize end.');
-  //     }
-  //   }, (errmsg) {
-  //     logD('上传失败, $errmsg');
-  //   }, (percent) {
-  //     //上传进度
-  //   });
-  //   return f;
-  // }
-
-  /// 用户领奖，发起收款码 , 需要加密
-  static Future<dynamic> acceptPrize(
-      String orderID, String storeUserName, String prizeQrcodefile) async {
+  /// 用户领奖，发起收款码 , 需要
+  static Future<dynamic> acceptPrize(String orderID, String prizeUrl) async {
     Completer _completer = new Completer.sync();
     Future f = _completer.future;
 
-    OrderMod.encryptAndUploadFile(prizeQrcodefile, storeUserName: storeUserName)
-        .then((prizeUrl) async {
-      logD('上传加密拍照图片成功:$prizeUrl');
-      var _map = {
-        'order_id': orderID,
-        'prize_qrcode_image_url': prizeUrl,
-      };
-      try {
-        var _body = await HttpUtils.post(HttpApi.acceptPrize, data: _map);
-        // logD('acceptPrize, _body: $_body');
-        var code = _body['code'];
-        var errmsg = _body['msg'];
-        if (code == 200) {
-          _completer.complete(true);
-        } else {
-          logE(errmsg);
-          _completer.completeError('用户领奖出错');
-        }
-      } catch (e) {
-        logE(e);
-        return Future.error(e);
-      } finally {
-        logD('OrderMod.acceptPrize end.');
+    var _map = {
+      'order_id': orderID,
+      'prize_qrcode_image_url': prizeUrl,
+    };
+    try {
+      var _body = await HttpUtils.post(HttpApi.acceptPrize, data: _map);
+      // logD('acceptPrize, _body: $_body');
+      var code = _body['code'];
+      var errmsg = _body['msg'];
+      if (code == 200) {
+        _completer.complete(true);
+      } else {
+        logE(errmsg);
+        _completer.completeError('用户领奖出错');
       }
-    }).catchError((e) {
+    } catch (e) {
       logE(e);
-    });
+      return Future.error(e);
+    } finally {
+      logD('OrderMod.acceptPrize end.');
+    }
+
     return f;
   }
 
@@ -426,6 +344,35 @@ class OrderMod {
     }
   }
 
+  /// 修改订单价格
+  /// totalAmount 修改后的修改订单总价，以元为单位
+  static Future<dynamic> changeOrderCost(
+      String orderID, double totalAmount) async {
+    assert(totalAmount > 0);
+
+    // 由于服务端接收是以分为单位, 所以需要乘以100
+    //舍弃当前变量的小数部分。返回值为 int 类型
+    int _totalAmount = (totalAmount * 100).truncate();
+
+    var _map = {'order_id': orderID, 'total_amount': _totalAmount};
+
+    try {
+      var _body = await HttpUtils.post(HttpApi.changeOrderCost, data: _map);
+      var code = _body['code'];
+      var errmsg = _body['msg'];
+      if (code == 200) {
+        return true;
+      } else {
+        return Future.error(errmsg);
+      }
+    } catch (e) {
+      logE(e);
+      return Future.error(e);
+    } finally {
+      logD('OrderMod.changeOrderCost end.');
+    }
+  }
+
   /// 翻页获取订单列表
   static Future getOrders(int status,
       {int? ticketCode, int? limit, int? page}) async {
@@ -444,7 +391,7 @@ class OrderMod {
       }
 
       var _body = await HttpUtils.get(HttpApi.orderList, params: params);
-      logD('_body: $_body');
+      logD('getOrders(), _body: $_body');
       List<OrderInfoData> orders = [];
       if (_body['code'] == 200) {
         _body['data'].forEach((v) {
@@ -687,21 +634,6 @@ class OrderMod {
     }
   }
 
-  /// @nodoc 计算出 加密密钥
-  /// [otherPubkey] 对方的公钥
-  /// [myPrivate] 本地的私钥
-  static String calculateAgreement(String otherPubkey, String myPrivate) {
-    Uint8List pubKey = Hex.decode(otherPubkey);
-    final publicKeyable = DH.Curve.decodePoint(pubKey, 0);
-
-    Uint8List privKey = Hex.decode(myPrivate);
-
-    final sharedSecret = DH.Curve.calculateAgreement(
-        publicKeyable, DH.Curve.decodePrivatePoint(privKey));
-
-    return Hex.encode(sharedSecret); //64个字符的hex
-  }
-
   ///拷贝文件到APP的目录
   ///[fileSourcePath]源文件路径
   // ignore: missing_return
@@ -714,127 +646,32 @@ class OrderMod {
     return newFile.absolute.path;
   }
 
-  ///@nodoc 加密文件内容并上传到阿里云oss
-  ///源文件需要复制到文档目录 , 并存入map来管理这些图片及对应的阿里云obj
-  ///filename 源文件，未加密
-  ///storeUserName 是商户的注册id
-  static Future encryptAndUploadFile(String filename,
-      {String? storeUserName}) async {
+  ///获取可下载的签名url，以便浏览器打开
+  static Future getSignedUrl(String url) async {
+    assert(url != '');
+
     Completer _completer = new Completer.sync();
     Future f = _completer.future;
+    var _map = {
+      'url': url,
+    };
 
-    String secret = '';
-    if (AppManager.isStore) {
-      secret = AppManager.storeSecret;
-    } else {
-      if (storeUserName != null) {
-        String publicKeyHex = await UserMod.getRsaPublickey(storeUserName);
-        secret = OrderMod.calculateAgreement(
-            publicKeyHex, Constant.systemPrivateKey);
+    ///提交数据
+    try {
+      var _body = await HttpUtils.post(HttpApi.cunzheng_file, data: _map);
+      // logD('_body: $_body');
+
+      var code = _body['code'];
+      if (code == 200) {
+        _completer.complete(_body['data']);
       } else {
-        return new Future.error('storeUserName is empty');
+        logE("获取可下载的签名url，以便浏览器打开出错 , ${_body['code']} , msg ${_body['msg']}");
+        _completer.completeError('获取可下载的签名url，以便浏览器打开出错');
       }
-    }
-
-    Directory saveDir = await getApplicationDocumentsDirectory();
-
-    //计算出图片的hash字符串，用来做文件名
-    String _outputFile = await OrderMod.getHash256(filename);
-
-    File file = File(filename);
-
-    Directory orderImgDir = Directory(saveDir.path + '/order_images');
-    if (!orderImgDir.existsSync()) {
-      orderImgDir.createSync();
-      logI('创建订单图片目录成功:' + orderImgDir.path);
-    }
-
-    File newFile = await file.copy(orderImgDir.path + '/' + _outputFile);
-
-    FileCryptor fileCryptor = FileCryptor(
-      key: secret, //64个字符
-      iv: 16,
-      dir: orderImgDir.path,
-      // useCompress: true,
-    );
-
-    File encryptedFile = await fileCryptor.encrypt(
-        inputFileFullPath: filename, outputFile: _outputFile);
-
-    logD('完整路径 : ${encryptedFile.absolute.path}');
-
-    UserMod.uploadOssOrderFile(encryptedFile.absolute.path, (String url) async {
-      logD('上传加密后的图片成功: $url');
-
-      //缓存到Hive，下次需要展示图片时不需要从阿里云拉取, key是url的md5
-      appManager.addOrderImages(url, orderImgDir.path);
-
-      _completer.complete(url);
-    }, (String errMsg) {
-      logD('上传加密后的图片错误:$errMsg');
-      _completer.completeError('上传加密后的图片错误:$errMsg');
-    }, (int progress) {
-      // logD('上传加密后的图片进度:$progress');
-    });
-
-    return f;
-  }
-
-  ///@nodoc 加密
-  ///publicKeyHex 是对方的公钥
-  static Future enCipher(String publicKeyHex, String indata) async {
-    Completer _completer = new Completer.sync();
-    Future f = _completer.future;
-
-    try {
-      ECPublicKey publicKey = DH.Curve.decodePoint(Hex.decode(publicKeyHex), 0);
-      logI('publicKey: ${Hex.encode(publicKey.serialize())}');
-
-      //系统私钥
-      ECPrivateKey privateKey =
-          DjbECPrivateKey(Hex.decode(Constant.systemPrivateKey));
-
-      var sharedSecret = DH.Curve.calculateAgreement(publicKey, privateKey);
-
-      String strkey = base64Encode(sharedSecret);
-      var key = SDKCrypt.Key.fromBase64(strkey);
-
-      var encrypter =
-          SDKCrypt.Encrypter(SDKCrypt.AES(key, mode: SDKCrypt.AESMode.ecb));
-      final iv = SDKCrypt.IV.fromLength(16); //add  by lishijia
-      var encrypted = encrypter.encrypt(indata, iv: iv);
-      // logI('encrypted: ${encrypted.base16}');
-      _completer.complete(encrypted.base16);
-    } catch (err) {
-      _completer.completeError("加密失败");
-    }
-    return f;
-  }
-
-  ///解密
-  ///privateKeyHex 是本地私钥
-  static Future deCipher(String privateKeyHex, String inCipther) {
-    Completer _completer = new Completer.sync();
-    Future f = _completer.future;
-    try {
-      ECPublicKey publicKey =
-          DH.Curve.decodePoint(Hex.decode(Constant.systemPublickey), 0);
-
-      ECPrivateKey privateKey = DjbECPrivateKey(Hex.decode(privateKeyHex));
-
-      var sharedSecret = DH.Curve.calculateAgreement(publicKey, privateKey);
-
-      String strkey = base64Encode(sharedSecret);
-      var key = SDKCrypt.Key.fromBase64(strkey);
-
-      var encrypter =
-          SDKCrypt.Encrypter(SDKCrypt.AES(key, mode: SDKCrypt.AESMode.ecb));
-      final iv = SDKCrypt.IV.fromLength(16); //add  by lishijia
-      var decrypted = encrypter.decrypt16(inCipther, iv: iv);
-      // print('encrypted: ${decrypted}');
-      _completer.complete(decrypted);
-    } catch (err) {
-      _completer.completeError("解密失败");
+    } catch (e) {
+      logE(e);
+      _completer.completeError('错误');
+      return;
     }
 
     return f;

@@ -1,18 +1,21 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'dart:io';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
-import 'package:lianmiapp/util/app_navigator.dart';
+
+import 'package:lianmiapp/util/app.dart';
+import 'package:lianmiapp/util/other_utils.dart';
 import 'package:lianmiapp/widgets/my_app_bar.dart';
 import 'package:linkme_flutter_sdk/manager/LogManager.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:linkme_flutter_sdk/sdk/OrderMod.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class BrowserPdfViewPage extends StatefulWidget {
+  final String aliyunossUrl;
   final String locallyPdfPath;
 
-  BrowserPdfViewPage(this.locallyPdfPath);
+  BrowserPdfViewPage(this.aliyunossUrl, this.locallyPdfPath);
 
   @override
   _BrowserPdfViewPageState createState() => _BrowserPdfViewPageState();
@@ -26,25 +29,40 @@ class _BrowserPdfViewPageState extends State<BrowserPdfViewPage> {
   @override
   void initState() {
     super.initState();
+    logI('BrowserPdfViewPage initState, aliyunossUrl: ${widget.aliyunossUrl}');
   }
 
-  _erasePdf() {
-    logW('_erasePdf hit' + widget.locallyPdfPath);
-    AppNavigator.goBackWithParams(context, {'path': widget.locallyPdfPath});
+
+//动态申请权限，ios 要在info.plist 上面添加
+  Future<bool> requestPermission() async {
+    var status = await Permission.photos.status;
+    return status.isGranted;
   }
 
+  /// 调起浏览器下载当前文档
+  _saveStoreage() async {
+    OrderMod.getSignedUrl(widget.aliyunossUrl).then((value) {
+      logI('调起浏览器下载当前文档, value: $value');
+      Utils.launchBrowser(value);
+    }).catchError((e) {
+      logE(e);
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: MyCustomAppBar(
           centerTitle: '$_title',
           actions: [
-            TextButton(
-              onPressed: () {
-                _erasePdf();
-              },
-              child: Text("删除"),
-            )
+            App.isShop
+                ? TextButton(
+                    onPressed: () {
+                      _saveStoreage();
+                    },
+                    child: Text("下载"),
+                  )
+                : SizedBox(),
+
           ],
         ),
         backgroundColor: Color(0XFFF4F5F6),

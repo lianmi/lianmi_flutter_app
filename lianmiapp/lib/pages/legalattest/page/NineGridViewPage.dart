@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:lianmiapp/header/common_header.dart';
 import 'package:flutter/material.dart';
+import 'package:lianmiapp/pages/legalattest/model/hetong_model.dart';
 import 'package:lianmiapp/pages/legalattest/page/models.dart';
 import 'package:lianmiapp/pages/legalattest/page/utils.dart';
 import 'package:lianmiapp/util/app_navigator.dart';
@@ -12,9 +13,9 @@ import 'package:linkme_flutter_sdk/util/FileTool.dart';
 import 'package:nine_grid_view/nine_grid_view.dart';
 
 class NineGridViewPage extends StatefulWidget {
-  final List<String> attachList;
+  final HetongDataModel hetongData;
 
-  NineGridViewPage(this.attachList);
+  NineGridViewPage(this.hetongData);
 
   @override
   _NineGridViewPageState createState() => _NineGridViewPageState();
@@ -27,20 +28,20 @@ class _NineGridViewPageState extends State<NineGridViewPage> {
 
   int _imageCount = 0;
 
-  List<String> _attachList = [];
+  // List<String> _attachList = [];
   List<ImageBean> imageList = [];
 
   @override
   void initState() {
     super.initState();
-    _attachList = widget.attachList;
-    _imageCount = _attachList.length;
+    // _attachList = widget.hetongData.attachs;
+    _imageCount = widget.hetongData.attachs.length;
 
     _readOldAttachList();
   }
 
   _readOldAttachList() {
-    _attachList.forEach((url) {
+    widget.hetongData.attachs.forEach((url) {
       Utils.addTestData(url);
     });
     imageList = Utils.getTestData();
@@ -67,6 +68,7 @@ class _NineGridViewPageState extends State<NineGridViewPage> {
         itemCount: itemCount,
         itemBuilder: (BuildContext context, int index) {
           ImageBean bean = imageList[index]; //图片数组
+
           return Utils.getWidget(context, bean.thumbPath!, () {
             logW('NineGridViewPage _buildItem callback');
             imageList = Utils.getTestData();

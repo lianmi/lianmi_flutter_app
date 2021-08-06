@@ -36,7 +36,7 @@ class _PrizePageState extends State<PrizePage> {
                 height: 317.px,
                 color: Colors.white,
                 child: Column(
-                  children: [_moneyArea(), _photoArea()],
+                  children: [_moneyArea()], //, _photoArea()
                 ),
               ),
               _detailBottomButton('确定', onTap: () {
@@ -226,13 +226,13 @@ class _PrizePageState extends State<PrizePage> {
       HubView.showToast('请输入兑奖金额');
       return;
     }
-    if (isValidString(_imageLocalPath) == false) {
-      HubView.showToast('请上传拍照图片');
-      return;
-    }
+    // if (isValidString(_imageLocalPath) == false) {
+    //   HubView.showToast('请上传拍照图片');
+    //   return;
+    // }
 
     // 带参数的返回
     AppNavigator.goBackWithParams(context,
-        {'money': _textController.text, 'imageLocalPath': _imageLocalPath});
+        {'money': _textController.text}); //, 'imageLocalPath': _imageLocalPath
   }
 }

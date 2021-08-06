@@ -34,9 +34,9 @@ class QrEvents {
 //    // 申请结果
 //    bool  isPermission = await Permission.storage.isGranted;
 //    print('权限是否申请成功: $isPermission');
-    Uint8List _image = await qrToImage(key);
+    Uint8List _imageBytes = await qrToImage(key);
     try {
-      final result = await ImageGallerySaver.saveImage(_image,
+      final result = await ImageGallerySaver.saveImage(_imageBytes,
           quality: 100, name: "二维码_${DateTime.now().toString()}");
       logD('图片保存：' + result.toString());
       showToast('二维码保存成功');

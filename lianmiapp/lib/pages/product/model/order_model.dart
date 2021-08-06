@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:lianmiapp/pages/legalattest/model/hetong_model.dart';
 import 'package:lianmiapp/pages/product/model/dlt/dlt_model.dart';
 import 'package:lianmiapp/pages/product/model/fc3d/fc3d_model.dart';
 import 'package:lianmiapp/pages/product/model/pl3/pl3_model.dart';
@@ -8,6 +9,7 @@ import 'package:lianmiapp/pages/product/model/qlc/qlc_model.dart';
 import 'package:lianmiapp/pages/product/model/qxc/qxc_model.dart';
 import 'package:lianmiapp/pages/product/model/shuang_se_qiu/shuang_se_qiu_model.dart';
 import 'package:lianmiapp/pages/product/utils/lottery_data.dart';
+import 'package:lianmiapp/util/app.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
 import 'package:linkme_flutter_sdk/sdk/SdkEnum.dart';
 
@@ -35,7 +37,7 @@ class OrderModel {
   int? ticketCode; //出票码
   double? prize; //中奖奖金
   String? prizedPhoto; //兑奖后彩票拍照图片url，上面有中奖金额或未中奖
-  dynamic cunzhengModelData; //存证数据json，通用的，（必须根据 ProductModel id转为对应的model）
+  HetongDataModel? cunzhengModelData; //存证数据model，通用的
 
   OrderModel({
     this.buyUser,
@@ -83,7 +85,6 @@ class OrderModel {
     ticketCode = json['ticket_code'];
     prize = json['prize'];
     prizedPhoto = json['prized_photo'];
-    cunzhengModelData = json['cunzheng_model_data'];
   }
 
   //从服务器获取的金额都是以分为单位
@@ -103,19 +104,24 @@ class OrderModel {
     prizedPhoto = orderInfoData.prizedPhoto!; // data['prized_photo'];
 
     Map<String, dynamic> body = json.decode(planeBody);
-    // logD('body: $body');
+    logI('OrderModel.fromServerData: body: $body');
 
     String bodyText = body['body'];
     String jsonBodyText = utf8.decode(base64Decode(bodyText));
     Map<String, dynamic> bodyJson = json.decode(jsonBodyText);
-    OrderModel order = OrderModel.fromJson(bodyJson);
-    shopName = order.shopName;
-    orderImageUrl = order.orderImageUrl;
-    productName = order.productName;
 
-    loterryType = order.loterryType;
-    if (loterryType! >= 1 || loterryType! <= 7) {
-      //彩票类
+    OrderModel order = OrderModel.fromJson(bodyJson);
+
+    logI('OrderModel.fromServerData, bodyJson: $bodyJson}');
+
+    if (body['body_type'] == 0) {
+      logI('OrderModel.fromServerData: order: $order');
+      shopName = order.shopName;
+      orderImageUrl = order.orderImageUrl;
+      productName = order.productName;
+
+      loterryType = order.loterryType;
+
       straws = order.straws;
       multiple = order.multiple;
       count = order.count;
@@ -124,8 +130,40 @@ class OrderModel {
         _genStrawObjects(straws!);
       }
     } else {
-      //存证数据，动态的
-      cunzhengModelData = order.cunzhengModelData;
+      logI('body_type = 1');
+      shopName = order.shopName;
+      orderImageUrl = order.orderImageUrl;
+      productName = order.productName;
+      loterryType = order.loterryType; //8
+      if (bodyJson['cunzheng_model_data'] == null) {
+        logE('OrderModel.fromServerData cunzheng_model_data is null');
+      } else {
+        String cunzhengText = bodyJson['cunzheng_model_data'];
+
+        logW('OrderModel.fromServerData cunzhengText: ${cunzhengText}');
+        cunzhengModelData = HetongDataModel.fromJson(cunzhengText);
+
+        logW('OrderModel.fromServerData ${cunzhengModelData}');
+
+        if (cunzhengModelData != null) {
+          logI('type: ${cunzhengModelData!.type}');
+          logI('description: ${cunzhengModelData!.description}');
+          logI('jiafangName: ${cunzhengModelData!.jiafangName}');
+          logI('jiafangPhone: ${cunzhengModelData!.jiafangPhone}');
+          logI('attachs: ${cunzhengModelData!.attachs}');
+          logI('attachsAliyun: ${cunzhengModelData!.attachsAliyun}');
+
+          //将阿里云obj url的文件下载到本地
+          cunzhengModelData!.attachs = [];
+          cunzhengModelData!.attachsAliyun!.forEach((url) {
+            appManager.getOrderImages(url).then((fileUrl) {
+              if (fileUrl != null) cunzhengModelData!.attachs.add(fileUrl);
+            }).catchError((e) {
+              logE(e);
+            });
+          });
+        }
+      }
     }
   }
 
@@ -193,12 +231,16 @@ class OrderModel {
     if (datas != null) {
       for (var data in datas) {
         OrderInfoData orderInfoData = data as OrderInfoData;
-
-        String planeBody = orderInfoData.body!;
-        try {
-          results.add(OrderModel.fromServerData(orderInfoData, planeBody));
-        } catch (e) {
-          logE(e);
+        if (orderInfoData.body != null) {
+          String planeBody = orderInfoData.body!;
+          try {
+            logI('modelListFromServerDatas: orderInfoData.body != null');
+            results.add(OrderModel.fromServerData(orderInfoData, planeBody));
+          } catch (e) {
+            logE(e);
+          }
+        } else {
+          logE('modelListFromServerDatas  出差错， orderInfoData.body 是 null');
         }
       }
     }
@@ -225,20 +267,17 @@ class OrderModel {
     data['ticket_code'] = this.ticketCode;
     data['prize'] = this.prize;
     data['prized_photo'] = this.prizedPhoto;
-    data['cunzheng_model_data'] = this.cunzhengModelData;
+    data['cunzheng_model_data'] =
+        this.cunzhengModelData == null ? '' : this.cunzhengModelData!.toJson();
     return data;
   }
 
-  toAttach() {
-    return toJsonString();
-  }
-
-  String toJsonString() {
+  toAttach(int bodyType) {
     Map<String, dynamic> body = this.toJson();
-    int bodyType = 0; //0-表示订单内容, 之前是区分vip会员的
+    // int bodyType = 0; //0-表示彩票类订单内容, 1-存证类
     Map<String, dynamic> attach = {
       'body_type': bodyType,
-      'body': base64Encode(utf8.encode(jsonEncode(body)))
+      'body': base64Encode(utf8.encode(jsonEncode(body))),
     };
     return jsonEncode(attach);
   }

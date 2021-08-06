@@ -24,7 +24,7 @@ import 'history_recharge_page.dart';
 import 'me_qrcode.dart';
 import 'order_sum_page.dart';
 import 'propose/propose_feedback_page.dart';
-import 'storeinfo/store_ca_page.dart';
+// import 'storeinfo/store_ca_page.dart';
 import 'storeinfo/store_info_page.dart';
 
 class UserCenterPage extends StatefulWidget {
@@ -309,20 +309,6 @@ class _UserCenterPageState extends State<UserCenterPage>
                     text: '商户资料',
                     onTap: () {
                       AppNavigator.push(context, StoreInfoPage());
-                    })
-                : SizedBox(),
-            App.isShop
-                ? _sv_item(
-                    fromC: Color(0xFFC9B6FD),
-                    toC: Color(0xFF997FF9),
-                    icon: Image.asset(
-                      ImageStandard.caFile,
-                      width: 32.px,
-                      height: 32.px,
-                    ),
-                    text: '商户数字证书',
-                    onTap: () {
-                      AppNavigator.push(context, StoreCaPage());
                     })
                 : SizedBox(),
             App.isShop

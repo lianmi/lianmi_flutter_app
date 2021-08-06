@@ -97,7 +97,8 @@ class _OrderListItemState extends State<OrderListItem> {
   }
 
   Widget _middleWidget() {
-    double amount = order.cost! * 100;
+    // 订单金额，以元为单位
+    double amount = order.cost!;
 
     Color shopStatusColor = Colours.app_main;
     if (widget.model.status == OrderStateEnum.OS_Prizeed &&

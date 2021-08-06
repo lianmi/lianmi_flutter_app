@@ -20,6 +20,15 @@ class Utils {
     }
   }
 
+  /// 调起浏览器
+  static Future<void> launchBrowser(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   /// 调起二维码扫描页
   static Future<String?> scan() async {
     // try {

@@ -129,6 +129,7 @@ class _OrderPageState extends State<OrderPage>
 
   //TODO 有幺蛾子
   void _loadOrders() async {
+    logI('_loadOrders start...');
     int orderStatus = 0;
     if (App.isShop) {
       orderStatus = _statusListShop[_currentStatusIndex].index;
@@ -136,13 +137,13 @@ class _OrderPageState extends State<OrderPage>
       orderStatus = _statusListUser[_currentStatusIndex].index;
     }
     OrderMod.getOrders(orderStatus, page: 0, limit: 20).then((value) async {
+      logI('_loadOrders getOrders..., ${value}');
       _refreshController.finishRefresh();
       _refreshController.finishLoad();
       _refreshController.finishLoad(noMore: true);
       _list.clear();
       _list = await OrderModel.modelListFromServerDatas(value);
 
-      logI('_loadOrders:');
       _list.forEach((element) {
         logI(element.toJson());
       });

@@ -1,6 +1,7 @@
 import 'package:lianmiapp/header/common_header.dart';
 import 'package:lianmiapp/notification/notification_center.dart';
 import 'package:lianmiapp/pages/discovery/discovery_router.dart';
+import 'package:lianmiapp/pages/order/page/order_page.dart';
 import 'package:lianmiapp/pages/product/model/order_model.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
 import 'package:linkme_flutter_sdk/sdk/OrderMod.dart';
@@ -131,7 +132,7 @@ class _LotteryPayPageState extends State<LotteryPayPage> {
       widget.order.businessUsername!,
       widget.order.productID!,
       widget.order.cost!,
-      widget.order.toAttach(),
+      widget.order.toAttach(0), //0表示彩票类，1-存证类
       payMode: this.payMode, //1-微信支付，2-支付宝
     ).then((value) {
       // logD(value);
@@ -141,6 +142,7 @@ class _LotteryPayPageState extends State<LotteryPayPage> {
           .postNotification(NotificationDefine.orderUpdate);
       Navigator.of(context)
           .popUntil(ModalRoute.withName(DiscoveryRouter.storePage));
+      AppNavigator.push(context, OrderPage());
     }).catchError((err) {
       HubView.dismiss();
       HubView.showToastAfterLoadingHubDismiss(err);

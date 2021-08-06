@@ -3,8 +3,7 @@ import 'package:permission_handler/permission_handler.dart';
 import '../widget/appbar_widget.dart';
 import 'package:flutter/material.dart';
 import '../../application.dart';
-import 'package:linkme_flutter_sdk/util/hex.dart';
-import 'package:libsignal_protocol_dart/src/ecc/curve.dart' as DH;
+
 
 //一个文件
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
@@ -191,18 +190,6 @@ class _AuthPageState extends State<AuthPage> implements BaseConnectionListener {
             var list = await AuthMod.getSystemMsgs();
             logD('list: $list');
           }),
-          _customButton('DH', onTap: () async {
-            var testPair = UserMod.generateRsaKeyPair();
-
-            String attach = 'aaa';
-            String attachCipher =
-                await OrderMod.enCipher(testPair.publicKey!, attach);
-            print("加密前的数据 ${attach} , 加密后的数据 $attachCipher");
-
-            String attachPlainText =
-                await OrderMod.deCipher(testPair.privateKey!, attachCipher);
-            print("解密后的数据 $attachPlainText");
-          })
         ],
       ),
     ));

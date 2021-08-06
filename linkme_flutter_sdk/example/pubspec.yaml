@@ -29,9 +29,10 @@ dependencies:
   file_picker:  #多种格式文件选择器,由于 android/build.gradle文件的版本不对，所有暂时classpath 'com.android.tools.build:gradle:4.0.1'
     path: ../../file_picker
 
-  # filesystem_picker: ^1.0.4 #手机文件选择器
+  oss_dart:
+    path: ../../oss_dart
+
   flutter_pdfview: ^1.1.0 #pdf文件预览
-  # flutter_picker: ^2.0.2  #自定义选择器
 
 dev_dependencies:
   flutter_test:

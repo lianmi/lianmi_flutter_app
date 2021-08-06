@@ -37,41 +37,7 @@ class Utils {
       BuildContext context, String url, void Function() callback,
       {String? originPath}) {
     logI('getWidget: $url');
-    // if (url.startsWith('http')) {
-    //   //return CachedNetworkImage(imageUrl: url, fit: BoxFit.cover);
-    //   return InkWell(
-    //     child: Container(
-    //       width: double.infinity,
-    //       height: double.infinity,
-    //       alignment: Alignment.center,
-    //       child: Image.network(
-    //         url,
-    //         fit: BoxFit.cover,
-    //       ),
-    //     ),
-    //     onTap: () {
-    //       logD('getWidget network image hit!');
-    //     },
-    //   );
-    //   //Image.network(url, fit: BoxFit.cover);
-    // }
-    // if (url.startsWith('')) {
-    //   return InkWell(
-    //     child: Container(
-    //       width: double.infinity,
-    //       height: double.infinity,
-    //       alignment: Alignment.center,
-    //       child: Image.asset(
-    //         url,
-    //         fit: BoxFit.cover,
-    //         package: 'flutter_gallery_assets',
-    //       ),
-    //     ),
-    //     onTap: () {
-    //       logI('getWidget flutter_gallery_assets hit!');
-    //     },
-    //   );
-    // }
+
     if (url == 'pdf') {
       return InkWell(
         child: Container(
@@ -127,8 +93,8 @@ class Utils {
     );
   }
 
-  static Widget getBrowserWidget(
-      BuildContext context, String url, void Function() callback,
+  static Widget getBrowserWidget(BuildContext context, String aliyunossUrl,
+      String url, void Function() callback,
       {String? originPath}) {
     logI('getBrowserWidget: $url');
 
@@ -146,7 +112,8 @@ class Utils {
         onTap: () {
           logD('pdf hit!, originPath: $originPath');
 
-          AppNavigator.push(context, BrowserPdfViewPage(originPath!))
+          AppNavigator.push(
+                  context, BrowserPdfViewPage(aliyunossUrl, originPath!))
               .then((value) {});
         },
       );
@@ -162,24 +129,10 @@ class Utils {
       onTap: () {
         logD('file hit!, url: $url');
 
-        AppNavigator.push(context, BrowserPhoto(url))
-            .then((value) {});
+        AppNavigator.push(context, BrowserPhoto(url)).then((value) {});
       },
     );
   }
-
-  // static Widget getWidget(String url) {
-  //   if (url.startsWith('http')) {
-  //     //return CachedNetworkImage(imageUrl: url, fit: BoxFit.cover);
-  //     return Image.network(url, fit: BoxFit.cover);
-  //   }
-  //   if (url.endsWith('.png')) {
-  //     return Image.asset(url,
-  //         fit: BoxFit.cover, package: 'flutter_gallery_assets');
-  //   }
-  //   //return Image.file(File(url), fit: BoxFit.cover);
-  //   return Image.asset(getImgPath(url), fit: BoxFit.cover);
-  // }
 
   static Image? getBigImage(String? url) {
     if (url == null || url.isEmpty) return null;

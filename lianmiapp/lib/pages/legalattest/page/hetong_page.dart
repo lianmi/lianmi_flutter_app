@@ -193,13 +193,14 @@ class _HetongPageState extends State<HetongPage> {
     //要转为元为单位
     order.cost = (widget.productPrice / 100).toDouble();
 
-    //TODO 构造订单 存证数据, 将附件加密后上传到阿里云
+    //TODO 构造订单 存证数据, 将附件上传到阿里云
     order.cunzhengModelData = HetongDataModel(
       type: _hetongData.type,
       description: _hetongData.description,
       jiafangName: _hetongData.jiafangName,
       jiafangPhone: _hetongData.jiafangPhone,
       attachs: _hetongData.attachs,
+      attachsAliyun: [],
     );
 
     // 跳转到详情页 -> 选择支付方式 ->确认下单

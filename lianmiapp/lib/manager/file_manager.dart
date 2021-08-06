@@ -6,11 +6,10 @@ import 'package:path/path.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 
 class FileManager {
-  factory FileManager() =>_getInstance();
+  factory FileManager() => _getInstance();
   static FileManager get instance => _getInstance();
   static FileManager? _instance;
-  FileManager._internal() {
-  }
+  FileManager._internal() {}
   static FileManager _getInstance() {
     if (_instance == null) {
       _instance = new FileManager._internal();
@@ -20,7 +19,7 @@ class FileManager {
 
   ///是否存在某个文件
   bool isExist(String path) {
-    if(path==null || path.length == 0) {
+    if (path == null || path.length == 0) {
       return false;
     }
     File file = File(path);
@@ -30,8 +29,8 @@ class FileManager {
   ///拷贝文件到APP的目录
   ///[fileSourcePath]源文件路径
   // ignore: missing_return
-  Future<String> copyFileToAppFolder(String fileSourcePath) async{
-    if(fileSourcePath == null) {
+  Future<String> copyFileToAppFolder(String fileSourcePath) async {
+    if (fileSourcePath == null) {
       return '';
     }
     File file = File(fileSourcePath);
@@ -44,8 +43,8 @@ class FileManager {
   ///拷贝U8文件到APP的目录
   ///[u8File]源文件u8
   // ignore: missing_return
-  Future<String> copyU8ListFileToAppFolder(Uint8List u8File) async{
-    if(u8File == null) return '';
+  Future<String> copyU8ListFileToAppFolder(Uint8List u8File) async {
+    if (u8File == null) return '';
     String targetFileName = _randomFileName('xxx.png');
     String targetPath = App.userIMPath! + targetFileName;
     File file = File(targetPath);
@@ -59,7 +58,7 @@ class FileManager {
 
   ///生成文件路径
   String createFilePath(String ext) {
-    if(ext == null) {
+    if (ext == null) {
       return '';
     }
     String targetFileName = _randomFileName(basename('xxx.$ext'));
@@ -89,12 +88,14 @@ String _randomBit(int len) {
     } else {
       result = result + scopeC[Random().nextInt(scopeC.length)];
     }
-  }  return result;
+  }
+  return result;
 }
 
 //根据文件名生成随机文件名
 String _randomFileName(String originName) {
-  var ext = originName.split(".").last; 
-  String targetFileName = '${DateTime.now().millisecondsSinceEpoch}_${_randomBit(6)}.$ext';
+  var ext = originName.split(".").last;
+  String targetFileName =
+      '${DateTime.now().millisecondsSinceEpoch}_${_randomBit(6)}.$ext';
   return targetFileName;
 }

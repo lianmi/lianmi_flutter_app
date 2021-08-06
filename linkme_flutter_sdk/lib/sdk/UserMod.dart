@@ -7,13 +7,10 @@ import 'package:linkme_flutter_sdk/common/urls.dart';
 import 'package:linkme_flutter_sdk/manager/AppManager.dart';
 import 'package:linkme_flutter_sdk/models/OssConfig.dart';
 import 'package:linkme_flutter_sdk/models/ProposeFeedback.dart';
-import 'package:linkme_flutter_sdk/models/RsaKeyPairModel.dart';
+// import 'package:linkme_flutter_sdk/models/RsaKeyPairModel.dart';
 import 'package:linkme_flutter_sdk/models/StoreInfo.dart';
 import 'package:linkme_flutter_sdk/models/UserInfo.dart';
 import 'package:linkme_flutter_sdk/models/UserReport.dart';
-// import 'package:linkme_flutter_sdk/sdk/Listeners.dart';
-import 'package:libsignal_protocol_dart/src/ecc/curve.dart' as DH;
-import 'package:linkme_flutter_sdk/util/hex.dart';
 
 import 'dart:async';
 import 'SdkEnum.dart';
@@ -39,6 +36,10 @@ class UserMod {
 
         AppManager.setUserType(_user.userType!);
         AppManager.setUserState(_user.state!);
+
+        if (_user.avatar!.startsWith('http') == false) {
+          _user.avatar = AppManager.prefix + _user.avatar!;
+        }
 
         _completer.complete(_user); //返回
       } else {
@@ -396,8 +397,8 @@ class UserMod {
     }
   }
 
-  /// @nodoc 获取当前用户的阿里云oss的临时令牌
-  static Future getOssToken([bool isPrivate = false]) async {
+  /// @nodoc 获取用户资料区的阿里云oss的临时令牌
+  static Future getOssToken() async {
     Completer _completer = new Completer.sync();
     Future f = _completer.future;
 
@@ -423,57 +424,76 @@ class UserMod {
       }
     } catch (e) {
       logE(e);
-    } finally {
-      logD('AuthMod.postDefaultOpk end.');
     }
 
     return f;
   }
 
-  /// @nodoc oss 上传 到 订单的位置
-  /// [file] 本地文件
+  /// @nodoc 获取存证区的阿里云oss的临时令牌
+  static Future getOssTokenForCunZheng() async {
+    Completer _completer = new Completer.sync();
+    Future f = _completer.future;
+
+    try {
+      var _body = await HttpUtils.get(HttpApi.cunzheng_osstoken);
+      logD('getOssTokenForCunZheng _body: $_body');
+
+      var code = _body['code'];
+      if (code == 200) {
+        var _data = _body['data'];
+        AppManager.ossConfig_cunzheng =
+            AppManager.ossConfig_cunzheng ?? new OssConfig();
+        AppManager.ossConfig_cunzheng!.endPoint = _data['endPoint'];
+        AppManager.ossConfig_cunzheng!.bucketName = _data['bucketName'];
+        AppManager.ossConfig_cunzheng!.accessKeyId = _data['accessKeyId'];
+        AppManager.ossConfig_cunzheng!.accessKeySecret =
+            _data['accessKeySecret'];
+        AppManager.ossConfig_cunzheng!.securityToken = _data['securityToken'];
+        AppManager.ossConfig_cunzheng!.expiration = _data['expiration'];
+        AppManager.ossConfig_cunzheng!.expire = _data['expire'];
+        AppManager.ossConfig_cunzheng!.directory = _data['directory'];
+
+        logI('this.accessKey: ${AppManager.ossConfig_cunzheng!.accessKeyId}');
+        logI(
+            'this.accessSecret: ${AppManager.ossConfig_cunzheng!.accessKeySecret}');
+        logI(
+            'this.secureToken: ${AppManager.ossConfig_cunzheng!.securityToken}');
+        logI('this.expire: ${AppManager.ossConfig_cunzheng!.expiration}');
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      logE(e);
+    }
+
+    return f;
+  }
+
+  /// @nodoc  存证区 oss 上传 到 订单的位置
+  /// [fileFullPath] 本地文件,完整路径
   /// [onDone] 上传成功回调
   /// [onFail] 上传失败回调
   /// [onProgress] 上传进度
-  static Future uploadOssOrderFile(String file, void onDone(String key),
-      void onFail(String errmsg), void onProgress(int percent)) async {
-    return appManager.uploadAly('orders', file, onDone, onFail, onProgress);
+  static Future uploadOssOrderFile(String fileFullPath) async {
+    return await appManager.uploadCunzheng(fileFullPath);
   }
 
-  /// @nodoc oss 上传
-  /// [file] 本地文件
+  /// @nodoc 用户资料区 oss 上传
+  /// [fileFullPath] 本地文件,完整路径
   /// [moduleName] 模块名称,字母s结尾(msg除外)
   /// [onDone] 上传成功回调
   /// [onFail] 上传失败回调
   /// [onProgress] 上传进度
   static Future uploadOssFile(
-      String file,
+      String fileFullPath,
       String moduleName,
       void onDone(String key),
       void onFail(String errmsg),
       void onProgress(int percent)) async {
-    return appManager.uploadAly(moduleName, file, onDone, onFail, onProgress);
+    return appManager.uploadAly(
+        moduleName, fileFullPath, onDone, onFail, onProgress);
   }
-
-  /// @nodoc oss 上传 到 消息的位置
-  /// [file] 本地文件
-  /// [onDone] 上传成功回调
-  /// [onFail] 上传失败回调
-  /// [onProgress] 上传进度
-  static Future uploadOssMsgFile(String file, void onDone(String key),
-      void onFail(String errmsg), void onProgress(int percent)) async {
-    return appManager.uploadAly('msg', file, onDone, onFail, onProgress);
-  }
-
-  // /// @nodoc oss 上传 到 商品的位置
-  // /// [file] 本地文件
-  // /// [onDone] 上传成功回调
-  // /// [onFail] 上传失败回调
-  // /// [onProgress] 上传进度
-  // static Future uploadOssProductFile(String file, void onDone(String key),
-  //     void onFail(String errmsg), void onProgress(int percent)) async {
-  //   return appManager.uploadAly('products', file, onDone, onFail, onProgress);
-  // }
 
   /// @nodoc 关注商户
   static Future watchingStore(String storeUsername) async {
@@ -811,91 +831,4 @@ class UserMod {
       logD('UserMod.submitReport end.');
     }
   }
-
-  /// 商户生成Rsa公私钥对，只是当服务端返回的公钥为空时生成
-  static RsaKeyPairModel generateRsaKeyPair() {
-    var pair = DH.Curve.generateKeyPair();
-
-    String privKey = Hex.encode(pair.privateKey.serialize());
-    String pubKey = Hex.encode(pair.publicKey.serialize());
-
-    logD('pubKey: $pubKey');
-    logD('privKey: $privKey');
-
-    return RsaKeyPairModel(
-      privateKey: privKey,
-      publicKey: pubKey,
-    );
-  }
-
-  /// 商户上传Rsa公钥
-  static Future uploadRsaPublickey(String publicKey) async {
-    Completer _completer = new Completer.sync();
-    Future _c = _completer.future;
-
-    try {
-      var _map = {'public_key': publicKey};
-
-      var _body = await HttpUtils.post(HttpApi.uploadPublickey, data: _map);
-      // logD('_body: ${_body}');
-      var errmsg = _body['msg'];
-      if (_body['code'] == 200) {
-        // var _data = _body['data'];
-        // logD('商户上传Rsa公钥成功');
-        _completer.complete('商户上传Rsa公钥成功');
-      } else {
-        logE('商户上传Rsa公钥 error, msg: $errmsg');
-        _completer.completeError('商户上传Rsa公钥出错');
-      }
-    } catch (e) {
-      logE(e);
-      return new Future.error('接口出错');
-    }
-
-    return _c;
-  }
-
-  /// 买家获取指定商户的公钥,用于图片附件的加密
-  static Future getRsaPublickey(String businessUsername) async {
-    Completer _completer = new Completer.sync();
-    Future f = _completer.future;
-
-    try {
-      var _body = await HttpUtils.get(HttpApi.rsaPublickey+ '/' + businessUsername);
-      logD('getRsaPublickey _body: $_body');
-      if (_body['code'] == 200) {
-        _completer.complete(_body['data']);
-      } else {
-        logE("买家获取商户的公钥出错, ${_body['code']} , msg ${_body['msg']}");
-        return new Future.error('买家获取商户的公钥出错, 错误信息:  ${_body['msg']}');
-      }
-    } catch (e) {
-      logD(e);
-      _completer.completeError('买家获取商户的公钥失败');
-    }
-
-    return f;
-  }
-
-/*
-  /// 商户专用方法，上报默认opk
-  static Future postDefaultOpk(DefaultOpkData defaultOpkData) async {
-    try {
-      var _body =
-          await HttpUtils.post(HttpApi.defaultopk, data: defaultOpkData);
-      logD('_body: $_body');
-
-      var code = _body['code'];
-      if (code == 200) {
-        return true;
-      } else {
-        return false;
-      }
-    } catch (e) {
-      logE(e);
-    } finally {
-      logD('AuthMod.postDefaultOpk end.');
-    }
-  }
-  */
 }
