@@ -145,57 +145,61 @@ class App {
   ///TODO 存证订单？
   static _initAllLotteryProvider() {
     LotteryData.instance.fucaiProducts.forEach((element) {
-      switch (LotteryTypeEnum.values[element.id!]) {
-        case LotteryTypeEnum.ssq:
-          {
-            Provider.of<ShuangseqiuProvider>(App.appContext!, listen: false)
-                .setup(element.id!);
-          }
-          break;
-        case LotteryTypeEnum.fc3d:
-          {
-            Provider.of<Fc3dProvider>(App.appContext!, listen: false)
-                .setup(element.id!);
-          }
-          break;
-        case LotteryTypeEnum.qlc:
-          {
-            Provider.of<QlcProvider>(App.appContext!, listen: false)
-                .setup(element.id!);
-          }
-          break;
-        default:
+      if (LotteryTypeEnum.values.length >= element.id!) {
+        switch (LotteryTypeEnum.values[element.id!]) {
+          case LotteryTypeEnum.ssq:
+            {
+              Provider.of<ShuangseqiuProvider>(App.appContext!, listen: false)
+                  .setup(element.id!);
+            }
+            break;
+          case LotteryTypeEnum.fc3d:
+            {
+              Provider.of<Fc3dProvider>(App.appContext!, listen: false)
+                  .setup(element.id!);
+            }
+            break;
+          case LotteryTypeEnum.qlc:
+            {
+              Provider.of<QlcProvider>(App.appContext!, listen: false)
+                  .setup(element.id!);
+            }
+            break;
+          default:
+        }
       }
     });
     LotteryData.instance.ticaiProducts.forEach((element) {
-      switch (LotteryTypeEnum.values[element.id!]) {
-        case LotteryTypeEnum.dlt:
-          {
-            Provider.of<DltProvider>(App.appContext!, listen: false)
-                .setup(element.id!);
-          }
-          break;
-        case LotteryTypeEnum.pl3:
-          {
-            Provider.of<Pl3Provider>(App.appContext!, listen: false)
-                .setup(element.id!);
-          }
-          break;
-        case LotteryTypeEnum.pl5:
-          {
-            Provider.of<Pl5Provider>(App.appContext!, listen: false)
-                .setup(element.id!);
-          }
-          break;
+      if (LotteryTypeEnum.values.length >= element.id!) {
+        switch (LotteryTypeEnum.values[element.id!]) {
+          case LotteryTypeEnum.dlt:
+            {
+              Provider.of<DltProvider>(App.appContext!, listen: false)
+                  .setup(element.id!);
+            }
+            break;
+          case LotteryTypeEnum.pl3:
+            {
+              Provider.of<Pl3Provider>(App.appContext!, listen: false)
+                  .setup(element.id!);
+            }
+            break;
+          case LotteryTypeEnum.pl5:
+            {
+              Provider.of<Pl5Provider>(App.appContext!, listen: false)
+                  .setup(element.id!);
+            }
+            break;
 
-        case LotteryTypeEnum.qxc:
-          {
-            Provider.of<QxcProvider>(App.appContext!, listen: false)
-                .setup(element.id!);
-          }
-          break;
+          case LotteryTypeEnum.qxc:
+            {
+              Provider.of<QxcProvider>(App.appContext!, listen: false)
+                  .setup(element.id!);
+            }
+            break;
 
-        default:
+          default:
+        }
       }
     });
 

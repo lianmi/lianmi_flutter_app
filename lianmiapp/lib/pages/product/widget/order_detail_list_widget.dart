@@ -35,6 +35,8 @@ class OrderDetailListWidget extends StatelessWidget {
 
   Widget _listWidget() {
     if (selectedNums.length == 0) return SizedBox();
+    if (LotteryTypeEnum.values.length < selectedNums.first.productId)
+      return SizedBox();
     switch (LotteryTypeEnum.values[selectedNums.first.productId]) {
       case LotteryTypeEnum.ssq:
         {

@@ -34,6 +34,8 @@ class SelectedListWidget extends StatelessWidget {
   }
 
   Widget _listWidget() {
+    if (LotteryTypeEnum.values.length < selectedNums.first.productId)
+      return SizedBox();
     switch (LotteryTypeEnum.values[selectedNums.first.productId]) {
       case LotteryTypeEnum.ssq:
         {

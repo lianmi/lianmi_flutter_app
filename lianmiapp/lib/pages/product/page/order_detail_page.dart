@@ -168,7 +168,6 @@ class _OrderDetailPageState extends State<OrderDetailPage>
             children: [
               _ticketCodeItem(),
               _descWidget(),
-              //TODO 暂时屏蔽
               OrderDetailListWidget(_selectedNums),
               Gaps.vGap20,
               _commonItem('商户名称', '${widget.order.shopName}'),
