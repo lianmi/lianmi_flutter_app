@@ -1,7 +1,6 @@
 import 'package:lianmiapp/header/common_header.dart';
 import 'package:lianmiapp/pages/product/model/product_model.dart';
 import 'package:lianmiapp/widgets/load_image.dart';
-import '../models/product_list_model.dart';
 
 class StoreProductList extends StatelessWidget {
   final List<ProductModel> productList;

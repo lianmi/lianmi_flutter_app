@@ -116,10 +116,11 @@ class StandartPageState extends State<StandartPage>
   }
 
   void _requestStoreInfo() {
-    HttpUtils.get(HttpApi.storeInfo + '/${widget.businessUsername}')
-        .then((val) {
-      _storeInfo = StoreInfo.fromMap(val);
-    }).catchError((err) {});
+    UserMod.getStoreInfoFromServer(widget.businessUsername).then((val) {
+      _storeInfo = val;
+    }).catchError((err) {
+      logE(err);
+    });
   }
 
   Widget _bottomWidget() {

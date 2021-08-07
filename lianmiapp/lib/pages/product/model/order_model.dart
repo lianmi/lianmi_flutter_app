@@ -21,6 +21,7 @@ class OrderModel {
   String? orderImageUrl; //产品图片
   String? productID; //产品id
   String? productName; //产品名称
+  int? productType; //商品类型 1-福彩 2-体彩  3-存证
   int? loterryType; //通用商品类型，1-7是彩票类，8-票据存证
   String? orderID; //订单id
   List<String>? straws; //复式选号
@@ -50,6 +51,7 @@ class OrderModel {
     this.orderImageUrl,
     this.productID,
     this.productName,
+    this.productType,
     this.loterryType,
     this.orderID,
     this.straws,
@@ -77,6 +79,7 @@ class OrderModel {
     orderImageUrl = json['orderImageUrl'];
     productID = json['productID'];
     productName = json['productName'];
+    productType = json['productType'];
     loterryType = json['loterryType'];
     orderID = json['orderID'];
     if (json['straws'] != null) {
@@ -106,6 +109,7 @@ class OrderModel {
     businessUsername = orderInfoData.storeUsername;
 
     productID = orderInfoData.productId;
+    productType = orderInfoData.productType;
     orderID = orderInfoData.orderId;
     cost = orderInfoData.totalAmount == null
         ? 0
@@ -277,6 +281,7 @@ class OrderModel {
     data['shopName'] = this.shopName;
     data['orderImageUrl'] = this.orderImageUrl;
     data['productID'] = this.productID;
+    data['productType'] = this.productType;
     data['productName'] = this.productName;
     data['loterryType'] = this.loterryType; //通用商品类型，1-7是彩票类，8-票据存证
     data['orderID'] = this.orderID;
@@ -315,7 +320,7 @@ class OrderModel {
       return '${productName}, 数量: ${count}, 倍数: ${multiple}';
     }
     return '${productName}';
-    
+
     /*
     // 如果用户手工输入了订单内容
     if (this.content != null && this.content != '') {

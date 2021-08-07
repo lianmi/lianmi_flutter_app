@@ -166,9 +166,11 @@ class _SelectNumPageState extends State<SelectNumPage> {
   }
 
   void _requestStoreInfo() {
-    HttpUtils.get(HttpApi.storeInfo + '/${widget.businessId}').then((val) {
-      _storeInfo = StoreInfo.fromMap(val);
-    }).catchError((err) {});
+    UserMod.getStoreInfoFromServer(widget.businessId).then((val) {
+      _storeInfo = val;
+    }).catchError((err) {
+      logE(err);
+    });
   }
 
   void _calculateCount() {

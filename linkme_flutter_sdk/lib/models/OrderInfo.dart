@@ -6,6 +6,7 @@ class OrderInfoData {
     this.orderTime,
     this.ticketCode,
     this.productId,
+    this.productType,
     this.body,
     this.buyerUsername,
     this.storeUsername,
@@ -29,6 +30,7 @@ class OrderInfoData {
   int? orderTime; //订单时间
   int? ticketCode; //出票码
   String? productId; //商品id
+  int? productType; //商品类型
   String? body; //订单选号内容
   String? buyerUsername; //买家id
   String? storeUsername; //商户id
@@ -59,6 +61,7 @@ class OrderInfoData {
         orderTime: json["order_time"],
         ticketCode: json["ticket_code"],
         productId: json["product_id"],
+        productType: json["product_type"],
         body: json["body"],
         buyerUsername: json["buyer_username"],
         storeUsername: json["store_username"],
@@ -83,6 +86,7 @@ class OrderInfoData {
         "order_time": orderTime,
         "ticket_code": ticketCode,
         "product_id": productId,
+        "product_type": productType,
         "body": body,
         "buyer_username": buyerUsername,
         "store_username": storeUsername,

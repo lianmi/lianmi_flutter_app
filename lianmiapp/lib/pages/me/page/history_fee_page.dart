@@ -6,7 +6,7 @@ import 'package:lianmiapp/widgets/my_refresh_widget.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
 import 'package:lianmiapp/header/common_header.dart';
 
-const kHistoryFeeLoadLimit = 20;
+const kHistoryFeeLoadLimit = 100;
 
 class HistoryFeePage extends StatefulWidget {
   const HistoryFeePage({Key? key}) : super(key: key);
@@ -16,7 +16,6 @@ class HistoryFeePage extends StatefulWidget {
 }
 
 class _HistoryFeePageState extends State<HistoryFeePage> {
-
   MyRefreshController _refreshController = MyRefreshController();
 
   ScrollController _scrollController = ScrollController();
@@ -82,15 +81,13 @@ class _HistoryFeePageState extends State<HistoryFeePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CommonText(
-              '商店名称:${model.branchName}'
-            ),
+            CommonText('商店名称:${model.branchName}'),
             CommonText(
               '订单号:${model.orderId}',
               maxLines: 1,
             ),
             CommonText(
-              '费用:${MathUtils.getTargetTextFromDouble(model.fee!/100)}元',
+              '费用:${MathUtils.getTargetTextFromDouble(model.fee! / 100)}元',
               maxLines: 1,
             ),
             CommonText(
@@ -105,28 +102,30 @@ class _HistoryFeePageState extends State<HistoryFeePage> {
 
   _onRefresh() {
     _page = 1;
-    WalletMod.getSpendings(0, 0, page: _page, limit: kHistoryFeeLoadLimit).then((value) {
+    WalletMod.getSpendings(0, 0, page: _page, limit: kHistoryFeeLoadLimit)
+        .then((value) {
       _refreshController.finishRefresh();
-      _refreshController.finishLoad(noMore: value.length < kHistoryFeeLoadLimit);
+      _refreshController.finishLoad(
+          noMore: value.length < kHistoryFeeLoadLimit);
       _list.clear();
       for (var item in value) {
         _list.add(FeeHistoryModel.fromJson(item));
       }
-      setState(() {
-      });
+      setState(() {});
     });
   }
 
   _loadMore() {
-    _page ++;
-    WalletMod.getSpendings(0, 0, page: _page, limit: kHistoryFeeLoadLimit).then((value) {
+    _page++;
+    WalletMod.getSpendings(0, 0, page: _page, limit: kHistoryFeeLoadLimit)
+        .then((value) {
       _refreshController.finishRefresh();
-      _refreshController.finishLoad(noMore: value.length < kHistoryFeeLoadLimit);
+      _refreshController.finishLoad(
+          noMore: value.length < kHistoryFeeLoadLimit);
       for (var item in value) {
         _list.add(FeeHistoryModel.fromJson(item));
       }
-      setState(() {
-      });
+      setState(() {});
     });
   }
 }

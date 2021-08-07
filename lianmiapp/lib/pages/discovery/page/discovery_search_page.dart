@@ -32,7 +32,7 @@ class _DiscoverySearchPageState extends State<DiscoverySearchPage> {
   @override
   void initState() {
     super.initState();
-    _requestTypes();
+    // _requestTypes();
   }
 
   @override
@@ -118,7 +118,7 @@ class _DiscoverySearchPageState extends State<DiscoverySearchPage> {
       }
       _totalPage = val['totalPage'] == null ? 0 : val['totalPage'];
       // logD("totalPage ${_totalPage}");
-      
+
       _refreshController.finishLoad(noMore: _totalPage <= _page);
       if (val['stores'] != null) {
         _storeList.addAll(val); //lishijia

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:lianmiapp/header/common_header.dart';
 import 'package:lianmiapp/pages/legalattest/page/hetongorder_detail_page.dart';
 import 'package:lianmiapp/pages/product/model/order_model.dart';
+import 'package:lianmiapp/pages/product/model/product_model.dart';
 import 'package:lianmiapp/pages/product/page/order_detail_page.dart';
+import 'package:lianmiapp/pages/product/utils/lottery_data.dart';
 import 'package:lianmiapp/res/view_standard.dart';
 import 'package:lianmiapp/util/date_time_utils.dart';
 import 'package:lianmiapp/widgets/load_image.dart';
@@ -19,10 +21,20 @@ class OrderListItem extends StatefulWidget {
 
 class _OrderListItemState extends State<OrderListItem> {
   late OrderModel order;
+  ProductModel? _productInfo;
 
   @override
   void initState() {
     super.initState();
+    // product = getProduct();
+  }
+
+  @override
+  void didChangeDependencies() {
+    WidgetsBinding.instance!.addPostFrameCallback((tim) {
+      _productInfo = LotteryData.instance.getProduct(order.loterryType!);
+    });
+    super.didChangeDependencies();
   }
 
   @override
@@ -31,12 +43,16 @@ class _OrderListItemState extends State<OrderListItem> {
     return InkWell(
       onTap: () {
         logI('order.loterryType: ${order.loterryType}');
+        logI('order.productType: ${order.productType}');
+        
         //TODO  判断order的商品类型，然后跳转到相应的下单页面
-        if (order.loterryType! <= 7) {
+
+        if (order.productType == 1 || order.productType == 2) {
+          logW('跳转到彩票类的订单详情页面');
           AppNavigator.pushResult(context, OrderDetailPage(order), (result) {});
         } else {
           //除了彩票类的所有存证
-          logI('除了彩票类的所有存证的订单详情页面');
+          logW('除了彩票类的所有存证的订单详情页面');
           AppNavigator.pushResult(
               context, HetongOrderDetailPage(order), (result) {});
         }

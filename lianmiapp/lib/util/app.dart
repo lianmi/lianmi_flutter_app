@@ -115,16 +115,13 @@ class App {
 
   //获取所有通用商品 -lishijia
   static _loadAllProducts() {
-    HttpUtils.get(HttpApi.generalproducts).then((val) {
+    OrderMod.getGeneralProducts().then((val) {
       logD('获取所有通用商品:$val');
 
       List<ProductModel> list = ProductModel.modelListFromJson(val);
       List<ProductModel> fucaiProducts = [];
       List<ProductModel> ticaiProducts = [];
       List<ProductModel> legalAttestProducts = [];
-
-      //TODO 继续增加各种通用智能合约
-
       list.forEach((element) {
         if (element.productType == 1) {
           fucaiProducts.add(element);

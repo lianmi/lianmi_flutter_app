@@ -4,7 +4,7 @@ import 'package:lianmiapp/widgets/my_refresh_widget.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
 import 'package:lianmiapp/header/common_header.dart';
 
-const kHistoryNoticeLoadLimit = 20;
+const kHistoryNoticeLoadLimit = 100;
 
 class HistoryNoticePage extends StatefulWidget {
   const HistoryNoticePage({Key? key}) : super(key: key);

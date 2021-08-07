@@ -133,15 +133,18 @@ class _LotteryPayPageState extends State<LotteryPayPage> {
       widget.order.toAttach(0), //0表示彩票类，1-存证类
       payMode: this.payMode, //1-微信支付，2-支付宝
     ).then((value) {
-      // logD(value);
       HubView.dismiss();
       logD('下单成功，等待商户接单, cost: ${widget.order.cost!} 订单ID: $value');
       NotificationCenter.instance
           .postNotification(NotificationDefine.orderUpdate);
       Navigator.of(context)
           .popUntil(ModalRoute.withName(DiscoveryRouter.storePage));
-      // AppNavigator.push(context, OrderPage());
-      // NavigatorUtils.push(App.context!, OrderRouter.orderPage);
+
+      // AppNavigator.push(context, OrderPage()); 不行
+      // NavigatorUtils.push(App.context!, OrderRouter.orderPage); 不行
+      // Future.delayed(Duration(milliseconds: 1000)).then((value) {
+      //   AppNavigator.push(context, OrderPage()); //不行
+      // });
     }).catchError((err) {
       HubView.dismiss();
       HubView.showToastAfterLoadingHubDismiss(err);

@@ -653,4 +653,31 @@ class OrderMod {
 
     return f;
   }
+
+  ///获取获取所有通用商品
+  static Future getGeneralProducts() async {
+    Completer _completer = new Completer.sync();
+    Future f = _completer.future;
+
+    ///提交数据
+    try {
+      var _body = await HttpUtils.get(HttpApi.generalproducts);
+      // logD('_body: $_body');
+      logD('getGeneralProducts: $_body');
+
+      var code = _body['code'];
+      if (code == 200) {
+        _completer.complete(_body['data']);
+      } else {
+        logE("获取所有通用商品 出错 , ${_body['code']} , msg ${_body['msg']}");
+        _completer.completeError('获取所有通用商品 出错');
+      }
+    } catch (e) {
+      logE(e);
+      _completer.completeError('错误');
+      return;
+    }
+
+    return f;
+  }
 }

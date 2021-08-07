@@ -130,13 +130,12 @@ class _StorePageState extends State<StorePage> {
 
   void _requestStoreInfo() {
     HubView.showLoading();
-    HttpUtils.get(HttpApi.storeInfo + '/${widget.businessUsername}')
-        .then((val) {
+    UserMod.getStoreInfoFromServer(widget.businessUsername).then((val) {
+      _storeInfo = val;
       HubView.dismiss();
-      _storeInfo = StoreInfo.fromMap(val);
-      // logD('_requestStoreInfo, _storeInfo: ${_storeInfo!.toJson()}');
       setState(() {});
     }).catchError((err) {
+      logE(err);
       HubView.dismiss();
     });
   }

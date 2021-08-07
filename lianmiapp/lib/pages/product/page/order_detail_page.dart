@@ -1257,11 +1257,11 @@ class _OrderDetailPageState extends State<OrderDetailPage>
     OrderMod.getOrder(widget.order.orderID!).then((value) async {
       List<OrderModel> list =
           await OrderModel.modelListFromServerDatas([value]);
-
+      logI('_reloadOrder');
       setState(() {
         widget.order = list.first;
       });
-      logI('_reloadOrder: order: ${widget.order.toJson()}');
+      // logI('_reloadOrder: order: ${widget.order.toJson()}');
       _fee = value.fee; //订单会返回服务费，以分为单位
       _prize = value.prize; //中奖金额，以分为单位
       logI('中奖金额，以分为单位: _prize: ${_prize}， order.prize: ${widget.order.prize}');

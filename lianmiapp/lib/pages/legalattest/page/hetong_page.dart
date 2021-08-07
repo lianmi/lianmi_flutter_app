@@ -145,10 +145,11 @@ class _HetongPageState extends State<HetongPage> {
   }
 
   void _requestStoreInfo() {
-    HttpUtils.get(HttpApi.storeInfo + '/${widget.businessUsername}')
-        .then((val) {
-      _storeInfo = StoreInfo.fromMap(val);
-    }).catchError((err) {});
+    UserMod.getStoreInfoFromServer(widget.businessUsername).then((val) {
+      _storeInfo = val;
+    }).catchError((err) {
+      logE(err);
+    });
   }
 
   @override

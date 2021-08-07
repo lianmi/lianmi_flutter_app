@@ -74,6 +74,14 @@ enum LotteryTypeEnum {
 
   ///继承收养遗嘱赠与
   jichengshouyangyizhuzengyu,
+
+  //足彩
+  zucai,
+
+  //篮球
+  lanqiu,
+
+  kuaile8,
 }
 
 class LotteryData {
