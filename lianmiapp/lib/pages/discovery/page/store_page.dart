@@ -27,9 +27,9 @@ class _StorePageState extends State<StorePage> {
   GlobalKey<ClassicalFooterWidgetState> _footerkey =
       new GlobalKey<ClassicalFooterWidgetState>();
 
-  int _page = 1;
+  // int _page = 1;
 
-  int _totalPage = 1;
+  // int _totalPage = 1;
 
   // List<ProductListModel> _productList = [];
 
@@ -73,6 +73,7 @@ class _StorePageState extends State<StorePage> {
                       model.productPrice!, widget.businessUsername);
                   break;
                 }
+              default:
             }
           },
         ));
@@ -133,7 +134,7 @@ class _StorePageState extends State<StorePage> {
         .then((val) {
       HubView.dismiss();
       _storeInfo = StoreInfo.fromMap(val);
-      logD('_requestStoreInfo, _storeInfo: ${_storeInfo!.toJson()}');
+      // logD('_requestStoreInfo, _storeInfo: ${_storeInfo!.toJson()}');
       setState(() {});
     }).catchError((err) {
       HubView.dismiss();

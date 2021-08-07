@@ -14,6 +14,7 @@ import 'package:lianmiapp/pages/product/provider/pl5_provider.dart';
 import 'package:lianmiapp/pages/product/provider/qlc_provider.dart';
 import 'package:lianmiapp/pages/product/provider/qxc_provider.dart';
 import 'package:lianmiapp/pages/product/provider/shuang_se_qiu_provider.dart';
+import 'package:lianmiapp/pages/product/provider/standart_provider.dart';
 import 'package:lianmiapp/pages/product/utils/lottery_data.dart';
 import 'package:lianmiapp/provider/location_provider.dart';
 import 'package:lianmiapp/provider/me/storeInfo_view_model.dart';
@@ -96,7 +97,7 @@ class App {
       userIMDir.createSync();
       // print('创建用户IM目录成功:' + userDir.path);
     }
-    logD('初始化IM目录成功:' + userDir.path);
+    // logD('初始化IM目录成功:' + userDir.path);
     userImagesPath = userImgDir.path;
     userIMPath = userIMDir.path;
     Provider.of<UserInfoViewModel>(appContext!, listen: false).updateUserInfo();
@@ -189,15 +190,20 @@ class App {
                 .setup(element.id!);
           }
           break;
+
         case LotteryTypeEnum.qxc:
           {
             Provider.of<QxcProvider>(App.appContext!, listen: false)
                 .setup(element.id!);
           }
           break;
+
         default:
       }
     });
+
+    //标准表单是0， 无选号器
+    Provider.of<StandartProvider>(App.appContext!, listen: false).setup(0);
   }
 
   ///处理APP生命周期

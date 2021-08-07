@@ -83,14 +83,14 @@ class OrderDetailStatusWidget extends StatelessWidget {
       case OrderStateEnum.OS_Confirm:
         {
           if (App.isShop) {
-            topWidget = _item(title: '此用户已确认存证真实', isSuccess: true);
+            topWidget = _item(title: '用户已确认存证真实', isSuccess: true);
             if (loterryType >= 1 && loterryType <= 7) {
               bottomWidget = _item(title: '等待开奖结果', isSuccess: true);
             } else {
               bottomWidget = _item(title: '业务结束', isSuccess: true);
             }
           } else {
-            topWidget = _item(title: '您已核实存证', isSuccess: true);
+            topWidget = _item(title: '已核实存证', isSuccess: true);
             if (loterryType >= 1 && loterryType <= 7) {
               bottomWidget = _item(title: '等待开奖结果', isSuccess: true);
             } else {
@@ -103,7 +103,7 @@ class OrderDetailStatusWidget extends StatelessWidget {
         {
           if (App.isShop) {
             topWidget = _item(title: '此用户下单', isSuccess: true);
-            bottomWidget = _item(title: '您已拒绝接单，此单已作废', isSuccess: true);
+            bottomWidget = _item(title: '已拒绝接单，此单已作废', isSuccess: true);
           } else {
             topWidget = _item(title: '订单已发送给到商户', isSuccess: true);
             bottomWidget = _item(title: '商户拒绝接单，此单已作废', isSuccess: true);
@@ -117,10 +117,10 @@ class OrderDetailStatusWidget extends StatelessWidget {
                 ? '已开奖，此票未中奖'
                 : '已开奖，此票中奖金额${prize.toStringAsFixed(0)}元';
             if (App.isShop) {
-              topWidget = _item(title: '此用户已确认存证真实', isSuccess: true);
+              topWidget = _item(title: '已通知用户中奖', isSuccess: true);
               bottomWidget = _item(title: prizeText, isSuccess: true);
             } else {
-              topWidget = _item(title: '您已核实存证', isSuccess: true);
+              topWidget = _item(title: '等待商户付款', isSuccess: true);
               bottomWidget = _item(title: prizeText, isSuccess: true);
             }
           }
@@ -136,7 +136,7 @@ class OrderDetailStatusWidget extends StatelessWidget {
               topWidget = _item(title: '此用户已确认', isSuccess: true);
               bottomWidget = _item(title: prizeText, isSuccess: true);
             } else {
-              topWidget = _item(title: '您已兑奖', isSuccess: true);
+              topWidget = _item(title: '已兑奖', isSuccess: true);
               bottomWidget = _item(title: prizeText, isSuccess: true);
             }
           }

@@ -36,7 +36,7 @@ class Utils {
   static Widget getWidget(
       BuildContext context, String url, void Function() callback,
       {String? originPath}) {
-    logI('getWidget: $url');
+    // logI('getWidget: $url');
 
     if (url == 'pdf') {
       return InkWell(

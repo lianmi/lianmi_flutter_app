@@ -1,5 +1,9 @@
+import 'dart:convert';
+
+import 'package:linkme_flutter_sdk/manager/LogManager.dart';
+
 class ProductModel {
-  int? id; //对应通用商品id枚举
+  int? id; //对应通用商品id 枚举
   String? productId;
   String? productName;
   int? productType;
@@ -67,6 +71,8 @@ class ProductModel {
     // updatedAt = json['updated_at'];
   }
 
+  String toString() => json.encode(toJson());
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['ID'] = this.id;
@@ -95,6 +101,7 @@ class ProductModel {
     if (json != null) {
       json.forEach((v) {
         results.add(new ProductModel.fromJson(v));
+        // logI('ProductModel数据： $v');
       });
     }
     return results;

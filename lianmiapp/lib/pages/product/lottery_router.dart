@@ -5,7 +5,9 @@ import 'package:lianmiapp/pages/product/page/pl3_page.dart';
 import 'package:lianmiapp/pages/product/page/pl5_page.dart';
 import 'package:lianmiapp/pages/product/page/qlc_page.dart';
 import 'package:lianmiapp/pages/product/page/qxc_page.dart';
+import 'package:lianmiapp/pages/product/page/standart_page.dart';
 import 'package:lianmiapp/routers/i_router.dart';
+import 'package:linkme_flutter_sdk/manager/LogManager.dart';
 import 'page/shuangseqiu_page.dart';
 
 class LotteryRouter implements IRouterProvider {
@@ -16,12 +18,14 @@ class LotteryRouter implements IRouterProvider {
   static String pl3Page = '/lottery/pl3';
   static String pl5Page = '/lottery/pl5';
   static String qxcPage = '/lottery/qxc';
+  static String standartPage = '/lottery/standart'; //标准 lishjiia
 
   @override
   void initRouter(FluroRouter router) {
     router.define(shuangseqiuPage, handler: Handler(handlerFunc: (_, params) {
       final String? businessUsername = params['businessUsername']?.first;
       final int id = int.parse(params['id']!.first);
+      logW('LotteryRouter, id:$id');
       return ShuangseqiuPage(businessUsername!, id);
     }));
     router.define(dltPage, handler: Handler(handlerFunc: (_, params) {
@@ -53,6 +57,12 @@ class LotteryRouter implements IRouterProvider {
       final String businessUsername = params['businessUsername']!.first;
       final int id = int.parse(params['id']!.first);
       return QxcPage(businessUsername, id);
+    }));
+    router.define(standartPage, handler: Handler(handlerFunc: (_, params) {
+      final String businessUsername = params['businessUsername']!.first;
+      final int id = int.parse(params['id']!.first);
+      logW('LotteryRouter, id:$id');
+      return StandartPage(businessUsername, id);
     }));
   }
 }

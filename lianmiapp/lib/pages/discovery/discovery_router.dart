@@ -8,7 +8,6 @@ import 'page/store_page.dart';
 class DiscoveryRouter implements IRouterProvider {
   static String searchPage = '/discovery/search';
   static String storePage = '/discovery/store';
-  static String productDetailPage = '/discovery/productDetail';
 
   @override
   void initRouter(FluroRouter router) {
@@ -17,11 +16,6 @@ class DiscoveryRouter implements IRouterProvider {
     router.define(storePage, handler: Handler(handlerFunc: (_, params) {
       final String businessUsername = params['businessUsername']!.first;
       return StorePage(businessUsername);
-    }));
-    router.define(productDetailPage, handler: Handler(handlerFunc: (_, params) {
-      final String businessUsername = params['businessUsername']!.first;
-      final String productId = params['productId']!.first;
-      // return ProductDetailPage(businessUsername,productId);
     }));
   }
 }

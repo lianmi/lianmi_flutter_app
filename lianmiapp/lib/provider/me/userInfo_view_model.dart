@@ -28,7 +28,7 @@ class UserInfoViewModel extends ChangeNotifier {
 
   void updateProfile() {
     UserMod.getMyProfile().then((value) {
-      logI(value);
+      // logI(value);
       // _user = _convertUserInfo(value);
       _user = value;
       notifyListeners();

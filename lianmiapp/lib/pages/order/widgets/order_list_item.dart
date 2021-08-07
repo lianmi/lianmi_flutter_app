@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lianmiapp/header/common_header.dart';
 import 'package:lianmiapp/pages/legalattest/page/hetongorder_detail_page.dart';
-// import 'package:lianmiapp/pages/legalattest/page/order_detail_page.dart';
 import 'package:lianmiapp/pages/product/model/order_model.dart';
 import 'package:lianmiapp/pages/product/page/order_detail_page.dart';
 import 'package:lianmiapp/res/view_standard.dart';
 import 'package:lianmiapp/util/date_time_utils.dart';
 import 'package:lianmiapp/widgets/load_image.dart';
-import 'package:lianmiapp/widgets/widget/button/common_button.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
 
 class OrderListItem extends StatefulWidget {
@@ -133,7 +131,7 @@ class _OrderListItemState extends State<OrderListItem> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       CommonText(
-                        order.orderShowName, //
+                        order.orderShowName,
                         fontSize: 16.px,
                         color: Color(0XFF2E2E33),
                       ),
@@ -149,9 +147,10 @@ class _OrderListItemState extends State<OrderListItem> {
                 ),
                 Gaps.vGap8,
                 CommonText(
-                  (widget.model.loterryType! <= 7)
-                      ? '${(amount).toStringAsFixed(2)}元 ${order.count}注${order.multiple}倍'
-                      : '${(amount).toStringAsFixed(2)}元',
+                  '${(amount).toStringAsFixed(2)}元',
+                  // (widget.model.loterryType! <= 7)
+                  //     ? '${(amount).toStringAsFixed(2)}元' //${order.count}注${order.multiple}倍
+                  //     : '${(amount).toStringAsFixed(2)}元',
                   fontSize: 14.px,
                   color: Color(0XFF666666),
                 ),

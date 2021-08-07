@@ -1,7 +1,10 @@
 import 'dart:io';
+import 'dart:convert';
 import 'package:lianmiapp/linkme/linkme_manager.dart';
 import 'package:lianmiapp/header/common_header.dart';
 import 'package:lianmiapp/notification/notification_center.dart';
+import 'package:lianmiapp/pages/legalattest/gallery/browserPhoto.dart';
+import 'package:lianmiapp/pages/legalattest/page/models.dart';
 import 'package:lianmiapp/pages/product/model/order_model.dart';
 import 'package:lianmiapp/pages/product/model/product_model.dart';
 import 'package:lianmiapp/pages/product/page/lottery_pay_page.dart';
@@ -12,18 +15,16 @@ import 'package:lianmiapp/pages/product/widget/order_detail_list_widget.dart';
 import 'package:lianmiapp/pages/me/events/qr_events.dart';
 import 'package:lianmiapp/pages/me/page/recharge_page.dart';
 import 'package:lianmiapp/pages/order/widgets/order_detail_status_widget.dart';
-import 'package:lianmiapp/pages/common/gallery_photo_view_wrapper.dart';
 import 'package:lianmiapp/util/date_time_utils.dart';
-import 'package:lianmiapp/widgets/load_image.dart';
 import 'package:lianmiapp/widgets/widget/button/common_button.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 import 'package:wechat_camera_picker/wechat_camera_picker.dart';
-
+import 'package:nine_grid_view/nine_grid_view.dart';
 import 'antchain_qr_page.dart';
 
 class OrderDetailPage extends StatefulWidget {
-  final OrderModel order;
+  OrderModel order;
 
   OrderDetailPage(this.order);
 
@@ -34,19 +35,15 @@ class OrderDetailPage extends StatefulWidget {
 class _OrderDetailPageState extends State<OrderDetailPage>
     with QrEvents
     implements LinkMeManagerOrderStatusListerner {
-  late OrderModel order;
-
   List _selectedNums = [];
+
+  List<String> _localUrls = []; //交互图片数组对应的本地完整路径
+  List<ImageBean> imageList = [];
 
   int _fee = 0; //以分为单位
   int _prize = 0; //中奖金额 以分为单位
 
-  String? _lotteryUrl;
-  // String? _imgUrl;
-
   String _qrcodeUrl = '';
-
-  int _payMode = 0;
 
   int _balance = 0;
 
@@ -54,23 +51,79 @@ class _OrderDetailPageState extends State<OrderDetailPage>
   void initState() {
     super.initState();
     LinkMeManager.instance.addOrderListener(this);
-    order = widget.order;
+    _reloadLocalPhotoUrls();
 
     _loadSelectNums();
-
     _loadImageIfDone(); //加载拍照图片
+  }
+
+  addTestData(String targetFileName) {
+    if (_localUrls.contains(targetFileName) == false) {
+      _localUrls.add(targetFileName);
+    } else {
+      logW('addTestData 图片已在数组内');
+    }
+  }
+
+  List<ImageBean> getTestData() {
+    List<ImageBean> list = [];
+    for (int i = 0; i < _localUrls.length; i++) {
+      String url = _localUrls[i];
+      if (url.split('.').last == 'pdf') {
+        list.add(ImageBean(
+          originPath: url,
+          middlePath: url,
+          thumbPath: 'pdf',
+          originalWidth: i == 0 ? 264 : null,
+          originalHeight: i == 0 ? 258 : null,
+          fileExtent: url.split('.').last,
+        ));
+      } else {
+        list.add(ImageBean(
+          originPath: url,
+          middlePath: url,
+          thumbPath: url,
+          originalWidth: i == 0 ? 264 : null,
+          originalHeight: i == 0 ? 258 : null,
+          fileExtent: url.split('.').last,
+        ));
+      }
+    }
+    return list;
+  }
+
+  _reloadLocalPhotoUrls() async {
+    if (widget.order.photos != null) {
+      _localUrls = [];
+
+      widget.order.photos!.forEach((fileUrl) async {
+        String? _localFile = await appManager.getOrderImages(fileUrl);
+        logI('_localFile: $_localFile');
+        addTestData(_localFile!);
+      });
+      //TODO 目的是等待上面处理完成
+      Future.delayed(Duration(milliseconds: 1000)).then((value) {
+        imageList = getTestData();
+        logI('_reloadLocalPhotoUrls :  ${imageList.length}');
+
+        imageList.forEach((bean) {
+          logI('_reloadLocalPhotoUrls, thumbPath : ${bean.thumbPath}');
+        });
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    ProductModel? product = LotteryData.instance.getProduct(order.loterryType!);
-    int count = order.count!;
-    int multiple = order.multiple!;
+    ProductModel? product =
+        LotteryData.instance.getProduct(widget.order.loterryType!);
+    int count = widget.order.count!;
+    int multiple = widget.order.multiple!;
     int price = product!.productPrice! * count * multiple; //总价
 
     //首次必须计算上链服务费
     if (_fee == 0) {
-      _calculateOrderPrice(order.cost!);
+      _calculateOrderPrice(widget.order.cost!);
     }
     String totalPrice = '';
 
@@ -81,17 +134,32 @@ class _OrderDetailPageState extends State<OrderDetailPage>
     }
 
     String payModeStr = '';
-    if (order.payMode == 1) {
+    if (widget.order.payMode == 1) {
       payModeStr = '微信';
     } else {
       payModeStr = '支付宝';
     }
 
-    // logD('status: ${order.status}');
+    imageList = getTestData();
+
+    // logI('build, _imageCount :  ${imageList.length}');
+    // imageList.forEach((bean) {
+    //   logI('build, thumbPath : ${bean.thumbPath}');
+    // });
 
     return Scaffold(
         appBar: MyCustomAppBar(
           centerTitle: '订单详情',
+          actions: [
+            widget.order.status != null
+                ? TextButton(
+                    onPressed: () {
+                      _showMedia(action: 1);
+                    },
+                    child: Text("+"),
+                  )
+                : SizedBox()
+          ],
         ),
         backgroundColor: Color(0XEEEEEEEE),
         body: SafeArea(
@@ -100,25 +168,23 @@ class _OrderDetailPageState extends State<OrderDetailPage>
             children: [
               _ticketCodeItem(),
               _descWidget(),
+              //TODO 暂时屏蔽
               OrderDetailListWidget(_selectedNums),
               Gaps.vGap20,
               _commonItem('商户名称', '${widget.order.shopName}'),
-              _commonItem(
-                  '详细说明',
-                  (widget.order.loterryType! <= 7)
-                      ? '${product.productName} ${count}注${multiple}倍'
-                      : '${product.productName}'),
+              _commonItem('总价', '${widget.order.cost!}元'),
+              _commonItem('商品', '${product.productName}'),
               _commonItem('总价', '${widget.order.cost!}元'),
 
               _feeWidget(_fee),
-              // _memberItem(),
-              // Gaps.vGap20,
               _commonItem('合计', '${totalPrice}元'),
               _commonItem('支付方式', '${payModeStr}'),
 
               _orderIDWidget(),
               _orderTimeArea(),
-              _imageArea(), //根据订单状态显示不同的图片
+              widget.order.status != null
+                  ? _photosArea()
+                  : SizedBox(), //双方图片交互区
               _statusArea(),
               _bottomArea()
             ],
@@ -210,33 +276,79 @@ class _OrderDetailPageState extends State<OrderDetailPage>
     );
   }
 
-  Widget _attachsItem(String title, String desc, {EdgeInsetsGeometry? margin}) {
+  //交互图片区
+  Widget _photosArea() {
     return Container(
-      margin: margin,
-      padding: EdgeInsets.only(left: 30.px, right: 30.px),
+      margin: EdgeInsets.only(top: 20.px),
+      // padding: EdgeInsets.fromLTRB(23.px, 0, 23.px, 16.px),
+      padding: EdgeInsets.fromLTRB(1.px, 0, 1.px, 1.px),
       width: double.infinity,
-      height: 48.px,
       color: Colors.white,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Column(
         children: [
-          CommonText(
-            title,
-            fontSize: 16.px,
-          ),
-          Gaps.hGap16,
-          Expanded(
-              child: Container(
-            alignment: Alignment.centerRight,
-            child: CommonText(
-              desc,
-              fontSize: 16.px,
-              color: Color(0XFF666666),
-              maxLines: 1,
-            ),
-          ))
+          _ninePhotosArea(context),
         ],
+      ),
+    );
+  }
+
+  Widget _ninePhotosArea(BuildContext context) {
+    return ListView.builder(
+        physics: BouncingScrollPhysics(),
+        itemCount: 1,
+        padding: EdgeInsets.all(0),
+        shrinkWrap: true,
+        itemBuilder: (BuildContext context, int index) {
+          return _buildItem(context, index);
+        });
+  }
+
+  Widget getBrowserWidget(
+      BuildContext context, String url, void Function() callback,
+      {String? originPath}) {
+    logI('getBrowserWidget: $url');
+
+    return InkWell(
+      child: Container(
+        width: double.infinity,
+        height: double.infinity,
+        alignment: Alignment.center,
+        child: Image.file(File(url), fit: BoxFit.cover),
+      ),
+      onTap: () {
+        logD('file hit!, url: $url');
+
+        AppNavigator.push(context, BrowserPhoto(url)).then((value) {
+          //TODO
+        });
+      },
+    );
+  }
+
+  Widget _buildItem(BuildContext context, int _index) {
+    int itemCount = _localUrls.length;
+
+    return Container(
+      decoration: BoxDecoration(
+          border: Border(
+              bottom: BorderSide(width: 0.33, color: Color(0xffe5e5e5)))),
+      padding: EdgeInsets.all(0),
+      child: NineGridView(
+        margin: EdgeInsets.all(12),
+        padding: EdgeInsets.all(5),
+        space: 5,
+        type: NineGridType.weChat,
+        color: Color(0XFFE5E5E5),
+        itemCount: itemCount,
+        itemBuilder: (BuildContext context, int index) {
+          ImageBean bean = imageList[index]; //图片数组
+
+          return getBrowserWidget(context, _localUrls[index], () {
+            logW('BrowserNineGridViewPage _buildItem callback');
+
+            setState(() {});
+          }, originPath: bean.originPath!); //如果pdf则用assets
+        },
       ),
     );
   }
@@ -268,125 +380,23 @@ class _OrderDetailPageState extends State<OrderDetailPage>
     }
   }
 
-  Widget _imageTabArea() {
-    if (order.status == OrderStateEnum.OS_Done ||
-        order.status == OrderStateEnum.OS_Confirm ||
-        order.status == OrderStateEnum.OS_UpChained ||
-        order.status == OrderStateEnum.OS_Prizeed ||
-        order.status == OrderStateEnum.OS_AcceptPrizeed) {
-      return Container(
-        width: double.infinity,
-        height: 50.px,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Expanded(
-              child: CommonButton(
-                text: '交互图片区',
-                fontSize: 16.px,
-                color: Colors.white,
-                textColor: Colours.app_main,
-                onTap: () {
-                  setState(() {});
-                },
-              ),
-            ),
-          ],
-        ),
-      );
-    } else if (order.status == OrderStateEnum.OS_Taked) {
-      return Container(
-        width: double.infinity,
-        height: 50.px,
-        alignment: Alignment.centerLeft,
-        child: CommonText(
-          '收款码',
-          fontSize: 16.px,
-        ),
-      );
-    } else {
-      return SizedBox();
-    }
-  }
-
-  //图片显示区
-  Widget _imageArea() {
-    if (order.status == OrderStateEnum.OS_Refuse) {
-      return SizedBox();
-    }
-    if (order.status == null || order.status == OrderStateEnum.OS_Prepare)
-      return Container(
-        margin: EdgeInsets.only(top: 20.px),
-        padding: EdgeInsets.fromLTRB(23.px, 0, 23.px, 16.px),
-        width: double.infinity,
-        color: Colors.white,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: Container(
-                height: 6,
-              ),
-            ),
-            Text(
-              '下单后,商户如果接单，将会发送付款码给买家，买家扫码支付后才出票',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: const Color(0xAA001133),
-              ),
-            )
-          ],
-        ),
-      );
-
-    return Container(
-      margin: EdgeInsets.only(top: 20.px),
-      padding: EdgeInsets.fromLTRB(23.px, 0, 23.px, 16.px),
-      width: double.infinity,
-      color: Colors.white,
-      child: Column(
-        children: [
-          _imageTabArea(),
-          InkWell(
-            onTap: () {
-              GalleryPhotoViewWrapperUtils.navigateToPhotoAblums(
-                  context, [_lotteryUrl!], 0);
-            },
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(8.px)),
-              child: Container(
-                width: double.infinity,
-                child: LoadImageWithHolder(
-                  _lotteryUrl == null ? 'assets/images/none.png' : _lotteryUrl,
-                  holderImg: ImageStandard.logo,
-                  width: double.infinity,
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
   Widget _statusArea() {
     return OrderDetailStatusWidget(
-        loterryType: order.loterryType ?? 0,
-        status: order.status ?? OrderStateEnum.OS_Undefined,
-        prize: order.prize ?? 0);
+        loterryType: widget.order.loterryType ?? 0,
+        status: widget.order.status ?? OrderStateEnum.OS_Undefined,
+        prize: widget.order.prize ?? 0);
   }
 
   Widget _bottomArea() {
     if (App.isShop) {
-      switch (order.status) {
+      switch (widget.order.status) {
         case OrderStateEnum.OS_Prepare:
           {
             return _shopTakeOrder();
           }
         case OrderStateEnum.OS_Taked:
           {
-            return _detailBottomButton('收付款码已经发出，请留意查收', onTap: () {});
+            return _detailBottomButton('请留意查收客户是否付款', onTap: () {});
           }
         case OrderStateEnum.OS_IsPayed:
           {
@@ -402,7 +412,7 @@ class _OrderDetailPageState extends State<OrderDetailPage>
           }
         case OrderStateEnum.OS_Prizeed: //商户发起兑奖动作,通知用户上传收款码
           {
-            if (order.prize! > 0) {
+            if (widget.order.prize! > 0) {
               return _detailBottomButton('等待用户发起收款', onTap: () {});
             } else {
               return _detailBottomButton('未中奖', onTap: () {});
@@ -411,8 +421,8 @@ class _OrderDetailPageState extends State<OrderDetailPage>
 
         case OrderStateEnum.OS_AcceptPrizeed: //商户收到用户上传的收款码
           {
-            if (order.prize! > 0) {
-              return _detailBottomButton('完成兑奖付款', onTap: () {
+            if (widget.order.prize! > 0) {
+              return _detailBottomButton('通知用户已付款', onTap: () {
                 _changeOrderAcceptPrizeed();
               });
             } else {
@@ -423,11 +433,16 @@ class _OrderDetailPageState extends State<OrderDetailPage>
           return SizedBox();
       }
     } else {
-      if (order.status == null) {
+      if (widget.order.status == null) {
         if (_balance >= _fee) {
           return _detailBottomButton('立即下单', topMargin: 40.px, onTap: () {
             AppNavigator.push(
-                context, LotteryPayPage(order: order, fee: _fee / 100));
+                context,
+                LotteryPayPage(
+                  order: widget.order,
+                  fee: _fee / 100,
+                  // isStandart: widget.isStandstart,
+                ));
           });
         } else {
           return _detailBottomButton('余额不足支付上链费，请先充值', topMargin: 40.px,
@@ -436,7 +451,7 @@ class _OrderDetailPageState extends State<OrderDetailPage>
           });
         }
       }
-      switch (order.status) {
+      switch (widget.order.status) {
         case OrderStateEnum.OS_Prepare: // 等待商户接单
           {
             return _detailBottomButton('等待商户接单', onTap: () {});
@@ -451,7 +466,7 @@ class _OrderDetailPageState extends State<OrderDetailPage>
           }
         case OrderStateEnum.OS_Taked: //商户接单后上传付款码,用户下载付款码到相册，并且扫码支付后点击此按钮(支付完成)
           {
-            return _detailBottomButton('我已经扫码支付', onTap: () {
+            return _detailBottomButton('通知商户已支付', onTap: () {
               _changeOrderPayed();
             });
           }
@@ -467,7 +482,8 @@ class _OrderDetailPageState extends State<OrderDetailPage>
           }
         case OrderStateEnum.OS_Confirm:
           {
-            if (order.loterryType! >= 1 && order.loterryType! <= 7) {
+            if (widget.order.loterryType! >= 1 &&
+                widget.order.loterryType! <= 7) {
               return _confirmOrder();
             } else {
               return _detailBottomButton('核实完毕', onTap: () {});
@@ -475,7 +491,7 @@ class _OrderDetailPageState extends State<OrderDetailPage>
           }
         case OrderStateEnum.OS_Prizeed: //收到商户发起兑奖动作,用户上传收款码
           {
-            if (order.prize! > 0) {
+            if (widget.order.prize! > 0) {
               return _changeAcceptPrizeedImage();
             } else {
               return _finishedOrderNotPrized();
@@ -483,7 +499,7 @@ class _OrderDetailPageState extends State<OrderDetailPage>
           }
         case OrderStateEnum.OS_AcceptPrizeed: //商户完成兑奖转账
           {
-            if (order.prize! > 0) {
+            if (widget.order.prize! > 0) {
               return _finishedOrder();
             } else {
               return _finishedOrderNotPrized();
@@ -541,29 +557,13 @@ class _OrderDetailPageState extends State<OrderDetailPage>
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: [
-          // Expanded(
-          //   child: CommonButton(
-          //     width: double.infinity,
-          //     height: double.infinity,
-          //     borderRadius: 4.px,
-          //     borderColor: Colours.app_main,
-          //     color: Colors.white,
-          //     text: '拒绝接单',
-          //     fontSize: 16.px,
-          //     textColor: Colors.black,
-          //     onTap: () {
-          //       _changeOrderRefuse();
-          //     },
-          //   ),
-          // ),
-          // SizedBox(width: 14.px),
           Expanded(
             child: CommonButton(
               width: double.infinity,
               height: double.infinity,
               borderRadius: 4.px,
               color: Colours.app_main,
-              text: '上传拍照',
+              text: '完成出票',
               fontSize: 16.px,
               textColor: Colors.white,
               boxShadow: BoxShadow(
@@ -614,7 +614,7 @@ class _OrderDetailPageState extends State<OrderDetailPage>
               height: double.infinity,
               borderRadius: 4.px,
               color: Colours.app_main,
-              text: '接单并上传收款码',
+              text: '接单',
               fontSize: 16.px,
               textColor: Colors.white,
               boxShadow: BoxShadow(
@@ -623,7 +623,16 @@ class _OrderDetailPageState extends State<OrderDetailPage>
                   blurRadius: 4.px,
                   spreadRadius: 0),
               onTap: () {
-                _showMedia(action: 1); //商户上传收款码
+                if (widget.order.photos!.length == 0) {
+                  _showMedia(action: 3);
+                } else {
+                  OrderMod.takeOrder(widget.order.orderID!).then((val) {
+                    _changeTakeOrder();
+                    HubView.showToastAfterLoadingHubDismiss('接单成功');
+                  }).catchError((err) {
+                    logE(err);
+                  });
+                }
               },
             ),
           ),
@@ -724,9 +733,7 @@ class _OrderDetailPageState extends State<OrderDetailPage>
                   offset: Offset(0.0, 0.0),
                   blurRadius: 4.px,
                   spreadRadius: 0),
-              onTap: () {
-                // _changeOrderConfirm();
-              },
+              onTap: () {},
             ),
           ),
         ],
@@ -767,7 +774,7 @@ class _OrderDetailPageState extends State<OrderDetailPage>
               height: double.infinity,
               borderRadius: 4.px,
               color: Colours.app_main,
-              text: '兑奖结束',
+              text: '商户已付款,兑奖结束',
               fontSize: 16.px,
               textColor: Colors.white,
               boxShadow: BoxShadow(
@@ -776,7 +783,7 @@ class _OrderDetailPageState extends State<OrderDetailPage>
                   blurRadius: 4.px,
                   spreadRadius: 0),
               onTap: () {
-                // _changeOrderConfirm();
+                HubView.showToastAfterLoadingHubDismiss('此订单已结束');
               },
             ),
           ),
@@ -852,7 +859,7 @@ class _OrderDetailPageState extends State<OrderDetailPage>
               height: double.infinity,
               borderRadius: 4.px,
               color: Colours.app_main,
-              text: '上传我的收款码',
+              text: '上传收款码',
               fontSize: 16.px,
               textColor: Colors.white,
               boxShadow: BoxShadow(
@@ -861,7 +868,7 @@ class _OrderDetailPageState extends State<OrderDetailPage>
                   blurRadius: 4.px,
                   spreadRadius: 0),
               onTap: () {
-                _showMedia(action: 3); //用户上传兑奖收款码
+                _showMedia(action: 4);
               },
             ),
           ),
@@ -912,99 +919,59 @@ class _OrderDetailPageState extends State<OrderDetailPage>
   }
 
   void _loadSelectNums() {
+    // if (widget.order.lo)
     _selectedNums.clear();
-    _selectedNums = LotteryUtils.loadSelectNums(order);
+    _selectedNums = LotteryUtils.loadSelectNums(widget.order);
     setState(() {});
   }
 
   void _loadImageIfDone() async {
-    if (order.status == null || order.status == OrderStateEnum.OS_Prepare) {
+    if (widget.order.status == null ||
+        widget.order.status == OrderStateEnum.OS_Prepare) {
       WalletMod.getBalance().then((value) {
         _balance = value;
       }).catchError((e) {
         _balance = 0;
       });
     }
-    if (order.status == OrderStateEnum.OS_Refuse) {
+    if (widget.order.status == OrderStateEnum.OS_Refuse) {
       setState(() {});
       return;
     }
-    if (order.status == OrderStateEnum.OS_Prepare ||
-        order.status == OrderStateEnum.OS_Taked ||
-        order.status == OrderStateEnum.OS_IsPayed) {
-      HubView.showLoading();
-
-      //获取商家的收款码
-      OrderMod.getPayUrl(order.orderID!).then((url) async {
-        HubView.dismiss();
-        if (url == '') {
-          // logW('无法获取商家的收款码');
-          _lotteryUrl = ImageStandard.logo;
-        } else {
-          _lotteryUrl = await appManager.getOrderImages(
-            url,
-            storeUserName: order.businessUsername,
-          );
-
-          logI('获取商家的收款码 _lotteryUrl: ${_lotteryUrl}');
-          if (_lotteryUrl == null) {
-            _lotteryUrl = ImageStandard.logo;
-          }
-        }
-        setState(() {});
-      }).catchError((err) {
-        HubView.dismiss();
-      });
-    }
-
-    if (order.status == OrderStateEnum.OS_Done ||
-        order.status == OrderStateEnum.OS_Confirm ||
-        order.status == OrderStateEnum.OS_UpChained) {
-      HubView.showLoading();
-      HttpUtils.get(HttpApi.orderimage + order.orderID!).then((val) async {
-        HubView.dismiss();
-        logI('orderimage: $val');
-        String? _tempUrl = await appManager.getOrderImages(val,
-            storeUserName: order.businessUsername);
-        if (_tempUrl != null && _tempUrl != '') {
-          _lotteryUrl = _tempUrl;
-          logI('_lotteryUrl: $_lotteryUrl');
-        }
-        setState(() {});
-      }).catchError((err) {
-        HubView.dismiss();
-      });
-    }
-
-    OrderMod.getAntChainQrcode(order.orderID!).then((url) {
-      if (url == '') {
-        logW(' OrderMod.getAntChainQrcode 返回的是空url');
-      } else {
-        _qrcodeUrl = url;
+    if (widget.order.status != null) {
+      if (widget.order.orderID == null || widget.order.orderID! == '') {
+        logW('widget.order.orderID 为空');
+        return;
       }
-      logI('_qrcodeUrl: $_qrcodeUrl');
-      setState(() {});
-    }).catchError((err) {});
-
-    if (order.status == OrderStateEnum.OS_Prizeed ||
-        order.status == OrderStateEnum.OS_AcceptPrizeed) {
-      OrderMod.getPrizeUrl(order.orderID!).then((url) async {
-        // HubView.dismiss();
-        if (url == '') {
-          logW('OrderMod.getPrizeUrl 返回的是空url');
+      OrderMod.getOrderPhotos(widget.order.orderID!).then((value) {
+        //TODO
+        if (value != null && value != '') {
+          List<dynamic> _tmpList = json.decode(value);
+          _tmpList.forEach((element) async {
+            widget.order.photos!.add(element);
+            String? _tempUrl = await appManager.getOrderImages(element);
+            logI('_loadImageIfDone, _tempUrl:$_tempUrl');
+            addTestData(_tempUrl!);
+            setState(() {});
+          });
         } else {
-          String? _tempUrl = await appManager.getOrderImages(url,
-              storeUserName: order.businessUsername);
-          if (_tempUrl != null && _tempUrl != '') {
-            _lotteryUrl = _tempUrl;
-            logI('_lotteryUrl: $_lotteryUrl');
-          }
+          logW('交互图片为空');
         }
-
-        setState(() {});
       }).catchError((err) {
-        // HubView.dismiss();
+        logE(err);
       });
+    }
+    if (widget.order.status == OrderStateEnum.OS_UpChained ||
+        widget.order.status == OrderStateEnum.OS_Confirm) {
+      OrderMod.getAntChainQrcode(widget.order.orderID!).then((url) {
+        if (url == '') {
+          logW(' OrderMod.getAntChainQrcode 返回的是空url');
+        } else {
+          _qrcodeUrl = url;
+        }
+        logI('_qrcodeUrl: $_qrcodeUrl');
+        setState(() {});
+      }).catchError((err) {});
     }
   }
 
@@ -1072,154 +1039,151 @@ class _OrderDetailPageState extends State<OrderDetailPage>
     HubView.showLoading();
     switch (action) {
       case 1:
-        {
-          //上传收款码
-          HubView.showLoading();
-          String url = await UserMod.uploadOssOrderFile(sourceFile);
-          if (url != '') {
-            OrderMod.takeOrder(order.orderID!, url).then((val) {
-              _changeTakeOrder();
-              HubView.showToastAfterLoadingHubDismiss('已上传收款码');
-            }).catchError((err) {});
-          } else {
-            HubView.showToastAfterLoadingHubDismiss('上传收款码出错');
+        String url = await UserMod.uploadOssOrderFile(sourceFile);
+        if (url != '') {
+          logD('uploadOssOrderFile 上传交互图片 完成, url: $url');
+
+          if (widget.order.photos == null || widget.order.orderID == null) {
+            logW('photos or orderID 为 null ');
+            break;
           }
-          HubView.dismiss();
+          widget.order.photos!.add(url);
+          logI('add ok ');
+          OrderMod.uploaOrderPhotos(widget.order.orderID!, widget.order.photos!)
+              .then((value) {
+            logI('uploaOrderPhotos  完成, value: $value');
+          }).catchError((e) {
+            logE(e);
+          });
+        } else {
+          HubView.showToastAfterLoadingHubDismiss('上传交互图片出错');
+        }
+        break;
+      case 2:
+        String url = await UserMod.uploadOssOrderFile(sourceFile);
+        if (url != '') {
+          logD('uploadOssOrderFile 上传交互图片 完成, url: $url');
+
+          if (widget.order.photos == null || widget.order.orderID == null) {
+            logW('photos or orderID 为 null ');
+            break;
+          }
+          widget.order.photos!.add(url);
+          logI('add ok ');
+          OrderMod.uploaOrderPhotos(widget.order.orderID!, widget.order.photos!)
+              .then((value) {
+            logI('uploaOrderPhotos  完成, value: $value');
+            _changeOrderDone();
+          }).catchError((e) {
+            logE(e);
+          });
+        } else {
+          HubView.showToastAfterLoadingHubDismiss('上传交互图片出错');
         }
         break;
 
-      case 2:
-        {
-          HubView.showLoading();
-          String hash = await OrderMod.getHash256(sourceFile);
-          String url = await UserMod.uploadOssOrderFile(sourceFile);
-          if (url != '') {
-            HubView.dismiss();
-            logD('上传拍照图片成功:$url');
-            _lotteryUrl = await appManager.getOrderImages(url,
-                storeUserName: order.businessUsername);
-            _uploadorderimage(hash, url);
-          } else {
-            HubView.dismiss();
-            HubView.showToastAfterLoadingHubDismiss('上传拍照图片错误');
-          }
-        }
-        break;
       case 3:
         {
-          //上传兑奖收款码
-          //TODO需要
-          logI('上传兑奖收款码 ...');
-
-          String url = await UserMod.uploadOssOrderFile(sourceFile);
-          if (url != '') {
-            logD('uploadOssOrderFile 上传兑奖收款码 完成, url: $url');
-
-            OrderMod.acceptPrize(order.orderID!, url).then((value) {
-              if (value) {
-                OrderMod.changeOrderStatus(
-                        order.orderID!,
-                        OrderStateEnum.OS_AcceptPrizeed,
-                        ProductOrderType.POT_Normal)
-                    .then((value) async {
-                  HubView.dismiss();
-                  HubView.showToastAfterLoadingHubDismiss('已上传兑奖收款码');
-                  setState(() {
-                    order.status = OrderStateEnum.OS_AcceptPrizeed;
-                  });
-                  NotificationCenter.instance
-                      .postNotification(NotificationDefine.orderUpdate);
-                }).catchError((err) {
-                  HubView.showToastAfterLoadingHubDismiss(err);
-                });
-              }
-            });
-          } else {
-            HubView.showToastAfterLoadingHubDismiss('上传兑奖收款码出错');
-          }
+          OrderMod.takeOrder(widget.order.orderID!).then((val) {
+            _changeTakeOrder();
+            HubView.showToastAfterLoadingHubDismiss('接单成功');
+          }).catchError((err) {
+            logE(err);
+          });
         }
+        HubView.dismiss();
         break;
+
+      case 4:
+        {
+          OrderMod.changeOrderStatus(widget.order.orderID!,
+                  OrderStateEnum.OS_AcceptPrizeed, ProductOrderType.POT_Normal)
+              .then((value) async {
+            HubView.dismiss();
+            HubView.showToastAfterLoadingHubDismiss('已上传兑奖收款码');
+            setState(() {
+              // widget.order.status = OrderStateEnum.OS_AcceptPrizeed;
+            });
+            NotificationCenter.instance
+                .postNotification(NotificationDefine.orderUpdate);
+          }).catchError((err) {
+            HubView.showToastAfterLoadingHubDismiss(err);
+          });
+        }
+        HubView.dismiss();
+        break;
+
       default:
         break;
     }
-  }
-
-  void _uploadorderimage(String hash, String url) async {
-    HubView.showLoading();
-    var _map = {
-      'order_id': order.orderID,
-      'image': url,
-      'image_hash': hash,
-    };
-    HttpUtils.post(HttpApi.uploadorderimage, data: _map).then((val) {
-      HubView.dismiss();
-      _changeOrderDone();
-    }).catchError((err) {
-      HubView.dismiss();
-    });
+    HubView.dismiss();
   }
 
   void _changeTakeOrder() {
     HubView.showLoading();
-    OrderMod.changeOrderStatus(order.orderID!, OrderStateEnum.OS_Taked,
+    OrderMod.changeOrderStatus(widget.order.orderID!, OrderStateEnum.OS_Taked,
             ProductOrderType.POT_Normal)
         .then((value) async {
       HubView.dismiss();
       HubView.showToastAfterLoadingHubDismiss('已接单');
       setState(() {
-        order.status = OrderStateEnum.OS_Taked;
+        widget.order.status = OrderStateEnum.OS_Taked;
       });
       NotificationCenter.instance
           .postNotification(NotificationDefine.orderUpdate);
     }).catchError((err) {
       HubView.showToastAfterLoadingHubDismiss(err);
+
+      HubView.dismiss();
     });
   }
 
   void _changeOrderDone() {
     HubView.showLoading();
-    OrderMod.changeOrderStatus(
-            order.orderID!, OrderStateEnum.OS_Done, ProductOrderType.POT_Normal)
+    OrderMod.changeOrderStatus(widget.order.orderID!, OrderStateEnum.OS_Done,
+            ProductOrderType.POT_Normal)
         .then((value) async {
       HubView.dismiss();
       HubView.showToastAfterLoadingHubDismiss('已完成订单');
       setState(() {
-        order.status = OrderStateEnum.OS_Done;
+        widget.order.status = OrderStateEnum.OS_Done;
       });
       NotificationCenter.instance
           .postNotification(NotificationDefine.orderUpdate);
     }).catchError((err) {
+      HubView.dismiss();
       HubView.showToastAfterLoadingHubDismiss(err);
     });
   }
 
   void _changeOrderRefuse() {
     HubView.showLoading();
-    OrderMod.changeOrderStatus(order.orderID!, OrderStateEnum.OS_Refuse,
+    OrderMod.changeOrderStatus(widget.order.orderID!, OrderStateEnum.OS_Refuse,
             ProductOrderType.POT_Normal)
         .then((value) {
       HubView.dismiss();
       HubView.showToastAfterLoadingHubDismiss('已拒绝订单');
       setState(() {
-        order.status = OrderStateEnum.OS_Refuse;
+        widget.order.status = OrderStateEnum.OS_Refuse;
       });
       NotificationCenter.instance
           .postNotification(NotificationDefine.orderUpdate);
     }).catchError((err) {
+      HubView.dismiss();
       HubView.showToastAfterLoadingHubDismiss(err);
     });
   }
 
   void _changeOrderConfirm() {
     HubView.showLoading();
-    OrderMod.changeOrderStatus(order.orderID!, OrderStateEnum.OS_Confirm,
+    OrderMod.changeOrderStatus(widget.order.orderID!, OrderStateEnum.OS_Confirm,
             ProductOrderType.POT_Normal)
         .then((value) {
       HubView.dismiss();
       if (value == true) {
         HubView.showToastAfterLoadingHubDismiss('已确认订单');
         setState(() {
-          order.status = OrderStateEnum.OS_Confirm;
+          widget.order.status = OrderStateEnum.OS_Confirm;
         });
         NotificationCenter.instance
             .postNotification(NotificationDefine.orderUpdate);
@@ -1227,20 +1191,22 @@ class _OrderDetailPageState extends State<OrderDetailPage>
         HubView.showToastAfterLoadingHubDismiss('操作异常');
       }
     }).catchError((err) {
+      HubView.dismiss();
       HubView.showToastAfterLoadingHubDismiss(err);
     });
   }
 
   void _changeOrderAcceptPrizeed() {
     HubView.showLoading();
-    OrderMod.changeOrderStatus(order.orderID!, OrderStateEnum.OS_AcceptPrizeed,
-            ProductOrderType.POT_Normal)
+    OrderMod.changeOrderStatus(widget.order.orderID!,
+            OrderStateEnum.OS_AcceptPrizeed, ProductOrderType.POT_Normal)
         .then((value) {
       HubView.dismiss();
       if (value == true) {
+        HubView.dismiss();
         HubView.showToastAfterLoadingHubDismiss('已通知用户');
         setState(() {
-          order.status = OrderStateEnum.OS_AcceptPrizeed;
+          widget.order.status = OrderStateEnum.OS_AcceptPrizeed;
         });
         NotificationCenter.instance
             .postNotification(NotificationDefine.orderUpdate);
@@ -1248,20 +1214,22 @@ class _OrderDetailPageState extends State<OrderDetailPage>
         HubView.showToastAfterLoadingHubDismiss('操作异常');
       }
     }).catchError((err) {
+      HubView.dismiss();
       HubView.showToastAfterLoadingHubDismiss(err);
     });
   }
 
   void _changeOrderPayed() {
     HubView.showLoading();
-    OrderMod.changeOrderStatus(order.orderID!, OrderStateEnum.OS_IsPayed,
+    OrderMod.changeOrderStatus(widget.order.orderID!, OrderStateEnum.OS_IsPayed,
             ProductOrderType.POT_Normal)
         .then((value) {
       HubView.dismiss();
       if (value == true) {
+        HubView.dismiss();
         HubView.showToastAfterLoadingHubDismiss('已通知商户');
         setState(() {
-          order.status = OrderStateEnum.OS_IsPayed;
+          widget.order.status = OrderStateEnum.OS_IsPayed;
         });
         NotificationCenter.instance
             .postNotification(NotificationDefine.orderUpdate);
@@ -1269,13 +1237,12 @@ class _OrderDetailPageState extends State<OrderDetailPage>
         HubView.showToastAfterLoadingHubDismiss('操作异常');
       }
     }).catchError((err) {
+      HubView.dismiss();
       HubView.showToastAfterLoadingHubDismiss(err);
     });
   }
 
   void _uploadPrizeImageAndChange(String money) {
-    HubView.showLoading();
-    HubView.dismiss();
     logI('_uploadPrizeImageAndChange, money: $money');
     OrderMod.inputPrize(widget.order.orderID!, double.parse(money))
         .then((value) {
@@ -1292,12 +1259,12 @@ class _OrderDetailPageState extends State<OrderDetailPage>
           await OrderModel.modelListFromServerDatas([value]);
 
       setState(() {
-        order = list.first;
+        widget.order = list.first;
       });
-      logI('_reloadOrder: order: ${order.toJson()}');
+      logI('_reloadOrder: order: ${widget.order.toJson()}');
       _fee = value.fee; //订单会返回服务费，以分为单位
       _prize = value.prize; //中奖金额，以分为单位
-      logI('中奖金额，以分为单位: _prize: ${_prize}， order.prize: ${order.prize}');
+      logI('中奖金额，以分为单位: _prize: ${_prize}， order.prize: ${widget.order.prize}');
       _loadSelectNums();
       _loadImageIfDone();
     }).catchError((err) {});

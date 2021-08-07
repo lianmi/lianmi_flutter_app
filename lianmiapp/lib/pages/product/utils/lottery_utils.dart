@@ -12,6 +12,7 @@ import 'package:lianmiapp/pages/product/model/qxc/qxc_model.dart';
 import 'package:lianmiapp/pages/product/model/shuang_se_qiu/shuang_se_qiu_model.dart';
 import 'package:lianmiapp/pages/product/utils/lottery_data.dart';
 import 'package:lianmiapp/util/app.dart';
+import 'package:linkme_flutter_sdk/manager/LogManager.dart';
 
 class LotteryUtils {
   static void showLottery(int id, String businessUsername) {
@@ -73,6 +74,12 @@ class LotteryUtils {
         }
         break;
       default:
+        logW('此彩种没有选号器');
+
+        NavigatorUtils.push(
+            App.context!,
+            LotteryRouter.standartPage +
+                '?businessUsername=${businessUsername}&id=${id}');
     }
   }
 
@@ -127,13 +134,10 @@ class LotteryUtils {
     switch (type) {
       case 0:
         return '单式';
-        break;
       case 1:
         return '复式';
-        break;
       case 2:
         return '胆拖';
-        break;
       default:
         return '';
     }

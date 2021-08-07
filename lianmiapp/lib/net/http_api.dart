@@ -34,22 +34,15 @@ class HttpApi {
   ///获取商铺信息
   static const String productList = 'v1/product/productslist';
 
-  ///获取商品资料s
+  ///获取商品资料
   static const String productInfo = 'v1/product/info';
 
-  ///根据商品ID获取商品详情
-  static const String uploadorderimage = 'v1/order/uploadorderimage'; //订单图片上链
-  static const String orderimage = 'v1/order/orderimage/'; //买家在商户完成订单后获取拍照图片
-  static const String generalproducts = 'v1/product/generalproductslist';
+  // static const String orderimage = 'v1/order/orderimage/'; //买家在商户完成订单后获取拍照图片
 
-  // ///计算金额接口
-  // static const String calculateOrderFee = 'v1/order/get_order_fee';
+  static const String generalproducts = 'v1/product/generalproductslist';
 
   ///发起支付接口
   static const String pay = 'v1/order/pay';
-
-  ///模拟支付成功接口
-  static const String wxCallback = 'v1/order/callback/wechat_test';
 
   ///测试解绑手机号
   static const String unBindMobile = 'v1/user/unbindmobile';

@@ -159,14 +159,12 @@ class _StoreHomeTopState extends State<StoreHomeTop> {
               maxLines: 2,
               color: Color(0XFF99A0AD),
             ),
-           
             _bottomArea(context)
           ],
         ),
       ),
     );
   }
-
 
   Widget _bottomArea(BuildContext context) {
     return Expanded(

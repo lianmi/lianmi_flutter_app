@@ -10,7 +10,7 @@ class UpdateUtils {
     if (showLoading) HubView.showLoading();
     AuthMod.checkUpdate().then((value) async {
       HubView.dismiss();
-      logD(value);
+      // logD(value);
       String newVersion = value['version'];
       int newVersionCode = int.parse(newVersion.replaceAll('.', ''));
       PackageInfo packageInfo = await PackageInfo.fromPlatform();

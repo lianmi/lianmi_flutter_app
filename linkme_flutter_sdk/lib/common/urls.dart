@@ -118,10 +118,10 @@ class HttpApi {
 
   //****** 订单相关的接口 ******/
 
-  /// Post方法, 商户将完成订单拍照图片上链
-  static const String uploadorderimage = '/v1/order/uploadorderimage';
+  /// Post方法, upload_order_photos
+  static const String uploaOrderImage = '/v1/order/uploadorderimage';
 
-  /// Get方法, 买家在商户完成订单后获取拍照图片, 后面要加订单id
+  /// Get方法, 获取交互图片json, 后面要加订单id
   static const String orderimage = '/v1/order/orderimage';
 
   /// GET方法,  查询订单列表
@@ -145,11 +145,8 @@ class HttpApi {
   /// POST方法, 根据彩票总金额(元为单位)，返回手续费(以分为单位)
   static const String getOrderFee = '/v1/order/get_order_fee';
 
-  /// POST方法, 商户接单，上传收款码
+  /// POST方法, 商户接单
   static const String takeOrder = '/v1/order/take_order';
-
-  ///根据订单id获取商家收款码
-  static const String payUrl = '/v1/order/pay_url';
 
   ///根据订单id获取蚂蚁链存证二维码
   static const String transactionQrcode = '/v1/order/transaction_qrcode';
@@ -159,12 +156,6 @@ class HttpApi {
 
   /// POST方法, 商户兑奖，输入中奖金额
   static const String inputPrize = '/v1/order/push_prize';
-
-  /// POST方法, 用户领奖，上传收款码
-  static const String acceptPrize = '/v1/order/accept_prize';
-
-  ///GET 商户根据订单id获取用户上传的兑奖收款码
-  static const String acceptPrizeUrl = '/v1/order/accept_prize_url';
 
   /// POST方法, 当前用户删除自己的订单
   static const String deleteOrder = '/v1/order/delete';

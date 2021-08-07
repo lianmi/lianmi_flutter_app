@@ -44,7 +44,6 @@ class HetongDataModel {
     data['description'] = this.description;
     data['jiafang_name'] = this.jiafangName;
     data['jiafang_phone'] = this.jiafangPhone;
-    data['type'] = this.type;
     data['attachs'] = this.attachs;
     data['attachs_aliyun'] = this.attachsAliyun;
 

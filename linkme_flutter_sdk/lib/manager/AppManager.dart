@@ -380,7 +380,7 @@ class AppManager {
 
   /// 根据登录的用户初始化数据仓库
   Future initUserIsolate() {
-    logD('初始化数据仓库Isolate: username: $_currentUsername');
+    // logD('初始化数据仓库Isolate: username: $_currentUsername');
     //设置全局数据仓库
     _repositories[_currentUsername!] = new Repository(_currentUsername!);
     gRepository = _repositories[_currentUsername];
@@ -488,7 +488,7 @@ class AppManager {
             ossConfig!.directory! +
             _uploadFile;
 
-        logD('objFile: $objFile');
+        // logD('objFile: $objFile');
 
         return alyOss.upload(UploadRequest(_requestId, bucketName, objFile,
             filefullpath)); //file image.absolute.path
@@ -501,7 +501,7 @@ class AppManager {
           ossConfig!.directory! +
           _uploadFile;
 
-      logD('objFile: $objFile');
+      // logD('objFile: $objFile');
 
       return alyOss.upload(UploadRequest(_requestId, bucketName, objFile,
           filefullpath)); //file image.absolute.path
@@ -512,7 +512,7 @@ class AppManager {
   // filefullpath 本地完整路径
   Future uploadCunzheng(String filefullpath) async {
     assert(filefullpath != '');
-    logI('filefullpath: $filefullpath');
+    // logI('filefullpath: $filefullpath');
     if (!isExist(filefullpath)) {
       logW('文件不存在， filefullpath: $filefullpath');
       return '';
@@ -525,7 +525,7 @@ class AppManager {
 
     String _uploadFile = '$_hash.$extentName';
 
-    logI('_uploadFile: $_uploadFile');
+    // logI('_uploadFile: $_uploadFile');
 
     //如果阿里云临时令牌过期，则重新获取
     if (DateTime.now().millisecondsSinceEpoch - _aliyunTokenAt >
@@ -544,7 +544,7 @@ class AppManager {
           ossConfig_cunzheng!.directory! +
           _uploadFile;
 
-      logD('objFile: $objFile');
+      // logD('objFile: $objFile');
 
       OssClient client = OssClient(
           bucketName: AppManager.ossConfig_cunzheng!.bucketName,
@@ -561,7 +561,7 @@ class AppManager {
       // print(response.statusCode);
 
       if (response.statusCode == 200) {
-        logI(' $filefullpath 存证区上传成功 ===>1');
+        // logI(' $filefullpath 存证区上传成功 ===>1');
 
         return objFile;
       } else {
@@ -578,7 +578,7 @@ class AppManager {
           ossConfig_cunzheng!.directory! +
           _uploadFile;
 
-      logD('objFile: $objFile');
+      // logD('objFile: $objFile');
       OssClient client = OssClient(
           bucketName: AppManager.ossConfig_cunzheng!.bucketName,
           endpoint: AppManager.ossConfig_cunzheng!.endPoint,
@@ -594,7 +594,7 @@ class AppManager {
       // print(response.statusCode);
 
       if (response.statusCode == 200) {
-        logI(' $filefullpath 存证区上传成功 ===>2');
+        // logI(' $filefullpath 存证区上传成功 ===>2');
         return objFile;
       } else {
         logE(' $filefullpath 存证区上传失败 ');
@@ -605,7 +605,7 @@ class AppManager {
 
   ///用于注销及登出
   clearCache() async {
-    logD('clearCache start...');
+    // logD('clearCache start...');
 
     //ws 登出
     websocketfactory.logout();
@@ -674,10 +674,10 @@ class AppManager {
     return file.existsSync();
   }
 
-  /// 从本地  hive 获取 key对应的图片真实路径 ，如果没有，则从阿里云下载，并写入hive
+  /// 获取 key对应的图片真实路径 ，如果没有，则从阿里云下载，并写入hive
   Future<String?> getOrderImages(String fileUrl,
       {String? storeUserName}) async {
-    logI('getOrderImages fileUrl : $fileUrl, storeUserName: $storeUserName');
+    // logI('getOrderImages fileUrl : $fileUrl, storeUserName: $storeUserName');
 
     String key = generateMD5(fileUrl);
 
@@ -687,11 +687,19 @@ class AppManager {
 
     String targetFileName = appDocDir.path + "/" + _file;
 
-    logI('getOrderImages targetFileName : $targetFileName');
+    // logI('getOrderImages targetFileName : $targetFileName');
+    if (fileUrl.startsWith("/")) {
+      String saveFile = AppManager.appDocumentDir!.path + '/' + _file;
+      File file = File(fileUrl);
+      File newFile = await file.copy(saveFile);
+
+      logI('本地文件存在, 无须下载， targetFileName: ${newFile.path}');
+      return newFile.path;
+    }
 
     //TODO 本地缓存图片不存在，需要下载
     if (isExist(targetFileName)) {
-      logW('本地文件存在, 无须下载， targetFileName: $targetFileName');
+      // logW('本地文件存在, 无须下载， targetFileName: $targetFileName');
       return targetFileName;
     }
 
@@ -706,10 +714,10 @@ class AppManager {
     //获取文件
     response = await client.getObject(fileUrl);
     // print(response.body);
-    logI('getOrderImages response.statusCode: ${response.statusCode}');
+    // logI('getOrderImages response.statusCode: ${response.statusCode}');
 
     String saveFile = AppManager.appDocumentDir!.path + '/' + _file;
-    logI('getOrderImages saveFile: ${saveFile}');
+    // logI('getOrderImages saveFile: ${saveFile}');
 
     if (response.statusCode == 200) {
       File file = File(saveFile);
@@ -719,7 +727,7 @@ class AppManager {
 
       raf.writeFromSync(_content);
       if (file.existsSync()) {
-        logI('getOrderImages $saveFile 下载成功');
+        logD('getOrderImages $saveFile 下载成功');
       }
     } else {
       logE('$saveFile 下载失败');

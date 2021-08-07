@@ -87,7 +87,8 @@ class ShuangseqiuProvider extends ChangeNotifier {
   }
 
   void setup(int id) {
-    _lotteryId = id;
+    _lotteryId = id; //对应通用商品id=1
+    // logI('ShuangseqiuProvider, _lotteryId:$_lotteryId');
     if (_redList.length == 0) {
       for (var i = 0; i < kShuangseqiuRedCount; i++) {
         _redList.add(BallNumModel(i + 1));

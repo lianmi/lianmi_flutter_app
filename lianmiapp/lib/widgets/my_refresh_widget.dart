@@ -44,7 +44,7 @@ class _MyRefreshWidgetState extends State<MyRefreshWidget> {
   GlobalKey<ClassicalFooterWidgetState> _footerkey =
       new GlobalKey<ClassicalFooterWidgetState>();
   _MyRefreshWidgetState() {
-    logD('初始化');
+    // logD('初始化');
   }
   @override
   Widget build(BuildContext context) {

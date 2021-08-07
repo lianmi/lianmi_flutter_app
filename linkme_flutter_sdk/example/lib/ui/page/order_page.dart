@@ -77,41 +77,15 @@ class _OrderPageState extends State<OrderPage> {
                 logE('catch: $e');
               }
             }),
-            _customButton('商家接单, 上传收款码', onTap: () async {
-              final _imageFile =
-                  await _picker.getImage(source: ImageSource.gallery);
-              if (_imageFile == null) {
-                return null;
-              }
-              var filename = _imageFile.path;
+            _customButton('商家接单', onTap: () async {
+              var orderID = "234729347293472309";
 
-              var orderID = "406ec164-5ed5-4c57-a46e-0316f7fe9282";
-
-              var ok = await OrderMod.takeOrder(orderID, filename);
+              var ok = await OrderMod.takeOrder(orderID);
               if (ok) {
-                logD('上传完成');
+                logD('商家接单完成');
               } else {
                 logE('takeOrder错误');
               }
-            }),
-            _customButton('商家出票后拍照上链', onTap: () async {
-              final _imageFile =
-                  await _picker.getImage(source: ImageSource.gallery);
-              if (_imageFile == null) {
-                return null;
-              }
-              var filename = _imageFile.path;
-
-              String orderID = Application.changeStateOrderID;
-
-              String url = await UserMod.uploadOssOrderFile(filename);
-              logD('uploadOssOrderFile完成, url: $url');
-              var f = OrderMod.uploadorderimage(filename, orderID, url);
-              f.then((value) {
-                logD('uploadorderimage完成, value: $value');
-              }).catchError((err) {
-                logE('uploadorderimage错误: $err');
-              });
             }),
             _customButton('更改订单状态为已完成', onTap: () async {
               String orderID = Application.changeStateOrderID;
@@ -139,23 +113,6 @@ class _OrderPageState extends State<OrderPage> {
               int status = OrderStateEnum.OS_Prepare.index; //查询所有预审核
               var _list = await OrderMod.getOrders(status);
               logD('订单列表: $_list');
-            }),
-            _customButton('中奖后用户上传收款码', onTap: () async {
-              final _imageFile =
-                  await _picker.getImage(source: ImageSource.gallery);
-              if (_imageFile == null) {
-                return null;
-              }
-              var filename = _imageFile.path;
-
-              var orderID = "406ec164-5ed5-4c57-a46e-0316f7fe9282";
-
-              var ok = await OrderMod.acceptPrize(orderID, filename);
-              if (ok) {
-                logD('上传完成');
-              } else {
-                logE('acceptPrize错误');
-              }
             }),
             _customButton('九宫格', onTap: () async {
               Navigator.push(

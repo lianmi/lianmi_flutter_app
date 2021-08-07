@@ -2,7 +2,7 @@ import 'package:lianmiapp/header/common_header.dart';
 import 'package:lianmiapp/pages/me/page/report/report_widget.dart';
 import 'package:lianmiapp/pages/me/provider/report_provider.dart';
 import 'package:lianmiapp/widgets/widget/button/common_button.dart';
-import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
+// import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
 
 class ReportPage extends StatefulWidget {
   @override

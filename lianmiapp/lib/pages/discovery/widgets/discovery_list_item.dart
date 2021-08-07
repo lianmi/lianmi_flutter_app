@@ -1,7 +1,9 @@
 import 'package:lianmiapp/header/common_header.dart';
+import 'package:lianmiapp/pages/me/me_utils.dart';
 import 'package:lianmiapp/res/view_standard.dart';
 import 'package:lianmiapp/util/location_utils.dart';
 import 'package:lianmiapp/widgets/load_image.dart';
+import 'package:lianmiapp/widgets/widget/images/avatar_image.dart';
 import '../discovery_router.dart';
 // import '../models/store_list_model.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
@@ -49,12 +51,14 @@ class DiscoveryListItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Gaps.hGap8,
-              LoadImageWithHolder(
-                model.avatar ?? '',
-                holderImg: ImageStandard.logo,
-                width: 32.px,
-                height: 32.px,
-              ),
+              InkWell(
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  me_utils().roundRectImage(40, 40, model.avatar ?? '', 10.0),
+                  Icon(Icons.keyboard_arrow_right)
+                ],
+              )),
               Gaps.hGap5,
               CommonText(
                 model.branchesName ?? '',

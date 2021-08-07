@@ -4,7 +4,6 @@ import 'package:lianmiapp/citypicker/picker.dart';
 import 'package:lianmiapp/linkme/linkme_manager.dart';
 import 'package:lianmiapp/header/common_header.dart';
 import 'package:lianmiapp/models/my_location_model.dart';
-// import 'package:lianmiapp/pages/discovery/page/store_focus_page.dart';
 import 'package:lianmiapp/provider/location_provider.dart';
 import 'package:lianmiapp/util/location_utils.dart';
 import 'package:lianmiapp/widgets/my_refresh_widget.dart';
@@ -373,7 +372,7 @@ class _DiscoveryPageState extends State<DiscoveryPage>
   Future _onRefresh() async {
     _page = 1;
     _requestList();
-    logD('刷新完成');
+    // logD('刷新完成');
   }
 
   Future _loadMore() async {
@@ -420,7 +419,7 @@ class _DiscoveryPageState extends State<DiscoveryPage>
         _storeList.clear();
       }
       _totalPage = val['totalPage'] == null ? 0 : val['totalPage'];
-      logD("totalPage ${_totalPage}");
+      // logD("totalPage ${_totalPage}");
 
       _refreshController.finishLoad(noMore: _totalPage <= _page);
 

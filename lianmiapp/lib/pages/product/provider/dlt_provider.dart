@@ -12,6 +12,7 @@ import 'package:lianmiapp/pages/product/utils/daletou_calculate_utils.dart';
 import 'package:lianmiapp/pages/product/utils/lottery_utils.dart';
 import 'package:lianmiapp/util/alert_utils.dart';
 import 'package:lianmiapp/util/date_time_utils.dart';
+import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
 import 'package:linkme_flutter_sdk/manager/AppManager.dart';
 
 //前区33个
@@ -84,7 +85,8 @@ class DltProvider extends ChangeNotifier {
   }
 
   void setup(int id) {
-    _lotteryId = id;
+    _lotteryId = id; //对应通用商品id=2
+    // logI('DltProvider, _lotteryId:$_lotteryId');
     if (_frontList.length == 0) {
       for (var i = 0; i < kDltFrontCount; i++) {
         _frontList.add(BallNumModel(i + 1));

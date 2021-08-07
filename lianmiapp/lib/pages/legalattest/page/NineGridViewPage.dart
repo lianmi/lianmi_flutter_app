@@ -82,6 +82,7 @@ class _NineGridViewPageState extends State<NineGridViewPage> {
 
   Widget myNineGridView(BuildContext context) {
     return ListView.builder(
+        shrinkWrap: true,
         physics: BouncingScrollPhysics(),
         itemCount: 1,
         padding: EdgeInsets.all(0),

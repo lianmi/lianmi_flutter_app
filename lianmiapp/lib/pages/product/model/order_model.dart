@@ -9,7 +9,7 @@ import 'package:lianmiapp/pages/product/model/qlc/qlc_model.dart';
 import 'package:lianmiapp/pages/product/model/qxc/qxc_model.dart';
 import 'package:lianmiapp/pages/product/model/shuang_se_qiu/shuang_se_qiu_model.dart';
 import 'package:lianmiapp/pages/product/utils/lottery_data.dart';
-import 'package:lianmiapp/util/app.dart';
+// import 'package:lianmiapp/util/app.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
 import 'package:linkme_flutter_sdk/sdk/SdkEnum.dart';
 
@@ -39,6 +39,10 @@ class OrderModel {
   String? prizedPhoto; //兑奖后彩票拍照图片url，上面有中奖金额或未中奖
   HetongDataModel? cunzhengModelData; //存证数据model，通用的
 
+  ///2021-08-06新增
+  String? content; //订单内容说明，支持多行
+  List<String>? photos; //交互的图片，用户和商户在订单完成之前都有权上传及删除
+
   OrderModel({
     this.buyUser,
     this.businessUsername,
@@ -62,6 +66,8 @@ class OrderModel {
     this.prize,
     this.prizedPhoto,
     this.cunzhengModelData,
+    this.content,
+    this.photos,
   });
 
   OrderModel.fromJson(Map<String, dynamic> json) {
@@ -85,6 +91,13 @@ class OrderModel {
     ticketCode = json['ticket_code'];
     prize = json['prize'];
     prizedPhoto = json['prized_photo'];
+
+    content = json['content'];
+    if (json['photos'] != null) {
+      photos = json['photos'].cast<String>();
+    } else {
+      photos = [];
+    }
   }
 
   //从服务器获取的金额都是以分为单位
@@ -94,17 +107,27 @@ class OrderModel {
 
     productID = orderInfoData.productId;
     orderID = orderInfoData.orderId;
-    cost = orderInfoData.totalAmount! / 100;
-    orderTime = orderInfoData.orderTime!;
-    status = OrderStateEnum.values[orderInfoData.state!];
+    cost = orderInfoData.totalAmount == null
+        ? 0
+        : orderInfoData.totalAmount! / 100;
+    orderTime = orderInfoData.orderTime;
+    status = orderInfoData.state == null
+        ? null
+        : OrderStateEnum.values[orderInfoData.state!];
     payMode = orderInfoData.payMode;
-    fee = orderInfoData.fee! / 100;
-    ticketCode = orderInfoData.ticketCode!;
-    prize = orderInfoData.prize! / 100;
-    prizedPhoto = orderInfoData.prizedPhoto!; // data['prized_photo'];
+    fee = orderInfoData.fee == null ? 0 : orderInfoData.fee! / 100;
+    ticketCode = orderInfoData.ticketCode;
+    prize = orderInfoData.prize == null ? 0 : orderInfoData.prize! / 100;
+    prizedPhoto = orderInfoData.prizedPhoto;
+
+    //add by lishijia
+    content = orderInfoData.content;
+    photos = orderInfoData.photos == null
+        ? []
+        : orderInfoData.photos!.cast<String>();
 
     Map<String, dynamic> body = json.decode(planeBody);
-    logI('OrderModel.fromServerData: body: $body');
+    // logI('OrderModel.fromServerData: body: $body');
 
     String bodyText = body['body'];
     String jsonBodyText = utf8.decode(base64Decode(bodyText));
@@ -112,10 +135,10 @@ class OrderModel {
 
     OrderModel order = OrderModel.fromJson(bodyJson);
 
-    logI('OrderModel.fromServerData, bodyJson: $bodyJson}');
+    // logI('OrderModel.fromServerData, bodyJson: $bodyJson}');
 
     if (body['body_type'] == 0) {
-      logI('OrderModel.fromServerData: order: $order');
+      // logI('OrderModel.fromServerData: order: $order');
       shopName = order.shopName;
       orderImageUrl = order.orderImageUrl;
       productName = order.productName;
@@ -130,7 +153,7 @@ class OrderModel {
         _genStrawObjects(straws!);
       }
     } else {
-      logI('body_type = 1');
+      // logI('body_type = 1');
       shopName = order.shopName;
       orderImageUrl = order.orderImageUrl;
       productName = order.productName;
@@ -140,18 +163,18 @@ class OrderModel {
       } else {
         String cunzhengText = bodyJson['cunzheng_model_data'];
 
-        logW('OrderModel.fromServerData cunzhengText: ${cunzhengText}');
+        // logW('OrderModel.fromServerData cunzhengText: ${cunzhengText}');
         cunzhengModelData = HetongDataModel.fromJson(cunzhengText);
 
-        logW('OrderModel.fromServerData ${cunzhengModelData}');
+        // logW('OrderModel.fromServerData ${cunzhengModelData}');
 
         if (cunzhengModelData != null) {
-          logI('type: ${cunzhengModelData!.type}');
-          logI('description: ${cunzhengModelData!.description}');
-          logI('jiafangName: ${cunzhengModelData!.jiafangName}');
-          logI('jiafangPhone: ${cunzhengModelData!.jiafangPhone}');
-          logI('attachs: ${cunzhengModelData!.attachs}');
-          logI('attachsAliyun: ${cunzhengModelData!.attachsAliyun}');
+          // logI('type: ${cunzhengModelData!.type}');
+          // logI('description: ${cunzhengModelData!.description}');
+          // logI('jiafangName: ${cunzhengModelData!.jiafangName}');
+          // logI('jiafangPhone: ${cunzhengModelData!.jiafangPhone}');
+          // logI('attachs: ${cunzhengModelData!.attachs}');
+          // logI('attachsAliyun: ${cunzhengModelData!.attachsAliyun}');
 
           //将阿里云obj url的文件下载到本地
           cunzhengModelData!.attachs = [];
@@ -234,7 +257,7 @@ class OrderModel {
         if (orderInfoData.body != null) {
           String planeBody = orderInfoData.body!;
           try {
-            logI('modelListFromServerDatas: orderInfoData.body != null');
+            // logI('modelListFromServerDatas: orderInfoData.body != null');
             results.add(OrderModel.fromServerData(orderInfoData, planeBody));
           } catch (e) {
             logE(e);
@@ -257,9 +280,7 @@ class OrderModel {
     data['productName'] = this.productName;
     data['loterryType'] = this.loterryType; //通用商品类型，1-7是彩票类，8-票据存证
     data['orderID'] = this.orderID;
-    if (this.straws != null) {
-      data['straws'] = this.straws;
-    }
+    data['straws'] = this.straws;
     data['multiple'] = this.multiple;
     data['count'] = this.count;
     data['cost'] = this.cost;
@@ -267,8 +288,14 @@ class OrderModel {
     data['ticket_code'] = this.ticketCode;
     data['prize'] = this.prize;
     data['prized_photo'] = this.prizedPhoto;
+
+    //add by lishijia
+    data['content'] = this.content;
+    data['photos'] = this.photos;
+
     data['cunzheng_model_data'] =
         this.cunzhengModelData == null ? '' : this.cunzhengModelData!.toJson();
+
     return data;
   }
 
@@ -284,6 +311,16 @@ class OrderModel {
 
   //订单概要信息
   String get orderShowName {
+    if (loterryType! >= 1 && loterryType! <= 7) {
+      return '${productName}, 数量: ${count}, 倍数: ${multiple}';
+    }
+    return '${productName}';
+    
+    /*
+    // 如果用户手工输入了订单内容
+    if (this.content != null && this.content != '') {
+      return this.content!;
+    }
     //彩票类
     if (loterryType! >= 1 && loterryType! <= 7) {
       if (strawObjects == null || strawObjects!.length == 0) return '';
@@ -398,6 +435,12 @@ class OrderModel {
         default:
       }
       showName += suffix;
+
+      if (showName == '') {
+        logW('orderShowName, showName: ${showName}');
+
+        return productName!;
+      }
       return showName;
     } else {
       //其它票据类
@@ -407,5 +450,6 @@ class OrderModel {
         return '--';
       }
     }
+    */
   }
 }

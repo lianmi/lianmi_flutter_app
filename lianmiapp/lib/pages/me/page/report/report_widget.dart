@@ -4,6 +4,7 @@ import 'package:lianmiapp/header/common_header.dart';
 import 'package:lianmiapp/pages/me/provider/report_provider.dart';
 import 'package:lianmiapp/pages/me/widget/store_review/action_item.dart';
 import 'package:lianmiapp/pages/me/widget/store_review/input_item.dart';
+import 'package:lianmiapp/pages/me/widget/store_review/multi_input_item.dart';
 import 'package:lianmiapp/util/keyboard_utils.dart';
 import 'package:lianmiapp/widgets/load_image.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
@@ -14,7 +15,7 @@ class ReportWidget extends StatefulWidget {
 }
 
 class _ReportWidgetState extends State<ReportWidget> {
-  final TextEditingController _ctrlTitle = TextEditingController();
+  // final TextEditingController _ctrlTitle = TextEditingController();
   Function vali_title = (value) {
     if (value == 0) {
       return '类型不能为空';
@@ -132,8 +133,9 @@ class _ReportWidgetState extends State<ReportWidget> {
                 _showTypeSelect();
               },
             ),
-            InputItem(
+            MultiInputItem(
               title: "内容",
+              maxline: 3,
               hintText: '请输入内容',
               controller: _ctrlDescription,
               valid: vali_description,

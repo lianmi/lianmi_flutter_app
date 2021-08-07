@@ -9,7 +9,9 @@ class CommonText extends StatelessWidget {
 
   final int? maxLines;
 
-  CommonText(this.text, {Key? key, this.fontSize, this.color, this.maxLines = 1}):super(key: key);
+  CommonText(this.text,
+      {Key? key, this.fontSize, this.color, this.maxLines = 1})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +19,7 @@ class CommonText extends StatelessWidget {
       text!,
       overflow: TextOverflow.ellipsis,
       maxLines: maxLines,
-      style: TextStyle(
-        fontSize: fontSize,
-        color: color
-      ),
+      style: TextStyle(fontSize: fontSize, color: color),
     );
   }
 }

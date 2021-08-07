@@ -48,7 +48,7 @@ class AuthMod {
     ///提交数据
     try {
       var _body = await HttpUtils.post(HttpApi.login, data: _map);
-      logD('_body: $_body');
+      // logD('_body: $_body');
 
       var code = _body['code'];
       if (code == 200) {
@@ -123,7 +123,7 @@ class AuthMod {
     ///提交数据
     try {
       var _body = await HttpUtils.post(HttpApi.login, data: _map);
-      logD('_body: $_body');
+      // logD('_body: $_body');
 
       var code = _body['code'];
       if (code == 200) {
@@ -218,7 +218,7 @@ class AuthMod {
       Map<String, dynamic> params = new Map<String, dynamic>();
       params['userId'] = userId;
       var _body = await HttpUtils.get(HttpApi.online, params: params);
-      logD('_body: $_body');
+      // logD('_body: $_body');
       var code = _body['code'];
       if (code == 200) {
         return _body['data']['online'];
@@ -246,7 +246,7 @@ class AuthMod {
       logD('AuthMod.signout start...');
       try {
         var _body = await HttpUtils.get(HttpApi.signout);
-        logD('_body: $_body');
+        // logD('_body: $_body');
         if (_body['code'] == 200) {
           return true;
         } else {
@@ -265,12 +265,12 @@ class AuthMod {
   ///@nodoc 用户扫描二维码
   static Future getAppDownloadURL() async {
     if (AppManager.isLogined) {
-      logD('AuthMod.getAppDownloadURL start...');
+      // logD('AuthMod.getAppDownloadURL start...');
       try {
         var _body = await HttpUtils.get(HttpApi.qrcodeUrl);
-        logD('_body: $_body');
+        // logD('_body: $_body');
         if (_body['code'] == 200) {
-          logD('getAppDownloadURL success.');
+          // logD('getAppDownloadURL success.');
           return _body['data'];
         } else {
           logE("用户扫描二维码, ${_body['code']} , msg ${_body['msg']}");
@@ -288,12 +288,12 @@ class AuthMod {
   ///@nodoc 获取服务条款
   static Future getFuwutiaokuan() async {
     if (AppManager.isLogined) {
-      logD('AuthMod.getFuwutiaokuan start...');
+      // logD('AuthMod.getFuwutiaokuan start...');
       try {
         var _body = await HttpUtils.get(HttpApi.fuwutiaokuan);
-        logD('_body: $_body');
+        // logD('_body: $_body');
         if (_body['code'] == 200) {
-          logD('getFuwutiaokuan success.');
+          // logD('getFuwutiaokuan success.');
           return _body['data'];
         } else {
           logE("获取服务条款, ${_body['code']} , msg ${_body['msg']}");
@@ -310,18 +310,18 @@ class AuthMod {
 
   ///curVersion - 当前版本号
   static Future checkUpdate() async {
-    logD('AuthMod.checkUpdate start...');
+    // logD('AuthMod.checkUpdate start...');
     try {
       Map<String, dynamic> params = new Map<String, dynamic>();
       params['version'] = AppManager.curVersion;
       params['os'] = AppManager.os ?? 'android';
 
-      logD('checkUpdate params: $params');
+      // logD('checkUpdate params: $params');
 
       var _body = await HttpUtils.get(HttpApi.checkUpdate, params: params);
-      logD('_body: $_body');
+      // logD('_body: $_body');
       if (_body['code'] == 200) {
-        logD('checkUpdate success.');
+        // logD('checkUpdate success.');
         return _body['data'];
       } else {
         logE("检测新版本出错 , ${_body['code']} , msg ${_body['msg']}");

@@ -65,7 +65,7 @@ class WebSocketHandlerFactory {
     bus.on<WebsocketStateEvent>().listen((WebsocketStateEvent event) {
       if (event.state == WebsocketConnectionState.connected) {
         //服务器连接成功
-        logD('服务器连接成功');
+        // logD('服务器连接成功');
         for (var lister in _connectionListeners) {
           lister.onConnected();
           break;
@@ -100,7 +100,7 @@ class WebSocketHandlerFactory {
 
     try {
       _times += 1;
-      logD("try to connect url:$_SERVER_ADDRESS,  $_times time(s)");
+      // logD("try to connect url:$_SERVER_ADDRESS,  $_times time(s)");
       _channel = new IOWebSocketChannel.connect(_SERVER_ADDRESS);
       bus.fire(new WebsocketStateEvent(WebsocketConnectionState.connected));
       _disconnected = false;
@@ -201,7 +201,7 @@ class WebSocketHandlerFactory {
       return;
     }
     if (_disconnected) {
-      logD('init connecting...');
+      // logD('init connecting...');
       initCommunication();
     }
     if (_channel != null) {
@@ -228,7 +228,7 @@ class WebSocketHandlerFactory {
     // logD('_response: $_response');
     if (_response != null) {
       if (cmd == 'login') {
-        logD('cmd: $cmd, data: $_response');
+        // logD('cmd: $cmd, data: $_response');
         _isWsLogined = true;
         startTimer();
       }

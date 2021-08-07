@@ -1,6 +1,7 @@
 import 'package:lianmiapp/header/common_header.dart';
 import 'package:lianmiapp/notification/notification_center.dart';
 import 'package:lianmiapp/pages/discovery/discovery_router.dart';
+import 'package:lianmiapp/pages/order/order_router.dart';
 import 'package:lianmiapp/pages/order/page/order_page.dart';
 import 'package:lianmiapp/pages/product/model/order_model.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
@@ -11,7 +12,10 @@ class LotteryPayPage extends StatefulWidget {
 
   final double fee;
 
-  LotteryPayPage({required this.order, required this.fee});
+  // bool isStandart = false;
+
+  LotteryPayPage(
+      {required this.order, required this.fee}); //, this.isStandart = false
 
   @override
   _LotteryPayPageState createState() => _LotteryPayPageState();
@@ -23,22 +27,6 @@ class _LotteryPayPageState extends State<LotteryPayPage> {
   @override
   void initState() {
     super.initState();
-    /*
-    fluwx.weChatResponseEventHandler.listen((res) {
-      if (res is fluwx.WeChatPaymentResponse) {
-        bool result = res.isSuccessful;
-        if (result) {
-          HubView.showToastAfterLoadingHubDismiss('支付成功');
-          NotificationCenter.instance
-              .postNotification(NotificationDefine.orderUpdate);
-          Navigator.of(context)
-              .popUntil(ModalRoute.withName(DiscoveryRouter.storePage));
-        } else {
-          HubView.showToastAfterLoadingHubDismiss('支付失败');
-        }
-      }
-    });
-    */
   }
 
   void _radioChange(v) {
@@ -128,6 +116,16 @@ class _LotteryPayPageState extends State<LotteryPayPage> {
   void _newOrder() async {
     HubView.showLoading();
 
+    //TODO: 上传到存证区
+    if (widget.order.photos != null && widget.order.photos!.length > 0) {
+      widget.order.photos!.forEach((sourceFile) async {
+        String url = await UserMod.uploadOssOrderFile(sourceFile);
+        if (url != '') {
+          logD('_newOrder 上传交互图片 完成, url: $url');
+        }
+      });
+    }
+
     OrderMod.preOrder(
       widget.order.businessUsername!,
       widget.order.productID!,
@@ -142,7 +140,8 @@ class _LotteryPayPageState extends State<LotteryPayPage> {
           .postNotification(NotificationDefine.orderUpdate);
       Navigator.of(context)
           .popUntil(ModalRoute.withName(DiscoveryRouter.storePage));
-      AppNavigator.push(context, OrderPage());
+      // AppNavigator.push(context, OrderPage());
+      // NavigatorUtils.push(App.context!, OrderRouter.orderPage);
     }).catchError((err) {
       HubView.dismiss();
       HubView.showToastAfterLoadingHubDismiss(err);

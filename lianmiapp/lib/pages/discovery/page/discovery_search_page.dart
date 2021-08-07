@@ -117,7 +117,7 @@ class _DiscoverySearchPageState extends State<DiscoverySearchPage> {
         _storeList.clear();
       }
       _totalPage = val['totalPage'] == null ? 0 : val['totalPage'];
-      logD("totalPage ${_totalPage}");
+      // logD("totalPage ${_totalPage}");
       
       _refreshController.finishLoad(noMore: _totalPage <= _page);
       if (val['stores'] != null) {

@@ -12,7 +12,7 @@ class StoreInfoViewModel extends ChangeNotifier {
   ///更新商户信息
   void updateStoreInfo() {
     UserMod.getStoreInfoFromServer(AppManager.currentUsername!).then((value) {
-      logI('updateStoreInfo: ${value.toJson()}');
+      // logI('updateStoreInfo: ${value.toJson()}');
       _store = value;
       notifyListeners();
     }).catchError((e) {

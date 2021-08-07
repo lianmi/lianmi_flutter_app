@@ -38,7 +38,8 @@ class _ShuangseqiuPageState extends State<ShuangseqiuPage>
   void initState() {
     super.initState();
     LinkMeManager.instance.addOrderListener(this);
-    _productInfo = LotteryData.instance.getProduct(widget.id);
+    _productInfo = LotteryData.instance.getProduct(widget.id); // 获取此商品信息
+    logW('ShuangseqiuPage, _productInfo:${_productInfo.toString()}');
   }
 
   @override

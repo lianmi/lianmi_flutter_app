@@ -206,114 +206,29 @@ class OrderMod {
     return hash256(filename);
   }
 
-  /// 商户接单，上传收款码
-  static Future<dynamic> takeOrder(String orderID, String receiptUrl) async {
+  /// 商户接单
+  static Future<dynamic> takeOrder(String orderID) async {
     Completer _completer = new Completer.sync();
     Future f = _completer.future;
 
     var _map = {
       'order_id': orderID,
-      'receipt_qrcode_image_url': receiptUrl,
     };
     try {
       var _body = await HttpUtils.post(HttpApi.takeOrder, data: _map);
-      logD('takeOrder, _body: $_body');
+      // logD('takeOrder, _body: $_body');
       var code = _body['code'];
       var errmsg = _body['msg'];
       if (code == 200) {
         _completer.complete(true);
       } else {
-        _completer.completeError('商户接单，上传收款码出错');
+        _completer.completeError('商户接单出错');
       }
     } catch (e) {
       logE(e);
       return Future.error(e);
     } finally {
       logD('OrderMod.takeOrder end.');
-    }
-
-    return f;
-  }
-
-  /// 根据订单id获取商家收款码
-  static Future<dynamic> getPayUrl(String orderID) async {
-    Completer _completer = new Completer.sync();
-    Future f = _completer.future;
-
-    try {
-      var _body = await HttpUtils.get(HttpApi.payUrl + '/' + orderID);
-      // logD('getPayUrl, _body: $_body');
-      var code = _body['code'];
-      var errmsg = _body['msg'];
-      if (code == 200) {
-        _completer.complete(_body['data']);
-      } else {
-        // return Future.error(errmsg);
-        logE(errmsg);
-        _completer.completeError('根据订单id获取商家收款码出错');
-      }
-    } catch (e) {
-      logE(e);
-      return Future.error(e);
-    } finally {
-      logD('OrderMod.getPayUrl end.');
-    }
-
-    return f;
-  }
-
-  /// 用户领奖，发起收款码 , 需要
-  static Future<dynamic> acceptPrize(String orderID, String prizeUrl) async {
-    Completer _completer = new Completer.sync();
-    Future f = _completer.future;
-
-    var _map = {
-      'order_id': orderID,
-      'prize_qrcode_image_url': prizeUrl,
-    };
-    try {
-      var _body = await HttpUtils.post(HttpApi.acceptPrize, data: _map);
-      // logD('acceptPrize, _body: $_body');
-      var code = _body['code'];
-      var errmsg = _body['msg'];
-      if (code == 200) {
-        _completer.complete(true);
-      } else {
-        logE(errmsg);
-        _completer.completeError('用户领奖出错');
-      }
-    } catch (e) {
-      logE(e);
-      return Future.error(e);
-    } finally {
-      logD('OrderMod.acceptPrize end.');
-    }
-
-    return f;
-  }
-
-  /// 根据订单id获取用户兑奖收款码
-  static Future<dynamic> getPrizeUrl(String orderID) async {
-    Completer _completer = new Completer.sync();
-    Future f = _completer.future;
-
-    try {
-      var _body = await HttpUtils.get(HttpApi.acceptPrizeUrl + '/' + orderID);
-      // logD('getPrizeUrl, _body: $_body');
-      var code = _body['code'];
-      var errmsg = _body['msg'];
-      if (code == 200) {
-        _completer.complete(_body['data']);
-      } else {
-        // return Future.error(errmsg);
-        logE(errmsg);
-        _completer.completeError('根据订单id获取用户兑奖收款码出错');
-      }
-    } catch (e) {
-      logE(e);
-      return Future.error(e);
-    } finally {
-      logD('OrderMod.getPrizeUrl end.');
     }
 
     return f;
@@ -391,7 +306,7 @@ class OrderMod {
       }
 
       var _body = await HttpUtils.get(HttpApi.orderList, params: params);
-      logD('getOrders(), _body: $_body');
+      // logD('getOrders(), _body: $_body');
       List<OrderInfoData> orders = [];
       if (_body['code'] == 200) {
         _body['data'].forEach((v) {
@@ -409,7 +324,7 @@ class OrderMod {
       logE(e);
       _completer.completeError('无法获取订单列表');
     } finally {
-      logD('getOrderLists end.');
+      // logD('getOrderLists end.');
     }
     return _c;
   }
@@ -471,11 +386,11 @@ class OrderMod {
     return _c;
   }
 
-  /// 商家出票后拍照上传
-  static Future uploadorderimage(
+  /// 交互图片上传
+  static Future uploaOrderImage(
     String filename, //源文件
     String orderID,
-    String image,
+    String image, //json
   ) async {
     Completer _completer = new Completer.sync();
     Future _c = _completer.future;
@@ -489,19 +404,81 @@ class OrderMod {
         'image_hash': hash,
       };
 
-      var _body = await HttpUtils.post(HttpApi.uploadorderimage, data: _map);
+      var _body = await HttpUtils.post(HttpApi.uploaOrderImage, data: _map);
       // logD('_body:  $_body');
       if (_body['code'] == 200) {
         _completer.complete(true);
       } else {
-        logE('uploadorderimage error, msg: ${_body['msg']}');
+        logE('uploaOrderImage error, msg: ${_body['msg']}');
         _completer.completeError('拍照上链出错');
       }
     } catch (e) {
       logE(e);
       _completer.completeError('无法上传拍照图片');
     } finally {
-      logD('uploadorderimage end.');
+      logD('uploaOrderImage end.');
+    }
+    return _c;
+  }
+
+  /// 交互图片数组上传
+  static Future uploaOrderPhotos(
+    String orderID,
+    List<String> photos, //阿里云Url数组
+  ) async {
+    assert(orderID != '');
+    assert(photos.length > 0);
+    logD('uploaOrderPhotos start.');
+    Completer _completer = new Completer.sync();
+    Future _c = _completer.future;
+
+    String _json = json.encode(photos);
+    logD('uploaOrderPhotos _json: $_json');
+
+    ///提交数据
+    try {
+      var _map = {
+        'order_id': orderID,
+        'image': _json,
+      };
+
+      var _body = await HttpUtils.post(HttpApi.uploaOrderImage, data: _map);
+      // logD('_body:  $_body');
+      if (_body['code'] == 200) {
+        _completer.complete(true);
+      } else {
+        logE('uploaOrderPhotos error, msg: ${_body['msg']}');
+        _completer.completeError('交互图片数组上传出错');
+      }
+    } catch (e) {
+      logE(e);
+      _completer.completeError('无法上传交互图片数组');
+    } finally {
+      logD('uploaOrderPhotos end.');
+    }
+    return _c;
+  }
+
+  /// 获取订单的交互图片json
+  static Future getOrderPhotos(String orderID) async {
+    Completer _completer = new Completer.sync();
+    Future _c = _completer.future;
+
+    ///提交数据
+    try {
+      var _body = await HttpUtils.get(HttpApi.orderimage + '/' + orderID);
+      if (_body['code'] == 200) {
+        logI('getOrderPhotos, _body.data: ${_body['data']}');
+        _completer.complete(_body['data']);
+      } else {
+        logE('getOrderPhotos error, msg: ${_body['msg']}');
+        _completer.completeError('交互图片下载出错');
+      }
+    } catch (e) {
+      logE(e);
+      _completer.completeError('无法下载交互图片');
+    } finally {
+      logD('getOrderPhotos end.');
     }
     return _c;
   }
@@ -615,7 +592,7 @@ class OrderMod {
     try {
       var _body =
           await HttpUtils.post(HttpApi.submitHetongData, data: _data.toJson());
-      logD('_body: ${_body}');
+      // logD('_body: ${_body}');
       var code = _body['code'];
 
       if (code == 200) {

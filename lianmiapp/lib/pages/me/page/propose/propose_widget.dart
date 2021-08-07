@@ -2,6 +2,7 @@ import 'package:lianmiapp/component/image_choose.dart';
 import 'package:lianmiapp/header/common_header.dart';
 import 'package:lianmiapp/pages/me/provider/propose_feedback_provider.dart';
 import 'package:lianmiapp/pages/me/widget/store_review/input_item.dart';
+import 'package:lianmiapp/pages/me/widget/store_review/multi_input_item.dart';
 import 'package:lianmiapp/widgets/load_image.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
 
@@ -120,9 +121,10 @@ class _ProposeFeedbackWidgetState extends State<ProposeFeedbackWidget> {
                     .title = text;
               },
             ),
-            InputItem(
+            MultiInputItem(
               title: "内容",
               hintText: '请输入内容',
+              maxline: 4,
               controller: _ctrlDetail,
               valid: vali_detail,
               button: Container(),

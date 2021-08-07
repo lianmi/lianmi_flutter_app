@@ -5,6 +5,7 @@ import 'package:lianmiapp/pages/product/provider/pl3_provider.dart';
 import 'package:lianmiapp/pages/product/provider/pl5_provider.dart';
 import 'package:lianmiapp/pages/product/provider/qlc_provider.dart';
 import 'package:lianmiapp/pages/product/provider/qxc_provider.dart';
+import 'package:lianmiapp/pages/product/provider/standart_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
@@ -37,6 +38,9 @@ enum LotteryTypeEnum {
 
   ///七星彩
   qxc,
+
+  ///其它彩种
+  standart,
 
   ///合同协议委托类
   hetong,
@@ -71,11 +75,6 @@ enum LotteryTypeEnum {
   ///继承收养遗嘱赠与
   jichengshouyangyizhuzengyu,
 }
-
-// //公证处的智能合约类型枚举
-// enum LegalAttestTypeEnum {
-//   unknow,
-// }
 
 class LotteryData {
   factory LotteryData() => _getInstance();
@@ -160,5 +159,6 @@ class LotteryData {
     ChangeNotifierProvider.value(value: Pl3Provider()),
     ChangeNotifierProvider.value(value: Pl5Provider()),
     ChangeNotifierProvider.value(value: QxcProvider()),
+    ChangeNotifierProvider.value(value: StandartProvider()),
   ];
 }

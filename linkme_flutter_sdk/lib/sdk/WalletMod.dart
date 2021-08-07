@@ -17,7 +17,7 @@ class WalletMod {
     ///提交数据
     try {
       var _body = await HttpUtils.get(HttpApi.getBalance);
-      logD('_body: $_body');
+      // logD('_body: $_body');
 
       if (_body['code'] == 200) {
         _completer.complete(_body['data']); //返回data部分
@@ -30,7 +30,7 @@ class WalletMod {
       logE(e);
       _completer.completeError('无法查询余额');
     } finally {
-      logD('getBalance end.');
+      // logD('getBalance end.');
     }
     return _c;
   }
@@ -55,7 +55,7 @@ class WalletMod {
       if (_body['code'] == 200) {
         _completer.complete(_body['data']); //返回data部分, PrepayId
       } else if (_body['code'] == 302) {
-        logD('_body: $_body');
+        // logD('_body: $_body');
         _completer.complete(false); //1元充值仅限一次
       } else {
         logE('aliPrepay error, reson: ${_body['data']}');
@@ -89,7 +89,7 @@ class WalletMod {
       if (_body['code'] == 200) {
         _completer.complete(_body['data']); //返回data部分, payParam
       } else if (_body['code'] == 302) {
-        logD('_body: $_body');
+        // logD('_body: $_body');
         _completer.complete(false); //1元充值仅限一次
       } else {
         logE('aliPrepay error, reson: ${_body['data']}');
@@ -116,7 +116,7 @@ class WalletMod {
       params['page'] = page;
       params['limit'] = limit;
       var _body = await HttpUtils.get(HttpApi.getTransactions, params: params);
-      logD('_body: $_body');
+      // logD('_body: $_body');
       var code = _body['code'];
       if (code == 200) {
         return _body['data'];
@@ -141,7 +141,7 @@ class WalletMod {
       params['page'] = page;
       params['limit'] = limit;
       var _body = await HttpUtils.get(HttpApi.getSpendings, params: params);
-      logD('_body: $_body');
+      // logD('_body: $_body');
       var code = _body['code'];
       if (code == 200) {
         return _body['data'];

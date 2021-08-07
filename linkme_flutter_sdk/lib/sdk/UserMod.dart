@@ -28,7 +28,7 @@ class UserMod {
     ///提交数据
     try {
       var _body = await HttpUtils.get(HttpApi.myProfile);
-      logD('_body: $_body');
+      // logD('_body: $_body');
 
       if (_body['code'] == 200) {
         var _data = _body['data'];
@@ -50,7 +50,7 @@ class UserMod {
       logE(e);
       _completer.completeError('无法获取${AppManager.currentUsername}的个人资料');
     } finally {
-      logD('getMyProfile end.');
+      // logD('getMyProfile end.');
     }
     return _c;
   }
@@ -129,7 +129,7 @@ class UserMod {
 
     try {
       var _body = await HttpUtils.post(HttpApi.userprofile, params: fields);
-      logD('_body: $_body');
+      // logD('_body: $_body');
 
       if (_body['code'] == 200) {
         _completer.complete(_body['data']);
@@ -154,7 +154,7 @@ class UserMod {
       var _body = await HttpUtils.get(
         HttpApi.getId + '/' + mobile,
       );
-      logD('_body: $_body');
+      // logD('_body: $_body');
       if (_body['code'] == 200) {
         var _data = _body['data'];
         logD('_data: ${_data.toString()}');
@@ -184,7 +184,7 @@ class UserMod {
         'smscode': smscode,
       };
       var _body = await HttpUtils.post(HttpApi.bindmobile, data: _map);
-      logD('_body: $_body');
+      // logD('_body: $_body');
       if (_body['code'] == 200) {
         await AppManager.setMobile(mobile); //修改本地手机
         _completer.complete(true);
@@ -210,7 +210,7 @@ class UserMod {
         ' ': wechatCode,
       };
       var _body = await HttpUtils.post(HttpApi.bindwechat, data: _map);
-      logD('_body: $_body');
+      // logD('_body: $_body');
       if (_body['code'] == 200) {
         _completer.complete(_body['data']); //TODO 由UI来询问用户是否采用微信呢称 及 头像
       } else {
@@ -232,7 +232,7 @@ class UserMod {
     ///提交数据
     try {
       var _body = await HttpUtils.get(HttpApi.pushsetting);
-      logD('_body: $_body');
+      // logD('_body: $_body');
       if (_body['code'] == 200) {
         _completer.complete(_body['data']);
       } else {
@@ -254,7 +254,7 @@ class UserMod {
     ///提交数据
     try {
       var _body = await HttpUtils.get(HttpApi.isbindwechat);
-      logD('_body: $_body');
+      // logD('_body: $_body');
       if (_body['code'] == 200) {
         _completer.complete(_body['data']);
       } else {
@@ -276,7 +276,7 @@ class UserMod {
     ///提交数据
     try {
       var _body = await HttpUtils.get(HttpApi.unbindmobile);
-      logD('_body: $_body');
+      // logD('_body: $_body');
       if (_body['code'] == 200) {
         _completer.complete(true);
       } else {
@@ -304,7 +304,7 @@ class UserMod {
         'sound_switch': soundSwitch,
       };
       var _body = await HttpUtils.post(HttpApi.pushsetting, data: _map);
-      logD('_body: $_body');
+      // logD('_body: $_body');
       if (_body['code'] == 200) {
         _completer.complete(true);
       } else {
@@ -326,7 +326,7 @@ class UserMod {
     ///提交数据
     try {
       var _body = await HttpUtils.post(HttpApi.storeList, data: data);
-      logD('_body: $_body');
+      // logD('_body: $_body');
 
       if (_body['code'] == 200) {
         var totalPage = _body['data']['totalPage'];
@@ -357,7 +357,7 @@ class UserMod {
       var _body = await HttpUtils.get(
         HttpApi.storeInfo + '/' + businessUsername,
       );
-      logD('_body: $_body');
+      // logD('_body: $_body');
 
       if (_body['code'] == 200) {
         var _data = _body['data'];
@@ -369,7 +369,7 @@ class UserMod {
       logD(e);
       _completer.completeError('无法获取$businessUsername的店铺资料');
     } finally {
-      logD('getStoreInfoFromServer end.');
+      // logD('getStoreInfoFromServer end.');
     }
     return _c;
   }
@@ -381,7 +381,7 @@ class UserMod {
       var _body =
           await HttpUtils.post(HttpApi.userUploadDeviceInfo, data: _map);
 
-      logD('_body: ${_body}');
+      // logD('_body: ${_body}');
 
       if (_body['code'] == 200) {
         return _body['data'];
@@ -404,7 +404,7 @@ class UserMod {
 
     try {
       var _body = await HttpUtils.get(HttpApi.osstoken);
-      logD('_body: $_body');
+      // logD('_body: $_body');
 
       var code = _body['code'];
       if (code == 200) {
@@ -436,7 +436,7 @@ class UserMod {
 
     try {
       var _body = await HttpUtils.get(HttpApi.cunzheng_osstoken);
-      logD('getOssTokenForCunZheng _body: $_body');
+      // logD('getOssTokenForCunZheng _body: $_body');
 
       var code = _body['code'];
       if (code == 200) {
@@ -453,12 +453,12 @@ class UserMod {
         AppManager.ossConfig_cunzheng!.expire = _data['expire'];
         AppManager.ossConfig_cunzheng!.directory = _data['directory'];
 
-        logI('this.accessKey: ${AppManager.ossConfig_cunzheng!.accessKeyId}');
-        logI(
-            'this.accessSecret: ${AppManager.ossConfig_cunzheng!.accessKeySecret}');
-        logI(
-            'this.secureToken: ${AppManager.ossConfig_cunzheng!.securityToken}');
-        logI('this.expire: ${AppManager.ossConfig_cunzheng!.expiration}');
+        // logI('this.accessKey: ${AppManager.ossConfig_cunzheng!.accessKeyId}');
+        // logI(
+        //     'this.accessSecret: ${AppManager.ossConfig_cunzheng!.accessKeySecret}');
+        // logI(
+        //     'this.secureToken: ${AppManager.ossConfig_cunzheng!.securityToken}');
+        // logI('this.expire: ${AppManager.ossConfig_cunzheng!.expiration}');
         return true;
       } else {
         return false;
@@ -509,7 +509,7 @@ class UserMod {
         'store_user_name': storeUsername,
       };
       var _body = await HttpUtils.post(HttpApi.storeWatching, data: _map);
-      logD('_body: $_body');
+      // logD('_body: $_body');
       if (_body['code'] == 200) {
         _completer.complete('关注此商户成功');
       } else {
@@ -534,7 +534,7 @@ class UserMod {
 
       if (_body['code'] == 200) {
         var _list = _body['data'];
-        logD('_list: $_list');
+        // logD('_list: $_list');
 
         List<StoreInfo> stores = [];
 
@@ -551,7 +551,7 @@ class UserMod {
       logE(e);
       _completer.completeError('获取当前用户的关注商户');
     } finally {
-      logD('getWatchingStores end.');
+      // logD('getWatchingStores end.');
     }
     return _c;
   }
@@ -570,7 +570,7 @@ class UserMod {
         'store_user_name': storeUsername,
       };
       var _body = await HttpUtils.post(HttpApi.cancelWatching, data: _map);
-      logD('_body: $_body');
+      // logD('_body: $_body');
       if (_body['code'] == 200) {
         _completer.complete('取消关注此商户成功');
       } else {
@@ -643,7 +643,7 @@ class UserMod {
     try {
       var _body =
           await HttpUtils.post(HttpApi.addStore, data: storeInfoData.toJson());
-      logD('_body: ${_body}');
+      // logD('_body: ${_body}');
       var code = _body['code'];
 
       if (code == 200) {
@@ -715,7 +715,7 @@ class UserMod {
 
     try {
       var _body = await HttpUtils.post(HttpApi.updateStore, params: fields);
-      logD('_body: $_body');
+      // logD('_body: $_body');
 
       if (_body['code'] == 200) {
         _completer.complete(_body['data']);
@@ -738,7 +738,7 @@ class UserMod {
     ///提交数据
     try {
       var _body = await HttpUtils.get(HttpApi.auditState);
-      logD('_body: $_body');
+      // logD('_body: $_body');
 
       if (_body['code'] == 200) {
         var _data = _body['data'];
@@ -775,7 +775,7 @@ class UserMod {
     try {
       var _body = await HttpUtils.post(HttpApi.submitProposeFeedback,
           data: _propose.toJson());
-      logD('_body: ${_body}');
+      // logD('_body: ${_body}');
       var code = _body['code'];
 
       if (code == 200) {
@@ -813,7 +813,7 @@ class UserMod {
     try {
       var _body =
           await HttpUtils.post(HttpApi.submitReport, data: _propose.toJson());
-      logD('_body: ${_body}');
+      // logD('_body: ${_body}');
       var code = _body['code'];
 
       if (code == 200) {

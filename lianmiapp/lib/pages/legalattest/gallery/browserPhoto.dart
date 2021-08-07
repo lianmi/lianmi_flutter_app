@@ -65,20 +65,9 @@ class _BrowserPhotoState extends State<BrowserPhoto> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          // const ExampleAppBar(
-          //   title: "图片预览",
-          //   showGoBack: true,
-          // ),
           Expanded(
             child: Column(
               children: <Widget>[
-                // Container(
-                //   padding: const EdgeInsets.all(20.0),
-                //   child: const Text(
-                //     "Example without manual rotation, click the button to rotate",
-                //     style: const TextStyle(fontSize: 18.0),
-                //   ),
-                // ),
                 Expanded(
                   child: Container(
                     margin: const EdgeInsets.symmetric(vertical: 20.0),
@@ -109,12 +98,6 @@ class _BrowserPhotoState extends State<BrowserPhoto> {
 //动态申请权限，ios 要在info.plist 上面添加
   Future<bool> requestPermission() async {
     var status = await Permission.photos.status;
-    // if (status.isUndetermined) {
-    //   Map<Permission, PermissionStatus> statuses = await [
-    //     Permission.photos,
-    //   ].request();
-    //   print(statuses);
-    // }
     return status.isGranted;
   }
 

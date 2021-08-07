@@ -37,7 +37,7 @@ class _HomePageUserState extends State<HomePageUser> {
   final PageController _pageController = PageController();
 
   HomeProvider provider = HomeProvider();
-  
+
   List<Widget> tabbars = [];
 
   @override
@@ -56,7 +56,7 @@ class _HomePageUserState extends State<HomePageUser> {
     App.context = context;
     _pageList = [
       DiscoveryPage(), //发现(普通用户专用)
-      OrderPage(), // 购物车(普通用户专用)
+      OrderPage(), //  订单(普通用户专用)
       UserCenterPage(), //我的(普通用户专用)
     ];
   }
@@ -66,7 +66,7 @@ class _HomePageUserState extends State<HomePageUser> {
     _setupTabbars();
     return Scaffold(
       body: Consumer<MainTabbarIndexProvider>(
-        builder: (context, main, child){
+        builder: (context, main, child) {
           return IndexedStack(
             index: main.index,
             children: _pageList,
@@ -86,21 +86,20 @@ class _HomePageUserState extends State<HomePageUser> {
     double itemWidth = (375 / _appBarTitles.length).px;
     tabbars.clear();
     for (var i = 0; i < _appBarTitles.length; i++) {
-      tabbars.add(
-        CustomTabbbar(
-          itemWidth,
-          56.px,
-          _appBarTitles[i],
-          i,
-          AssetImage(_appBarImages[i]['icon']),
-          AssetImage(_appBarImages[i]['aIcon']),
-          Colors.black,
-          Colours.app_main,
-          onTap: () {
-            Provider.of<MainTabbarIndexProvider>(App.context!, listen: false).index = i;
-          },
-        )
-      );
+      tabbars.add(CustomTabbbar(
+        itemWidth,
+        56.px,
+        _appBarTitles[i],
+        i,
+        AssetImage(_appBarImages[i]['icon']),
+        AssetImage(_appBarImages[i]['aIcon']),
+        Colors.black,
+        Colours.app_main,
+        onTap: () {
+          Provider.of<MainTabbarIndexProvider>(App.context!, listen: false)
+              .index = i;
+        },
+      ));
     }
     return;
   }

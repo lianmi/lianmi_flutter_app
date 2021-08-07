@@ -5,8 +5,9 @@ import 'package:lianmiapp/res/view_standard.dart';
 
 class DateWidget extends StatelessWidget {
   final ProductModel model;
+  final int maxLines;
 
-  DateWidget(this.model);
+  DateWidget(this.model, {this.maxLines = 2});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class DateWidget extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: CommonText(
         model.productDesc ?? '',
-        maxLines: 2,
+        maxLines: maxLines,
       ),
     );
   }

@@ -21,6 +21,8 @@ class OrderInfoData {
     this.txHash,
     this.prize,
     this.prizedPhoto,
+    this.content, //手工输入内容
+    this.photos, //交互图片数组
   });
 
   String? orderId; //订单id
@@ -42,6 +44,10 @@ class OrderInfoData {
   String? txHash; //交易哈希
   int? prize; //以分为单位
   String? prizedPhoto; //兑奖后的图片
+
+  ///2021-08-06新增
+  String? content; //订单内容说明，支持多行
+  List<String>? photos; //交互的图片，用户和商户在订单完成之前都有权上传及删除
 
   factory OrderInfoData.fromJson(String str) =>
       OrderInfoData.fromMap(json.decode(str));
@@ -68,6 +74,8 @@ class OrderInfoData {
         txHash: json["tx_hash"],
         prize: json["prize"],
         prizedPhoto: json["prized_photo"],
+        content: json["content"],
+        photos: json["photos"] == null ? [] : json["photos"].cast<String>(),
       );
 
   Map<String, dynamic> toMap() => {
@@ -90,5 +98,7 @@ class OrderInfoData {
         "tx_hash": txHash,
         "prize": prize,
         "prized_photo": prizedPhoto,
+        "content": content,
+        "photos": json.encode(photos), //将photos转为字符串s
       };
 }

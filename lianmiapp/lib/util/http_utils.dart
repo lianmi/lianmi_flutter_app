@@ -79,7 +79,7 @@ class HttpUtils {
     Options? options,
     CancelToken? cancelToken,
   }) async {
-    logD('请求头:' + (options ?? _options).headers.toString());
+    // logD('请求头:' + (options ?? _options).headers.toString());
     var _data = await Http().post(
       path,
       data: data,

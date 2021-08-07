@@ -143,7 +143,7 @@ class Http {
     //   "cacheDisk": cacheDisk,
     // });
     Map<String, dynamic>? _authorization = getAuthorizationHeader();
-    logD('_authorization: $_authorization');
+    // logD('_authorization: $_authorization');
     if (_authorization != null) {
       // requestOptions = requestOptions.merge(headers: _authorization);
 
@@ -151,7 +151,7 @@ class Http {
       requestOptions = requestOptions.copyWith(headers: _authorization);
     }
     Response response;
-    logD('url:' + HttpApi.baseUrl + path);
+    // logD('url:' + HttpApi.baseUrl + path);
     response = await _dio.get(HttpApi.baseUrl + path,
         queryParameters: params,
         options: requestOptions,

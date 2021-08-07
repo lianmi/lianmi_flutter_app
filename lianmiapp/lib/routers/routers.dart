@@ -4,7 +4,6 @@ import 'package:lianmiapp/pages/account/account_router.dart';
 import 'package:lianmiapp/pages/discovery/discovery_router.dart';
 import 'package:lianmiapp/pages/home/home_page_shop.dart';
 import 'package:lianmiapp/pages/home/home_page_user.dart';
-import 'package:lianmiapp/pages/home/webview_page.dart';
 import 'package:lianmiapp/pages/login/login_router.dart';
 import 'package:lianmiapp/pages/product/lottery_router.dart';
 import 'package:lianmiapp/pages/legalattest/legalattest_router.dart';
@@ -70,7 +69,6 @@ class Routes {
     //TODO: add by lishijia
 
     _listRouter.add(MeRouter());
-    _listRouter.add(StoreRouter());
     _listRouter.add(StoreRegRouter());
 
     /// 初始化路由
