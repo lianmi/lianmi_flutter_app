@@ -26,13 +26,6 @@ class _StorePageState extends State<StorePage> {
 
   GlobalKey<ClassicalFooterWidgetState> _footerkey =
       new GlobalKey<ClassicalFooterWidgetState>();
-
-  // int _page = 1;
-
-  // int _totalPage = 1;
-
-  // List<ProductListModel> _productList = [];
-
   @override
   void initState() {
     super.initState();
@@ -52,6 +45,8 @@ class _StorePageState extends State<StorePage> {
       List<ProductModel> products =
           LotteryData.instance.getProducts(_storeInfo!.storeType!);
 
+      logW('_storeInfo!.storeType!: ${_storeInfo!.storeType!}');
+
       if (products.length > 0) {
         _slivers.add(StoreProductList(
           products,
@@ -65,10 +60,14 @@ class _StorePageState extends State<StorePage> {
                   LotteryUtils.showLottery(model.id!, widget.businessUsername);
                   break;
                 }
-              case 3:
+              case 3: //公证处
+              case 4: // 律师事务所
+              case 5: // 保险公司
+              case 6: // 政府部门
+              case 7: // 设计公司
+              case 8: // 知识产权
+              case 9: // 艺术品鉴定公司
                 {
-                  // logW(
-                  //     '此商户智能合约绑定公证处,  model.id: ${model.id}, businessUsername: ${widget.businessUsername}');
                   LegalAttestUtils.showLegalAttest(
                       model.id!,
                       model.productId!,

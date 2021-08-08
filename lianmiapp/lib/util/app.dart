@@ -122,6 +122,13 @@ class App {
       List<ProductModel> fucaiProducts = [];
       List<ProductModel> ticaiProducts = [];
       List<ProductModel> legalAttestProducts = [];
+      List<ProductModel> lawFirmProducts = [];
+      List<ProductModel> insuranceProducts = [];
+      List<ProductModel> governmentProducts = [];
+      List<ProductModel> designProducts = [];
+      List<ProductModel> intellectualPropertyProducts = [];
+      List<ProductModel> artworkProducts = [];
+
       list.forEach((element) {
         if (element.productType == 1) {
           fucaiProducts.add(element);
@@ -129,11 +136,30 @@ class App {
           ticaiProducts.add(element);
         } else if (element.productType == 3) {
           legalAttestProducts.add(element);
+        } else if (element.productType == 4) {
+          lawFirmProducts.add(element);
+        } else if (element.productType == 5) {
+          insuranceProducts.add(element);
+        } else if (element.productType == 6) {
+          governmentProducts.add(element);
+        } else if (element.productType == 7) {
+          designProducts.add(element);
+        } else if (element.productType == 8) {
+          intellectualPropertyProducts.add(element);
+        } else if (element.productType == 9) {
+          artworkProducts.add(element);
         }
       });
       LotteryData.instance.fucaiProducts = fucaiProducts;
       LotteryData.instance.ticaiProducts = ticaiProducts;
       LotteryData.instance.legalAttestProducts = legalAttestProducts;
+      LotteryData.instance.lawFirmProducts = lawFirmProducts;
+      LotteryData.instance.insuranceProducts = insuranceProducts;
+      LotteryData.instance.governmentProducts = governmentProducts;
+      LotteryData.instance.designProducts = designProducts;
+      LotteryData.instance.intellectualPropertyProducts =
+          intellectualPropertyProducts;
+      LotteryData.instance.artworkProducts = artworkProducts;
 
       _initAllLotteryProvider();
     }).catchError((err) {

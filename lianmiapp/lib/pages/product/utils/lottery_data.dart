@@ -96,9 +96,15 @@ class LotteryData {
     return _instance!;
   }
 
-  List<ProductModel> _fucaiProducts = [];
-  List<ProductModel> _ticaiProducts = [];
-  List<ProductModel> _legalAttestProducts = [];
+  List<ProductModel> _fucaiProducts = []; //福彩
+  List<ProductModel> _ticaiProducts = []; //体彩
+  List<ProductModel> _legalAttestProducts = []; //公证处
+  List<ProductModel> _lawFirmProducts = []; //律师事务所
+  List<ProductModel> _insuranceProducts = []; //保险公司
+  List<ProductModel> _governmentProducts = []; //政府部门
+  List<ProductModel> _designProducts = []; //设计公司
+  List<ProductModel> _intellectualPropertyProducts = []; //知识产权
+  List<ProductModel> _artworkProducts = []; //艺术品
 
   ///福彩所有商品
   List<ProductModel> get fucaiProducts => _fucaiProducts;
@@ -108,6 +114,23 @@ class LotteryData {
 
   ///公证处的所有商品 - lishijia
   List<ProductModel> get legalAttestProducts => _legalAttestProducts;
+
+  //律师事务所的所有商品 - lishijia
+  List<ProductModel> get lawFirmProducts => _lawFirmProducts;
+
+  //保险公司的所有商品 - lishijia
+  List<ProductModel> get insuranceProducts => _insuranceProducts;
+
+  //政府部门的所有商品 - lishijia
+  List<ProductModel> get governmentProducts => _governmentProducts;
+
+  //设计公司的所有商品 - lishijia
+  List<ProductModel> get designProducts => _designProducts;
+
+  List<ProductModel> get intellectualPropertyProducts =>
+      _intellectualPropertyProducts;
+
+  List<ProductModel> get artworkProducts => _artworkProducts;
 
   set fucaiProducts(List<ProductModel> list) {
     _fucaiProducts = list;
@@ -121,6 +144,30 @@ class LotteryData {
     _legalAttestProducts = list;
   }
 
+  set lawFirmProducts(List<ProductModel> list) {
+    _lawFirmProducts = list;
+  }
+
+  set insuranceProducts(List<ProductModel> list) {
+    _insuranceProducts = list;
+  }
+
+  set governmentProducts(List<ProductModel> list) {
+    _governmentProducts = list;
+  }
+
+  set designProducts(List<ProductModel> list) {
+    _designProducts = list;
+  }
+
+  set intellectualPropertyProducts(List<ProductModel> list) {
+    _intellectualPropertyProducts = list;
+  }
+
+  set artworkProducts(List<ProductModel> list) {
+    _artworkProducts = list;
+  }
+
   ///根据商户类型获取列表
   List<ProductModel> getProducts(int storeType) {
     switch (storeType) {
@@ -130,6 +177,23 @@ class LotteryData {
         return _ticaiProducts;
       case 3:
         return _legalAttestProducts;
+      case 4:
+        return _lawFirmProducts;
+
+      case 5:
+        return _insuranceProducts;
+
+      case 6:
+        return _governmentProducts;
+
+      case 7:
+        return _designProducts;
+
+      case 8:
+        return _intellectualPropertyProducts;
+
+      case 9:
+        return _artworkProducts;
 
       //TODO lishijia 增加各种商户产品
       default:
@@ -151,6 +215,42 @@ class LotteryData {
     }
 
     for (ProductModel item in _legalAttestProducts) {
+      if (item.id == id) {
+        return item;
+      }
+    }
+
+    for (ProductModel item in _lawFirmProducts) {
+      if (item.id == id) {
+        return item;
+      }
+    }
+
+    for (ProductModel item in _insuranceProducts) {
+      if (item.id == id) {
+        return item;
+      }
+    }
+
+    for (ProductModel item in _governmentProducts) {
+      if (item.id == id) {
+        return item;
+      }
+    }
+
+    for (ProductModel item in _designProducts) {
+      if (item.id == id) {
+        return item;
+      }
+    }
+
+    for (ProductModel item in _intellectualPropertyProducts) {
+      if (item.id == id) {
+        return item;
+      }
+    }
+
+    for (ProductModel item in _artworkProducts) {
       if (item.id == id) {
         return item;
       }
