@@ -4,6 +4,7 @@ import 'package:lianmiapp/pages/discovery/discovery_router.dart';
 import 'package:lianmiapp/pages/order/order_router.dart';
 import 'package:lianmiapp/pages/order/page/order_page.dart';
 import 'package:lianmiapp/pages/product/model/order_model.dart';
+import 'package:lianmiapp/provider/main_tabbar_index_provider.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
 import 'package:linkme_flutter_sdk/sdk/OrderMod.dart';
 
@@ -137,8 +138,11 @@ class _LotteryPayPageState extends State<LotteryPayPage> {
       logD('下单成功，等待商户接单, cost: ${widget.order.cost!} 订单ID: $value');
       NotificationCenter.instance
           .postNotification(NotificationDefine.orderUpdate);
-      Navigator.of(context)
-          .popUntil(ModalRoute.withName(DiscoveryRouter.storePage));
+      // Navigator.of(context)
+      //     .popUntil(ModalRoute.withName(DiscoveryRouter.storePage));
+      
+      Navigator.of(context).popUntil(ModalRoute.withName('/'));
+      Provider.of<MainTabbarIndexProvider>(context, listen: false).index = 1;
 
       // AppNavigator.push(context, OrderPage()); 不行
       // NavigatorUtils.push(App.context!, OrderRouter.orderPage); 不行
