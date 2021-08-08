@@ -2,6 +2,7 @@ import 'package:lianmiapp/header/common_header.dart';
 import 'package:lianmiapp/notification/notification_center.dart';
 import 'package:lianmiapp/pages/discovery/discovery_router.dart';
 import 'package:lianmiapp/pages/product/model/order_model.dart';
+import 'package:lianmiapp/provider/main_tabbar_index_provider.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
 import 'package:linkme_flutter_sdk/sdk/OrderMod.dart';
 
@@ -44,14 +45,34 @@ class _OrderPayPageState extends State<OrderPayPage> {
           children: <Widget>[
             SizedBox(height: 80),
             Text(
-              '商户根据你选择的支付方式给出收款码',
+              '请您注意',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: const Color.fromARGB(255, 0, 0, 255),
+                fontSize: 24.px,
+              ),
+            ),
+            Divider(),
+            Text(
+              '商户根据支付方式给出收款码图片让您扫码支付',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: const Color(0xAA001133)),
+            ),
+            Divider(),
+            Text(
+              '您扫码支付之后，商户将直接到账',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: const Color(0xAA001133)),
+            ),
+            Divider(),
+            Text(
+              '除存证上链服务费,本App不向任何人收取订单的费用',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: const Color(0xAA001133),
               ),
             ),
             Divider(),
-
             //Flutter2.x以后调用RadioListTile的时候需要指定传入参数的类型  this.sex为int类型，所以这里我们指定为int类型
             RadioListTile<int>(
               value: 1,
@@ -124,8 +145,11 @@ class _OrderPayPageState extends State<OrderPayPage> {
       logD('下单成功，等待商户接单, cost: ${widget.order.cost!} 订单ID: $value');
       NotificationCenter.instance
           .postNotification(NotificationDefine.orderUpdate);
-      Navigator.of(context)
-          .popUntil(ModalRoute.withName(DiscoveryRouter.storePage));
+      // Navigator.of(context)
+      //     .popUntil(ModalRoute.withName(DiscoveryRouter.storePage));
+
+      Navigator.of(context).popUntil(ModalRoute.withName('/'));
+      Provider.of<MainTabbarIndexProvider>(context, listen: false).index = 1;
     }).catchError((err) {
       HubView.dismiss();
       HubView.showToastAfterLoadingHubDismiss(err);

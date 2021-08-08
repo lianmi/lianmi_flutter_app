@@ -47,8 +47,9 @@ import 'package:linkme_flutter_sdk/manager/LogManager.dart';
 */
 
 class LegalAttestUtils {
-  static void showLegalAttest(
-      int id, String productId, int productPrice, String businessUsername) {
+  static void showLegalAttest(int id, String productId, String productName,
+      int productPrice, String businessUsername) {
+    /*
     switch (id) {
       case 9: //合同协议委托类
         {
@@ -71,67 +72,12 @@ class LegalAttestUtils {
           logW('暂时不支持此智能合约');
         }
     }
-
-    /*
-    switch (LegalAttestTypeEnum.values[id]) {
-      case LegalAttestTypeEnum.hetong: //合同协议委托类
-        {
-          NavigatorUtils.push(
-              App.context!,
-              LegalAttestRouter.hetongPage +
-                  '?businessUsername=${businessUsername}&id=${id}');
-        }
-        break;
-      case LegalAttestTypeEnum.zhaotoubiao: //声明招标投标类
-        {
-          NavigatorUtils.push(
-              App.context!,
-              LegalAttestRouter.zhaotoubiaoPage +
-                  '?businessUsername=${businessUsername}&id=${id}');
-        }
-        break;
-      // case LotteryTypeEnum.qlc:
-      //   {
-      //     NavigatorUtils.push(
-      //         App.context!,
-      //         LotteryRouter.qlcPage +
-      //             '?businessUsername=${businessUsername}&id=${id}');
-      //   }
-      //   break;
-      // case LotteryTypeEnum.fc3d:
-      //   {
-      //     NavigatorUtils.push(
-      //         App.context!,
-      //         LotteryRouter.fc3dPage +
-      //             '?businessUsername=${businessUsername}&id=${id}');
-      //   }
-      //   break;
-      // case LotteryTypeEnum.pl3:
-      //   {
-      //     NavigatorUtils.push(
-      //         App.context!,
-      //         LotteryRouter.pl3Page +
-      //             '?businessUsername=${businessUsername}&id=${id}');
-      //   }
-      //   break;
-      // case LotteryTypeEnum.pl5:
-      //   {
-      //     NavigatorUtils.push(
-      //         App.context!,
-      //         LotteryRouter.pl5Page +
-      //             '?businessUsername=${businessUsername}&id=${id}');
-      //   }
-      //   break;
-      // case LotteryTypeEnum.qxc:
-      //   {
-      //     NavigatorUtils.push(
-      //         App.context!,
-      //         LotteryRouter.qxcPage +
-      //             '?businessUsername=${businessUsername}&id=${id}');
-      //   }
-      //   break;
-      default:
-    }
     */
+
+    //注意：中文记得先编码
+    NavigatorUtils.push(
+        App.context!,
+        LegalAttestRouter.hetongPage +
+            '?productId=${productId}&productName=${Uri.encodeComponent(productName)}&productPrice=${productPrice}&businessUsername=${businessUsername}&id=${id}');
   }
 }

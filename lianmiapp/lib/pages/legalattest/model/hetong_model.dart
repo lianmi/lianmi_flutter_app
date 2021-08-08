@@ -2,7 +2,6 @@ import 'dart:convert';
 
 class HetongDataModel {
   HetongDataModel({
-    this.type,
     this.description,
     this.jiafangName,
     this.jiafangPhone,
@@ -10,7 +9,6 @@ class HetongDataModel {
     this.attachsAliyun,
   });
 
-  int? type; //合同类型
   String? description; //合同概述
   String? jiafangName; //姓名
   String? jiafangPhone; //联系电话
@@ -26,7 +24,6 @@ class HetongDataModel {
 //将json对象转为model对象
   factory HetongDataModel.fromMap(Map<String, dynamic> json) {
     return HetongDataModel(
-      type: json["type"],
       description: json["description"],
       jiafangName: json["jiafang_name"],
       jiafangPhone: json["jiafang_phone"],
@@ -40,7 +37,6 @@ class HetongDataModel {
   //将model对象转为map对象
   Map<String, dynamic> toMap() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['type'] = this.type;
     data['description'] = this.description;
     data['jiafang_name'] = this.jiafangName;
     data['jiafang_phone'] = this.jiafangPhone;

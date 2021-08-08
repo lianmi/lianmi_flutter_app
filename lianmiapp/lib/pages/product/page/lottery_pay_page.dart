@@ -1,8 +1,5 @@
 import 'package:lianmiapp/header/common_header.dart';
 import 'package:lianmiapp/notification/notification_center.dart';
-import 'package:lianmiapp/pages/discovery/discovery_router.dart';
-import 'package:lianmiapp/pages/order/order_router.dart';
-import 'package:lianmiapp/pages/order/page/order_page.dart';
 import 'package:lianmiapp/pages/product/model/order_model.dart';
 import 'package:lianmiapp/provider/main_tabbar_index_provider.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
@@ -13,10 +10,7 @@ class LotteryPayPage extends StatefulWidget {
 
   final double fee;
 
-  // bool isStandart = false;
-
-  LotteryPayPage(
-      {required this.order, required this.fee}); //, this.isStandart = false
+  LotteryPayPage({required this.order, required this.fee});
 
   @override
   _LotteryPayPageState createState() => _LotteryPayPageState();
@@ -28,6 +22,11 @@ class _LotteryPayPageState extends State<LotteryPayPage> {
   @override
   void initState() {
     super.initState();
+    if (widget.order.photos != null) {
+      widget.order.photos!.forEach((alyossUrl) async {
+        logI('LotteryPayPage, alyossUrl: $alyossUrl');
+      });
+    }
   }
 
   void _radioChange(v) {
@@ -50,7 +49,28 @@ class _LotteryPayPageState extends State<LotteryPayPage> {
           children: <Widget>[
             SizedBox(height: 80),
             Text(
-              '商户根据你选择的支付方式给出收款码',
+              '请您注意',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: const Color.fromARGB(255, 0, 0, 255),
+                fontSize: 24.px,
+              ),
+            ),
+            Divider(),
+            Text(
+              '商户根据支付方式给出收款码图片让您扫码支付',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: const Color(0xAA001133)),
+            ),
+            Divider(),
+            Text(
+              '您扫码支付之后，商户将直接到账',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: const Color(0xAA001133)),
+            ),
+            Divider(),
+            Text(
+              '除存证上链服务费,本App不向任何人收取订单的费用',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: const Color(0xAA001133),
@@ -117,16 +137,6 @@ class _LotteryPayPageState extends State<LotteryPayPage> {
   void _newOrder() async {
     HubView.showLoading();
 
-    //TODO: 上传到存证区
-    if (widget.order.photos != null && widget.order.photos!.length > 0) {
-      widget.order.photos!.forEach((sourceFile) async {
-        String url = await UserMod.uploadOssOrderFile(sourceFile);
-        if (url != '') {
-          logD('_newOrder 上传交互图片 完成, url: $url');
-        }
-      });
-    }
-
     OrderMod.preOrder(
       widget.order.businessUsername!,
       widget.order.productID!,
@@ -135,20 +145,31 @@ class _LotteryPayPageState extends State<LotteryPayPage> {
       payMode: this.payMode, //1-微信支付，2-支付宝
     ).then((value) {
       HubView.dismiss();
+
+      //当服务器创建好订单之后，就有了订单id
+      widget.order.orderID = value;
+
+      if (widget.order.photos != null) {
+        //上报交互图片json
+        OrderMod.uploaOrderPhotos(widget.order.orderID!, widget.order.photos!)
+            .then((val) {
+          logI('uploaOrderPhotos  完成, val: $val');
+        }).catchError((e) {
+          logE(e);
+        });
+      } else {
+        logI('uploaOrderPhotos widget.order.photos is null');
+      }
+
       logD('下单成功，等待商户接单, cost: ${widget.order.cost!} 订单ID: $value');
+
       NotificationCenter.instance
           .postNotification(NotificationDefine.orderUpdate);
       // Navigator.of(context)
       //     .popUntil(ModalRoute.withName(DiscoveryRouter.storePage));
-      
+
       Navigator.of(context).popUntil(ModalRoute.withName('/'));
       Provider.of<MainTabbarIndexProvider>(context, listen: false).index = 1;
-
-      // AppNavigator.push(context, OrderPage()); 不行
-      // NavigatorUtils.push(App.context!, OrderRouter.orderPage); 不行
-      // Future.delayed(Duration(milliseconds: 1000)).then((value) {
-      //   AppNavigator.push(context, OrderPage()); //不行
-      // });
     }).catchError((err) {
       HubView.dismiss();
       HubView.showToastAfterLoadingHubDismiss(err);

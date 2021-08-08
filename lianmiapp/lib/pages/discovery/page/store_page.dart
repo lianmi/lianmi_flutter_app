@@ -57,7 +57,7 @@ class _StorePageState extends State<StorePage> {
           products,
           onTap: (ProductModel model) {
             logI(
-                '此商户智能合约信息: productType: ${model.productType},  model.id: ${model.id}, businessUsername: ${widget.businessUsername}');
+                '此商户智能合约信息: productType: ${model.productType},productName: ${model.productName},   model.id: ${model.id}, businessUsername: ${widget.businessUsername}');
             switch (model.productType) {
               case 1:
               case 2:
@@ -69,8 +69,12 @@ class _StorePageState extends State<StorePage> {
                 {
                   // logW(
                   //     '此商户智能合约绑定公证处,  model.id: ${model.id}, businessUsername: ${widget.businessUsername}');
-                  LegalAttestUtils.showLegalAttest(model.id!, model.productId!,
-                      model.productPrice!, widget.businessUsername);
+                  LegalAttestUtils.showLegalAttest(
+                      model.id!,
+                      model.productId!,
+                      model.productName!,
+                      model.productPrice!,
+                      widget.businessUsername);
                   break;
                 }
               default:

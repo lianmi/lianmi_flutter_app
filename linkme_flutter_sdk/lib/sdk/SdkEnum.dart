@@ -822,12 +822,6 @@ enum LogOutputEnum {
   stream,
 }
 
-enum KeyPairTypeEnum {
-  KPT_Undefined,
-  KPT_OPK,
-  KPT_Orderf,
-}
-
 ///订单子类型，用于区分各种彩票品种，根据此枚举来弹出相应的选号UI
 enum SubTypeEnum {
   STE_Normal, //通用的，不区分

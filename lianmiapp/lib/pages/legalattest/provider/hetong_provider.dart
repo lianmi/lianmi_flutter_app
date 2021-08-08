@@ -4,7 +4,6 @@ import 'package:lianmiapp/pages/legalattest/model/hetong_model.dart';
 
 class HetongProvider extends ChangeNotifier {
   HetongDataModel _hetongData = HetongDataModel(
-    type: 0,
     description: '',
     jiafangName: '',
     jiafangPhone: '',
@@ -16,7 +15,6 @@ class HetongProvider extends ChangeNotifier {
 
   void reset() {
     _hetongData = HetongDataModel(
-      type: 0,
       description: '',
       jiafangName: '',
       jiafangPhone: '',

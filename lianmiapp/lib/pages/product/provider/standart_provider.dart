@@ -17,6 +17,7 @@ class StandartProvider extends ChangeNotifier {
     count: 1,
     multiple: 1,
     attachs: [],
+    photos: [],
   );
 
   StandartOrderModel get standartOrderData => _standartOrderData;
@@ -37,6 +38,7 @@ class StandartProvider extends ChangeNotifier {
       count: 1,
       multiple: 1,
       attachs: [],
+      photos: [],
     );
   }
 }

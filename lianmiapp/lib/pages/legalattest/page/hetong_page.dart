@@ -14,11 +14,13 @@ import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
 
 class HetongPage extends StatefulWidget {
   final String productId;
+  final String productName;
   final int productPrice;
   final String businessUsername;
   final int id;
 
-  HetongPage(this.productId, this.productPrice, this.businessUsername, this.id);
+  HetongPage(this.productId, this.productName, this.productPrice,
+      this.businessUsername, this.id);
 
   @override
   _HetongPageState createState() => _HetongPageState();
@@ -27,6 +29,7 @@ class HetongPage extends StatefulWidget {
 class _HetongPageState extends State<HetongPage> {
   StoreInfo? _storeInfo;
   ProductModel? _productInfo;
+  // String _productName = '标准上链表单';
 
   @override
   void initState() {
@@ -63,8 +66,8 @@ class _HetongPageState extends State<HetongPage> {
                 ),
               ),
               backgroundColor: Colors.white,
-              title:
-                  Text('合同协议委托类上链', style: TextStyle(color: Color(0xff333333))),
+              title: Text('${widget.productName}',
+                  style: TextStyle(color: Color(0xff333333))),
               centerTitle: true,
               actions: [],
               elevation: 0,
@@ -162,10 +165,10 @@ class _HetongPageState extends State<HetongPage> {
     var _hetongData =
         Provider.of<HetongProvider>(App.context!, listen: false).hetongData;
 
-    if (_hetongData.type == 0) {
-      HubView.showToast('请选择合同类型');
-      return;
-    }
+    // if (_hetongData.productName == '') {
+    //   HubView.showToast('请选择合同类型');
+    //   return;
+    // }
     if (isValidString(_hetongData.description) == false) {
       HubView.showToast('请输入内容');
       return;
@@ -179,7 +182,6 @@ class _HetongPageState extends State<HetongPage> {
       return;
     }
 
-    HubView.showLoading();
     OrderModel order = OrderModel();
     order.buyUser = AppManager.currentUsername;
     order.businessUsername = widget.businessUsername;
@@ -196,7 +198,6 @@ class _HetongPageState extends State<HetongPage> {
 
     //TODO 构造订单 存证数据, 将附件上传到阿里云
     order.cunzhengModelData = HetongDataModel(
-      type: _hetongData.type,
       description: _hetongData.description,
       jiafangName: _hetongData.jiafangName,
       jiafangPhone: _hetongData.jiafangPhone,

@@ -116,7 +116,7 @@ class App {
   //获取所有通用商品 -lishijia
   static _loadAllProducts() {
     OrderMod.getGeneralProducts().then((val) {
-      logD('获取所有通用商品:$val');
+      // logD('获取所有通用商品:$val');
 
       List<ProductModel> list = ProductModel.modelListFromJson(val);
       List<ProductModel> fucaiProducts = [];

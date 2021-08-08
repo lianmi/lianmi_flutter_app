@@ -8,6 +8,7 @@ import 'package:lianmiapp/pages/legalattest/page/models.dart';
 import 'package:lianmiapp/pages/product/model/order_model.dart';
 import 'package:lianmiapp/pages/product/model/product_model.dart';
 import 'package:lianmiapp/pages/product/page/lottery_pay_page.dart';
+import 'package:lianmiapp/pages/product/page/order_change_cost_page.dart';
 import 'package:lianmiapp/pages/product/page/prize_page.dart';
 import 'package:lianmiapp/pages/product/utils/lottery_data.dart';
 import 'package:lianmiapp/pages/product/utils/lottery_utils.dart';
@@ -15,6 +16,7 @@ import 'package:lianmiapp/pages/product/widget/order_detail_list_widget.dart';
 import 'package:lianmiapp/pages/me/events/qr_events.dart';
 import 'package:lianmiapp/pages/me/page/recharge_page.dart';
 import 'package:lianmiapp/pages/order/widgets/order_detail_status_widget.dart';
+import 'package:lianmiapp/util/alert_utils.dart';
 import 'package:lianmiapp/util/date_time_utils.dart';
 import 'package:lianmiapp/widgets/widget/button/common_button.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
@@ -25,8 +27,9 @@ import 'antchain_qr_page.dart';
 
 class OrderDetailPage extends StatefulWidget {
   OrderModel order;
+  List<String>? localUrls;
 
-  OrderDetailPage(this.order);
+  OrderDetailPage(this.order, {this.localUrls});
 
   @override
   _OrderDetailPageState createState() => _OrderDetailPageState();
@@ -35,6 +38,7 @@ class OrderDetailPage extends StatefulWidget {
 class _OrderDetailPageState extends State<OrderDetailPage>
     with QrEvents
     implements LinkMeManagerOrderStatusListerner {
+  ProductModel? product;
   List _selectedNums = [];
 
   List<String> _localUrls = []; //交互图片数组对应的本地完整路径
@@ -42,6 +46,8 @@ class _OrderDetailPageState extends State<OrderDetailPage>
 
   int _fee = 0; //以分为单位
   int _prize = 0; //中奖金额 以分为单位
+
+  double _price = 2.0;
 
   String _qrcodeUrl = '';
 
@@ -93,45 +99,50 @@ class _OrderDetailPageState extends State<OrderDetailPage>
   }
 
   _reloadLocalPhotoUrls() async {
-    if (widget.order.photos != null) {
-      _localUrls = [];
+    if (widget.order.status != null) {
+      if (widget.order.photos != null) {
+        _localUrls = [];
 
-      widget.order.photos!.forEach((fileUrl) async {
-        String? _localFile = await appManager.getOrderImages(fileUrl);
+        widget.order.photos!.forEach((fileUrl) async {
+          String? _localFile = await appManager.getOrderImages(fileUrl);
+          logI('_localFile: $_localFile');
+          addTestData(_localFile!);
+        });
+      }
+    } else {
+      logD('widget.order.status is null');
+    }
+
+    if (widget.localUrls != null) {
+      widget.localUrls!.forEach((localUrl) async {
+        String? _localFile = await appManager.getOrderImages(localUrl);
         logI('_localFile: $_localFile');
         addTestData(_localFile!);
       });
-      //TODO 目的是等待上面处理完成
-      Future.delayed(Duration(milliseconds: 1000)).then((value) {
-        imageList = getTestData();
-        logI('_reloadLocalPhotoUrls :  ${imageList.length}');
-
-        imageList.forEach((bean) {
-          logI('_reloadLocalPhotoUrls, thumbPath : ${bean.thumbPath}');
-        });
-      });
+    } else {
+      logD('widget.localUrls is null');
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    ProductModel? product =
-        LotteryData.instance.getProduct(widget.order.loterryType!);
+    product = LotteryData.instance.getProduct(widget.order.loterryType!);
     int count = widget.order.count!;
     int multiple = widget.order.multiple!;
-    int price = product!.productPrice! * count * multiple; //总价
+    int cost = product!.productPrice! * count * multiple; //总价
 
     //首次必须计算上链服务费
     if (_fee == 0) {
       _calculateOrderPrice(widget.order.cost!);
     }
-    String totalPrice = '';
+    String total = '';
 
     if (App.isShop) {
-      totalPrice = (price / 100).toStringAsFixed(1); //商户不需要合计上链服务费
+      total = (cost / 100).toStringAsFixed(1); //商户不需要合计上链服务费
     } else {
-      totalPrice = (_fee / 100 + price / 100).toStringAsFixed(1); //合计
+      total = (_fee / 100 + cost / 100).toStringAsFixed(1); //合计
     }
+    String _costStr = (cost / 100).toStringAsFixed(1);
 
     String payModeStr = '';
     if (widget.order.payMode == 1) {
@@ -142,10 +153,10 @@ class _OrderDetailPageState extends State<OrderDetailPage>
 
     imageList = getTestData();
 
-    // logI('build, _imageCount :  ${imageList.length}');
-    // imageList.forEach((bean) {
-    //   logI('build, thumbPath : ${bean.thumbPath}');
-    // });
+    logI('build, _imageCount :  ${imageList.length}');
+    imageList.forEach((bean) {
+      logI('build, thumbPath : ${bean.thumbPath}');
+    });
 
     return Scaffold(
         appBar: MyCustomAppBar(
@@ -171,19 +182,17 @@ class _OrderDetailPageState extends State<OrderDetailPage>
               OrderDetailListWidget(_selectedNums),
               Gaps.vGap20,
               _commonItem('商户名称', '${widget.order.shopName}'),
-              _commonItem('总价', '${widget.order.cost!}元'),
-              _commonItem('商品', '${product.productName}'),
-              _commonItem('总价', '${widget.order.cost!}元'),
-
-              _feeWidget(_fee),
-              _commonItem('合计', '${totalPrice}元'),
+              _commonItem('商品', '${this.product!.productName}'),
+              _changePriceItem('金额', '${_costStr}元'), //元为单位
+              _feeWidget(_fee), //上链服务费
+              _commonItem('合计', '${total}元'),
               _commonItem('支付方式', '${payModeStr}'),
 
               _orderIDWidget(),
               _orderTimeArea(),
-              widget.order.status != null
-                  ? _photosArea()
-                  : SizedBox(), //双方图片交互区
+
+              _photosArea(), //双方图片交互区
+
               _statusArea(),
               _bottomArea()
             ],
@@ -277,18 +286,21 @@ class _OrderDetailPageState extends State<OrderDetailPage>
 
   //交互图片区
   Widget _photosArea() {
-    return Container(
-      margin: EdgeInsets.only(top: 20.px),
-      // padding: EdgeInsets.fromLTRB(23.px, 0, 23.px, 16.px),
-      padding: EdgeInsets.fromLTRB(1.px, 0, 1.px, 1.px),
-      width: double.infinity,
-      color: Colors.white,
-      child: Column(
-        children: [
-          _ninePhotosArea(context),
-        ],
-      ),
-    );
+    if (widget.order.status != null || _localUrls.length > 0) {
+      return Container(
+        margin: EdgeInsets.only(top: 20.px),
+        // padding: EdgeInsets.fromLTRB(23.px, 0, 23.px, 16.px),
+        padding: EdgeInsets.fromLTRB(1.px, 0, 1.px, 1.px),
+        width: double.infinity,
+        color: Colors.white,
+        child: Column(
+          children: [
+            _ninePhotosArea(context),
+          ],
+        ),
+      );
+    }
+    return SizedBox();
   }
 
   Widget _ninePhotosArea(BuildContext context) {
@@ -348,6 +360,76 @@ class _OrderDetailPageState extends State<OrderDetailPage>
             setState(() {});
           }, originPath: bean.originPath!); //如果pdf则用assets
         },
+      ),
+    );
+  }
+
+  Widget _changePriceItem(String title, String desc,
+      {EdgeInsetsGeometry? margin}) {
+    return Container(
+      margin: margin,
+      padding: EdgeInsets.only(left: 30.px, right: 30.px),
+      width: double.infinity,
+      height: 48.px,
+      color: Colors.white,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          CommonText(
+            title,
+            fontSize: 16.px,
+          ),
+          Gaps.hGap16,
+          InkWell(
+            onTap: () {
+              if (App.isShop) {
+                logI('商户修改价格');
+                AppNavigator.push(context, OrderChangeCostPage(widget.order))
+                    .then((value) {
+                  if (value != null) {
+                    logI("Back Params value: ${value}");
+                    widget.order.count = int.parse(value['count']);
+                    widget.order.multiple = int.parse(value['multiple']);
+                    int cost = this.product!.productPrice! *
+                        widget.order.count! *
+                        widget.order.multiple!; //总价
+
+                    //TODO: 向服务端提交商户更改彩票注数，倍数及总价格，并推送给用户，刷新订单
+                    OrderMod.changeOrderCost(widget.order.orderID!, cost / 100,
+                            body: widget.order.toAttach(0))
+                        .then((value) {
+                      setState(() {});
+                    }).catchError((e) {
+                      logE(e);
+                    });
+                  }
+                });
+              }
+            },
+            child: Container(
+              height: 48.px,
+              margin: margin, //EdgeInsets.fromLTRB(16, 0, 16, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        App.isShop ? '$desc, 修改价格>' : '$desc',
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                          color: const Color(0xAA001133),
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -440,7 +522,6 @@ class _OrderDetailPageState extends State<OrderDetailPage>
                 LotteryPayPage(
                   order: widget.order,
                   fee: _fee / 100,
-                  // isStandart: widget.isStandstart,
                 ));
           });
         } else {
@@ -593,18 +674,20 @@ class _OrderDetailPageState extends State<OrderDetailPage>
         children: [
           Expanded(
             child: CommonButton(
-              width: double.infinity,
-              height: double.infinity,
-              borderRadius: 4.px,
-              borderColor: Colours.app_main,
-              color: Colors.white,
-              text: '拒绝接单',
-              fontSize: 16.px,
-              textColor: Colors.black,
-              onTap: () {
-                _changeOrderRefuse();
-              },
-            ),
+                width: double.infinity,
+                height: double.infinity,
+                borderRadius: 4.px,
+                borderColor: Colours.app_main,
+                color: Colors.white,
+                text: '拒绝接单',
+                fontSize: 16.px,
+                textColor: Colors.black,
+                onTap: () {
+                  AlertUtils.showChooseAlert(App.context!,
+                      title: '提示', content: '您确认拒绝接单?', onTapConfirm: () {
+                    _changeOrderRefuse();
+                  });
+                }),
           ),
           SizedBox(width: 14.px),
           Expanded(
@@ -1047,7 +1130,7 @@ class _OrderDetailPageState extends State<OrderDetailPage>
             break;
           }
           widget.order.photos!.add(url);
-          logI('add ok ');
+          logI('add oss ok ');
           OrderMod.uploaOrderPhotos(widget.order.orderID!, widget.order.photos!)
               .then((value) {
             logI('uploaOrderPhotos  完成, value: $value');

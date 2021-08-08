@@ -27,8 +27,8 @@ import 'package:linkme_flutter_sdk/util/hex.dart';
 import 'package:path_provider/path_provider.dart';
 
 class OrderMod {
-  /// @nodoc POST方法, 根据彩票总金额，获取对应的服务费
-  ///totalAmount 客户端支付的总金额(彩票总价,以元为单位)
+  /// @nodoc POST方法, 根据订单总金额，获取对应的上链服务费
+  ///totalAmount 客户端支付的总金额(订单总价,以元为单位)
   /// 返回服务费
   static Future getOrderFee(double totalAmount) async {
     assert(totalAmount > 0);
@@ -51,8 +51,8 @@ class OrderMod {
         var _fee = _body['data'];
         _completer.complete(_fee);
       } else {
-        logE("根据彩票总金额，获取对应的服务费出错 , ${_body['code']} , msg ${_body['msg']}");
-        _completer.completeError('根据彩票总金额，获取对应的服务费出错');
+        logE("根据订单总金额，获取对应的服务费出错 , ${_body['code']} , msg ${_body['msg']}");
+        _completer.completeError('根据订单总金额，获取对应的服务费出错');
       }
     } catch (e) {
       logE(e);
@@ -63,13 +63,13 @@ class OrderMod {
     return f;
   }
 
-  /// @nodoc 预下单 扣chu链服务费
+  /// @nodoc 预下单 扣除上链服务费
   /// businessUsername - 商户id
   /// productID 商品id
   /// totalAmount 客户端支付的总金额(彩票总价), 以元为单位
   /// body 明文的json字符串, 由UI构造，里面是订单详细数据，如果是彩票则需要解析，如果是存证数据，按枚举类型解析
   /// payMode 用户选择的支付方式，默认是1-微信,  2-支付宝
-  /// 如果成功，服务端会返回一个新的订单ID 及 网点OPK公钥
+  /// 如果成功，服务端会返回一个新的订单ID
   static Future preOrder(String businessUsername, String productID,
       double totalAmount, String body,
       {int payMode = 1}) async {
@@ -261,15 +261,20 @@ class OrderMod {
 
   /// 修改订单价格
   /// totalAmount 修改后的修改订单总价，以元为单位
-  static Future<dynamic> changeOrderCost(
-      String orderID, double totalAmount) async {
+  /// body是可选
+  static Future<dynamic> changeOrderCost(String orderID, double totalAmount,
+      {String? body}) async {
     assert(totalAmount > 0);
 
     // 由于服务端接收是以分为单位, 所以需要乘以100
     //舍弃当前变量的小数部分。返回值为 int 类型
     int _totalAmount = (totalAmount * 100).truncate();
 
-    var _map = {'order_id': orderID, 'total_amount': _totalAmount};
+    var _map = {
+      'order_id': orderID,
+      'total_amount': _totalAmount,
+      'body': body
+    };
 
     try {
       var _body = await HttpUtils.post(HttpApi.changeOrderCost, data: _map);
@@ -386,48 +391,13 @@ class OrderMod {
     return _c;
   }
 
-  /// 交互图片上传
-  static Future uploaOrderImage(
-    String filename, //源文件
-    String orderID,
-    String image, //json
-  ) async {
-    Completer _completer = new Completer.sync();
-    Future _c = _completer.future;
-
-    ///提交数据
-    try {
-      String hash = await OrderMod.getHash256(filename);
-      var _map = {
-        'order_id': orderID,
-        'image': image,
-        'image_hash': hash,
-      };
-
-      var _body = await HttpUtils.post(HttpApi.uploaOrderImage, data: _map);
-      // logD('_body:  $_body');
-      if (_body['code'] == 200) {
-        _completer.complete(true);
-      } else {
-        logE('uploaOrderImage error, msg: ${_body['msg']}');
-        _completer.completeError('拍照上链出错');
-      }
-    } catch (e) {
-      logE(e);
-      _completer.completeError('无法上传拍照图片');
-    } finally {
-      logD('uploaOrderImage end.');
-    }
-    return _c;
-  }
-
   /// 交互图片数组上传
   static Future uploaOrderPhotos(
     String orderID,
-    List<String> photos, //阿里云Url数组
+    List<String> photos, //阿里云Url数组,不能是本地文件
   ) async {
     assert(orderID != '');
-    assert(photos.length > 0);
+    // assert(photos.length > 0);
     logD('uploaOrderPhotos start.');
     Completer _completer = new Completer.sync();
     Future _c = _completer.future;
@@ -662,8 +632,7 @@ class OrderMod {
     ///提交数据
     try {
       var _body = await HttpUtils.get(HttpApi.generalproducts);
-      // logD('_body: $_body');
-      logD('getGeneralProducts: $_body');
+      // logD('getGeneralProducts: $_body');
 
       var code = _body['code'];
       if (code == 200) {

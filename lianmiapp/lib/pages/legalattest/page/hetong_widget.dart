@@ -3,6 +3,7 @@ import 'package:lianmiapp/header/common_header.dart';
 import 'package:lianmiapp/pages/legalattest/provider/hetong_provider.dart';
 import 'package:lianmiapp/pages/me/widget/store_review/action_item.dart';
 import 'package:lianmiapp/pages/me/widget/store_review/input_item.dart';
+import 'package:lianmiapp/pages/me/widget/store_review/multi_input_item.dart';
 import 'package:lianmiapp/util/keyboard_utils.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
 import 'NineGridViewPage.dart';
@@ -52,38 +53,14 @@ class _HetongWidgetState extends State<HetongWidget> {
 
   Widget _info() {
     return Consumer<HetongProvider>(builder: (context, provider, child) {
-      String typeText = '请选择合同类型 >';
-      switch (provider.hetongData.type) {
-        case 1:
-          typeText = '劳动合同';
-          break;
-        case 2:
-          typeText = '采购合同';
-          break;
-        case 3:
-          typeText = '开发合同';
-          break;
-        case 4:
-          typeText = '其它';
-          break;
-
-        default:
-      }
-
       return Container(
         margin: EdgeInsets.fromLTRB(16, 0, 0, 0),
         child: Column(
           children: [
-            ActtionItem(
-              title: '类型',
-              content: typeText,
-              onTap: () {
-                _showTypeSelect();
-              },
-            ),
-            InputItem(
-              title: "内容",
-              hintText: '请输入内容',
+            MultiInputItem(
+              title: "概述",
+              maxline: 10,
+              hintText: '请输入概述',
               controller: _ctrlDescription,
               valid: vali_description,
               button: Container(),
@@ -158,22 +135,5 @@ class _HetongWidgetState extends State<HetongWidget> {
         ),
       );
     });
-  }
-
-  void _showTypeSelect() {
-    KeyboardUtils.hideKeyboard(context);
-    TypeChoose.show(
-        title: '请选择合同类型',
-        list: [
-          '劳动合同',
-          '采购合同',
-          '开发合同',
-          '其它',
-        ],
-        onTap: (int index) {
-          Provider.of<HetongProvider>(context, listen: false).hetongData.type =
-              index + 1;
-          setState(() {});
-        });
   }
 }

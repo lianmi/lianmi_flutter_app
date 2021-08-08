@@ -10,6 +10,7 @@ class StandartOrderModel {
     this.count,
     this.multiple,
     required this.attachs,
+    required this.photos,
   });
 
   int? id; //产品id
@@ -20,6 +21,7 @@ class StandartOrderModel {
   int? count; //数量
   int? multiple; //倍数
   List<String> attachs = []; //附件数组，必须带后缀，只支持图片(jpg/jpeg/png/gif/svg)
+  List<String> photos = []; //对应附件的阿里云oss url地址
 
   factory StandartOrderModel.fromJson(String str) =>
       StandartOrderModel.fromMap(json.decode(str));
@@ -38,6 +40,7 @@ class StandartOrderModel {
       count: json["count"],
       multiple: json["multiple"],
       attachs: json["attachs"] == null ? [] : json["attachs"].cast<String>(),
+      photos: json["photos"] == null ? [] : json["photos"].cast<String>(),
     );
   }
 
@@ -52,6 +55,7 @@ class StandartOrderModel {
     data['count'] = this.count;
     data['multiple'] = this.multiple;
     data['attachs'] = this.attachs;
+    data['photos'] = this.photos;
 
     return data;
   }

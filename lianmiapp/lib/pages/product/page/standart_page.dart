@@ -193,11 +193,7 @@ class StandartPageState extends State<StandartPage>
     order.multiple = _standartData.multiple;
     order.content = _standartData.productName;
 
-    order.photos = [];
-    // _standartData.attachs.forEach((url) {
-    //   logI('_submit, url: ' + url);
-    //   order.photos!.add(url);
-    // });
+    order.photos = _standartData.photos;
 
     if (order.count! <= 0) {
       HubView.showToastAfterLoadingHubDismiss('数量最小是1');
@@ -215,8 +211,11 @@ class StandartPageState extends State<StandartPage>
             .toDouble();
 
     // 跳转到详情页 -> 选择支付方式 ->确认下单
-    AppNavigator.push(context, OrderDetailPage(order));
-
-    HubView.showToastAfterLoadingHubDismiss('下单后请到订单详情上传选号拍照或图片');
+    AppNavigator.push(
+        context,
+        OrderDetailPage(
+          order,
+          localUrls: _standartData.attachs,
+        ));
   }
 }

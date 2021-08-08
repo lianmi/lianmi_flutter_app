@@ -520,12 +520,13 @@ class AppManager {
     String moduleName = 'orders';
 
     //计算出文件的hash字符串，用来做文件名, 后缀名保持不变
-    String _hash = await OrderMod.getHash256(filefullpath);
+    // String _hash = await OrderMod.getHash256(filefullpath);
+    String key = generateMD5(filefullpath);
     String extentName = filefullpath.split('.').last;
 
-    String _uploadFile = '$_hash.$extentName';
+    String _uploadFile = '$key.$extentName';
 
-    // logI('_uploadFile: $_uploadFile');
+    logI('uploadCunzheng, _uploadFile: $_uploadFile');
 
     //如果阿里云临时令牌过期，则重新获取
     if (DateTime.now().millisecondsSinceEpoch - _aliyunTokenAt >
@@ -544,7 +545,7 @@ class AppManager {
           ossConfig_cunzheng!.directory! +
           _uploadFile;
 
-      // logD('objFile: $objFile');
+      logD('objFile: $objFile');
 
       OssClient client = OssClient(
           bucketName: AppManager.ossConfig_cunzheng!.bucketName,
@@ -558,10 +559,10 @@ class AppManager {
 
       //获取文件
       response = await client.putObject(_fileContents, objFile);
-      // print(response.statusCode);
+      print(response.statusCode);
 
       if (response.statusCode == 200) {
-        // logI(' $filefullpath 存证区上传成功 ===>1');
+        logI(' $filefullpath 存证区上传成功 ===>1');
 
         return objFile;
       } else {
@@ -578,7 +579,7 @@ class AppManager {
           ossConfig_cunzheng!.directory! +
           _uploadFile;
 
-      // logD('objFile: $objFile');
+      logD('objFile: $objFile');
       OssClient client = OssClient(
           bucketName: AppManager.ossConfig_cunzheng!.bucketName,
           endpoint: AppManager.ossConfig_cunzheng!.endPoint,
@@ -591,10 +592,10 @@ class AppManager {
 
       //获取文件
       response = await client.putObject(_fileContents, objFile);
-      // print(response.statusCode);
+      print(response.statusCode);
 
       if (response.statusCode == 200) {
-        // logI(' $filefullpath 存证区上传成功 ===>2');
+        logI(' $filefullpath 存证区上传成功 ===>2');
         return objFile;
       } else {
         logE(' $filefullpath 存证区上传失败 ');

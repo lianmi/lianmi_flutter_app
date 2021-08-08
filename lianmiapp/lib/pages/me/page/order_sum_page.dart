@@ -96,7 +96,7 @@ class _OrderSumPageState extends State<OrderSumPage> {
 
     OrderMod.getStoreOrders(yearMonth).then((value) {
       setState(() {
-        _sum = value['sum'] * 1.0;
+        _sum = value['sum'] / 100.0;
         _count = value['count'];
       });
     }).catchError((e) {

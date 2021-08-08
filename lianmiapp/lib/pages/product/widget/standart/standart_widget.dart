@@ -4,6 +4,7 @@ import 'package:lianmiapp/header/common_header.dart';
 import 'package:lianmiapp/pages/legalattest/gallery/browserPhoto.dart';
 import 'package:lianmiapp/pages/legalattest/page/models.dart';
 import 'package:lianmiapp/pages/me/widget/store_review/input_item.dart';
+import 'package:lianmiapp/pages/me/widget/store_review/multi_input_item.dart';
 
 import 'package:lianmiapp/pages/product/provider/standart_provider.dart';
 import 'package:linkme_flutter_sdk/linkme_flutter_sdk.dart';
@@ -133,8 +134,9 @@ class _StandartWidgetState extends State<StandartWidget> {
                     .title = text;
               },
             ),
-            InputItem(
+            MultiInputItem(
               title: "内容",
+              maxline: 6,
               hintText: '请输入内容',
               controller: _ctrlDescription,
               valid: vali_description,
@@ -182,30 +184,30 @@ class _StandartWidgetState extends State<StandartWidget> {
                     .multiple = int.parse(text);
               },
             ),
-            CommonText('下单后请到订单详情上传选号拍照或图片')
+            // CommonText('下单后请到订单详情上传选号拍照或图片'),
             //TODO 增加附件
-            // InkWell(
-            //   onTap: () {
-            //     _showMedia();
-            //   },
-            //   child: Container(
-            //     height: 60,
-            //     margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //       children: [
-            //         Text("增加附件", style: TextStyle(fontSize: 16)),
-            //         Row(
-            //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //           children: [
-            //             Text(
-            //                 '总数${Provider.of<StandartProvider>(context, listen: false).standartOrderData.attachs.length}个')
-            //           ],
-            //         )
-            //       ],
-            //     ),
-            //   ),
-            // ),
+            InkWell(
+              onTap: () {
+                _showMedia();
+              },
+              child: Container(
+                height: 60,
+                margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("增加附件", style: TextStyle(fontSize: 16)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                            '总数${Provider.of<StandartProvider>(context, listen: false).standartOrderData.attachs.length}个')
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       );
@@ -319,14 +321,16 @@ class _StandartWidgetState extends State<StandartWidget> {
         .then((value) async {
       AssetEntity asset = value!;
       File? file = await asset.file;
-      // _UploadImage(file!.path, asset.type);
-      addTestData(file!.path);
+      String? _tempFilename = await appManager.getOrderImages(file!.path);
+      addTestData(_tempFilename!);
       //TODO
-      logD('增加到附件数组, file.path: ${file.path}');
+      logD('增加本地缓存文件到附件数组, _tempFilename: ${_tempFilename}');
       Provider.of<StandartProvider>(context, listen: false)
           .standartOrderData
           .attachs
-          .add(file.path);
+          .add(_tempFilename);
+
+      _UploadImage(1, _tempFilename); //上传交互图片
       setState(() {});
     });
   }
@@ -338,17 +342,44 @@ class _StandartWidgetState extends State<StandartWidget> {
       if (assets != null && assets.length > 0) {
         AssetEntity asset = assets.first;
         File? file = await asset.file;
-        // _UploadImage(file!.path, asset.type);
-        addTestData(file!.path);
+        String? _tempFilename = await appManager.getOrderImages(file!.path);
+        addTestData(_tempFilename!);
         //TODO
-        logD('增加到附件数组, file.path: ${file.path}');
+        logD('增加本地缓存文件到附件数组, _tempFilename: ${_tempFilename}');
         Provider.of<StandartProvider>(context, listen: false)
             .standartOrderData
             .attachs
-            .add(file.path);
+            .add(_tempFilename);
+
+        _UploadImage(1, _tempFilename); //上传交互图片
+
         setState(() {});
       }
     });
+  }
+
+  void _UploadImage(int action, String sourceFile) async {
+    HubView.showLoading();
+    switch (action) {
+      case 1:
+        String url = await UserMod.uploadOssOrderFile(sourceFile);
+        if (url != '') {
+          logD('uploadOssOrderFile 上传交互图片 完成, url: $url');
+
+          Provider.of<StandartProvider>(context, listen: false)
+              .standartOrderData
+              .photos
+              .add(url);
+          logI('add oss ok ');
+        } else {
+          HubView.showToastAfterLoadingHubDismiss('上传交互图片出错');
+        }
+        break;
+
+      default:
+        break;
+    }
+    HubView.dismiss();
   }
 
   addTestData(String targetFileName) {

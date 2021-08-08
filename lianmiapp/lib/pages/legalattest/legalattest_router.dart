@@ -13,10 +13,12 @@ class LegalAttestRouter implements IRouterProvider {
   void initRouter(FluroRouter router) {
     router.define(hetongPage, handler: Handler(handlerFunc: (_, params) {
       final String? productId = params['productId']?.first;
+      final String? productName = params['productName']?.first;
       final int? productPrice = int.parse(params['productPrice']!.first);
       final String? businessUsername = params['businessUsername']?.first;
       final int id = int.parse(params['id']!.first);
-      return HetongPage(productId!, productPrice!, businessUsername!, id);
+      return HetongPage(
+          productId!, productName!, productPrice!, businessUsername!, id);
     }));
     router.define(zhaotoubiaoPage, handler: Handler(handlerFunc: (_, params) {
       final String? productId = params['productId']?.first;
